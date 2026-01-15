@@ -1,41 +1,37 @@
 menu:
-  # 文章:
-  #   隧道: /archives/ || anzhiyu-icon-box-archive
-  #   分类: /categories/ || anzhiyu-icon-shapes
-  #   标签: /tags/ || anzhiyu-icon-tags
+  文章:
+    隧道: /archives/ || anzhiyu-icon-box-archive
+    分类: /categories/ || anzhiyu-icon-shapes
+    标签: /tags/ || anzhiyu-icon-tags
 
-  # 友链:
-  #   友人帐: /link/ || anzhiyu-icon-link
-  #   朋友圈: /fcircle/ || anzhiyu-icon-artstation
-  #   留言板: /comments/ || anzhiyu-icon-envelope
+  友链:
+    友人帐: /link/ || anzhiyu-icon-link
+    留言板: /comments/ || anzhiyu-icon-envelope
 
-  # 我的:
-  #   音乐馆: /music/ || anzhiyu-icon-music
-  #   追番页: /bangumis/ || anzhiyu-icon-bilibili
-  #   相册集: /album/ || anzhiyu-icon-images
-  #   小空调: /air-conditioner/ || anzhiyu-icon-fan
+  我的:
+    音乐馆: /music/ || anzhiyu-icon-music
+    相册集: /album/ || anzhiyu-icon-images
 
-  # 关于:
-  #   关于本人: /about/ || anzhiyu-icon-paper-plane
-  #   闲言碎语: /essay/ || anzhiyu-icon-lightbulb
-  #   随便逛逛: javascript:toRandomPost() || anzhiyu-icon-shoe-prints1
+  关于:
+    关于本人: /about/ || anzhiyu-icon-paper-plane
+    随便逛逛: javascript:toRandomPost() || anzhiyu-icon-shoe-prints1
 
 # nav相关配置
 nav:
-  enable: false
-  travelling: false
-  clock: false
+  enable: true
+  travelling: true
+  clock: true
   menu:
     - title: 网页
       item:
-        - name: 博客
-          link: https://hexo.anheyu.com/
+        - name: 我的博客
+          link: /
           icon: /img/favicon.ico
     - title: 项目
       item:
-        - name: 安知鱼图床
-          link: https://image.anheyu.com/
-          icon: https://image.anheyu.com/favicon.ico
+        - name: GitHub
+          link: https://github.com/coodeking
+          icon: https://github.githubassets.com/favicons/favicon.svg
 
 # mourn （哀悼日，指定日期网站简单变灰，不包括滚动条）
 # 注意： 仅网站首页变灰，其他页面正常显示
@@ -66,23 +62,21 @@ copy:
 # formal:
 #   name: link || icon
 social:
-  # Github: https://github.com/anzhiyu-c || anzhiyu-icon-github
-  # BiliBili: https://space.bilibili.com/372204786 || anzhiyu-icon-bilibili
+  Github: https://github.com/coodeking || anzhiyu-icon-github
+  Email: mailto:2304755125@qq.com || anzhiyu-icon-envelope
 
 # 作者卡片 状态
 author_status:
-  enable: false
+  enable: true
   # 可以是任何图片，建议放表情包或者emoji图片，效果都很好，[表情包速查](https://emotion.xiaokang.me/)
   statusImg: "https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png"
   skills:
-    # - 🤖️ 数码科技爱好者
-    # - 🔍 分享与热心帮助
-    # - 🏠 智能家居小能手
-    # - 🔨 设计开发一条龙
-    # - 🤝 专修交互与设计
-    # - 🏃 脚踏实地行动派
-    # - 🧱 团队小组发动机
-    # - 💢 壮汉人狠话不多
+    - 🤖️ AI算法工程师
+    - 🏆 讯飞AI大赛冠军
+    - 📝 KBS一区论文二作
+    - 🔬 NLP/CV算法研究
+    - 💻 全栈开发能力
+    - 🎯 大模型应用开发
 
 # search (搜索)
 # --------------------------------------
@@ -109,7 +103,7 @@ docsearch:
 
 # Local search
 local_search:
-  enable: false
+  enable: true
   preload: true
   CDN:
 
@@ -139,17 +133,17 @@ favicon: /favicon.ico
 
 # Avatar (头像)
 avatar:
-  img: https://bu.dusays.com/2023/04/27/64496e511b09c.jpg
-  effect: false
+  img: https://q1.qlogo.cn/g?b=qq&nk=2304755125&s=640
+  effect: true
 
 # Disable all banner image
 disable_top_img: false
 
 # The banner image of home page
-index_img: false # "background: url() top / cover no-repeat"
+index_img: "background: url(https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1920) top / cover no-repeat"
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: false
+default_top_img: https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920
 
 cover:
   # display the cover or not (是否显示文章封面)
@@ -158,10 +152,15 @@ cover:
   archives_enable: true
   # the position of cover in home page (封面显示的位置)
   # left/right/both
-  position: left
+  position: both
   # When cover is not set, the default cover is displayed (当没有设置cover时，默认的封面显示)
   default_cover:
-    # - /img/default_cover.jpg
+    - https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800
+    - https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800
+    - https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800
+    - https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800
+    - https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800
+    - https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800
 
 # Replace Broken Images (替换无法显示的图片)
 error_img:
@@ -199,7 +198,7 @@ mainTone:
 
 # wordcount (字数统计)
 wordcount:
-  enable: false
+  enable: true
   post_wordcount: true
   min2read: true
   total_wordcount: true
@@ -231,14 +230,14 @@ toc:
 post_copyright:
   enable: true
   decode: false
-  author_href:
-  location: 长沙
+  author_href: /about/
+  location: 上海
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
-  avatarSinks: false # hover时头像下沉
-  copyright_author_img_back:
-  copyright_author_img_front:
-  copyright_author_link: /
+  avatarSinks: true # hover时头像下沉
+  copyright_author_img_back: https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400
+  copyright_author_img_front: https://q1.qlogo.cn/g?b=qq&nk=2304755125&s=640
+  copyright_author_link: /about/
 
 # Sponsor/reward
 reward:
@@ -706,7 +705,7 @@ activate_power_mode:
 
 # Mouse click effects: fireworks (鼠标点击效果: 烟火特效)
 fireworks:
-  enable: false
+  enable: true
   zIndex: 9999 # -1 or 9999
   mobile: false
 
@@ -728,7 +727,7 @@ ClickShowText:
 
 # Default display mode (网站默认的显示模式)
 # light (default) / dark
-display_mode: light
+display_mode: dark
 
 # Beautify (美化页面显示)
 beautify:
@@ -759,7 +758,7 @@ hr_icon:
 
 # the subtitle on homepage (主页subtitle)
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect (打字效果)
   effect: true
   # Effect Speed Options (打字效果速度参数)
@@ -777,7 +776,10 @@ subtitle:
   source: 1
   # 如果关闭打字效果，subtitle 只会显示 sub 的第一行文字
   sub:
-    # - 生活明朗&#44;万物可爱&#44;人间值得&#44;未来可期.
+    - 上海985AI硕士研生
+    - 科大讯飞AI开发者大赛冠军
+    - KBS一区TOP论文二作
+    - 专注NLP/CV算法研究与大模型应用
 
 # Loading Animation (加载动画)
 preloader:
@@ -789,7 +791,7 @@ preloader:
   source: 3
   # pace theme (see https://codebyzach.github.io/pace/)
   pace_css_url:
-  avatar: https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg # 自定加载动画义头像
+  avatar: https://q1.qlogo.cn/g?b=qq&nk=2304755125&s=640 # 自定加载动画义头像
 
 # aside (侧边栏)
 # --------------------------------------
@@ -810,10 +812,10 @@ aside:
     name_link: /
 
   card_announcement:
-    enable: false
-    content: 欢迎来看我的博客鸭~
-  card_weixin:
     enable: true
+    content: 👋 欢迎来到我的AI技术博客！这里分享深度学习、大模型、算法竞赛等技术心得与项目经验。🚀
+  card_weixin:
+    enable: false
     face: https://bu.dusays.com/2023/01/13/63c02edf44033.png
     backFace: https://bu.dusays.com/2023/05/13/645fa415e8694.png
   card_recent_post:
@@ -858,7 +860,7 @@ busuanzi:
 # Formal: Month/Day/Year Time or Year/Month/Day Time
 runtimeshow:
   enable: true
-  publish_date: 4/1/2021 00:00:00
+  publish_date: 1/15/2026 00:00:00
 
 # Console - Newest Comments
 newest_comments:
@@ -1048,35 +1050,35 @@ css_prefix: true
 home_top:
   enable: true # 开关
   timemode: date #date/updated
-  title: 生活明朗
-  subTitle: 万物可爱。
-  siteText: anheyu.com
+  title: 魏建的AI技术博客
+  subTitle: 专注NLP/CV算法研究与大模型应用开发
+  siteText: coodeking.top
   category:
-    - name: 前端
-      path: /categories/前端开发/
+    - name: 大模型
+      path: /categories/大模型/
       shadow: var(--anzhiyu-shadow-blue)
       class: blue
       icon: anzhiyu-icon-dove
-    - name: 大学
-      path: /categories/大学生涯/
+    - name: 算法
+      path: /categories/算法/
       shadow: var(--anzhiyu-shadow-red)
       class: red
       icon: anzhiyu-icon-fire
-    - name: 生活
-      path: /categories/生活日常/
+    - name: 深度学习
+      path: /categories/深度学习/
       shadow: var(--anzhiyu-shadow-green)
       class: green
       icon: anzhiyu-icon-book
-  default_descr: 再怎么看我也不知道怎么描述它的啦！
+  default_descr: 探索AI前沿技术，分享学习心得
   swiper:
     enable: false
     swiper_css: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css #swiper css依赖
     swiper_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.js #swiper js依赖
   banner:
-    tips: 新品主题
-    title: Theme-AnZhiYu
-    image: https://bu.dusays.com/2023/05/13/645fa3cf90d70.webp
-    link: https://docs.anheyu.com/
+    tips: 🏆 论文成果
+    title: KBS一区论文二作
+    image: https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800
+    link: /about/
 
 # 朋友圈配置
 friends_vue:

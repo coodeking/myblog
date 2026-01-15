@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: WJJ的技术分享
-subtitle: ''
-description: '个人技术博客，分享数据结构、人工智能、机器学习、大模型相关技术笔记与学习心得'
-keywords: '数据结构,算法竞赛,前后端,人工智能,机器学习,深度学习,大模型'
-author: WJ
+title: 魏建的AI技术博客
+subtitle: '上海985AI硕士研0 | 科大讯飞AI开发者大赛冠军'
+description: '人工智能硕士研究生，专注NLP/CV算法研究与大模型应用开发。分享深度学习、大模型、算法竞赛相关技术心得与项目经验。'
+keywords: '人工智能,机器学习,深度学习,大模型,NLP,CV,PyTorch,LLM,RAG,知识图谱,算法竞赛'
+author: 魏建
 language: zh-CN
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://coodeking.top
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -102,3 +102,10 @@ theme: anzhiyu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+# Local Search
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
