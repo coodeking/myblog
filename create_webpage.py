@@ -1,200 +1,102 @@
 
 import json
 
-# Load detailed plan data
-with open(r'd:\myblog\source\kaoyan\wangsang_detail.json', 'r', encoding='utf-8') as f:
+# Load FINAL RESCUED Plan
+with open(r'd:\myblog\source\kaoyan\wangsang_detail_v2.json', 'r', encoding='utf-8') as f:
     plan_data = json.load(f)
 
-# HTML Template with enhanced styling for humanized content
+# HTML Template
 html_template = """<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>汪桑 26考研深度定制规划</title>
+    <title>汪桑 26考研全程定制规划 (终极版)</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-            padding-bottom: 50px;
-        }
+        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f8f9fa; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: #333; line-height: 1.6; padding-bottom: 60px; }
         .container { max-width: 900px; margin: 0 auto; padding: 20px; }
         
-        /* Header */
-        .header {
-            text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .header h1 { font-size: 28px; margin-bottom: 10px; font-weight: 700; }
-        .header p { opacity: 0.9; font-size: 16px; }
+        .header { text-align: center; padding: 40px 20px; background: white; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .header h1 { font-size: 26px; color: var(--primary); margin-bottom: 10px; }
+        .header p { color: #666; font-size: 15px; }
         
-        /* Week Card */
-        .week-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-left: 5px solid #3498db;
-            transition: transform 0.2s;
-        }
-        .week-card:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+        .week-card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-left: 4px solid var(--accent); }
         
-        .week-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-        .week-title { font-size: 20px; font-weight: bold; color: #2c3e50; }
-        .week-theme { 
-            background: #e8f4f8; 
-            color: #2980b9; 
-            padding: 4px 12px; 
-            border-radius: 20px; 
-            font-size: 14px; 
-            font-weight: 600;
-        }
+        .week-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #eee; }
+        .week-idx { font-size: 18px; font-weight: 800; color: var(--primary); }
+        .week-theme { background: #e3f2fd; color: #1565c0; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; }
         
-        .tutor-message {
-            background: #fff8e1;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-style: italic;
-            color: #795548;
-            border: 1px dashed #ffc107;
-            position: relative;
-        }
-        .tutor-message::before {
-            content: "💡";
-            position: absolute;
-            left: -10px;
-            top: -10px;
-            font-size: 24px;
-            background: white;
-            border-radius: 50%;
-        }
-
-        /* Subject Grid */
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .subject-item {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
-            border: 1px solid #e9ecef;
-        }
-        .subject-name {
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        .math { color: #e74c3c; }
-        .english { color: #27ae60; }
-        .politics { color: #8e44ad; }
+        .mentor-note { background: #fff8e1; color: #856404; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; position: relative; }
+        .mentor-note::before { content: "💡"; margin-right: 8px; }
         
-        .subject-content h4 { margin: 8px 0 4px; font-size: 14px; color: #555; }
-        .subject-content p { font-size: 14px; color: #666; margin-bottom: 6px; }
-        .subject-content strong { color: #333; }
+        .sub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .sub-box { background: #f8f9fa; padding: 16px; border-radius: 8px; border: 1px solid #e9ecef; }
         
-        .hours-tag {
-            font-size: 12px;
-            background: #dfe6e9;
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: #636e72;
-        }
+        .sub-head { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; font-weight: 700; }
+        .math { color: #c0392b; } .eng { color: #27ae60; } .pol { color: #8e44ad; }
         
-        @media (max-width: 600px) {
-            .header { padding: 30px 15px; }
-            .week-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .subject-grid { grid-template-columns: 1fr; }
-        }
+        .sub-body h4 { font-size: 14px; margin: 0 0 4px 0; color: #444; }
+        .sub-body p { font-size: 13px; color: #666; margin: 0; }
+        
+        .time-badge { font-size: 11px; background: #dfe6e9; color: #636e72; padding: 2px 6px; border-radius: 4px; font-weight: normal; }
+        
+        /* Mobile optimize */
+        @media(max-width: 600px) { .sub-grid { grid-template-columns: 1fr; } .week-top { flex-direction: column; align-items: flex-start; gap: 8px; } }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>汪桑 2026考研全称定制规划</h1>
-            <p>目标：中山大学 (330分) | 状态：深度定制版</p>
+            <h1>汪桑 2026考研全程定制规划</h1>
+            <p>🎯 中山大学 085700 | 📅 48周全程陪跑计划</p>
         </div>
-        
-        <div id="plan-content"></div>
+        <div id="app"></div>
     </div>
 
     <script>
-        const planData = """ + json.dumps(plan_data, ensure_ascii=False) + """;
-
-        function render() {
-            const container = document.getElementById('plan-content');
+        const PLAN = """ + json.dumps(plan_data, ensure_ascii=False) + """;
+        
+        const render = () => {
+            const app = document.getElementById('app');
             let html = '';
             
-            planData.weeks.forEach(week => {
+            PLAN.weeks.forEach(w => {
                 html += `
                 <div class="week-card">
-                    <div class="week-header">
-                        <span class="week-title">第 ${week.week} 周</span>
-                        <span class="week-theme">${week.theme}</span>
+                    <div class="week-top">
+                        <span class="week-idx">第 ${w.week} 周</span>
+                        <span class="week-theme">${w.theme}</span>
                     </div>
+                    <div class="mentor-note">建议：${w.message}</div>
                     
-                    <div class="tutor-message">
-                        ${week.message}
+                    <div class="sub-grid">
+                        ${renderSub('math', '📐 数学', w.math)}
+                        ${renderSub('eng', '📖 英语', w.english)}
+                        ${renderSub('pol', '🏛️ 政治', w.politics)}
                     </div>
-                    
-                    <div class="subject-grid">
-                        ${renderSubject('math', '📐 数学', week.math)}
-                        ${renderSubject('english', '📖 英语', week.english)}
-                        ${renderSubject('politics', '🏛️ 政治', week.politics)}
-                    </div>
-                </div>
-                `;
-            });
-            
-            container.innerHTML = html;
-        }
-        
-        function renderSubject(type, name, data) {
-            if (!data) return '';
-            
-            // If content is just "暂不复习" style
-            if(data.content === '暂不复习') {
-                 return `
-                <div class="subject-item" style="opacity:0.6; border-style:dashed;">
-                    <div class="subject-name ${type}">${name}</div>
-                    <div class="subject-content"><p>暂不复习</p></div>
                 </div>`;
-            }
-
+            });
+            app.innerHTML = html;
+        };
+        
+        const renderSub = (cls, name, data) => {
+            if(!data) return '';
+            const isSkip = data.content === '暂不复习';
+            const style = isSkip ? 'opacity:0.5; border-style:dashed;' : '';
+            
             return `
-            <div class="subject-item">
-                <div class="subject-name ${type}">
-                    ${name}
-                    ${data.hours ? `<span class="hours-tag">约${data.hours}h</span>` : ''}
+            <div class="sub-box" style="${style}">
+                <div class="sub-head ${cls}">
+                    <span>${name}</span>
+                    ${data.hours ? `<span class="time-badge">约${data.hours}h</span>` : ''}
                 </div>
-                <div class="subject-content">
+                <div class="sub-body">
                     ${data.title ? `<h4>${data.title}</h4>` : ''}
-                    ${data.content}
+                    <p>${data.content}</p>
                 </div>
-            </div>
-            `;
-        }
+            </div>`;
+        };
         
         render();
     </script>
@@ -205,4 +107,4 @@ html_template = """<!DOCTYPE html>
 with open(r'd:\myblog\source\kaoyan\wangsang.html', 'w', encoding='utf-8') as f:
     f.write(html_template)
 
-print("Customized webpage generated.")
+print("Final webpage generated.")
