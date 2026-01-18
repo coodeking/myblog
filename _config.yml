@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 魏建的AI技术博客
+title: WJ的AI技术博客
 subtitle: '上海985AI硕士研0 | 科大讯飞AI开发者大赛冠军'
 description: '人工智能硕士研究生，专注NLP/CV算法研究与大模型应用开发。分享深度学习、大模型、算法竞赛相关技术心得与项目经验。'
 keywords: '人工智能,机器学习,深度学习,大模型,NLP,CV,PyTorch,LLM,RAG,知识图谱,算法竞赛'
-author: 魏建
+author: WJ
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
