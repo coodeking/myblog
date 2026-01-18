@@ -1,0 +1,1285 @@
+
+    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+    <head>
+        <meta charset="utf-8">
+        <title>汪桑 2026考研全程定制规划 (终极定稿)</title>
+        <style>
+            body { font-family: 'SimSun', 'Microsoft YaHei', sans-serif; }
+            h1 { text-align: center; color: #000; margin-bottom: 20px;}
+            .info { text-align: center; color: #444; margin-bottom: 30px; border-bottom: 2px solid #000; padding-bottom: 10px;}
+            .week-block { border: 1px solid #999; padding: 10px; margin-bottom: 15px; page-break-inside: avoid; }
+            .week-header { background: #eee; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #999; display: flex; justify-content: space-between; }
+            .msg { padding: 8px 10px; font-style: italic; color: #333; }
+            table { width: 100%; border-collapse: collapse; margin-top: 5px;}
+            td { padding: 6px; border: 1px solid #ccc; vertical-align: top; font-size: 10.5pt; }
+            .sub-name { width: 15%; font-weight: bold; background-color: #f9f9f9;}
+            .sub-hours { width: 10%; text-align: center; white-space: nowrap; }
+        </style>
+    </head>
+    <body>
+        <h1>汪桑 2026考研全程定制规划</h1>
+        <div class="info">
+            <p><strong>目标院校：</strong>中山大学 (085700) &nbsp;|&nbsp; <strong>规划周期：</strong>48周 (2026.01.19 - 2026.12.20)</p>
+            <p><strong>核心策略：</strong>数学60% / 英语30% / 政治10% | <strong>状态：</strong>用户指令100%保留版</p>
+        </div>
+    
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 1 周：高数基础：极限与连续</span>
+                <span style="font-weight:normal; font-size: 0.9em;">1月19日 - 1月25日</span>
+            </div>
+            <div class="msg">指导：⚠️ 核心原则：只做书不听张宇的课！把时间省下来刷题。遇到不懂的知识点，去B站精准搜索解决。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲：第1-2讲</strong><br/>
+                        任务：只做30讲的课后题。别看张宇的基础课视频，效率太低！重点搞定泰勒公式。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>死磕单词</strong><br/>
+                        APP：《不背单词》。任务：只背考研核心词（约3000个）。每天100个，暑假前必须刷三遍。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 2 周：高数基础：导数与微分</span>
+                <span style="font-weight:normal; font-size: 0.9em;">1月26日 - 2月1日</span>
+            </div>
+            <div class="msg">指导：计算是硬道理。导数定义和求导法则要练到肌肉记忆。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲：第3-5讲</strong><br/>
+                        任务：完成课后题。如果题目不会做，去B站搜‘1000题讲解’（推荐UP主：千羽、考研数学777、没咋了）。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>死磕单词</strong><br/>
+                        继续背核心词。刚开始不要碰阅读，词汇量不够看真题纯属浪费。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 3 周：高数基础：中值定理</span>
+                <span style="font-weight:normal; font-size: 0.9em;">2月2日 - 2月8日</span>
+            </div>
+            <div class="msg">指导：不用死抠证明。基础阶段会用三大定理做计算题即可。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲：第6-7讲</strong><br/>
+                        任务：30讲课后题。证明题只看真题考过的类型，根据错题去选择性地看B站讲解。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>死磕单词</strong><br/>
+                        坚持每天打卡。复习比新学重要。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 4 周：高数基础：不定积分</span>
+                <span style="font-weight:normal; font-size: 0.9em;">2月9日 - 2月15日</span>
+            </div>
+            <div class="msg">指导：不定积分全靠‘凑’。把积分公式表贴墙上。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲：第8讲</strong><br/>
+                        任务：30讲课后题。不会的题直接看B站‘千羽’的视频讲解，比看张宇原版课高效得多。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>死磕单词</strong><br/>
+                        第一遍背诵最痛苦，坚持住。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 5 周：高数基础：定积分</span>
+                <span style="font-weight:normal; font-size: 0.9em;">2月16日 - 2月22日</span>
+            </div>
+            <div class="msg">指导：定积分应用是必考点。旋转体体积公式背熟。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲：第9-12讲</strong><br/>
+                        任务：30讲课后题。重点关注变上限积分求导。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>死磕单词</strong><br/>
+                        暑假前唯一的英语任务就是背单词。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 6 周：高数基础：微分方程</span>
+                <span style="font-weight:normal; font-size: 0.9em;">2月23日 - 3月1日</span>
+            </div>
+            <div class="msg">指导：微分方程就是背表格。二阶常系数非齐次特解设法必背。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲：第13-15讲</strong><br/>
+                        任务：30讲课后题。把那几种标准方程的通解公式默写下来。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>死磕单词</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 7 周：高数基础：多元微分</span>
+                <span style="font-weight:normal; font-size: 0.9em;">3月2日 - 3月8日</span>
+            </div>
+            <div class="msg">指导：多元求导链式法则要画图。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲：第16-17讲</strong><br/>
+                        任务：30讲课后题。隐函数求导多练几道。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>死磕单词</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 8 周：高数基础：二重积分</span>
+                <span style="font-weight:normal; font-size: 0.9em;">3月9日 - 3月15日</span>
+            </div>
+            <div class="msg">指导：二重积分重点是交换次序和极坐标。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲：第18讲</strong><br/>
+                        任务：30讲课后题。高数基础部分完结。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>死磕单词</strong><br/>
+                        第一轮核心词背诵应该快结束了。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 9 周：刷题阶段：1000题-极限</span>
+                <span style="font-weight:normal; font-size: 0.9em;">3月16日 - 3月22日</span>
+            </div>
+            <div class="msg">指导：🚫 指南：不推荐看张宇课程！直接刷1000题基础篇。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇1000题：基础篇</strong><br/>
+                        做完第一章。不会的题推荐看B站UP主：千羽、考研数学777、没咋了（三选一）。讲得比老师好。
+                    </td>
+                    <td class="sub-hours">22h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇二刷</strong><br/>
+                        开始第二轮单词背诵。速度要快。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 10 周：刷题阶段：1000题-微积分</span>
+                <span style="font-weight:normal; font-size: 0.9em;">3月23日 - 3月29日</span>
+            </div>
+            <div class="msg">指导：刷题时不依赖视频，先自己硬做。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇1000题：基础篇</strong><br/>
+                        完成导数积分章节。错题整理出来，针对性地去搜那个知识点的视频看。
+                    </td>
+                    <td class="sub-hours">22h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇二刷</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 11 周：刷题阶段：1000题-微方</span>
+                <span style="font-weight:normal; font-size: 0.9em;">3月30日 - 4月5日</span>
+            </div>
+            <div class="msg">指导：刷题是为了发现漏洞。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇1000题：基础篇</strong><br/>
+                        完成微分方程章节。标记好错题。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇二刷</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 12 周：刷题阶段：1000题-多元</span>
+                <span style="font-weight:normal; font-size: 0.9em;">4月6日 - 4月12日</span>
+            </div>
+            <div class="msg">指导：高数刷题收官。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇1000题：基础篇</strong><br/>
+                        完成多元微积分章节。把这几周的错题再看一遍。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇二刷</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 13 周：线代基础：行列式矩阵</span>
+                <span style="font-weight:normal; font-size: 0.9em;">4月13日 - 4月19日</span>
+            </div>
+            <div class="msg">指导：线代继续保持‘做题为主，看课为辅’。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲线代 + 1000题</strong><br/>
+                        第1-2讲课后题 + 1000题基础对应部分。初等变换是核心。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇二刷</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 14 周：线代基础：向量方程组</span>
+                <span style="font-weight:normal; font-size: 0.9em;">4月20日 - 4月26日</span>
+            </div>
+            <div class="msg">指导：线性相关性比较抽象，不懂的可以搜B站单点讲解。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲线代 + 1000题</strong><br/>
+                        第3-4讲课后题 + 对应基础题。重点：判定方程组有无解。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇二刷</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 15 周：线代基础：特征值二次型</span>
+                <span style="font-weight:normal; font-size: 0.9em;">4月27日 - 5月3日</span>
+            </div>
+            <div class="msg">指导：实对称矩阵必可对角化，这是金钥匙。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇30讲线代 + 1000题</strong><br/>
+                        第5-6讲课后题 + 对应基础题。掌握施密特正交化。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇二刷</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 16 周：线代基础：复盘与扫尾</span>
+                <span style="font-weight:normal; font-size: 0.9em;">5月4日 - 5月10日</span>
+            </div>
+            <div class="msg">指导：线代基础题全部做完。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>张宇1000题：线代全刷</strong><br/>
+                        查漏补缺。把做错的题整理到错题本，按章节分类。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇二刷</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 17 周：错题整理：高数</span>
+                <span style="font-weight:normal; font-size: 0.9em;">5月11日 - 5月17日</span>
+            </div>
+            <div class="msg">指导：整理错题并根据错题去选择性地看网课。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>高数错题消化</strong><br/>
+                        把你1000题里的红圈题重做一遍。还不懂的去B站搜知识点。
+                    </td>
+                    <td class="sub-hours">16h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇三刷</strong><br/>
+                        暑假前最后一轮单词背诵。必须刷完第三遍。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 18 周：错题整理：线代</span>
+                <span style="font-weight:normal; font-size: 0.9em;">5月18日 - 5月24日</span>
+            </div>
+            <div class="msg">指导：线代逻辑性强，梳理错题能把知识串起来。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>线代错题消化</strong><br/>
+                        重做线代错题。准备迎接强化阶段。
+                    </td>
+                    <td class="sub-hours">16h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇三刷</strong><br/>
+                        查漏补缺。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 19 周：强化开启：澄箫宇大观</span>
+                <span style="font-weight:normal; font-size: 0.9em;">5月25日 - 5月31日</span>
+            </div>
+            <div class="msg">指导：📺 B站‘澄箫宇’大观系列，每个大观都要看！</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>大观系列：高数前半部分</strong><br/>
+                        方法：每讲一个题之前暂停，自己先做一遍，再听讲解。目前大概7个大观，两天看一个。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇三刷</strong><br/>
+                        完成第三遍，准备进入真题。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 20 周：强化推进：澄箫宇大观</span>
+                <span style="font-weight:normal; font-size: 0.9em;">6月1日 - 6月7日</span>
+            </div>
+            <div class="msg">指导：涵盖基础知识点+大量习题讲解。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>大观系列：高数后半部分</strong><br/>
+                        重点看积分大观和微方大观。保持‘先做后听’的习惯。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇三刷</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 21 周：强化推进：澄箫宇大观</span>
+                <span style="font-weight:normal; font-size: 0.9em;">6月8日 - 6月14日</span>
+            </div>
+            <div class="msg">指导：线代大观非常重要，打通全书。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>大观系列：线代部分</strong><br/>
+                        把讲义打印出来，做好笔记。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇三刷</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 22 周：强化总结</span>
+                <span style="font-weight:normal; font-size: 0.9em;">6月15日 - 6月21日</span>
+            </div>
+            <div class="msg">指导：大观系列看完，整理笔记。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>大观复盘</strong><br/>
+                        梳理大观里讲的解题逻辑。准备开始速刷660。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>词汇三刷</strong><br/>
+                        暑假前单词任务达标。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 23 周：速刷阶段：660题</span>
+                <span style="font-weight:normal; font-size: 0.9em;">6月22日 - 6月28日</span>
+            </div>
+            <div class="msg">指导：⚡ 660一阶题速刷。2分钟没思路直接跳过！</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>660题：高数部分</strong><br/>
+                        第一遍只做会做的。不会的直接看答案订正。别死磕。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题启动</strong><br/>
+                        ⚡ 强烈推荐APP：《真题伴侣》（充个会员）。做2010英语二阅读（不写作文）。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 24 周：速刷阶段：660题</span>
+                <span style="font-weight:normal; font-size: 0.9em;">6月29日 - 7月5日</span>
+            </div>
+            <div class="msg">指导：通过订正答案来补漏，而不是靠自己冥思苦想。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>660题：线代部分</strong><br/>
+                        完成线代选填速刷。错题整理。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题积累</strong><br/>
+                        两天一套真题。不会的生词在APP里标注，反复背，背在真题中的意思。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 25 周：强化复盘：660错题</span>
+                <span style="font-weight:normal; font-size: 0.9em;">7月6日 - 7月12日</span>
+            </div>
+            <div class="msg">指导：只刷不总结等于白刷。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>660错题消化</strong><br/>
+                        把跳过的题和做错的题重新梳理一遍。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题积累</strong><br/>
+                        继续刷真题阅读。背单词不能断。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 26 周：过渡周：准备真题一本通</span>
+                <span style="font-weight:normal; font-size: 0.9em;">7月13日 - 7月19日</span>
+            </div>
+            <div class="msg">指导：调整状态，准备迎接最重要的数学资料。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>知识点查漏补缺</strong><br/>
+                        针对660暴露的弱项，去B站搜知识点视频。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题积累</strong><br/>
+                        继续刷真题阅读。积累生词。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 27 周：真题一轮：《真题一本通》</span>
+                <span style="font-weight:normal; font-size: 0.9em;">7月20日 - 7月26日</span>
+            </div>
+            <div class="msg">指导：🔥 于文涛《真题一本通》，考研最重要习题册！无之一！</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>一本通：第1章</strong><br/>
+                        每个题务必弄懂！做好错题笔记，按章节分类整理。
+                    </td>
+                    <td class="sub-hours">22h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题</strong><br/>
+                        持续刷阅读。单词不能断。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 28 周：真题一轮：《真题一本通》</span>
+                <span style="font-weight:normal; font-size: 0.9em;">7月27日 - 8月2日</span>
+            </div>
+            <div class="msg">指导：证明题只做真题里的，其他模拟题不做证明题。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>一本通：第2-3章</strong><br/>
+                        计算题是复习重点。知识点不懂的去B站搜，选播放量高的视频看。
+                    </td>
+                    <td class="sub-hours">22h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题</strong><br/>
+                        持续刷阅读。在《真题伴侣》里背生词。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 29 周：真题一轮：《真题一本通》</span>
+                <span style="font-weight:normal; font-size: 0.9em;">8月3日 - 8月9日</span>
+            </div>
+            <div class="msg">指导：这一阶段就是考研最重要的事，要把它吃透。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>一本通：第4章</strong><br/>
+                        重点攻克积分计算。
+                    </td>
+                    <td class="sub-hours">22h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题</strong><br/>
+                        持续刷阅读。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 30 周：真题一轮：《真题一本通》</span>
+                <span style="font-weight:normal; font-size: 0.9em;">8月10日 - 8月16日</span>
+            </div>
+            <div class="msg">指导：进度要稳，不要贪快。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>一本通：第5-6章</strong><br/>
+                        多元微积分真题。
+                    </td>
+                    <td class="sub-hours">22h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题</strong><br/>
+                        持续刷阅读。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 31 周：真题一轮：《真题一本通》</span>
+                <span style="font-weight:normal; font-size: 0.9em;">8月17日 - 8月23日</span>
+            </div>
+            <div class="msg">指导：线代真题。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>一本通：线代部分</strong><br/>
+                        搞懂每一道真题。
+                    </td>
+                    <td class="sub-hours">22h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题</strong><br/>
+                        持续刷阅读。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 32 周：真题一轮：总结</span>
+                <span style="font-weight:normal; font-size: 0.9em;">8月24日 - 8月30日</span>
+            </div>
+            <div class="msg">指导：一本通刷完，你手上应该有一本高质量的及错题本。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>错题本复盘</strong><br/>
+                        错题最好按章节分类整理。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题</strong><br/>
+                        持续刷阅读。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 33 周：二刷：澄箫宇大观</span>
+                <span style="font-weight:normal; font-size: 0.9em;">8月31日 - 9月6日</span>
+            </div>
+            <div class="msg">指导：带着真题的困惑，二刷大观。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>二刷大观：高数</strong><br/>
+                        重点看之前没懂的。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题</strong><br/>
+                        持续刷阅读。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 34 周：二刷：澄箫宇大观</span>
+                <span style="font-weight:normal; font-size: 0.9em;">9月7日 - 9月13日</span>
+            </div>
+            <div class="msg">指导：再次强化解题体系。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>二刷大观：线代</strong><br/>
+                        巩固线代逻辑。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题</strong><br/>
+                        持续刷阅读。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 35 周：专题突破</span>
+                <span style="font-weight:normal; font-size: 0.9em;">9月14日 - 9月20日</span>
+            </div>
+            <div class="msg">指导：根据个人弱项定点爆破。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>弱项攻坚</strong><br/>
+                        回归一本通错题。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语真题</strong><br/>
+                        持续刷阅读。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 36 周：作文启动</span>
+                <span style="font-weight:normal; font-size: 0.9em;">9月21日 - 9月27日</span>
+            </div>
+            <div class="msg">指导：英语开启作文复习。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>计算特训</strong><br/>
+                        每天坚持算几道复杂积分。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>Monkey作文课</strong><br/>
+                        听《Monkey》老师的考研作文模板课。只背他的模板！平时多积累主题词。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+        </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 37 周：政治启动：马原</span>
+                <span style="font-weight:normal; font-size: 0.9em;">9月28日 - 10月4日</span>
+            </div>
+            <div class="msg">指导：10月初！政治开始。🚫 远离徐涛网课！🚫 远离肖1000题！</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>数学二轮真题</strong><br/>
+                        每天一套真题（09-26）。真题错题本浓缩，整理题型。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语二轮</strong><br/>
+                        二刷真题 + 练熟作文模板 + 持续背单词（不能断）。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治背诵</strong><br/>
+                        购买《腿姐冲刺背诵手册》，只要求熟读。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 38 周：政治推进：苍盾刷题</span>
+                <span style="font-weight:normal; font-size: 0.9em;">10月5日 - 10月11日</span>
+            </div>
+            <div class="msg">指导：政治刷题神器：《苍盾小程序》。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>数学二轮真题</strong><br/>
+                        继续每天一套真题。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语二轮</strong><br/>
+                        练熟模板，背单词。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治刷题</strong><br/>
+                        在苍盾上刷模拟卷。不用多刷，每天一套（30个选择题）。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 39 周：政治推进：一页纸</span>
+                <span style="font-weight:normal; font-size: 0.9em;">10月12日 - 10月18日</span>
+            </div>
+            <div class="msg">指导：政治核心资料补充。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>数学二轮真题</strong><br/>
+                        继续每天一套真题。整理模拟卷错题本。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语二轮</strong><br/>
+                        持续背单词。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治诵读</strong><br/>
+                        熟读澄箫宇‘政治一页纸’。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 40 周：冲刺模拟：李林6+4</span>
+                <span style="font-weight:normal; font-size: 0.9em;">10月19日 - 10月25日</span>
+            </div>
+            <div class="msg">指导：数学进入模拟卷阶段。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>李林6+4</strong><br/>
+                        每天一套。一共10套。严格限时。
+                    </td>
+                    <td class="sub-hours">22h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语二轮</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治刷题</strong><br/>
+                        苍盾小程序每天一套选择题。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 41 周：冲刺模拟：李林6+4</span>
+                <span style="font-weight:normal; font-size: 0.9em;">10月26日 - 11月1日</span>
+            </div>
+            <div class="msg">指导：做完李林10套卷。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>李林6+4</strong><br/>
+                        认真看解析。模拟卷错题本。
+                    </td>
+                    <td class="sub-hours">22h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语二轮</strong><br/>
+                        持续进行。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治刷题</strong><br/>
+                        继续刷苍盾。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 42 周：技巧回归：选填特训</span>
+                <span style="font-weight:normal; font-size: 0.9em;">11月2日 - 11月8日</span>
+            </div>
+            <div class="msg">指导：选填技巧决定上限。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>武忠祥技巧课</strong><br/>
+                        看武忠祥选填技巧课。对应知识点看视频。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语背诵</strong><br/>
+                        默写作文模板。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治刷题</strong><br/>
+                        继续刷苍盾。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 43 周：技巧回归：选填特训</span>
+                <span style="font-weight:normal; font-size: 0.9em;">11月9日 - 11月15日</span>
+            </div>
+            <div class="msg">指导：继续巩固选填。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>武忠祥技巧课</strong><br/>
+                        整理技巧笔记。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语背诵</strong><br/>
+                        作文模板滚瓜烂熟。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治刷题</strong><br/>
+                        继续刷苍盾。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 44 周：最后阶段：复盘</span>
+                <span style="font-weight:normal; font-size: 0.9em;">11月16日 - 11月22日</span>
+            </div>
+            <div class="msg">指导：整理错题，整理知识点。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>真题三刷</strong><br/>
+                        近3年真题再刷一遍。熟悉考试风格。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语背诵</strong><br/>
+                        单词不能断。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治</strong><br/>
+                        等待肖四。
+                    </td>
+                    <td class="sub-hours">6h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 45 周：最后阶段：复盘</span>
+                <span style="font-weight:normal; font-size: 0.9em;">11月23日 - 11月29日</span>
+            </div>
+            <div class="msg">指导：模拟卷和真题出入大，最后回归真题。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>真题三刷</strong><br/>
+                        近3年真题再刷一遍。
+                    </td>
+                    <td class="sub-hours">20h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语</strong><br/>
+                        背单词，练作文。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治肖四</strong><br/>
+                        12月肖四出来后，直接背肖四大题！背不住没关系，对成绩影响不大。
+                    </td>
+                    <td class="sub-hours">12h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 46 周：考前冲刺：抄材料</span>
+                <span style="font-weight:normal; font-size: 0.9em;">11月30日 - 12月6日</span>
+            </div>
+            <div class="msg">指导：政治最后的救命稻草。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>回顾错题</strong><br/>
+                        主要做错题，不要光看。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语</strong><br/>
+                        保持语感。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治抄材料</strong><br/>
+                        B站会出考研政治‘抄材料’视频，务必学会！考场上基本只能抄材料。
+                    </td>
+                    <td class="sub-hours">12h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 47 周：考前演练</span>
+                <span style="font-weight:normal; font-size: 0.9em;">12月7日 - 12月13日</span>
+            </div>
+            <div class="msg">指导：调整作息，适应考试。</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>全真模拟</strong><br/>
+                        按考试时间做一套卷子。
+                    </td>
+                    <td class="sub-hours">18h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>英语</strong><br/>
+                        背作文模板。
+                    </td>
+                    <td class="sub-hours">8h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治</strong><br/>
+                        背肖四，练抄材料。
+                    </td>
+                    <td class="sub-hours">12h</td>
+                </tr>
+            </table></div>
+        <div class="week-block">
+            <div class="week-header">
+                <span>第 48 周：考试周</span>
+                <span style="font-weight:normal; font-size: 0.9em;">12月14日 - 12月20日</span>
+            </div>
+            <div class="msg">指导：必胜！</div>
+            <table>
+                <tr>
+                    <td class="sub-name">数 学</td>
+                    <td>
+                        <strong>心态调整</strong><br/>
+                        放松，自信上场。
+                    </td>
+                    <td class="sub-hours">10h</td>
+                </tr>
+                <tr>
+                    <td class="sub-name">英 语</td>
+                    <td>
+                        <strong>必胜</strong><br/>
+                        加油！
+                    </td>
+                    <td class="sub-hours">5h</td>
+                </tr>
+        
+                <tr>
+                    <td class="sub-name">政 治</td>
+                    <td>
+                        <strong>政治</strong><br/>
+                        最后看一眼肖四。
+                    </td>
+                    <td class="sub-hours">5h</td>
+                </tr>
+            </table></div></body></html>
