@@ -1,7 +1,7 @@
 # Supabase 配置指南
 
 ## 1. 创建项目
-
+·
 1. 访问 [supabase.com](https://supabase.com) 注册并登录
 2. 点击 "New Project"
 3. 设置项目名称（如 `kaoyan-plan`）
