@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婷婷 2027考研全程深度定制规划</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0f;
+            --card-bg: #12121a;
+            --text-color: #e0e0e0;
+            --accent: #d946ef;
+            --accent-light: #f472b6;
+            --border-color: #2a2a3a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        header h1 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        .meta { color: #888; font-size: 0.9rem; }
+        .meta span { margin: 0 10px; }
+        .overview {
+            background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        .overview h2 {
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+        .strategy {
+            margin-bottom: 16px; 
+            padding: 12px; 
+            background: rgba(217, 70, 239, 0.15); 
+            border-radius: 8px; 
+            border-left: 3px solid var(--accent);
+            color: #e0e0e0; 
+            line-height: 1.8;
+        }
+        .grid-box {
+            display: grid; gap: 16px; margin-bottom: 20px;
+        }
+        .grid-item { padding: 16px; border-radius: 8px; }
+        .grid-math { background: rgba(244,114,182,0.1); }
+        .grid-english { background: rgba(52,211,153,0.1); }
+        .grid-politics { background: rgba(251,191,36,0.1); }
+        .grid-warning { background: rgba(139,92,246,0.1); }
+        
+        h3 { margin-bottom: 10px; }
+        .grid-math h3 { color: #f472b6; }
+        .grid-english h3 { color: #34d399; }
+        .grid-politics h3 { color: #fbbf24; }
+        .grid-warning h3 { color: #8b5cf6; }
+        
+        ul { margin-left: 20px; color: #ccc; }
+        
+        .week-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .week-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(217, 70, 239, 0.15);
+        }
+        .week-header {
+            background: linear-gradient(90deg, rgba(217, 70, 239, 0.3), rgba(217, 70, 239, 0.1));
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .week-header h3 { font-size: 1.1rem; color: var(--accent-light); }
+        .week-header .dates { color: #888; font-size: 0.85rem; }
+        .week-content { padding: 20px; display: none; }
+        .week-content.active { display: block; }
+        .message {
+            background: rgba(217, 70, 239, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent);
+            font-style: italic;
+        }
+        .subject {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .subject-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .subject-name { font-weight: bold; }
+        .subject-name.math { color: #f472b6; }
+        .subject-name.english { color: #34d399; }
+        .subject-name.politics { color: #fbbf24; }
+        .hours {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        .subject-title { font-weight: 600; margin-bottom: 8px; color: #fff; }
+        .subject-content { color: #aaa; white-space: pre-line; font-size: 0.9rem; }
+        .expand-all { text-align: center; margin-bottom: 20px; }
+        .expand-all button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .expand-all button:hover { background: var(--accent-light); }
+        footer { text-align: center; padding: 30px; color: #666; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>婷婷 2027考研全程深度定制规划</h1>
+            <div class="meta">
+                <span>🎯 国防科技大学·081100控制科学与工程·学硕</span>
+                <span>📅 目标分数：380分 | 每日时间分配：弹性充足的时间安排</span>
+            </div>
+            <div class="meta" style="margin-top: 10px;">
+                <span>📚 考试科目：数学一 / 英语一 / 政治 / 851自动控制原理</span>
+            </div>
+        </header>
+
+        <!-- 总体规划概览 -->
+        <div class="overview">
+            <h2>🎯 备考总纲</h2>
+            
+            <p class="strategy">
+                <strong>🔥 核心原则：所有科目都不准当「耐听王」，多想多算多做，一定要亲自落实到笔头上！</strong>
+            </p>
+            
+            <div class="grid-box">
+                <div class="grid-item grid-math">
+                    <h3>📐 数学一（占除专业课的总大盘60%核心分配）</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">以练带学：</strong>不大量听课，听课永远学不会，靠做题才能发挥在考场上！</li>
+                        <li><strong style="color: #fff;">遇到拦路虎：</strong>不会的题和知识点，【直接去B站搜播放量高的视频】（如千羽、考研数学777、没咋了均可），比听大机构拖沓的讲师要强百倍。</li>
+                        <li><strong style="color: #f43f5e;">🚫 舍弃偏题：</strong>张宇“超实数”、微分算子法、海涅定理、压缩映射原理、stolz定理统统不要看！连想考150的都不看！</li>
+                        <li><strong style="color: #fff;">资料优先级：</strong>第一轮《真题一本通》（于文涛）最重要 -> 结合「澄箫宇」大观系列（两天一个） -> 李林6+4（10套）。习题册、模拟卷【哪怕是压轴】也只做计算，不做证明题（除了真题的证明！）。</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item grid-english">
+                    <h3>📖 英语一（占除专业课的总大盘60%核心分配）</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">不碰雷区：</strong>少听课或不听课！不精翻文章！绝对不买手译本！</li>
+                        <li><strong style="color: #fff;">词汇狂魔：</strong>暑假前只有一个任务——疯狂背单词！《不背单词》APP背考研大纲核心三千词，至少刷三遍！</li>
+                        <li><strong style="color: #fff;">真题神器：</strong>暑期开始两天一套英二真题（用《真题伴侣》生词本功能），背真题里的实际语境意思！</li>
+                        <li><strong style="color: #fff;">作文保命：</strong>后半程报名《Monkey》作文模板课，死记硬背模板考场直接套，拿高分！</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item grid-politics">
+                    <h3>🏛️ 政治（占除专业课的总大盘60%核心分配）</h3>
+                    <ul>
+                        <li><strong style="color: #f43f5e;">🚫 警惕长线：</strong>最早10月初才开始！远离徐涛等名师各种冗长废话课！远离肖1000题！</li>
+                        <li><strong style="color: #fff;">效率核心：</strong>买腿姐冲刺背诵手册熟读；利用每天马桶碎片时间在【苍盾小程序】刷模拟卷选择题（只求广度不钻牛角尖）。</li>
+                        <li><strong style="color: #fff;">绝命大招：</strong>12月等肖四大题出来直接死背！加上考研冲刺期间B站神级【抄材料】教程，考场基本只抄材料就能过线拿高分！</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item grid-warning">
+                    <h3>⏱️ 全局时间红线（务必牢记）</h3>
+                    <ul>
+                        <li><strong>⚠️ 专业课的隐藏大头：</strong>公共课已经被精准压缩、舍弃了无用模块，需要你自行规划专业课的学习时间</li>
+                        <li>因为你的执行力很强但公式容易忘，切记：一切复习的核心是“动笔解题”而非“眼看懂了”！</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="expand-all">
+            <button onclick="toggleAll()">展开/收起全部计划周</button>
+        </div>
+
+        <div id="weeks-container"></div>
+        
+        <footer>
+            <p>💪 相信你强大的执行力。国防科技大学在前方等你！</p>
+        </footer>
+    </div>
+
+    <script>
+    const planData = [{"week": 1, "dates": "第1周", "theme": "基础攻克：极限与连续", "message": "极限是高数的基石，这周重点掌握洛必达法则、泰勒公式这两种核心求极限定式，以及等价无穷小的灵活替换。不要死磕证明。", "math": {"title": "三十讲课后题 + 1000题（极限与连续）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 2, "dates": "第2周", "theme": "基础攻克：导数与微分", "message": "导数计算不能有任何失误。重点突破隐函数求导、参数方程求导、以及高阶导数（莱布尼茨公式容易忘，多默写写两遍）。", "math": {"title": "三十讲课后题 + 1000题（导数与微分）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 3, "dates": "第3周", "theme": "基础攻克：中值定理与一元积分学(上)", "message": "中值定理不要深究复杂证明，只需知道罗尔、拉格朗日、柯西的条件及结论。不定积分就是'凑微分'，多找题感！", "math": {"title": "三十讲课后题 + 1000题（中值定理与一元积分学(上)）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 4, "dates": "第4周", "theme": "基础攻克：一元函数积分学(下)", "message": "定积分及其应用是每年大题常客。记住牛顿-莱布尼茨公式，熟练掌握换元法和分部积分法。物理应用（如变力做功）公式要背熟。", "math": {"title": "三十讲课后题 + 1000题（一元函数积分学(下)）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 5, "dates": "第5周", "theme": "基础攻克：空间解析几何与向量代数", "message": "这是数一专属模块。重点理清点、线、面之间的距离和角度计算套路，这部分是送分题，公式虽然多但必须死记硬背。", "math": {"title": "三十讲课后题 + 1000题（空间解析几何与向量代数）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 6, "dates": "第6周", "theme": "基础攻克：多元函数微分学", "message": "从一元到多元，核心观念是偏导。难点在于复合函数求导的链式法则，画树状图是绝招！全微分存在的条件要理清。", "math": {"title": "三十讲课后题 + 1000题（多元函数微分学）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 7, "dates": "第7周", "theme": "基础攻克：重积分(二重、三重)", "message": "重积分是计算量的试金石。数一特考三重积分的切片法和投影法。交换积分次序、利用对称性和奇偶性化简，务必多练！", "math": {"title": "三十讲课后题 + 1000题（重积分(二重、三重)）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 8, "dates": "第8周", "theme": "基础攻克：曲线与曲面积分", "message": "这是一生之敌也是必考的大题！格林公式、高斯公式、斯托克斯公式三大定理不仅要背，还要知道怎么补面、怎么用对称性。", "math": {"title": "三十讲课后题 + 1000题（曲线与曲面积分）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 9, "dates": "第9周", "theme": "基础攻克：无穷级数", "message": "级数敛散性判别和幂级数求和函数是数一的丢分重灾区。记住常见的麦克劳林展开式，学会逐项求导和逐项积分！", "math": {"title": "三十讲课后题 + 1000题（无穷级数）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 10, "dates": "第10周", "theme": "基础攻克：常微分方程与高数复盘", "message": "微分方程属于套路题，识别方程类型然后套公式即可（二阶常系数的特解设法要死背！）。周末花时间复盘张宇1000题高数错题。", "math": {"title": "三十讲课后题 + 1000题（常微分方程与高数复盘）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 11, "dates": "第11周", "theme": "基础攻克：行列式与矩阵(线代)", "message": "进入线代！线代的计算量比高数小，但逻辑更严密。行列式的性质计算、矩阵乘法和逆矩阵是基础。初等变换是灵魂！！", "math": {"title": "三十讲课后题 + 1000题（行列式与矩阵(线代)）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 12, "dates": "第12周", "theme": "基础攻克：向量", "message": "向量是线代最抽象的部分。线性相关/无关经常结合方程组考大题。结合几何意义去理解‘表出’和‘秩’的概念。", "math": {"title": "三十讲课后题 + 1000题（向量）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 13, "dates": "第13周", "theme": "基础攻克：线性方程组", "message": "必考大题！判断方程组是否有解、求基础解系和通解的过程必须行云流水，这全靠前面练熟的矩阵初等行变换。", "math": {"title": "三十讲课后题 + 1000题（线性方程组）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 14, "dates": "第14周", "theme": "基础攻克：特征值与特征向量", "message": "这周计算量开始增大，求特征多项式的根不能算错。实对称矩阵的正交对角化（施密特正交化过程）是重中之重。", "math": {"title": "三十讲课后题 + 1000题（特征值与特征向量）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 15, "dates": "第15周", "theme": "基础攻克：二次型与线代复盘", "message": "二次型其实就是特征值的应用（合同变换与正交变换）。掌握配方法化标准型。周末整理1000题线代部分的错题集合！", "math": {"title": "三十讲课后题 + 1000题（二次型与线代复盘）", "content": "✅ 任务：张宇三十讲课后题 + 1000题基础篇对应章节。\n🚫 避坑：坚决不看张宇大段课程！重点知识点直接搜B站千羽等UP主。\n📝 所有习题不做证明题，只认准计算！", "hours": 30}, "english": {"title": "疯狂背单词", "content": "✅ 任务：利用《不背单词》APP疯狂背考研核心词。\n💡 困了就加快翻词频率，挺过前面的阵痛期，后面就是肌肉记忆了。", "hours": 15}}, {"week": 16, "dates": "第16周", "theme": "大观强化洗礼", "message": "准备好颠覆认知了吗？澄箫宇的极限、导数大观会让你见识'降维打击'的解题思路！", "math": {"title": "B站“澄箫宇”大观系列", "content": "✅ 任务：观看“澄箫宇”大观系列。\n⚠️ 核心铁律：讲每一个题之前，【必须按暂停你自己先做】，无论多难，先动笔想再听！", "hours": 30}, "english": {"title": "单词冲刺三刷", "content": "✅ 暑假在即，词汇量必须达标，为后面真题长难句做铺垫。", "hours": 15}}, {"week": 17, "dates": "第17周", "theme": "大观强化洗礼", "message": "积分和微方大观技巧极多，'区间再现'和'华里士公式'等秒杀大招一定要抄在笔记本最显眼的位置。", "math": {"title": "B站“澄箫宇”大观系列", "content": "✅ 任务：观看“澄箫宇”大观系列。\n⚠️ 核心铁律：讲每一个题之前，【必须按暂停你自己先做】，无论多难，先动笔想再听！", "hours": 30}, "english": {"title": "单词冲刺三刷", "content": "✅ 暑假在即，词汇量必须达标，为后面真题长难句做铺垫。", "hours": 15}}, {"week": 18, "dates": "第18周", "theme": "大观强化洗礼", "message": "多元和线代大观。线代大观帮你把孤立的章节（矩阵、方程组、特征值）一根线串起来，形成闭环体系！", "math": {"title": "B站“澄箫宇”大观系列", "content": "✅ 任务：观看“澄箫宇”大观系列。\n⚠️ 核心铁律：讲每一个题之前，【必须按暂停你自己先做】，无论多难，先动笔想再听！", "hours": 30}, "english": {"title": "单词冲刺三刷", "content": "✅ 暑假在即，词汇量必须达标，为后面真题长难句做铺垫。", "hours": 15}}, {"week": 19, "dates": "第19周", "theme": "速刷660选择填空", "message": "660题的高数选择题非常抠概念。做错多很正常，它的意义就是找出那些你以为懂了其实没懂的漏洞。", "math": {"title": "660一阶题速刷", "content": "✅ 任务：660题速刷。\n⚡ 规则：不会的、没思路的直接略过看答案订正。把坑点标红，速战速决！", "hours": 28}, "english": {"title": "英二真题阅读启动", "content": "✅ 任务：两天一套英二真题阅读。\n💡 强推APP《真题伴侣》，标注不认识的词，反复背真题里的意思。", "hours": 17}}, {"week": 20, "dates": "第20周", "theme": "速刷660选择填空", "message": "继续高数660。如果一道题卡了超过2分钟立刻跳！不钻牛角尖，速度和广度优先。", "math": {"title": "660一阶题速刷", "content": "✅ 任务：660题速刷。\n⚡ 规则：不会的、没思路的直接略过看答案订正。把坑点标红，速战速决！", "hours": 28}, "english": {"title": "英二真题阅读启动", "content": "✅ 任务：两天一套英二真题阅读。\n💡 强推APP《真题伴侣》，标注不认识的词，反复背真题里的意思。", "hours": 17}}, {"week": 21, "dates": "第21周", "theme": "速刷660选择填空", "message": "线代的660题很多文字概念题，特别绕。积累一些常用于举反例的简单反例矩阵。", "math": {"title": "660一阶题速刷", "content": "✅ 任务：660题速刷。\n⚡ 规则：不会的、没思路的直接略过看答案订正。把坑点标红，速战速决！", "hours": 28}, "english": {"title": "英二真题阅读启动", "content": "✅ 任务：两天一套英二真题阅读。\n💡 强推APP《真题伴侣》，标注不认识的词，反复背真题里的意思。", "hours": 17}}, {"week": 22, "dates": "第22周", "theme": "一本通：真题高数（极限与微分）", "message": "迎来考研最重要的资料——真题一本通。早年的真题计算量大且巧妙，每个错题都值得反复推敲。", "math": {"title": "《真题一本通》（于文涛）", "content": "✅ 任务：高质量完成一本通章节。\n⚠️ 特别提醒：这是唯一一本你需要做里面【证明题】的资料！其它的习题册都不做证明！", "hours": 30}, "english": {"title": "英二真题阅读持续", "content": "✅ 继续访问两天一套。单词在真题语境中背，千万不要断了！", "hours": 15}}, {"week": 23, "dates": "第23周", "theme": "一本通：真题高数（积分运算）", "message": "积分真题最能检验基本功了。错题一定要收录专属【真题错题本】！", "math": {"title": "《真题一本通》（于文涛）", "content": "✅ 任务：高质量完成一本通章节。\n⚠️ 特别提醒：这是唯一一本你需要做里面【证明题】的资料！其它的习题册都不做证明！", "hours": 30}, "english": {"title": "英二真题阅读持续", "content": "✅ 继续访问两天一套。单词在真题语境中背，千万不要断了！", "hours": 15}}, {"week": 24, "dates": "第24周", "theme": "一本通：真题高数（空间几何与多元）", "message": "数一最爱的几何及多元！大题经常考察求极值和拉格朗日乘数法。", "math": {"title": "《真题一本通》（于文涛）", "content": "✅ 任务：高质量完成一本通章节。\n⚠️ 特别提醒：这是唯一一本你需要做里面【证明题】的资料！其它的习题册都不做证明！", "hours": 30}, "english": {"title": "英二真题阅读持续", "content": "✅ 继续访问两天一套。单词在真题语境中背，千万不要断了！", "hours": 15}}, {"week": 25, "dates": "第25周", "theme": "一本通：真题高数（曲线曲面积分）", "message": "曲线与曲面积分的高难度真题区。这里搞懂了，数一的15分大题就基本稳拿了。", "math": {"title": "《真题一本通》（于文涛）", "content": "✅ 任务：高质量完成一本通章节。\n⚠️ 特别提醒：这是唯一一本你需要做里面【证明题】的资料！其它的习题册都不做证明！", "hours": 30}, "english": {"title": "英二真题阅读持续", "content": "✅ 继续访问两天一套。单词在真题语境中背，千万不要断了！", "hours": 15}}, {"week": 26, "dates": "第26周", "theme": "一本通：真题高数（无穷级数与微方）", "message": "级数真题通常作为压轴题出现。实在没思路也不要畏难，跟着解析推导。", "math": {"title": "《真题一本通》（于文涛）", "content": "✅ 任务：高质量完成一本通章节。\n⚠️ 特别提醒：这是唯一一本你需要做里面【证明题】的资料！其它的习题册都不做证明！", "hours": 30}, "english": {"title": "英二真题阅读持续", "content": "✅ 继续访问两天一套。单词在真题语境中背，千万不要断了！", "hours": 15}}, {"week": 27, "dates": "第27周", "theme": "一本通：真题线代（矩阵与向量）", "message": "进入线代真题。第一问多为求参或证明，第二问计算，套路感非常强。", "math": {"title": "《真题一本通》（于文涛）", "content": "✅ 任务：高质量完成一本通章节。\n⚠️ 特别提醒：这是唯一一本你需要做里面【证明题】的资料！其它的习题册都不做证明！", "hours": 30}, "english": {"title": "英二真题阅读持续", "content": "✅ 继续访问两天一套。单词在真题语境中背，千万不要断了！", "hours": 15}}, {"week": 28, "dates": "第28周", "theme": "一本通：真题线代（方程组与特征值）", "message": "线代大题基本都是固定格式（合同对角化等），必须保证算无一失。", "math": {"title": "《真题一本通》（于文涛）", "content": "✅ 任务：高质量完成一本通章节。\n⚠️ 特别提醒：这是唯一一本你需要做里面【证明题】的资料！其它的习题册都不做证明！", "hours": 30}, "english": {"title": "英二真题阅读持续", "content": "✅ 继续访问两天一套。单词在真题语境中背，千万不要断了！", "hours": 15}}, {"week": 29, "dates": "第29周", "theme": "一本通：一本通错题大复盘", "message": "把你这7周在一本通里画红叉的题目全部重做一遍！填平每一次跳进坑去的脚印！", "math": {"title": "《真题一本通》（于文涛）", "content": "✅ 任务：高质量完成一本通章节。\n⚠️ 特别提醒：这是唯一一本你需要做里面【证明题】的资料！其它的习题册都不做证明！", "hours": 30}, "english": {"title": "英二真题阅读持续", "content": "✅ 继续访问两天一套。单词在真题语境中背，千万不要断了！", "hours": 15}}, {"week": 30, "dates": "第30周", "theme": "大观二刷：高数上", "message": "做过大量真题后你再回来看大观，会发现很多老师说的潜台词你原来根本没听懂，现在全懂了！", "math": {"title": "结合错题本看大观", "content": "✅ 带着真题错题本去看大观对应的集数，直击灵魂的补漏！", "hours": 28}, "english": {"title": "听Monkey作文课", "content": "✅ 满分作文是套出来的！只听思路，背他总结的极品模板。", "hours": 16}}, {"week": 31, "dates": "第31周", "theme": "大观二刷：高数下", "message": "重点攻克多元、重积分、曲面积分的大观技巧。", "math": {"title": "结合错题本看大观", "content": "✅ 可以倍速观看。已经很清晰的章节可以直接跳过，抓大放小。", "hours": 28}, "english": {"title": "Monkey作文课+真题", "content": "✅ 一边听思路，一边平时积累高级的话题主题词和替换词。", "hours": 16}}, {"week": 32, "dates": "第32周", "theme": "大观二刷：线代", "message": "线代大观的神奇之处在于用‘秩’的视角去打通所有题目，反复咀嚼体会。", "math": {"title": "结合错题本看大观", "content": "✅ 巩固线代中的高级思想，这在对付真题压轴选择题时极大提高速度。", "hours": 28}, "english": {"title": "真题+背模板", "content": "✅ 每天固定半小时朗读和默写作文模板，形成肌肉记忆。", "hours": 16}}, {"week": 33, "dates": "第33周", "theme": "套卷演练：数二二轮真题", "message": "按照真实考试时间（8:30-11:30）一次性做完3小时的套卷！培养高压答题节奏。", "math": {"title": "数二(09-26年) 每天一套", "content": "✅ 任务：严格计时做这几年的真题套卷。\n💡 做完后立即打分，浓缩错题本。（虽然是数一，刷数二套卷特别锻炼计算手感！）", "hours": 30}, "english": {"title": "背套用模板", "content": "✅ 尝试把Monkey的模板直接往真题翻译、写作题目上套用。\n⚠️ 单词不能断！", "hours": 15}}, {"week": 34, "dates": "第34周", "theme": "套卷演练：数二二轮真题", "message": "按照真实考试时间（8:30-11:30）一次性做完3小时的套卷！培养高压答题节奏。", "math": {"title": "数二(09-26年) 每天一套", "content": "✅ 任务：严格计时做这几年的真题套卷。\n💡 做完后立即打分，浓缩错题本。（虽然是数一，刷数二套卷特别锻炼计算手感！）", "hours": 30}, "english": {"title": "背套用模板", "content": "✅ 尝试把Monkey的模板直接往真题翻译、写作题目上套用。\n⚠️ 单词不能断！", "hours": 15}, "politics": {"title": "政治启动：腿姐手册", "content": "✅ 购买《腿姐冲刺背诵手册》，只要求熟读。\n🚫 不看冗长视频课，不刷肖1000！", "hours": 6}}, {"week": 35, "dates": "第35周", "theme": "套卷演练：数二二轮真题", "message": "按照真实考试时间（8:30-11:30）一次性做完3小时的套卷！培养高压答题节奏。", "math": {"title": "数二(09-26年) 每天一套", "content": "✅ 任务：严格计时做这几年的真题套卷。\n💡 做完后立即打分，浓缩错题本。（虽然是数一，刷数二套卷特别锻炼计算手感！）", "hours": 30}, "english": {"title": "背套用模板", "content": "✅ 尝试把Monkey的模板直接往真题翻译、写作题目上套用。\n⚠️ 单词不能断！", "hours": 15}, "politics": {"title": "苍盾小程序刷机时间", "content": "✅ 每天在碎片时间打开《苍盾小程序》刷一套选择题，错了就看解析，不要深究。", "hours": 6}}, {"week": 36, "dates": "第36周", "theme": "李林六套卷模考", "message": "李林的卷子每年都会精准押中思路。遇到极难的题不要崩溃，正好训练你考场上的弃题素养。", "math": {"title": "李林6套卷 (每天一套)", "content": "✅ 严格模考！建立【模拟卷错题本】，记录李林解析里的巧妙考点。", "hours": 28}, "english": {"title": "无痕迹默写", "content": "✅ 脱稿卷面默写模板，不准有修改和涂抹痕迹！", "hours": 14}, "politics": {"title": "一页纸熟读", "content": "✅ 熟读澄箫宇的【政治一页纸】。配合每日小程序刷题。", "hours": 6}}, {"week": 37, "dates": "第37周", "theme": "李林四套卷模考", "message": "高质量考前模拟卷。不要被分数击垮，100分和140分此时都是修行的过程。", "math": {"title": "李林4套卷 (每天一套)", "content": "✅ 做完这四套！考前不再做任何其他杂牌模拟卷了。", "hours": 28}, "english": {"title": "素材储备", "content": "✅ 把积攒的各类话题词汇融进模板练手。", "hours": 14}, "politics": {"title": "苍盾重点关注", "content": "✅ 对于错选的政治选项，要能在书里找到原句考点！", "hours": 6}}, {"week": 38, "dates": "第38周", "theme": "武忠祥选填技能课", "message": "大题写半天只有10分，两道选择秒拿10分！得选填者得天下，此时学技巧拔高性价比最高！", "math": {"title": "选填网课+回看错题", "content": "✅ 跟着选填课学特值法、图象法。精准消灭选填误区，不盲目死算！", "hours": 26}, "english": {"title": "真题保持", "content": "✅ 隔一天做阅读维持手感，词汇打卡！", "hours": 14}, "politics": {"title": "暴风雨前的宁静", "content": "✅ 等待肖四出版。翻阅腿姐手册混脸熟。", "hours": 6}}, {"week": 39, "dates": "第39周", "theme": "封印新题：致敬错题本", "message": "把【一本通错题本】和【模拟错题本】拿出来！把你曾经跌入的坑一个一个亲手填平！", "math": {"title": "所有错题暴力速算", "content": "✅ 遮住答案重新算最后一次！能畅通算到底，考场上就绝不会再慌！", "hours": 26}, "english": {"title": "卷面整洁之风", "content": "✅ 练字，字迹好的卷面比内容差更吃香至少3-4分！", "hours": 14}, "politics": {"title": "肖四来袭", "content": "✅ 一旦肖四到货，立刻翻开最后的大题进行通读理思路，准备死记硬背！", "hours": 8}}, {"week": 40, "dates": "第40周", "theme": "真理时刻：模考与背肖四", "message": "考研真题的风格是连贯的。近三年的卷子最能体现命题老头这几年的小心机。", "math": {"title": "近3年真题模考", "content": "✅ 任务：把最近3年卷子和超越卷按早锻炼时间考核。\n⚠️ 谨记：必须要能踏实地一步步算出准确数字答案，切忌眼高手低！", "hours": 24}, "english": {"title": "闭眼默写模板", "content": "✅ 考场上唯一不会背叛你的就是肌肉记忆。\n⚠️ 单词不能停！", "hours": 12}, "politics": {"title": "死磕《肖四》大题", "content": "✅ 哪怕背得结结巴巴，也要硬背下来，考场上词汇一堆砌就是分！", "hours": 10}}, {"week": 41, "dates": "第41周", "theme": "真理时刻：模考与背肖四", "message": "超越卷主要是防一手恶心人的压轴题，练练在高压境地下的从容取舍。", "math": {"title": "近3年真题模考", "content": "✅ 任务：把最近3年卷子和超越卷按早锻炼时间考核。\n⚠️ 谨记：必须要能踏实地一步步算出准确数字答案，切忌眼高手低！", "hours": 24}, "english": {"title": "闭眼默写模板", "content": "✅ 考场上唯一不会背叛你的就是肌肉记忆。\n⚠️ 单词不能停！", "hours": 12}, "politics": {"title": "死磕《肖四》大题", "content": "✅ 哪怕背得结结巴巴，也要硬背下来，考场上词汇一堆砌就是分！", "hours": 10}}, {"week": 42, "dates": "第42周", "theme": "真理时刻：模考与背肖四", "message": "这个时候如果感觉自己啥都忘了很正常，这是大脑的保护机制。只要提笔能算，一切就没忘。", "math": {"title": "当天超越卷全真拔高", "content": "✅ 任务：把最近3年卷子和超越卷按早锻炼时间考核。\n⚠️ 谨记：必须要能踏实地一步步算出准确数字答案，切忌眼高手低！", "hours": 24}, "english": {"title": "闭眼默写模板", "content": "✅ 考场上唯一不会背叛你的就是肌肉记忆。\n⚠️ 单词不能停！", "hours": 12}, "politics": {"title": "死磕《肖四》大题", "content": "✅ 哪怕背得结结巴巴，也要硬背下来，考场上词汇一堆砌就是分！", "hours": 10}}, {"week": 43, "dates": "第43周", "theme": "真理时刻：模考与背肖四", "message": "上战场前最后一周！做过一本通和那么多卷子，底气十足，不用惧怕任何新题！", "math": {"title": "当天超越卷全真拔高", "content": "✅ 任务：把最近3年卷子和超越卷按早锻炼时间考核。\n⚠️ 谨记：必须要能踏实地一步步算出准确数字答案，切忌眼高手低！", "hours": 24}, "english": {"title": "闭眼默写模板", "content": "✅ 考场上唯一不会背叛你的就是肌肉记忆。\n⚠️ 单词不能停！", "hours": 12}, "politics": {"title": "死磕《肖四》大题", "content": "✅ 哪怕背得结结巴巴，也要硬背下来，考场上词汇一堆砌就是分！", "hours": 10}}, {"week": 44, "dates": "考研同周", "theme": "锋芒毕露，一战功成！", "message": "相信自己这一年同时兼顾学业工作所流下的每一滴汗水！你高度的自律，必将换来最棒的回报！", "math": {"title": "保温护航", "content": "✅ 翻看易错小公式大全。不要再做超越自己舒适圈的难题了。每天两道基础保温题热手。", "hours": 10}, "english": {"title": "静心决胜", "content": "✅ 准考证、文具再确认一遍。上场遇到难题不要跳脚，模板一摆，天下无敌！", "hours": 4}, "politics": {"title": "B站“抄材料”神技", "content": "🔥 去B站搜【考研政治怎么抄材料】视频！这是考场大题的最终保命底牌，务必要学会！", "hours": 8}}];
+
+    function renderWeeks() {
+        const container = document.getElementById('weeks-container');
+        planData.forEach((week, index) => {
+            const card = document.createElement('div');
+            card.className = 'week-card';
+
+            let subjectsHtml = `
+                <div class="subject">
+                    <div class="subject-header">
+                        <span class="subject-name math">📐 数学一</span>
+                        <span class="hours">${week.math.hours}h</span>
+                    </div>
+                    <div class="subject-title">${week.math.title}</div>
+                    <div class="subject-content">${week.math.content}</div>
+                </div>
+                <div class="subject">
+                    <div class="subject-header">
+                        <span class="subject-name english">📖 英语一</span>
+                        <span class="hours">${week.english.hours}h</span>
+                    </div>
+                    <div class="subject-title">${week.english.title}</div>
+                    <div class="subject-content">${week.english.content}</div>
+                </div>
+            `;
+
+            if (week.politics) {
+                subjectsHtml += `
+                    <div class="subject">
+                        <div class="subject-header">
+                            <span class="subject-name politics">🏛️ 政治</span>
+                            <span class="hours">${week.politics.hours}h</span>
+                        </div>
+                        <div class="subject-title">${week.politics.title}</div>
+                        <div class="subject-content">${week.politics.content}</div>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="week-header" onclick="toggleWeek(${index})">
+                    <h3>第 ${week.week} 周：${week.theme}</h3>
+                    <span class="dates">${week.dates}</span>
+                </div>
+                <div class="week-content" id="week-${index}">
+                    <div class="message">💡 ${week.message}</div>
+                    ${subjectsHtml}
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        document.getElementById('week-0').classList.add('active');
+    }
+
+    function toggleWeek(index) {
+        document.getElementById('week-' + index).classList.toggle('active');
+    }
+
+    let allExpanded = false;
+    function toggleAll() {
+        allExpanded = !allExpanded;
+        document.querySelectorAll('.week-content').forEach(el => {
+            el.classList.toggle('active', allExpanded);
+        });
+    }
+
+    renderWeeks();
+    </script>
+</body>
+</html>
