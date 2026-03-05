@@ -51,7 +51,7 @@ html_template = """<!DOCTYPE html>
     <div class="container">
         <div class="header">
             <h1>汪桑 2026考研全程深度定制规划</h1>
-            <p>🎯 中山大学 085700 | 📅 48周 | 深度定制</p>
+            <p>🎯 中山大学 085700 | 📅 42周 (2026.03.02 起) | 深度定制</p>
         </div>
         <div id="app"></div>
     </div>
