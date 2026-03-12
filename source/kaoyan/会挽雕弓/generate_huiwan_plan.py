@@ -287,13 +287,7 @@ def get_full_plan():
     data = {"student": "会挽雕弓", "weeks": weeks[:42]}
     
     # Generate HTML matching the Li Baibai dark theme layout perfectly
-    html_template = '''---
-title: 会挽雕弓 专属定制考研规划
-date: 2026-03-12
-password: weijian
-message: 专属内容需校验密码
----
-<!DOCTYPE html>
+    html_template = '''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
