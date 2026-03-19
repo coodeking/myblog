@@ -828,9 +828,9 @@
                         'Prefer': 'return=minimal'
                     },
                     body: JSON.stringify({
-                        name: data.name,
-                        contact: data.contact,
-                        target_school: data.targetSchool,
+                        name: data.name || '未填写',
+                        contact: data.contact || '未填写',
+                        target_school: data.targetSchool || '未填写',
                         exam_year: parseInt(data.examYear) || 2027,
                         info_json: data,
                         status: '待处理'
