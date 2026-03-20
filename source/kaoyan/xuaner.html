@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>璇er 2027考研深度定制规划</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0f;
+            --card-bg: #12121a;
+            --text-color: #e0e0e0;
+            --accent: #d946ef;
+            --accent-light: #f472b6;
+            --border-color: #2a2a3a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        .meta { color: #888; font-size: 0.95rem; }
+        .meta span { margin: 0 10px; display: inline-block; }
+        .overview {
+            background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        .overview h2 {
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+        .strategy {
+            margin-bottom: 16px; 
+            padding: 12px; 
+            background: rgba(217, 70, 239, 0.15); 
+            border-radius: 8px; 
+            border-left: 3px solid var(--accent);
+            color: #fff; 
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .grid-box { display: grid; gap: 16px; margin-bottom: 20px; }
+        .grid-item { padding: 18px; border-radius: 8px; }
+        .grid-english { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; }
+        .grid-politics { background: rgba(251,191,36,0.08); border-left: 3px solid #fbbf24; }
+        
+        h3 { margin-bottom: 12px; font-size: 1.1rem; }
+        .grid-english h3 { color: #34d399; }
+        .grid-politics h3 { color: #fbbf24; }
+        
+        ul { margin-left: 20px; color: #ddd; }
+        li { margin-bottom: 8px; }
+        
+        .week-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .week-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(217, 70, 239, 0.15); }
+        .week-header {
+            background: linear-gradient(90deg, rgba(217, 70, 239, 0.2), rgba(217, 70, 239, 0.05));
+            padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+        }
+        .week-header h3 { font-size: 1.1rem; color: var(--accent-light); margin: 0; }
+        .week-header .dates { color: #aaa; font-size: 0.9rem; font-family: monospace; }
+        .week-content { padding: 20px; display: none; }
+        .week-content.active { display: block; }
+        .message {
+            background: rgba(217, 70, 239, 0.1); padding: 14px 18px; border-radius: 8px;
+            margin-bottom: 20px; border-left: 3px solid var(--accent); font-style: italic; color: #fff;
+            line-height: 1.6; font-size: 0.95rem;
+        }
+        .subject { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .subject-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .subject-name { font-weight: bold; font-size: 1.05rem; }
+        .subject-name.english { color: #34d399; }
+        .subject-name.politics { color: #fbbf24; }
+        .hours { background: rgba(255, 255, 255, 0.1); padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; color: #ddd; }
+        .subject-title { font-weight: bold; margin-bottom: 8px; color: #fff; }
+        .subject-content { color: #bbb; white-space: pre-line; font-size: 0.95rem; line-height: 1.7; }
+        .expand-all { text-align: center; margin-bottom: 25px; }
+        .expand-all button {
+            background: var(--accent); color: white; border: none; padding: 12px 28px;
+            border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: background 0.2s;
+        }
+        .expand-all button:hover { background: var(--accent-light); }
+        footer { text-align: center; padding: 30px; color: #666; font-size: 0.9rem; margin-top: 20px; border-top: 1px solid var(--border-color); }
+        
+        @media(max-width: 600px) { .week-header { flex-direction: column; align-items: flex-start; gap: 8px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>璇er 2027考研全程客观规划</h1>
+            <div class="meta">
+                <span>🎯 目标院校：湖北大学·马克思主义基本原理学硕</span>
+                <span>📅 周期：2026.03.21 - 2026.12.25 (考前)</span>
+            </div>
+            <div class="meta" style="margin-top: 8px;">
+                <span>📚 必考公共课：英语一 / 政治（不考数学）</span>
+            </div>
+        </header>
+
+        <!-- 总体规划概览 -->
+        <div class="overview">
+            <h2>🎯 全局指导总纲</h2>
+            
+            <p class="strategy">
+                <strong>核心原则：所有科目放弃冗长网课，不当“耐听王”。多找书本出处、多做客观题练习，核心资料务必背诵且落实到考卷格式上。</strong><br><br>
+                <span style="color: #ffb86c;">不考数学红利：你有极大精力投放在马原的专业课背诵上。公共课保持平稳推进即可，8月15日前实习期以利用碎片时间（如通勤背英语单词）背记为主。</span>
+            </p>
+            
+            <div class="grid-box">
+                <div class="grid-item grid-english">
+                    <h3>📖 英语一执行纪律</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">单词为重，摒弃长线课精翻：</strong>前期不要沉迷于刘晓艳等冗长的全程班视频。核心任务就是《不背单词》积累考研3000基础词。不去手翻文章长句。</li>
+                        <li><strong style="color: #fff;">客观题实战导向：</strong>暑假开始利用《真题伴侣》做真卷。建立专用生词册。</li>
+                        <li><strong style="color: #fff;">作文快速成型：</strong>后期仅听《Monkey》作文模板总结结构并死背套话。绝不自己现场硬组织容易语病的段落。</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item grid-politics">
+                    <h3>🏛️ 政治执行纪律</h3>
+                    <ul>
+                        <li><strong style="color: #f43f5e;">绝对克制，严格后置：</strong>请在10月初再考虑介入政治。严格放弃徐涛的全程讲义类大课。抛弃题量离谱的《肖秀荣1000题》。</li>
+                        <li><strong style="color: #fff;">精炼记忆法：</strong>主力背诵书使用轻量的《腿姐冲刺背诵手册》与《澄箫宇一页纸》宏观导图即可。</li>
+                        <li><strong style="color: #fff;">刷题即复习：</strong>日常完全使用《苍盾小程序》分章突击几十道练手。最后一个月无脑狂背《肖四》要点并学习实战“考场抄材料”技巧。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="expand-all">
+            <button onclick="toggleAll()">展开/收起全部计划周</button>
+        </div>
+
+        <div id="weeks-container"></div>
+        
+    </div>
+
+    <script>
+    const planData = [{"week": 1, "dates": "03.21 - 03.27", "theme": "复习起步：建立背词习惯", "message": "备考初期的核心目标是适应每天看书的节奏，特别是你在实习期间，第一周只安排单一任务。\n（复习安排：初期首要任务是确立每日看书的习惯。即使有实习工作，也要保证睡前花十五分钟过一遍当天的英语单词。）", "english": {"title": "英语词汇：核心3000词筛选", "content": "✅ 任务指向：在手机安装《不背单词》或扇贝等软件，并将词库设定为考研英语一核心大纲词汇（约3000词左右）。\n✅ 执行标准：在实习的通勤和碎片时间过单词，不要抄写单词拼写，也不用看长篇词根视频。看着英文在几秒内反应出中文意思即可。"}}, {"week": 2, "dates": "03.28 - 04.03", "theme": "词库推进：应对词汇遗忘", "message": "遗忘是单词记忆中必然经历的阶段，持续使用应用就能稳步巩固。\n（记忆规律：背记单词出现大面积遗忘符合正常的认知曲线。不必过分追求单次记忆的深度，增加翻阅频率是更优解。）", "english": {"title": "英语词汇：常态化打卡", "content": "✅ 任务指向：确保每天完成APP指派的新词和复习任务。\n✅ 执行建议：实习下班后精力差的话，可以把背单词分散。利用午休十五分钟、通勤路上刷完一半任务，晚上复习剩下的一半。"}}, {"week": 3, "dates": "04.04 - 04.10", "theme": "词库推进：保持阅读频率", "message": "词汇量开始有初步积累，继续保持每天背单词的时间。\n（避免形式：现阶段看英语长篇语法网课收益很低。如果一篇文章大部分词不认识，任何语法技巧都没有用武之地。）", "english": {"title": "英语词汇：放弃无效操作", "content": "✅ 任务指向：继续每日依靠APP推进词汇记忆，不精翻、不求拼写。\n✅ 执行提醒：现阶段如果看到考研英语试卷觉得看不懂，主要是词汇量不够。不用花时间去听名师讲长篇语法课，把大块的时间拿去背诵你考研的专业课知识。"}}, {"week": 4, "dates": "04.11 - 04.17", "theme": "词汇复习常态化 (第4周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（碎片利用：实习午休期间如果遇到不需要高度专注的零散时间，可以拿出手机App翻看生词。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 5, "dates": "04.18 - 04.24", "theme": "词汇复习常态化 (第5周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（避免形式：现阶段看英语长篇语法网课收益很低。如果一篇文章大部分词不认识，任何语法技巧都没有用武之地。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 6, "dates": "04.25 - 05.01", "theme": "词汇复习常态化 (第6周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（执行细节：不要强迫自己抄写长串的英文单词，也不要在意发音。考研阅读的核心要求是快速识别单词对应的中文含义。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 7, "dates": "05.02 - 05.08", "theme": "词汇复习常态化 (第7周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（长难句处理：对于历年真题里复杂的句子，重点是找准主谓宾，不要为了读懂每句话去买厚重的手译本精翻。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 8, "dates": "05.09 - 05.15", "theme": "词汇复习常态化 (第8周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（进度调整：如果某几天因为实习加班导致计划中断，不要产生补偿心理试图一天学完三天内容，从断点处继续执行即可。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 9, "dates": "05.16 - 05.22", "theme": "词汇复习常态化 (第9周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（词汇贯穿：单词的记忆是不能中途中断的。在考研结束前，不管复习到了什么阶段，背诵软件上的每日复习任务都应照常点开。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 10, "dates": "05.23 - 05.29", "theme": "词汇复习常态化 (第10周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（政治规划：建议将政治复习的起点推迟到10月左右。早期看政治辅导书既容易遗忘，又会压缩专业课的提分空间。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 11, "dates": "05.30 - 06.05", "theme": "词汇复习常态化 (第11周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（状态管理：复习难免会有几天提不起精神，这时可以调整任务类型，比如听听专业课或者刷简单的考研词汇复习。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 12, "dates": "06.06 - 06.12", "theme": "词汇复习常态化 (第12周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（资料精简：真题的价值远高于任何辅导机构的模拟卷。不仅是公共课，专业课也是如此。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 13, "dates": "06.13 - 06.19", "theme": "词汇复习常态化 (第13周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（题型反馈：接触早年真题阅读时错误率高非常正常。只要通过对错题的分析，明确自己是对单词理解有误，还是逻辑不对即可。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 14, "dates": "06.20 - 06.26", "theme": "词汇复习常态化 (第14周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（词汇来源：真题阅读里阻碍你理解核心句意的生词，是你必须掌握的高频词汇，直接记录到《真题伴侣》生词本中。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 15, "dates": "06.27 - 07.03", "theme": "词汇复习常态化 (第15周)", "message": "这个阶段比较枯燥，分数也没什么变化，属于正常的复习过程，保持日常学习即可。\n（答题思维：考研英语阅读的核心考法之一是同义替换。练习时要刻意观察正确选项用了哪些近义词替换了原文中的表述。）", "english": {"title": "英语词汇：继续高频重复", "content": "✅ 任务指向：坚定不移地保持单词软件的进度，目标是在步入暑期（7月底）前，能将这3000个考研核心词在软件里过满三遍。\n✅ 注意事项：周末如果有一整段的空闲，不要拿来背单词。要把这种连续时间划拨给专业课，去解决马克思原理的大部头概念。"}}, {"week": 16, "dates": "07.04 - 07.10", "theme": "真题实战：开始做阅读题", "message": "考研词汇过完两三遍后，开始正式接触英语一历年真卷的阅读理解。\n（实习结束：8月中旬实习结束后，你将拥有完整的大块时间。此时必须迅速调整作息，把全天的精力投入到专业课背诵和英语真题分析中。）", "english": {"title": "英语真题：客观题起步", "content": "✅ 任务指向：选择早期（例如2010年左右）的英语一真题，暂不写翻译完型和作文。以“两天下班时间完成一套卷子的阅读题（共4篇）”为基准进度。\n✅ 利用辅助工具：阅读时遇到不会的生僻词，直接在手机安装《真题伴侣》APP搜词并标记，建立专属的重点复习词库。"}}, {"week": 17, "dates": "07.11 - 07.17", "theme": "真题实战：熟悉命题思路", "message": "你将在8月中旬结束实习。前期做真题的重点不在于正确率，而在于熟悉题目是如何设置选项的。\n（分析重点：做阅读不能只记录对了多少题，要把每个选项为什么对、为什么错在原文里找到对应的句子支撑。）", "english": {"title": "英语真题：分析错题", "content": "✅ 任务指向：维持两天一套阅读的答题频率。实习结束后，每天有大块完整的时间可以用来复盘错题。\n✅ 分析准则：必须把错误选项在原文中关联的那一句话找出来。看看是没认出动词，还是自己想多了。所有的推理都要基于客观的卷面原文。"}}, {"week": 18, "dates": "07.18 - 07.24", "theme": "真题实战：同义替换练习 (第18周)", "message": "解题的核心是寻找英文题目和原文的同义词替换。\n（辅助工具：《真题伴侣》等应用能够快速帮助筛选真卷核心生词，将这些词加入自己的专属生词库可以大幅提高后期的背记效率。）", "english": {"title": "英语真题：培养破题逻辑", "content": "✅ 任务指向：保持真题阅读速度。刻意训练自己观察“同义替换”。例如原文写的是“not easy”，正确答案多数会改成“difficult”。\n✅ 长难句处理：对于影响做题的长难句，只需要找出“谁在做什么”。不用过度分析从句的修饰成分。"}}, {"week": 19, "dates": "07.25 - 07.31", "theme": "真题实战：同义替换练习 (第19周)", "message": "解题的核心是寻找英文题目和原文的同义词替换。\n（边缘题型：完形填空的复习性价比相对较低。前期不用专门花时间练习它，时间应优先留给阅读和作文框架。）", "english": {"title": "英语真题：培养破题逻辑", "content": "✅ 任务指向：保持真题阅读速度。刻意训练自己观察“同义替换”。例如原文写的是“not easy”，正确答案多数会改成“difficult”。\n✅ 长难句处理：对于影响做题的长难句，只需要找出“谁在做什么”。不用过度分析从句的修饰成分。"}}, {"week": 20, "dates": "08.01 - 08.07", "theme": "真题实战：同义替换练习 (第20周)", "message": "解题的核心是寻找英文题目和原文的同义词替换。\n（翻译测试：英一翻译题不用追求文采。主要考察的是能否把修饰成分理清，并用符合中文逻辑的单句表达出来，意思准确就能得分。）", "english": {"title": "英语真题：培养破题逻辑", "content": "✅ 任务指向：保持真题阅读速度。刻意训练自己观察“同义替换”。例如原文写的是“not easy”，正确答案多数会改成“difficult”。\n✅ 长难句处理：对于影响做题的长难句，只需要找出“谁在做什么”。不用过度分析从句的修饰成分。"}}, {"week": 21, "dates": "08.08 - 08.14", "theme": "真题实战：同义替换练习 (第21周)", "message": "解题的核心是寻找英文题目和原文的同义词替换。\n（写作策略：考研作文不建议自己临时组织句子。平时梳理好应对不同话题的模板，考场上套用模板能有效避免低级语法失误。）", "english": {"title": "英语真题：培养破题逻辑", "content": "✅ 任务指向：保持真题阅读速度。刻意训练自己观察“同义替换”。例如原文写的是“not easy”，正确答案多数会改成“difficult”。\n✅ 长难句处理：对于影响做题的长难句，只需要找出“谁在做什么”。不用过度分析从句的修饰成分。"}}, {"week": 22, "dates": "08.15 - 08.21", "theme": "真题实战：同义替换练习 (第22周)", "message": "解题的核心是寻找英文题目和原文的同义词替换。\n（客观心态：英语基础的提升是一个缓慢积累的过程，前几个月往往看不到明显的分数变化，这是正常的瓶颈阶段。）", "english": {"title": "英语真题：培养破题逻辑", "content": "✅ 任务指向：保持真题阅读速度。刻意训练自己观察“同义替换”。例如原文写的是“not easy”，正确答案多数会改成“difficult”。\n✅ 长难句处理：对于影响做题的长难句，只需要找出“谁在做什么”。不用过度分析从句的修饰成分。"}}, {"week": 23, "dates": "08.22 - 08.28", "theme": "真题实战：同义替换练习 (第23周)", "message": "解题的核心是寻找英文题目和原文的同义词替换。\n（政治策略：政治不用看冗长的名师视频基础课。直接总结精简资料、多做客观题分析是提分的核心路径。）", "english": {"title": "英语真题：培养破题逻辑", "content": "✅ 任务指向：保持真题阅读速度。刻意训练自己观察“同义替换”。例如原文写的是“not easy”，正确答案多数会改成“difficult”。\n✅ 长难句处理：对于影响做题的长难句，只需要找出“谁在做什么”。不用过度分析从句的修饰成分。"}}, {"week": 24, "dates": "08.29 - 09.04", "theme": "真题实战：同义替换练习 (第24周)", "message": "解题的核心是寻找英文题目和原文的同义词替换。\n（真题演练：政治科目的《肖1000题》题量过于庞大，对于后期复习负担太重。使用《苍盾小程序》分章节刷题更为轻便。）", "english": {"title": "英语真题：培养破题逻辑", "content": "✅ 任务指向：保持真题阅读速度。刻意训练自己观察“同义替换”。例如原文写的是“not easy”，正确答案多数会改成“difficult”。\n✅ 长难句处理：对于影响做题的长难句，只需要找出“谁在做什么”。不用过度分析从句的修饰成分。"}}, {"week": 25, "dates": "09.05 - 09.11", "theme": "写作准备：了解大纲模板", "message": "进入初秋，客观题方法初步建立后，需要提早为英语作文模板做好准备。\n（写作策略：考研作文不建议自己临时组织句子。平时梳理好应对不同话题的模板，考场上套用模板能有效避免低级语法失误。）", "english": {"title": "英语辅助：了解作文体系", "content": "✅ 任务指向：不用去背全篇累赘的范文。不看刘晓艳的长课。请在网上听一下《Monkey老师》等主打理科通用模板的考研作文课。\n✅ 核心要求：提取出应对好的现象、坏的问题等极少数几套通用模板框架。理解该模板的起承转合结构即可。"}}, {"week": 26, "dates": "09.12 - 09.18", "theme": "写作素材扩充与真题跟进 (第26周)", "message": "作文需要具体的骨干词汇填充，阅读依然是保持语感的必要举措。\n（记忆法：长篇大论的政治材料不需要长时间集中背诵，将其拆解成每日睡前翻阅，通过多次重复来加深印象，减轻大脑疲劳。）", "english": {"title": "英语综合：素材整理", "content": "✅ 任务指向：真题阅读进度继续推进。平时做题看到描述品质、社会现象相关的好用动名词（如提倡、破坏等），随手记录下来作为作文素材。\n✅ 每日提醒：在此期间，《不背单词》与《真题伴侣》里的生词复习每天都要按时完成，英语单词背诵绝不能断考法。"}}, {"week": 27, "dates": "09.19 - 09.25", "theme": "写作素材扩充与真题跟进 (第27周)", "message": "作文需要具体的骨干词汇填充，阅读依然是保持语感的必要举措。\n（二刷准则：再次复习英语真题时，要求自己不再凭印象直接选答案，而是要在心里给出明确的推理路径和原文定位。）", "english": {"title": "英语综合：素材整理", "content": "✅ 任务指向：真题阅读进度继续推进。平时做题看到描述品质、社会现象相关的好用动名词（如提倡、破坏等），随手记录下来作为作文素材。\n✅ 每日提醒：在此期间，《不背单词》与《真题伴侣》里的生词复习每天都要按时完成，英语单词背诵绝不能断考法。"}}, {"week": 28, "dates": "09.26 - 10.02", "theme": "写作素材扩充与真题跟进 (第28周)", "message": "作文需要具体的骨干词汇填充，阅读依然是保持语感的必要举措。\n（主观题实操：整理出自己的作文模板后，务必要落实到纸面练习。考场上很容易出现提笔忘字和标点不规范的问题。）", "english": {"title": "英语综合：素材整理", "content": "✅ 任务指向：真题阅读进度继续推进。平时做题看到描述品质、社会现象相关的好用动名词（如提倡、破坏等），随手记录下来作为作文素材。\n✅ 每日提醒：在此期间，《不背单词》与《真题伴侣》里的生词复习每天都要按时完成，英语单词背诵绝不能断考法。"}}, {"week": 29, "dates": "10.03 - 10.09", "theme": "政治启动：精简复习方案", "message": "十月份是最合理的政治启动期，遵循“不大量看视频”的原则。\n（政治策略：政治不用看冗长的名师视频基础课。直接总结精简资料、多做客观题分析是提分的核心路径。）", "english": {"title": "政治入门：基础知识复习", "content": "✅ 核心指向：绝对远离徐涛等几十上百小时的长篇基础视频课，这些不适合后期直接提分。也不要碰题量繁杂的《肖1000题》。\n✅ 实战落地：直接买一本《腿姐冲刺背诵手册》或者《澄箫宇政治一页纸》，每晚读十分钟理清脉络即可。同时在《苍盾小程序》开始刷政治选择题，每天完成一组（约30题），做错时回去翻小册子对应。"}, "politics": {"title": "英语二刷：查找具体错误原因", "content": "✅ 任务指向：英语一阅读理解开始第二遍归置复习。二刷的要求是，在选出正确答案的同时，要能说出其他三个错误选项具体错在哪里（是扩大范围，还是原文没提到）。"}}, {"week": 30, "dates": "10.10 - 10.16", "theme": "政治客观题强化与英语写作落实", "message": "政治的基础在于选择题，而英语作文是后期拿分的保障。\n（真题演练：政治科目的《肖1000题》题量过于庞大，对于后期复习负担太重。使用《苍盾小程序》分章节刷题更为轻便。）", "english": {"title": "政治刷题：根据错题复习知识点", "content": "✅ 任务指向：保持每天在《苍盾小程序》做客观题测试。遇到经常错的马原概念题或近史纲年份题，立刻翻找《腿姐背诵手册》，用笔重点标出对应段落复习核心规律。"}, "politics": {"title": "英语写作：动笔练习", "content": "✅ 任务指向：之前脑海中构筑的Monkey模板框架必须落实在草稿纸上。每周利用周末找一个真题图片，在答题纸上手写一篇完整的作文。检查是否有拼写和时态错误。"}}, {"week": 31, "dates": "10.17 - 10.23", "theme": "政治选择题与英语写作复习 (第31周)", "message": "后期压力会增加，按部就班执行每天的任务清单是最好的缓解方式。\n（知识梳理：《澄箫宇政治一页纸》可以帮助在短时间内理清政治各科的章节关联，适合配合背诵手册做错题回顾。）", "english": {"title": "政治综合：多翻看背诵手册", "content": "✅ 任务指向：政治不要求通篇大段背诵原文，而是利用碎片时间多翻看《一页纸》图表或腿姐手册重点。让重要会议和重大会议的结论在脑海里保持较高的‘眼熟度’应对选择题。"}, "politics": {"title": "英语评估：全卷练习", "content": "✅ 任务指向：挑出最近两三年的英语一还没做过的全新真卷。每周找一个完整的下午（务必对应真实考试的时间），按考试要求做全套试卷，测试自己各部分的用时分配。"}}, {"week": 32, "dates": "10.24 - 10.30", "theme": "政治选择题与英语写作复习 (第32周)", "message": "后期压力会增加，按部就班执行每天的任务清单是最好的缓解方式。\n（远离预测卷：英语没有必要做机构的考前模拟卷。市面上的题目逻辑往往与真题不同，做多了反而打乱自己好不容易建立的真题思维。）", "english": {"title": "政治综合：多翻看背诵手册", "content": "✅ 任务指向：政治不要求通篇大段背诵原文，而是利用碎片时间多翻看《一页纸》图表或腿姐手册重点。让重要会议和重大会议的结论在脑海里保持较高的‘眼熟度’应对选择题。"}, "politics": {"title": "英语评估：全卷练习", "content": "✅ 任务指向：挑出最近两三年的英语一还没做过的全新真卷。每周找一个完整的下午（务必对应真实考试的时间），按考试要求做全套试卷，测试自己各部分的用时分配。"}}, {"week": 33, "dates": "10.31 - 11.06", "theme": "政治选择题与英语写作复习 (第33周)", "message": "后期压力会增加，按部就班执行每天的任务清单是最好的缓解方式。\n（错题溯源：政治选择题如果出现特定的高频错题，应当带回腿姐《背诵小册子》对应章节重新熟悉大体框架。）", "english": {"title": "政治综合：多翻看背诵手册", "content": "✅ 任务指向：政治不要求通篇大段背诵原文，而是利用碎片时间多翻看《一页纸》图表或腿姐手册重点。让重要会议和重大会议的结论在脑海里保持较高的‘眼熟度’应对选择题。"}, "politics": {"title": "英语评估：全卷练习", "content": "✅ 任务指向：挑出最近两三年的英语一还没做过的全新真卷。每周找一个完整的下午（务必对应真实考试的时间），按考试要求做全套试卷，测试自己各部分的用时分配。"}}, {"week": 34, "dates": "11.07 - 11.13", "theme": "政治选择题与英语写作复习 (第34周)", "message": "后期压力会增加，按部就班执行每天的任务清单是最好的缓解方式。\n（全真模拟：11月下旬起，为了适应考场环境，需要安排两个完整的下午，完全按照考研的时间表做一套英语真题进行测试。）", "english": {"title": "政治综合：多翻看背诵手册", "content": "✅ 任务指向：政治不要求通篇大段背诵原文，而是利用碎片时间多翻看《一页纸》图表或腿姐手册重点。让重要会议和重大会议的结论在脑海里保持较高的‘眼熟度’应对选择题。"}, "politics": {"title": "英语评估：全卷练习", "content": "✅ 任务指向：挑出最近两三年的英语一还没做过的全新真卷。每周找一个完整的下午（务必对应真实考试的时间），按考试要求做全套试卷，测试自己各部分的用时分配。"}}, {"week": 35, "dates": "11.14 - 11.20", "theme": "政治选择题与英语写作复习 (第35周)", "message": "后期压力会增加，按部就班执行每天的任务清单是最好的缓解方式。\n（限时训练：只有通过连续三小时的整卷限时练习，才能发现自己各个题型的时间分配问题，从而确定考场上的答题顺序。）", "english": {"title": "政治综合：多翻看背诵手册", "content": "✅ 任务指向：政治不要求通篇大段背诵原文，而是利用碎片时间多翻看《一页纸》图表或腿姐手册重点。让重要会议和重大会议的结论在脑海里保持较高的‘眼熟度’应对选择题。"}, "politics": {"title": "英语评估：全卷练习", "content": "✅ 任务指向：挑出最近两三年的英语一还没做过的全新真卷。每周找一个完整的下午（务必对应真实考试的时间），按考试要求做全套试卷，测试自己各部分的用时分配。"}}, {"week": 36, "dates": "11.21 - 11.27", "theme": "政治选择题与英语写作复习 (第36周)", "message": "后期压力会增加，按部就班执行每天的任务清单是最好的缓解方式。\n（押题应对：12月《肖四》上市后是政治复习重点。重点熟悉每道大题答题要点的黑体句首和关键名词，只要答上采分点就有分数。）", "english": {"title": "政治综合：多翻看背诵手册", "content": "✅ 任务指向：政治不要求通篇大段背诵原文，而是利用碎片时间多翻看《一页纸》图表或腿姐手册重点。让重要会议和重大会议的结论在脑海里保持较高的‘眼熟度’应对选择题。"}, "politics": {"title": "英语评估：全卷练习", "content": "✅ 任务指向：挑出最近两三年的英语一还没做过的全新真卷。每周找一个完整的下午（务必对应真实考试的时间），按考试要求做全套试卷，测试自己各部分的用时分配。"}}, {"week": 37, "dates": "11.28 - 12.04", "theme": "政治选择题与英语写作复习 (第37周)", "message": "后期压力会增加，按部就班执行每天的任务清单是最好的缓解方式。\n（辅助技巧：考前花时间去B站搜索关于“政治考研如何结合材料分点抄写”的技巧短视频。这是考场上遇到冷僻题目时拿基础分的实用方法。）", "english": {"title": "政治综合：多翻看背诵手册", "content": "✅ 任务指向：政治不要求通篇大段背诵原文，而是利用碎片时间多翻看《一页纸》图表或腿姐手册重点。让重要会议和重大会议的结论在脑海里保持较高的‘眼熟度’应对选择题。"}, "politics": {"title": "英语评估：全卷练习", "content": "✅ 任务指向：挑出最近两三年的英语一还没做过的全新真卷。每周找一个完整的下午（务必对应真实考试的时间），按考试要求做全套试卷，测试自己各部分的用时分配。"}}, {"week": 38, "dates": "12.05 - 12.11", "theme": "极限冲刺：强化重点背诵", "message": "12月份是政治大题逆天改命的时段，也是专业课死磕原理背诵的时段。\n（押题应对：12月《肖四》上市后是政治复习重点。重点熟悉每道大题答题要点的黑体句首和关键名词，只要答上采分点就有分数。）", "english": {"title": "政治冲刺：《肖四》背诵启动", "content": "✅ 核心任务：最核心的押题资料《肖秀荣四套卷》出版后，直接上手背诵主观答题要点。不用看前言和引语。\n✅ 执行提醒：如果觉段落太长背不全，重点背熟每一道大题答题要点的第一句加粗文字。阅卷时只要写出了这些名词要件，就会给基础分。"}, "politics": {"title": "英语保持：复习错题不碰新题", "content": "✅ 任务指向：不要再做新的机构预测卷。继续用APP复习单词。把以前做过的英语错题翻出，在纸上熟悉命题思路。每周默写一次完整的作文模板防止手写退化。"}}, {"week": 39, "dates": "12.12 - 12.18", "theme": "考前防具：保命技巧与心态闭环", "message": "掌握考场遇到不会题目的处理方法，准备参加研考战役。\n（辅助技巧：考前花时间去B站搜索关于“政治考研如何结合材料分点抄写”的技巧短视频。这是考场上遇到冷僻题目时拿基础分的实用方法。）", "english": {"title": "政治实战：主观题作答技巧", "content": "✅ 任务指向：务必去B站搜索一下‘考研政治主观题如何抄材料’的教程技巧视频。考试时遇到肖四没背过的冷门考点不要慌。学会分析试卷材料，结合背过的基本原理分点写下来，这是拿及格分常规手段。"}, "politics": {"title": "英语终结：规避无用押题", "content": "✅ 任务指向：不要买名师的考前英语冲刺卷或模拟卷。它们的逻辑与真题不一样，现阶段翻看积累的真题同义替换选项是对考试最好的准备。"}}, {"week": 40, "dates": "12.19 - 12.25", "theme": "正式战役：走进考场", "message": "备战结束，只关注当下的笔尖，带好文具，坚持考完。\n（临场取舍：考场上时间紧迫。如果遇到极难的阅读理解卡了很久，果断先做简单题，确保能把熟悉且稳妥的分数拿到手。）", "english": {"title": "英语考场：保大局弃局部", "content": "✅ 试卷应对：如果第一篇阅读很难，可以先做最熟悉、最有把握的题目（如你背好的作文模板、简单阅读），把能拿的分数稳稳拿到手。"}, "politics": {"title": "政治考场：不留空白分条书写", "content": "✅ 试卷应对：选择题不要犹豫反复修改，相信第一直觉。主观大题答题区无论会不会，都不要空着。用你背过的概念结合试卷提供的材料分题号（①、②、③）清晰地写满答题区域。"}}];
+
+    function renderWeeks() {
+        const container = document.getElementById('weeks-container');
+        planData.forEach((week, index) => {
+            const card = document.createElement('div');
+            card.className = 'week-card';
+
+            let subjectsHtml = '';
+
+            if (week.english) {
+                subjectsHtml += `
+                    <div class="subject">
+                        <div class="subject-header">
+                            <span class="subject-name english">📖 英语一</span>
+                        </div>
+                        <div class="subject-title">${week.english.title}</div>
+                        <div class="subject-content">${week.english.content.replace(/\n/g, '<br/>')}</div>
+                    </div>
+                `;
+            }
+
+            if (week.politics) {
+                subjectsHtml += `
+                    <div class="subject">
+                        <div class="subject-header">
+                            <span class="subject-name politics">🏛️ 政治</span>
+                        </div>
+                        <div class="subject-title">${week.politics.title}</div>
+                        <div class="subject-content">${week.politics.content.replace(/\n/g, '<br/>')}</div>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="week-header" onclick="toggleWeek(${index})">
+                    <h3>第 ${week.week} 周：${week.theme}</h3>
+                    <span class="dates">${week.dates}</span>
+                </div>
+                <div class="week-content" id="week-${index}">
+                    <div class="message">${week.message}</div>
+                    ${subjectsHtml}
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        document.getElementById('week-0').classList.add('active');
+    }
+
+    function toggleWeek(index) {
+        document.getElementById('week-' + index).classList.toggle('active');
+    }
+
+    let allExpanded = false;
+    function toggleAll() {
+        allExpanded = !allExpanded;
+        document.querySelectorAll('.week-content').forEach(el => {
+            el.classList.toggle('active', allExpanded);
+        });
+    }
+
+    renderWeeks();
+    </script>
+</body>
+</html>
