@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小恣 考研学习进度参考（38周版）</title>
+    <style>
+        :root {--bg-color: #0a0a0f;--card-bg: #12121a;--text-color: #e0e0e0;--accent: #d946ef;--accent-light: #f472b6;--border-color: #2a2a3a;}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: var(--bg-color); color: var(--text-color); line-height: 1.6; min-height: 100vh; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%); border-radius: 16px; margin-bottom: 30px; border: 1px solid var(--border-color); }
+        header h1 { font-size: 2.2rem; background: linear-gradient(90deg, var(--accent), var(--accent-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+        .meta { color: #888; font-size: 0.95rem; }
+        .meta span { margin: 0 10px; display: inline-block; }
+        .overview { background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%); border-radius: 12px; padding: 24px; margin-bottom: 30px; border: 1px solid var(--border-color); }
+        .overview h2 { color: var(--accent-light); margin-bottom: 20px; font-size: 1.3rem; border-left: 4px solid var(--accent); padding-left: 10px; }
+        .strategy { margin-bottom: 16px; padding: 12px; background: rgba(217, 70, 239, 0.15); border-radius: 8px; border-left: 3px solid var(--accent); color: #fff; line-height: 1.8; font-size: 1.05rem; }
+        .grid-box { display: grid; gap: 16px; margin-bottom: 20px; }
+        .grid-item { padding: 18px; border-radius: 8px; }
+        .grid-english { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; }
+        .grid-politics { background: rgba(251,191,36,0.08); border-left: 3px solid #fbbf24; }
+        h3 { margin-bottom: 12px; font-size: 1.1rem; }
+        .grid-english h3 { color: #34d399; }
+        .grid-politics h3 { color: #fbbf24; }
+        ul { margin-left: 20px; color: #ddd; }
+        li { margin-bottom: 8px; }
+        .week-card { background: var(--card-bg); border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border-color); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+        .week-header { background: linear-gradient(90deg, rgba(217, 70, 239, 0.2), rgba(217, 70, 239, 0.05)); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .week-header h3 { font-size: 1.1rem; color: var(--accent-light); margin: 0; }
+        .week-header .dates { color: #aaa; font-size: 0.9rem; font-family: monospace; }
+        .week-content { padding: 20px; display: none; }
+        .week-content.active { display: block; }
+        .message { background: rgba(217, 70, 239, 0.1); padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; border-left: 3px solid var(--accent); color: #fff; line-height: 1.6; font-size: 0.95rem; }
+        .subject { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .subject-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .subject-name { font-weight: bold; font-size: 1.05rem; }
+        .subject-name.english { color: #34d399; }
+        .subject-name.politics { color: #fbbf24; }
+        .subject-title { font-weight: bold; margin-bottom: 8px; color: #fff; }
+        .subject-content { color: #bbb; white-space: pre-line; font-size: 0.95rem; line-height: 1.7; }
+        .expand-all { text-align: center; margin-bottom: 25px; }
+        .expand-all button { background: var(--accent); color: white; border: none; padding: 12px 28px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.2s; }
+        .expand-all button:hover { background: var(--accent-light); }
+        footer { text-align: center; padding: 30px; color: #666; font-size: 0.9rem; margin-top: 20px; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>小恣 考研学习进度参考（普通版）</h1>
+            <div class="meta">
+                <span>🎯 目标：苏州大学·信息资源管理学硕</span>
+                <span>📅 周期：2025.03.31 - 2025.12.20</span>
+            </div>
+            <div class="meta" style="margin-top: 8px;">
+                <span>📚 基本规划科目：英语 / 政治</span>
+            </div>
+        </header>
+
+        <div class="overview">
+            <h2>🎯 全局复习方案概览</h2>
+            <p class="strategy">
+                <strong>学习时间分配基本说明：档案学专业课包含很多需要背诵的内容，这是复习的重点。建议将每天主要的复习时间分配给两门专业课。英语和政治则安排在学习状态一般的时候进行即可。<br>（注：本表格未列出专业课的具体复习安排，请结合自身复习进度合理计划。）</strong><br><br>
+                <span style="color: #ffb86c;">公共课复习建议：建议以练习和熟悉真题为主，遇到难以理解的地方，可以在网络上搜相对短的知识点讲解，不用花太长的时间看完整的长课本视频。</span>
+            </p>
+            <div class="grid-box">
+                <div class="grid-item grid-english">
+                    <h3>📖 英语复习指引</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">词汇过眼：</strong>前期利用背单词软件反复看考纲词汇，知道大概中文意思即可，不需要花时间练拼写。</li>
+                        <li><strong style="color: #fff;">阅读题练习：</strong>做真题阅读时，建议用手机软件直接查阅生词并加入生词本，不用整篇在纸上写翻译。</li>
+                        <li><strong style="color: #fff;">作文整理：</strong>听相关的作文结构讲解课，自己整理出一套对应的句子，考前熟练默写。</li>
+                    </ul>
+                </div>
+                <div class="grid-item grid-politics">
+                    <h3>🏛️ 政治复习指引</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">时间安排：</strong>内容较容易记忆，不需要过早开始，建议从7月份开始进入阅读阶段。</li>
+                        <li><strong style="color: #fff;">日常客观题练习：</strong>每天抽些零时的时间做选择题即可，不用看太长的长篇基础网课。</li>
+                        <li><strong style="color: #fff;">冲刺期大题积累：</strong>十二月重点结合常规的预测押题卷主观题部分材料，熟读相关解答思路和材料书面书写方法。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="expand-all"><button onclick="toggleAll()">展开/收起38周全部计划</button></div>
+        <div id="weeks-container"></div>
+    </div>
+
+    <script>
+    const planData = [{"week": 1, "dates": "2025.03.31 - 04.06", "theme": "词汇背诵第一阶段", "message": "开始培养固定的学习作息规律，本周适应每天定点学习的生物钟即可。", "english": {"title": "英语复习建议", "content": "✅ 规划：使用《不背单词》或者红宝书APP，设定每日背诵量学习考研大纲词汇。\n✅ 提醒：初期背单词遗忘率较高，系统推送的复习任务需要按时完成，复习优先于学习新词。\n✅ 注意：看着英文能认出大概中文意思即可，不需要在纸上默写拼写。"}}, {"week": 2, "dates": "2025.04.07 - 04.13", "theme": "词汇背诵第一阶段", "message": "如果复习计划没有按时完成，不用过于自责，第二天继续推进正常的学习即可。", "english": {"title": "英语复习建议", "content": "✅ 规划：继续按计划完成每日设定的单词背诵任务。\n✅ 提醒：遇到容易混淆的形近词，可以参考APP中的例句帮助区分。\n✅ 注意：如果当天专业课任务重，只完成旧单词的复习任务即可，不增加新词。"}}, {"week": 3, "dates": "2025.04.14 - 04.20", "theme": "词汇背诵第一阶段", "message": "学习时间不必追求很长时长的极限，保证每天最清醒的时间主要给专业课即可。", "english": {"title": "英语复习建议", "content": "✅ 规划：保持每日规律的背词习惯。开始留意单词不同词性对应的常见中文意思。\n✅ 提醒：考研英语经常考常见单词的不常用意思，需要留意。\n✅ 注意：此阶段不需要购买视频网课学习长句子，以背单词为主要任务。"}}, {"week": 4, "dates": "2025.04.21 - 04.27", "theme": "词汇背诵第一阶段", "message": "遇到状态不好的下午，可以适当休息或者去室外走动一下，不要疲劳看书。", "english": {"title": "英语复习建议", "content": "✅ 规划：根据前三周的适应情况，适当调整每天的背词数量。\n✅ 提醒：如果记忆曲线累积的复习量太大导致时间不够，可以拆分为早晚两个时段进行。\n✅ 注意：保持只看不写的复习习惯，以增加单词重现频率为主。"}}, {"week": 5, "dates": "2025.04.28 - 05.04", "theme": "词汇背诵第一阶段", "message": "把每天必须完成的核心任务列在一张纸上，做完一项划掉一项，保持进度透明。", "english": {"title": "英语复习建议", "content": "✅ 规划：单词积累到一定数量后，可以开始留心常见的词根和词缀。\n✅ 提醒：遇到非常难记的长单词，尝试根据词根拆分记忆。\n✅ 注意：不需要去背诵考研大纲要求之外的生僻词汇。"}}, {"week": 6, "dates": "2025.05.05 - 05.11", "theme": "词汇背诵第一阶段", "message": "专业课书籍很厚，早期主要是理解书本框架，不用着急一字一句地开始背诵。", "english": {"title": "英语复习建议", "content": "✅ 规划：继续完成大纲词汇的进度。\n✅ 提醒：部分动词有特定的搭配介词，如deprive of，背诵时顺带熟悉这种固定搭配。\n✅ 注意：不需要购买市面上的全篇手写翻译本来逐句翻译文章。"}}, {"week": 7, "dates": "2025.05.12 - 05.18", "theme": "词汇背诵第一阶段", "message": "晚上睡前尽量不要看太久手机，保证拥有充足的高质量睡眠。", "english": {"title": "英语复习建议", "content": "✅ 规划：第一轮大纲词汇背诵进度应该过半或即将完成。\n✅ 提醒：开始对英文的语篇语境建立敏感度，遇到较长的句子尝试划分主谓宾结构。\n✅ 注意：背单词不能间断，这是后续做阅读的前提。"}}, {"week": 8, "dates": "2025.05.19 - 05.25", "theme": "词汇背诵第一阶段", "message": "如果感觉身体疲惫，及时调整座椅高度，或者站起来看一会书。", "english": {"title": "英语复习建议", "content": "✅ 规划：开启大纲词汇的第二轮复习背诵。\n✅ 提醒：第二轮的背诵速度应该比第一轮快，要求看到单词能较快反应出意思。\n✅ 注意：如果期末考试临近，英语复习的时间可以适当压缩。"}}, {"week": 9, "dates": "2025.05.26 - 06.01", "theme": "词汇背诵第一阶段", "message": "遇到学校期中课程较多时，适度缩小考研的复习任务量，保持平稳合理的过渡。", "english": {"title": "英语复习建议", "content": "✅ 规划：持续进行大纲单词的二轮复习。\n✅ 提醒：对于那些看过多次仍旧不认识的生词，可以将其加入生词本单独查看。\n✅ 注意：按自己的节奏背单词，不需要与他人横向对比进度。"}}, {"week": 10, "dates": "2025.06.02 - 06.08", "theme": "词汇背诵第一阶段", "message": "不需要参考周围别人的复习进度，每个人的基础和目标专业情况截然不同。", "english": {"title": "英语复习建议", "content": "✅ 规划：在APP中开启单独复习模式，巩固之前背过的所有词汇。\n✅ 提醒：复习过程中，留意那些中文意思很多但考研中通常只考某一个特定意思的单词。\n✅ 注意：保证每天的复习质量，而不追求短期的数量。"}}, {"week": 11, "dates": "2025.06.09 - 06.15", "theme": "词汇背诵第一阶段", "message": "周末可以自行安排适度时间的彻底休息，去吃些喜欢的食物或看看电影。", "english": {"title": "英语复习建议", "content": "✅ 规划：继续保持对大纲词汇库的日常复习。\n✅ 提醒：部分副词在阅读中有提示文章态度的作用（如fortunately, regrettably），需要记忆。\n✅ 注意：英语一的长句子较多，单词认识是疏通这些长句子的前提。"}}, {"week": 12, "dates": "2025.06.16 - 06.22", "theme": "词汇背诵第一阶段", "message": "学习的惯性已经逐渐形成，在这个相对漫长的平稳期里按计划继续执行。", "english": {"title": "英语复习建议", "content": "✅ 规划：期末考试期间，保持少量的单词复习打卡即可。\n✅ 提醒：遇到精力不足的日子，也不要把单词停下，哪怕只看十几分钟。\n✅ 注意：保证休息，合理安排专业课与公共课的复习时间。"}}, {"week": 13, "dates": "2025.06.23 - 06.29", "theme": "词汇背诵第一阶段", "message": "学校期末考试即将到来，本周把主要时间分给期末复习，考研的总体进度不用太赶。", "english": {"title": "英语复习建议", "content": "✅ 规划：利用这段时间进行词汇的梳理梳理，准备开始进行真题练习。\n✅ 提醒：把APP里错误率较高的词汇集中复习一次。\n✅ 注意：考研英语只做真题即可，不用去做市面上的模拟卷。"}}, {"week": 14, "dates": "2025.06.30 - 07.06", "theme": "英语真题阅读与政治复习准备", "message": "期末结束，学习状态回归平稳，可以逐渐把精力转移到考研的全面复习上来。", "english": {"title": "英语复习建议", "content": "✅ 规划：开始进行英语一历年真题阅读。建议从2010年的真题开始，两天完成一篇阅读理解。\n✅ 提醒：做题时不需要查字典。做完后，再对照答案进行阅读阅读。\n✅ 注意：推荐使用相关真题APP直接在手机上查词和阅读。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：政治开始复习。使用相关的冲刺背诵手册等资料。本周阅读马原的初步章节。\n✅ 提醒：政治复习不需要花费大量时间听理论长视频课，每天安排在零时短段时间阅读即可。\n✅ 注意：不需要购买太厚的习题册进行大量的题海练习。"}}, {"week": 15, "dates": "2025.07.07 - 07.13", "theme": "英语真题阅读与政治复习准备", "message": "暑期阶段是专业课背诵相对较好的时期，需要抓住这几个月基本完整的空白时间段。", "english": {"title": "英语复习建议", "content": "✅ 规划：第一天完成一篇阅读理解，第二天专门核对答案。\n✅ 提醒：核对答案时，把原文中不认识的生词摘录到真题生词本中集中背诵。\n✅ 注意：初期做真题正确率不高是正常现象，重点是熟悉出题特点。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：继续阅读背诵手册的马原部分，对书本框架建立大概的印象。\n✅ 提醒：对于哲学里面概念较为抽象的定义，能够大体理解基本含义即可，不需要一字不漏地背诵。\n✅ 注意：在手机上使用相关小程序，准备开始做政治选择题。"}}, {"week": 16, "dates": "2025.07.14 - 07.20", "theme": "英语真题阅读与政治复习准备", "message": "天气炎热容易犯困，中午安排大约半小时的休息对于下午的学习很有必要。", "english": {"title": "英语复习建议", "content": "✅ 规划：继续保持两天一篇真题阅读的复习进度。\n✅ 提醒：重点看错题的选项：分析错因是因为没看懂文章，还是理解错了作者意图。\n✅ 注意：对于正确选项，尝试在原文中找出对应的同义替换词组。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：在小程序内每天安排做约30题的选择题。\n✅ 提醒：做错的题目直接看小程序的解析，并在背诵手册的相应位置做下划线标记。\n✅ 注意：选择题不用追求全对，主要的目的是通过做题见识不同的知识考点如何出题。"}}, {"week": 17, "dates": "2025.07.21 - 07.27", "theme": "英语真题阅读与政治复习准备", "message": "知识点背诵遇到瓶颈很正常，多重复几遍就能自然克服这些正常的遗忘现象。", "english": {"title": "英语复习建议", "content": "✅ 规划：做阅读时，尝试总结不同错误选项的特征，例如表述过于绝对的选项等。\n✅ 提醒：如果某题的解析文字不易懂，可以去视频网站搜索对应年份该题的几分钟讲解片段。\n✅ 注意：不需要从头到尾听逐句翻译的长篇视频课，节约时间。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：阅读进度进入毛中特部分。\n✅ 提醒：毛中特内容和近现代史纲要有关联性，注意梳理各种历史会议和文件的顺序。\n✅ 注意：每天仍旧保持一套小程序选择题的练习量。"}}, {"week": 18, "dates": "2025.07.28 - 08.03", "theme": "英语真题阅读与政治复习准备", "message": "发现前面的背读内容又忘记了也不要慌，反复叠加几次记忆周期即可。", "english": {"title": "英语复习建议", "content": "✅ 规划：保持真题阅读节奏。同时每天继续复习单词大纲和真题积累的生词。\n✅ 提醒：如果阅读速度较慢，做题时可以先看各段首句和末句了解文章大概主旨。\n✅ 注意：不需要背诵完整的阅读文章，记忆文章中的高频词汇即可。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：继续阅读毛中特与史纲的内容，建立对近代史发展的基本脉络。\n✅ 提醒：明确各个阶段的社会主要矛盾和党的中心任务的变化。\n✅ 注意：错题会自动保存在小程序的错题本里，安排时间集中看一遍错题解析。"}}, {"week": 19, "dates": "2025.08.04 - 08.10", "theme": "英语真题阅读与政治复习准备", "message": "定期回顾上周整体的复习完成情况，不合理的地方及时去微调这周的计划量。", "english": {"title": "英语复习建议", "content": "✅ 规划：总结自己阅读中哪一类题型经常答错，比如主旨题还是细节题。\n✅ 提醒：做主旨题需要通读首尾段，不可以在文章局部的细节上停留。\n✅ 注意：真题做过的文章不需要立刻做第二遍，间隔几个月后再重新做。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：阅读思修和法基部分的内容。\n✅ 提醒：思修主要是介绍正确的价值观体系，法基则是了解特定的法律常识，这部分相对容易理解。\n✅ 注意：政治每天的学习时间大约一小时即可，以免影响两门专业课的复习进度。"}}, {"week": 20, "dates": "2025.08.11 - 08.17", "theme": "英语真题阅读与政治复习准备", "message": "当天的任务如果能够提前完成，就可以直接休息，不要只为了达成某个目标时长。", "english": {"title": "英语复习建议", "content": "✅ 规划：继续推进历年真题的年份。\n✅ 提醒：遇到较长的复合长句，尝试用括号把定语从句括起来，优先看主干部分。\n✅ 注意：翻译题现阶段不需要专门练习，单词基础打好后翻译能力会自然提升。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：背诵手册大致阅读了第一遍后，可以将大部分政治复习时间留给小程序选择题练习。\n✅ 提醒：刷题时重点注意多选题容易出现的错误，比如不同会议的内容经常被混淆排布的设问项。\n✅ 注意：不需要整理大段的手写笔记，主要的考点都在书本材料和错题解析中。"}}, {"week": 21, "dates": "2025.08.18 - 08.24", "theme": "英语真题阅读与政治复习准备", "message": "如果觉得情绪有所波动或者焦虑，找人倾诉或者去操场稍微活动一下来缓解。", "english": {"title": "英语复习建议", "content": "✅ 规划：阅读真题持续进行，逐渐过渡到较新一点的年份（例如2017年左右）。\n✅ 提醒：注意不同类型文章的结构特征，例如说明文和议论文的出题常见位置往往不同。\n✅ 注意：在每天的时间规划中，保证英语不占用属于专业课的大块复习时间。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：继续使用小程序每日做政治客观选择题练习。市面上的模拟试卷在上面基本都有收录。\n✅ 提醒：遇到包含时事内容的政治选择题，直接看答案作为常识积累，平时并不需要专门找新闻资料看。\n✅ 注意：复习过程中保持常态即可。"}}, {"week": 22, "dates": "2025.08.25 - 08.31", "theme": "英语真题阅读与政治复习准备", "message": "复习过程已经按部就班推进较久，此时主要是保持稳定的执行耐力。", "english": {"title": "英语复习建议", "content": "✅ 规划：说明词汇量正在稳步积累，因为真题阅读中的生词会逐渐变少。\n✅ 提醒：对于长句子中的代词（如it, they），做题时需要明确它具体指代哪个词汇。\n✅ 注意：单词复习依然坚持每天进行。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：集中浏览小程序中前段时间做错过的政治题目。\n✅ 提醒：针对反复选错的相似干扰选项，回到背诵手册上找到对应段落多读两遍加深印象。\n✅ 注意：在当前阶段，不要开始大段的主观题全面背诵任务。"}}, {"week": 23, "dates": "2025.09.01 - 09.07", "theme": "英语真题阅读与政治复习准备", "message": "不需要在各类考试相关的微信群或论坛里耗费过多时间查看杂乱的信息。", "english": {"title": "英语复习建议", "content": "✅ 规划：继续维持两天一篇阅读的复习进度。\n✅ 提醒：如果某些题目在排除两个选项后，剩下的二选一经常出错，需要仔细对比这两个剩余选项的区别。\n✅ 注意：不需要刻意在纸上写出完整的中文翻译，能够在脑海中理顺意思即可。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：保持每天做几十道政治选择题的熟悉感。\n✅ 提醒：有些年份偏门的知识点不用深究，掌握最基础、最常考的核心要点即可。\n✅ 注意：在专业课任务较重时，政治学习可以当成转换思路的休息活动。"}}, {"week": 24, "dates": "2025.09.08 - 09.14", "theme": "英语真题阅读与政治复习准备", "message": "适当增加专业本课程内容的输出复习比例，尝试回忆某一个大章节的目录概要。", "english": {"title": "英语复习建议", "content": "✅ 规划：英语一近十年的真题考点比较固定，做题时应该认真投入。\n✅ 提醒：研究真题中作者态度的常用词（如objective, pessimistic等）。\n✅ 注意：错题本需要定期回顾，确认自己是否总是犯同样的理解错误。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：留意资料汇总中关于本年度的重要周年纪念或大会议精神总结纲要。\n✅ 提醒：时政部分不用背诵原文段落，只要遇到相关名词大概有印象，能通过题干选出答案即可。\n✅ 注意：继续维持当前的政治复习节奏。"}}, {"week": 25, "dates": "2025.09.15 - 09.21", "theme": "英语真题阅读与政治复习准备", "message": "暑期临近结束，可以略微调整一下状态，准备进入九月份的秋季开学阶段。", "english": {"title": "英语复习建议", "content": "✅ 规划：第一轮真题阅读的计划即将完成。\n✅ 提醒：整理一遍你在真题阅读中积攒的词汇组合和固定搭配。\n✅ 注意：准备在下个月开始看英语作文相关的指导。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：重新做之前在小程序中标记过错误的知识点题目。\n✅ 提醒：理清党史不同阶段的各类政策等具体内容和差别，这部分容易由于相似而混淆。\n✅ 注意：不用参考别人整理的很厚的手抄笔记，坚持做自己的错题总结回顾即可。"}}, {"week": 26, "dates": "2025.09.22 - 09.28", "theme": "英语写作准备与知识点测验", "message": "回到学校后根据情况安排自习路线，尽量找一个固定的、适合自己的学习位置。", "english": {"title": "英语复习建议", "content": "✅ 规划：开始准备英语作文。观看相关的考研英语作文指导频课。\n✅ 提醒：听课的目标是了解大小作文的总体框架以及常用的连接词。\n✅ 注意：不需要再去背诵历年完整的真题范文，学习如何使用框架结构套用不同的题目。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：开始做机构刚出的模拟卷的选择题目部分。\n✅ 提醒：每个出题人的风格可能有差异，不同机构的卷子都可以尝试做一下，遇到较偏僻的题目看一眼解析就过。\n✅ 注意：不用去做这些模拟考卷上的主观大题测试。"}}, {"week": 27, "dates": "2025.09.29 - 10.05", "theme": "英语写作准备与知识点测验", "message": "如果有学校的常规课程安排，可以利用课间碎片时间看几眼政治选择或是单词。", "english": {"title": "英语复习建议", "content": "✅ 规划：提取作文课上的通用段落结构，并将其整理到自己的笔记本上。\n✅ 提醒：准备几个可以替换常规词汇的相对高级的词语。\n✅ 注意：对于整理好的作文结构不仅要看懂，更要自己能够流畅地写出来。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：保持客观选择题的手感。每天安排固定的零碎时间完成相应的练习。\n✅ 提醒：经常复查自己容易选错的具体模块，比如某些哲学原理常常和对应材料匹配错误的地方。\n✅ 注意：把做过的错题再次筛选一遍。"}}, {"week": 28, "dates": "2025.10.06 - 10.12", "theme": "英语写作准备与知识点测验", "message": "考研网上报名时间开始，仔细核对填报的所有网络信息确认填报无误。", "english": {"title": "英语复习建议", "content": "✅ 规划：本周任务：把整理好的英语大小作文框架熟读并背诵。\n✅ 提醒：积累几个表示社会现象、环境保护、个人品质等通用话题的名词短语。\n✅ 注意：继续完成大纲单词库和真题生词库的日常复习。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：花时间再次快速翻看复习资料，主要是浏览之前书上画线做记号较多的页面。\n✅ 提醒：把注意力集中在那些第一眼看过去常常容易看错意思或者容易记混的选项上。\n✅ 注意：在专业课最后的复习冲刺阶段，政治复习时间需要优先为专业课让步。"}}, {"week": 29, "dates": "2025.10.13 - 10.19", "theme": "英语写作准备与知识点测验", "message": "这几个星期是专业内容的巩固关键时期，适度专注自身复习减少不必要的信息接收。", "english": {"title": "英语复习建议", "content": "✅ 规划：运用自己整理的作文结构，套用历年真题的作文题目进行尝试写作。\n✅ 提醒：如果发现某个话题缺乏可用的词汇，及时查找并补充对应的名词到笔记本上。\n✅ 注意：不要试图在考场上临时造长难复合句，这容易出现语法错误，依靠平时准备的固定句型较为稳妥。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：本周继续利用几十分钟时间完成小程序的政治选择题练习。\n✅ 提醒：对于要求记忆的数字和会议年份，稍微有个模糊的记忆即可。\n✅ 注意：如果当天的专业课任务没有背完，当天的政治学习活动可以取消推迟。"}}, {"week": 30, "dates": "2025.10.20 - 10.26", "theme": "英语写作准备与知识点测验", "message": "如果此时觉得时间不充裕，可以果断放弃某些非核心的、极偏僻的边缘知识点。", "english": {"title": "英语复习建议", "content": "✅ 规划：在空白纸上默写作文字句，检查自己有没有出现拼写错误和时态、单复数错误。\n✅ 提醒：作文字迹会被阅卷评分看重，确保自己的英文字体清晰整齐。\n✅ 注意：在专注作文的同时，前期的真题阅读可以重新拿出来做第二遍。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：冲刺模拟卷开始上市。拿到试卷后只做它们的客观选择题部分。\n✅ 提醒：通过选择题，熟悉当年有可能考核的一些考点内容和方向。\n✅ 注意：不用去看这些试题的主观题答案部分，目前阶段不用操心主观题的完整叙述。"}}, {"week": 31, "dates": "2025.10.27 - 11.02", "theme": "英语真题回顾与政治客观题梳理", "message": "备考阶段注意防范换季降温，适当增加衣物，保持身体的良好健康状况。", "english": {"title": "英语复习建议", "content": "✅ 规划：正式开始阅读真题第二遍练习。重点做近十年的真题试卷。\n✅ 提醒：做第二遍的重点不是为了记住正确答案选哪个，而是要能讲清楚为什么其他三个选项不能选。\n✅ 注意：有些错题如果在第二遍依然选错，说明没有真正理解相关逻辑，需要深入分析。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：完成选择题的复查工作，确保答错的地方看懂了书面的解析原因。\n✅ 提醒：一些题目会在多选题上设置陷阱，需要查实背诵册上的原话进行确认验证。\n✅ 注意：将那些容易混淆的错题概念在纸上简单列明几个关键词汇以备忘。"}}, {"week": 32, "dates": "2025.11.03 - 11.09", "theme": "英语真题回顾与政治客观题梳理", "message": "快到冲刺前期时，不用随意更换目前自己一直用得顺手的背诵资料体系。", "english": {"title": "英语复习建议", "content": "✅ 规划：继续真题第二遍的练习，保持两天一练的手感即可。\n✅ 提醒：遇到读不懂的较长句子，顺着上下文合理推测，不影响选择大方向的题目为主。\n✅ 注意：每日单词复习必须继续执行，一旦停下几天，看文章就会觉得有些生疏。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：每天重点翻看一下之前整理好的时事要点清单。\n✅ 提醒：不用去背那些冗长的会议公报，只需注意诸如“首次提出”、“最直接原因”这类的修饰词。\n✅ 注意：主观题还没正式出专门的背诵大卷，继续等待发布即可。"}}, {"week": 33, "dates": "2025.11.10 - 11.16", "theme": "英语真题回顾与政治客观题梳理", "message": "逐渐调整自己在正式考试对应时间段（上午统考、下午专业课）的大脑作息习惯。", "english": {"title": "英语复习建议", "content": "✅ 规划：将作文结构与近几年的真题题目结合，进行完整的模拟写作练习。\n✅ 提醒：使用英语标准的答题卡进行排版书写练习，观察字距和行距的排布是否美观。\n✅ 注意：翻译部分在此时可以配合查看真题答案的中文版本来理解难句结构。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：等待最后一套大题实体复习卷的到来，在此之前保持选择题的复习频率。\n✅ 提醒：拿到试卷后，除了做里面的选择题，可以考虑开始背简答大题的内容。\n✅ 注意：此阶段不用再看任何政治相关的视频讲解课。"}}, {"week": 34, "dates": "2025.11.17 - 11.23", "theme": "英语真题回顾与政治客观题梳理", "message": "进入最后一个月，不要算自己还有多少没看完的内容，看一点就会增加一部分印象。", "english": {"title": "英语复习建议", "content": "✅ 规划：真题练习持续推进。这一遍的错题数量应该较第一次有较明显下降。\n✅ 提醒：时刻提醒自己警惕选项中带有表述过于绝对的词汇。\n✅ 注意：保持平稳的心态，按部就班继续每天的复习任务。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：立即开始熟读并背诵背后的主观试题解答部分。\n✅ 提醒：不需要一整段内容一字不漏地全部生背下来。找到每段话的黑色加粗大纲核心句进行记忆。\n✅ 注意：哪怕只记住答题的原理框架，也有助于在考场上写清楚论证的观点。"}}, {"week": 35, "dates": "2025.11.24 - 11.30", "theme": "考前冲刺阶段日常规划", "message": "本周可以考虑准备一次公共课或是专业课的全真模拟，体验连贯的独立答题环节。", "english": {"title": "英语复习建议", "content": "✅ 规划：梳理真题阅读中反复出现的老旧生词，这些词是复习的重中之重。\n✅ 提醒：如果有完形填空部分一直做不好，不需要耗费过多精力去弥补，这部分的得分率通常整体偏低。\n✅ 注意：把主要精力放在分值较高的阅读和作文这两个模块。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：把大题的背诵时间安排融入到你每日的记忆背诵计划中去。\n✅ 提醒：如果记不住较长的马原原理段落，尝试精简成短句或者用画逻辑图的方式减轻记忆负担。\n✅ 注意：此时不需要再去看其他额外的辅助资料。"}}, {"week": 36, "dates": "2025.12.01 - 12.07", "theme": "考前冲刺阶段日常规划", "message": "可以提前打印考研准考证，订考点附近如果需要住的房间，提前安排考试那几天的行程。", "english": {"title": "英语复习建议", "content": "✅ 规划：进入考前模拟阶段，利用最后留出的近三年的一套真题进行全卷的模拟作答。\n✅ 提醒：严格遵守三个小时的考试时间，过程中不要休息，适应正式考试的答题时间节奏。\n✅ 注意：无论模拟成绩分数如何，重点在于熟悉整张卷子做题时的时间分配规划。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：可以查找“考研政治主观题如何结合材料作答”等相关的指导文章，学习答题的书面规范。\n✅ 提醒：学习如何把阅读材料中的长句子精简提炼后，与你背过的文字原理写在一起的书面表达方式。\n✅ 注意：这是考场上遇到不会的试题时较为通用的参考作答方法。"}}, {"week": 37, "dates": "2025.12.08 - 12.14", "theme": "考前冲刺阶段日常规划", "message": "复习进入最后的收尾阶段，每天简单翻翻自己总结的公共课错题本和专业课笔记框架。", "english": {"title": "英语复习建议", "content": "✅ 规划：复习总结好的作文结构内容，确保能够顺利地默写在草稿纸上。\n✅ 提醒：检查文章段落之间的过渡词和总结词是否记忆准确。\n✅ 注意：不要去购买市面上任何考前的预测卷来做，依然只看官方历年真题即可。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：将背熟的要点和学到的答题方法进行一次书面的演练。\n✅ 提醒：找一道历年真题的主观题，尝试在答题纸上分点列条说明，排布版面。\n✅ 注意：字迹要求书写中等匀称且分段必须要明确，注意写清楚序号。"}}, {"week": 38, "dates": "2025.12.15 - 12.20", "theme": "考前冲刺阶段日常规划", "message": "考前最后一周不再过度吸收全新生僻的知识考点，保证身心状态平和，准时参加考试。", "english": {"title": "英语复习建议", "content": "✅ 规划：考前最后一周，不要看新的英语阅读文章了。\n✅ 提醒：翻看之前真题中标注过的容易错的选项笔记进行回顾。\n✅ 注意：考试时遇到某篇阅读非常难理解时，不要一直停留，先跳过去做下一篇，保证做完所有的题目。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：考前最后一周，不要去接收任何新出的预测信息或是押题资料。\n✅ 提醒：平心静气地把你背过的主观题核心标题在脑海里回忆梳理几遍。\n✅ 注意：政治考试时选择题第一印象比较重要，主观大题尽量排布匀称地将相应页面书写较满。"}}];
+    function renderWeeks() {
+        const container = document.getElementById('weeks-container');
+        planData.forEach((st, index) => {
+            const card = document.createElement('div');
+            card.className = 'week-card';
+            let subjectsHtml = '';
+            
+            if (st.english) {
+                subjectsHtml += `<div class="subject"><div class="subject-header"><span class="subject-name english">📖 英语专项建议</span></div>
+                                 <div class="subject-content">${st.english.content.replace(/\n/g, '<br/>')}</div></div>`;
+            }
+            if (st.politics) {
+                subjectsHtml += `<div class="subject"><div class="subject-header"><span class="subject-name politics">🏛️ 政治专项建议</span></div>
+                                 <div class="subject-content">${st.politics.content.replace(/\n/g, '<br/>')}</div></div>`;
+            }
+
+            card.innerHTML = `
+                <div class="week-header" onclick="toggleWeek(${index})">
+                    <h3>第 ${st.week} 周：${st.theme}</h3><span class="dates">${st.dates}</span>
+                </div>
+                <div class="week-content" id="week-${index}">
+                    <div class="message">${st.message}</div>${subjectsHtml}
+                </div>`;
+            container.appendChild(card);
+        });
+        document.getElementById('week-0').classList.add('active');
+    }
+    function toggleWeek(index) { document.getElementById('week-' + index).classList.toggle('active'); }
+    let allExpanded = false;
+    function toggleAll() {
+        allExpanded = !allExpanded;
+        document.querySelectorAll('.week-content').forEach(el => { el.classList.toggle('active', allExpanded); });
+    }
+    renderWeeks();
+    </script>
+</body>
+</html>
