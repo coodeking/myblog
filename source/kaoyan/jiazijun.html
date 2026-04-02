@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贾子俊 考研学习进度参考（38周专业课未提及版）</title>
+    <style>
+        :root {--bg-color: #0a0a0f;--card-bg: #12121a;--text-color: #e0e0e0;--accent: #d946ef;--accent-light: #f472b6;--border-color: #2a2a3a;}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: var(--bg-color); color: var(--text-color); line-height: 1.6; min-height: 100vh; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%); border-radius: 16px; margin-bottom: 30px; border: 1px solid var(--border-color); }
+        header h1 { font-size: 2.2rem; background: linear-gradient(90deg, var(--accent), var(--accent-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+        .meta { color: #888; font-size: 0.95rem; }
+        .meta span { margin: 0 10px; display: inline-block; }
+        .overview { background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%); border-radius: 12px; padding: 24px; margin-bottom: 30px; border: 1px solid var(--border-color); }
+        .overview h2 { color: var(--accent-light); margin-bottom: 20px; font-size: 1.3rem; border-left: 4px solid var(--accent); padding-left: 10px; }
+        .strategy { margin-bottom: 16px; padding: 12px; background: rgba(217, 70, 239, 0.15); border-radius: 8px; border-left: 3px solid var(--accent); color: #fff; line-height: 1.8; font-size: 1.05rem; }
+        .grid-box { display: grid; gap: 16px; margin-bottom: 20px; }
+        .grid-item { padding: 18px; border-radius: 8px; }
+        .grid-math { background: rgba(59,130,246,0.08); border-left: 3px solid #3b82f6; }
+        .grid-english { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; }
+        .grid-politics { background: rgba(251,191,36,0.08); border-left: 3px solid #fbbf24; }
+        h3 { margin-bottom: 12px; font-size: 1.1rem; }
+        .grid-math h3 { color: #3b82f6; }
+        .grid-english h3 { color: #34d399; }
+        .grid-politics h3 { color: #fbbf24; }
+        ul { margin-left: 20px; color: #ddd; }
+        li { margin-bottom: 8px; }
+        .week-card { background: var(--card-bg); border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border-color); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+        .week-header { background: linear-gradient(90deg, rgba(217, 70, 239, 0.2), rgba(217, 70, 239, 0.05)); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .week-header h3 { font-size: 1.1rem; color: var(--accent-light); margin: 0; }
+        .week-header .dates { color: #aaa; font-size: 0.9rem; font-family: monospace; }
+        .week-content { padding: 20px; display: none; }
+        .week-content.active { display: block; }
+        .message { background: rgba(217, 70, 239, 0.1); padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; border-left: 3px solid var(--accent); color: #fff; line-height: 1.6; font-size: 0.95rem; }
+        .subject { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .subject-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .subject-name { font-weight: bold; font-size: 1.05rem; }
+        .subject-name.math { color: #3b82f6; }
+        .subject-name.english { color: #34d399; }
+        .subject-name.politics { color: #fbbf24; }
+        .subject-content { color: #bbb; white-space: pre-line; font-size: 0.95rem; line-height: 1.7; }
+        .expand-all { text-align: center; margin-bottom: 25px; }
+        .expand-all button { background: var(--accent); color: white; border: none; padding: 12px 28px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.2s; }
+        .expand-all button:hover { background: var(--accent-light); }
+        footer { text-align: center; padding: 30px; color: #666; font-size: 0.9rem; margin-top: 20px; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>贾子俊 考研学习进度参考（理工基础型规划）</h1>
+            <div class="meta">
+                <span>🎯 目标：广东工业大学·软件工程 专硕</span>
+                <span>📅 周期：2025.03.31 - 2025.12.20</span>
+            </div>
+            <div class="meta" style="margin-top: 8px;">
+                <span>📚 纳入进度总揽参考科目：数学二 / 英语二 / 政治</span>
+            </div>
+        </header>
+
+        <div class="overview">
+            <h2>🎯 全局时间规划概览</h2>
+            <p class="strategy">
+                <strong>学习时间分配基本说明：在需要复习的这三门统考科目中，总体复习时间应以数学为绝对核心，这三科内部时间分配大约占用数学60%、英语30%、政治10%的总体原则。（注：此100%的总时间为排除了专业课程之后的剩余量，请务必单独留出专业课程的学习时间并与之平衡。）</strong><br><br>
+                <span style="color: #ffb86c;">公共课复习核心指引：所有科目都不以反复听各路名师的长视频课程为判断标准，必须强调多想、多算、多做题，将思维直接落实到笔端和计算纸上。用纸面上的正确题目来说实务，以练习带动理论学习。</span>
+            </p>
+            <div class="grid-box">
+                <div class="grid-item grid-math">
+                    <h3>📐 数学复习指导方针</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">视频学习降层：</strong>不要花大量时间听通稿课程，很多知识点听了做不出来。推荐自己看基础三十讲及讲义课后题，对于不会的题目涉及的知识在B站找民间高播放量视频单独看（如千羽、考研数学777、没咋了等UP主）。包括“澄箫宇”大观系列。</li>
+                        <li><strong style="color: #fff;">内容精简切割：</strong>诸多复杂如超实数、微分算子、stolz等内容不需要看。除了最终真题试卷原题，其余所有教辅书、模拟题的证明题均不要求做。必须有单独的由分类题型组成的“真题错题本”。</li>
+                        <li><strong style="color: #fff;">真题习题化：</strong>真题具有最高价值（主推真题一本通：于文涛版），第一遍遇到不懂的知识点利用B站短视频定点突破，随后通过模拟题及真题近三年练习考场时间反应度。</li>
+                    </ul>
+                </div>
+                <div class="grid-item grid-english">
+                    <h3>📖 英语二复习指导方针</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">少听课抓词汇：</strong>不要听英语视频课程。每天核心任务是刷《不背单词》三千核心词及其重复，不需要在纸上完整中文精翻文章及准备手译本教材。</li>
+                        <li><strong style="color: #fff;">工具真题流：</strong>暑假开始真题，两天一套，借助APP（《真题伴侣》）快速解决生词背诵和复盘题目。</li>
+                        <li><strong style="color: #fff;">作文快速模式化：</strong>后期利用Monkey老师的作文课背诵模板套用即可，不需要平时耗费巨量时间自写自批英语作文范文。</li>
+                    </ul>
+                </div>
+                <div class="grid-item grid-politics">
+                    <h3>🏛️ 政治复习指导方针</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">晚起手少视频：</strong>不要观看各大主流长时间的视频网课，最早十月初进入状态。直接准备《腿姐冲刺背接手册》或者“政治一页纸”进行知识点阅读即可。</li>
+                        <li><strong style="color: #fff;">工具客观题化：</strong>客观题练习不去写厚重的纸质资料1000题。只使用类似苍盾小程序直接看错题，每日几十道即可定型。</li>
+                        <li><strong style="color: #fff;">考前应用法：</strong>十二月份只针对发行的肖四大题背中心词句，临考前务必观看B站抄材料的相关视频运用在试卷上补充答案。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="expand-all"><button onclick="toggleAll()">展开/收起38周全部计划</button></div>
+        <div id="weeks-container"></div>
+    </div>
+
+    <script>
+    const planData = [{"week": 1, "dates": "2025.03.31 - 04.06", "theme": "第一阶段：数学讲义与基础构建", "message": "开始培养长期作战的作息定力，调整好复习早期的心态状态。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：开始学习张宇《基础三十讲》高数部分，配套做课后题。\n✅ 提醒：不推荐整天无脑看视频课程，应该自己看讲义，直接做课后题。\n✅ 注意：基础三十讲中有关超实数、微分算子法、海涅定理、压缩映射原理、stolz 等内容不需要看。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：暑假前唯一任务：使用《不背单词》APP每天定量背诵大纲单词。\n✅ 提醒：只需要背诵考研核心词大概3000个。\n✅ 注意：不需要精翻译文章，不买手写翻译本，不听英语理论视频课。"}}, {"week": 2, "dates": "2025.04.07 - 04.13", "theme": "第一阶段：数学讲义与基础构建", "message": "数学的基础理解需要时间，如果暂时遇到做不出的题目，可以直接参考解析。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：继续推进高数基础讲义与课后题。\n✅ 提醒：遇到不懂的知识点再去选择性地看对应部分的网课，不要全盘跟看。\n✅ 注意：做题时，如果在课后题遇到两分钟没有思路的题目可以暂时跳过。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：继续安排每天的核心词汇打卡。\n✅ 提醒：目标是在暑假前将这3000个核心词汇完整过三遍以上。\n✅ 注意：只要求看见英文认识基本中文意思即可。"}}, {"week": 3, "dates": "2025.04.14 - 04.20", "theme": "第一阶段：数学讲义与基础构建", "message": "如果在学习时觉得注意力有所分散，可以换个环境去对应的自习室位置看看。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：引入《1000题》基础部分进行练习。\n✅ 提醒：做1000题遇到不会的题目，直接去B站找播放量高的对应讲解（如千羽、考研数学777、没咋了）。\n✅ 注意：不要局限于某个名师的官方讲解，民间高赞解析往往更直接。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：如果当天因为外界因素时间不够，必须优先还清系统里堆积的复习老单词。\n✅ 提醒：背新词的优先级永远低于复习词汇。\n✅ 注意：依旧不需要去看语法或长难句视频课。"}}, {"week": 4, "dates": "2025.04.21 - 04.27", "theme": "第一阶段：数学讲义与基础构建", "message": "保证核心科目的时间占比不出偏差，避免在杂务上耗费过多时间。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：保持每天数学大块时间的练习量。推进讲义进度。\n✅ 提醒：所有遇到的错题需要整理，并根据错题去针对性地补看知识点网课。\n✅ 注意：所有习题册都不要求做证明题。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：维持每日的单词习惯。\n✅ 提醒：遇到不常用的僻义，可以稍微留意一下即可。\n✅ 注意：不要花费整块时间学英语，用碎片时间进行。"}}, {"week": 5, "dates": "2025.04.28 - 05.04", "theme": "第一阶段：数学讲义与基础构建", "message": "把每天必须完成的内容写在表上，完成一项后划去以保持自我提醒。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：高数讲义进度继续。基础知识必须落实到纸面的计算上。\n✅ 提醒：这阶段主要培养动手算题的能力。\n✅ 注意：不要在听课上花费过多数学复习时间。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：第一轮3000核心词汇即将过完或者已经开始二轮复习。\n✅ 提醒：记忆的反复是正常生理规律，不断按下熟练按钮即可。\n✅ 注意：不用与其他进度的同学进行盲目比较。"}}, {"week": 6, "dates": "2025.05.05 - 05.11", "theme": "第一阶段：数学讲义与基础构建", "message": "随着题量逐步增加，手部如果因为写字酸痛可适当活动关节休息。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：高数基础练习收尾，准备进入线代部分的讲义。\n✅ 提醒：计算准确率偏低是正常的，需要保持高频次的草稿纸测算。\n✅ 注意：依然坚持先自己做题，不会再搜索对应视频的原则。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：第二轮核心词汇复习开始提速。\n✅ 提醒：此时过眼速度应该明显提升。\n✅ 注意：如果APP有短语搭配可以稍微扫视两眼。"}}, {"week": 7, "dates": "2025.05.12 - 05.18", "theme": "第一阶段：数学讲义与基础构建", "message": "专业课程的学习任务需要开始合理安排穿插到日常大块时间段中去。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：开始张宇《基础三十讲》线代部分，做课后题。\n✅ 提醒：线代知识相互穿插较多，初期会觉得稍微混乱，靠做题熟悉概念。\n✅ 注意：线代的证明题同样不需要做。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：继续稳定地利用每日空闲时间进行单词测验。\n✅ 提醒：英语在暑假前的任务非常明确且简单，执行即可。\n✅ 注意：无需焦虑现在还没开始看英语一的阅读真题。"}}, {"week": 8, "dates": "2025.05.19 - 05.25", "theme": "第一阶段：数学讲义与基础构建", "message": "学习的惯性在这个月应该基本确立，按部就班继续维持规律的日程即可。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：继续线代部分的讲义加上《1000题》线代基础题。\n✅ 提醒：遇到线代不会解的题，同样在B站搜索对应题目的讲解视频。\n✅ 注意：整理线代部分特有的错题并选择性看对应视频。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：维持习惯并监控复习任务不要越积越多。\n✅ 提醒：在疲惫的时候可以听一下APP内置的单词例句发音调节。\n✅ 注意：不看长篇英文原刊等课外资料。"}}, {"week": 9, "dates": "2025.05.26 - 06.01", "theme": "第一阶段：数学讲义与基础构建", "message": "如果有学校的相关期中课程任务，可临时做出较少比例的微调修正进度。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：高数与线代的基础讲义与配套题应该即将结束。\n✅ 提醒：对于此阶段积累的错题进行一次汇总复盘。\n✅ 注意：对后续的高强度真题练习做好心理预期。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：单词背诵已经形成固定肌肉记忆。\n✅ 提醒：如果有些单词实在记不住，直接标注为生词跳过。\n✅ 注意：不需要买纸质书在上面用笔勾画背单词。"}}, {"week": 10, "dates": "2025.06.02 - 06.08", "theme": "第一阶段：数学讲义与基础构建", "message": "不需要关注网络上其他人自称的复习进度，各自的起点差异巨大。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：完成遗漏的基础题目，总结数学讲义上的重点框架。\n✅ 提醒：不要求达到什么题都能解的地步，保留一定的题感即可。\n✅ 注意：准备接下来的专项习题提升阶段。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：继续重复第三遍或者后期的滚动复习。\n✅ 提醒：在阅读一些短句时，发现词汇障碍明显减少。\n✅ 注意：不要提前去背诵任何作文范文。"}}, {"week": 11, "dates": "2025.06.09 - 06.15", "theme": "第二阶段：大观串联视频演练", "message": "保证睡眠时间，中午有时间保持较短时间的午休用于保证下午的专注度。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：开始观看B站“澄箫宇”大观系列视频。两天完成一个大观（目前出到第7个）。\n✅ 提醒：大观系列包含了基础知识点和大量习题讲解。\n✅ 注意：每讲一道题之前，必须暂停自己先在纸上做一遍，然后再继续播放听讲解。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：坚持每天看单词。\n✅ 提醒：期末阶段如果有必须复习的课目，可以将每天的单词总量减半以维持手感。\n✅ 注意：切忌直接一连停数天。"}}, {"week": 12, "dates": "2025.06.16 - 06.22", "theme": "第二阶段：大观串联视频演练", "message": "遇到难以理解的偏僻数学小考点，果断跳过不浪费关键复习时间。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：继续看“澄箫宇”大观的剩余序列。\n✅ 提醒：这是串联前后知识点很好的方式。\n✅ 注意：只看视频不拿笔计算等同于无效学习。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：本周主要是调整，英语上依旧只看词汇。\n✅ 提醒：把这三个多月看下来总是出现错误的顽固词汇挑出来单看。\n✅ 注意：心理上准备迎接下周暑假的实操环节的到来。"}}, {"week": 13, "dates": "2025.06.23 - 06.29", "theme": "第二阶段：大观串联视频演练", "message": "即将进入夏日期末阶段，保证学校各项主要任务不挂科为第一前提。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：整理大观系列中你做错或卡壳的题目类型。\n✅ 提醒：发现自己高频次卡壳的具体知识点对应的题目。\n✅ 注意：可以去B站再次搜索相关知识点的零散视频进行补充。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：暑假前的最后一周准备期。\n✅ 提醒：核实现有的《不背单词》数据是否已经按照计划过了三遍。\n✅ 注意：准备相关的真题软件。"}}, {"week": 14, "dates": "2025.06.30 - 07.06", "theme": "第二阶段：大观串联视频演练", "message": "根据任务总量将压力平摊到每天的固定小时之内，无需额外增加太多无效用时。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：大观系列如果看完，把视频里的配套习题重新盖住答案自己做一次。\n✅ 提醒：第二遍做这些题是为了测试你的逻辑是否已经建立。\n✅ 注意：重点关注那些你第一次听懂了但是第二次依然算错的题目。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：暑期开始，进行英语二真题练习。推荐充值《真题伴侣》APP会员，直接在软件上刷真题。\n✅ 提醒：要求两天完成一套英语二的阅读部分。\n✅ 注意：此阶段不写作文内容。"}}, {"week": 15, "dates": "2025.07.07 - 07.13", "theme": "第二阶段：大观串联视频演练", "message": "利用好相对完整的空白时间来进行需要长时间算题的演练任务。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：复习大观系列中的错题。\n✅ 提醒：把有价值的选择和填空题思路单独摘录。\n✅ 注意：保证数学始终占用单日复习分配的绝对核心比例。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：每做完一篇真题后仔细在软件上阅读解析。\n✅ 提醒：如果原题目里的生词不认识，直接在APP内标注出来加入生词库，反复背诵。\n✅ 注意：重点是记住这个词在这个真题具体语境里的意思。"}}, {"week": 16, "dates": "2025.07.14 - 07.20", "theme": "第二阶段：大观串联视频演练", "message": "保持良好的复习专注力，学习时远离无关的网络社交干扰。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：本周为过渡周，回顾前期1000题和课后题做记号的题目。\n✅ 提醒：开始清点手头的进阶数学资料，准备刷题测验。\n✅ 注意：保证每天都有充足的数学运算手感。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：继续以两天一套阅读的速度推进大方针。\n✅ 提醒：背单词不能断，必须和做真题并行进行。\n✅ 注意：关注题目错误的原因，是词汇没看懂还是意会错了作者目的。"}}, {"week": 17, "dates": "2025.07.21 - 07.27", "theme": "第三阶段：数学一阶速刷与知识提纯", "message": "进入暑假真正的自我控制阶段，寻找相对安静不被打扰的环境学习。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：开始速刷《660题》的第一阶部分。\n✅ 提醒：速刷的原则是：一遍过，但凡思考两分钟没有思路的题目直接跳过。\n✅ 注意：跳过的题直接对答案并进行订正。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：在APP内稳定刷前面的真题。\n✅ 提醒：对于错题要明确知道错误选项的设置方式。\n✅ 注意：不需要把真题全文用笔翻译在纸面上，效率极低。"}}, {"week": 18, "dates": "2025.07.28 - 08.03", "theme": "第三阶段：数学一阶速刷与知识提纯", "message": "如果在一些习题上犯下重复同样的错误，必须回到根源去复查知识点。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：继续速刷《660题》。\n✅ 提醒：每天设定固定题目的上限，通过这种速度培养选填的临场决断能力。\n✅ 注意：很多错题本质是计算错误而不是思路错误，标记清楚。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：单词库现在加入了真题特有的生词本，重点照顾这批词。\n✅ 提醒：发现有很多大词实际上并不影响答题。\n✅ 注意：继续维持做题手感。"}}, {"week": 19, "dates": "2025.08.04 - 08.10", "theme": "第三阶段：数学一阶速刷与知识提纯", "message": "周末时间可以选择一天或半天进行必要的体力外出恢复修整。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：完成《660题》一阶的订正工作。\n✅ 提醒：将由于知识点不熟悉导致的重点错题挑出。\n✅ 注意：如果是偏怪难题，直接放弃，不继续浪费精力。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：在阅读真题推进过程中，开始注意到有些文章的套路结构较为清晰。\n✅ 提醒：比如转折连词后面通常是出题人想表达的核心。\n✅ 注意：不用看对应的讲题视频课，依靠答案文字解析即可。"}}, {"week": 20, "dates": "2025.08.11 - 08.17", "theme": "第三阶段：数学一阶速刷与知识提纯", "message": "这段时间考验执行力最核心的基础能力，持续按部就班运作即可。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：整理这段时间所有的错题本。\n✅ 提醒：为即将进入真题大阶段做一次全面的知识结构清理。\n✅ 注意：接下来的数学复习将全盘围绕真题展开。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：时间来到本阶段中期，真题的前几个年份已经初步过完。\n✅ 提醒：如果有完型填空可以顺带做一下，不必强求高正确率。\n✅ 注意：不用买非官方市面上的各种预测阅读册。"}}, {"week": 21, "dates": "2025.08.18 - 08.24", "theme": "第四阶段：数学真题核心练习前期", "message": "真题阶段的强度极大，如果有疲劳反应可以降低单日负荷，但不全休。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：开启整个考研阶段最重要的习题册：于文涛《真题一本通》。\n✅ 提醒：此习题册题量较大，需要按照其分类体系按部就班练习。\n✅ 注意：把每个真题认真弄懂是接下来两个月的唯一主线。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：发现做题速度逐渐变快。保持每两天一套的习惯。\n✅ 提醒：将阅读中高频出现的老面孔熟词和固定搭配摘录出来。\n✅ 注意：翻译题型可以稍微自己心里默想一下，然后对答案。"}}, {"week": 22, "dates": "2025.08.25 - 08.31", "theme": "第四阶段：数学真题核心练习前期", "message": "合理监控目前总体复习任务和时间结点的剩余量差值关系。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：继续推进真题一本通。\n✅ 提醒：单独准备一个真题错题本，按照章节分类把错题抄写或裁剪上去。\n✅ 注意：以计算题为复习的核心重点。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：将真题阅读中的时间分配逐渐标准化。\n✅ 提醒：有些题目即便词汇认识但也做错，说明长句子核心主谓结构提点不对。\n✅ 注意：可以适当借助答疑文字看看这句话的主干是什么。"}}, {"week": 23, "dates": "2025.09.01 - 09.07", "theme": "第四阶段：数学真题核心练习前期", "message": "当发现之前整理的笔记已经淡忘时，不要慌张，返回去补充看几眼即可。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：每天保持完成真题的规定部分。\n✅ 提醒：知识点上有不懂的，继续去B站搜索这个知识点播放量高的视频。\n✅ 注意：真题的价值大于任何模拟题，遇到难题必须逐行推导懂。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：继续执行常规真题查单与订正。\n✅ 提醒：提醒：如果有一两天极度疲劳没有完成阅读，顺延下去即可。\n✅ 注意：不用急于开启作文背诵。"}}, {"week": 24, "dates": "2025.09.08 - 09.14", "theme": "第四阶段：数学真题核心练习前期", "message": "此时数学计算的能力直接决定做题的流畅感，不能只看不动笔推算。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：持续进行真题一本通。\n✅ 提醒：注意考研数学二真题证明题的出题方向，只有此时可以练习极少量的真题证明题的格式排布。\n✅ 注意：不要求证得十分完整，写下思路步骤。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：英语二真题第一遍进入后期年份。\n✅ 提醒：近十年的真题是高频词库，遇到的每个原词必须熟记。\n✅ 注意：保持对真题的敬畏心。"}}, {"week": 25, "dates": "2025.09.15 - 09.21", "theme": "第四阶段：数学真题核心练习前期", "message": "准备开学的调整，逐渐转换回校园规律的生活状态之中。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：真题的练习由于题量大可能遇到疲劳期，坚持每日任务量。\n✅ 提醒：错题本分类整理的习惯要保持，后期会非常受用。\n✅ 注意：如果在某一章错误率极高，需要停下来针对该章补充练习。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：完成近几年真题的阅读测验，留出最近两三年的完整试卷不要动。\n✅ 提醒：准备在本月结束这部分常规的一阶段查词真题阅读。\n✅ 注意：把积攒的真题伴侣生词本完整过一遍。"}}, {"week": 26, "dates": "2025.09.22 - 09.28", "theme": "第四阶段：数学真题核心练习前期", "message": "如果复习遇到较长时间阻滞感，可以通过看会别的科目来调剂思路。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：推进真题一本通的高数下册或线代部分。\n✅ 提醒：线代的真题题型比较固定，重点把握套路即可。\n✅ 注意：每天记录做了多少页，剩余量需要明确。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：本阶段开始准备英语二的作文。\n听Monkey老师的考研作文模板课。\n✅ 提醒：只需要围绕他的模板课进行构建设计，不用到处找其他老师的课。\n✅ 注意：平时多积累自己需要的作文主题词。"}}, {"week": 27, "dates": "2025.09.29 - 10.05", "theme": "第五阶段：政治正式开启与真题套卷推进", "message": "开始进入报名操作期，仔细确认各项基本信息正确无漏填选项。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：继续真题一本通的日常做题。\n✅ 提醒：做完题后，重点分析官方标准答案的化简步骤。\n✅ 注意：考场上经常会面临化简不到最终标准形式的问题，需学习技巧。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：继续观看模板课，并把自己对应的小组模板整理在纸上。\n✅ 提醒：了解信件类小作文以及图画图表类大作文的基本行文思路。\n✅ 注意：每天依然要保证常规的大纲词库背诵打卡。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：政治复习正式开始。购买《腿姐冲刺背诵手册》，只要求对内容进行熟练的阅读熟悉。\n✅ 提醒：远离市面上各大名师各类极长的基础网课。\n✅ 注意：远离以及不要购买肖秀荣《1000题》，题海战术不适用当前分配情况。"}}, {"week": 28, "dates": "2025.10.06 - 10.12", "theme": "第五阶段：政治正式开启与真题套卷推进", "message": "开始做模拟套卷时成绩较低属于正常现象，用来调整考场的策略即可。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：开始二刷“澄箫宇”大观系列视频的内容。\n✅ 提醒：把大观和真题一本通的某些解题套路联系起来。\n✅ 注意：发现大观里面的很多题本身就是来源于历年真题改编。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：尝试熟背已经整理好的独家模板。\n✅ 提醒：模板必须背得足够熟，确保后期练习时不需思考能够顺利写出句子框架。\n✅ 注意：继续准备阅读真题的二刷。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：在手机上使用《苍盾小程序》，在上面刷各种政治模拟卷。\n✅ 提醒：不用刷很多，每天只需要刷一套完整的30个选择题即可。\n✅ 注意：每天快速熟读“澄箫宇政治一页纸”相关的知识总结点。"}}, {"week": 29, "dates": "2025.10.13 - 10.19", "theme": "第五阶段：政治正式开启与真题套卷推进", "message": "时间精力有限，此时必须放弃一切偏门难题的补充研究。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：继续二刷相关大观并推进真题剩余数量。\n✅ 提醒：对之前真题一本通前面整理的章节错题本进行一次温习。\n✅ 注意：错题数量此时应该开始积累具备一定规模。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：开始进行真题的第二轮刷题测验（阅读部分）。\n✅ 提醒：这遍做题因为已经知道答案，重点在于梳理逻辑推导链。\n✅ 注意：如果有空，拿往年真题的作文题目，套用Monkey模板写练手。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：每天的日常任务固定：读背诵手册 + 在小程序上完成一套选择题。\n✅ 提醒：对于选择题做错的部分，只需在小程序端看了解析即可，不用背。\n✅ 注意：每天耗费时间应该较短。"}}, {"week": 30, "dates": "2025.10.20 - 10.26", "theme": "第五阶段：政治正式开启与真题套卷推进", "message": "天气逐渐开始降温，注意做好保暖措施防止感冒生病影响进度。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：准备完成第一遍《真题一本通》。\n✅ 提醒：把错题本浓缩，将其中的同类型题目归为一类，直接整理“对应题型”及其破解死板套路。\n✅ 注意：此本错题提炼即为后期考前定海神针。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：二刷阅读并穿插作文模板的练习。\n✅ 提醒：发现每次作文不会写的词语主要是那几个实意名词。\n✅ 注意：及时在积累本上补充这些对应领域的常见话题名词词汇。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：继续维持使用小程序刷选择题的固定节奏。\n✅ 提醒：熟读手册的内容，在一些常考会议的年份和名称上具备选择辨识度。\n✅ 注意：保持执行力即可，不需要因为周边政治进度不同而增加任务量。"}}, {"week": 31, "dates": "2025.10.27 - 11.02", "theme": "第五阶段：政治正式开启与真题套卷推进", "message": "政治复习已经步入操作阶段，利用琐碎的时间块来机械完成打卡即可。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：开始数学二真题套卷的练习。每天做一套（通常从2009年份开始向后推）。\n✅ 提醒：严格卡时间，最好在上午完整三个小时不间断。\n✅ 注意：全卷结束后再翻看答案。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：继续按部就班练习模板作文并检查自己的语法单词拼写。\n✅ 提醒：确保字母大小写、单复数、各种过去式不犯初级错误。\n✅ 注意：卷面书写干净是对老师的基本尊重。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：刷题遇到一些偏僻的时事政治选项，当做客观见识积累即可。\n✅ 提醒：在小程序看到错题直接收藏，不用拿笔去单独建立纸质错题册整理了。\n✅ 注意：多匀出时间留给主课。"}}, {"week": 32, "dates": "2025.11.03 - 11.09", "theme": "第五阶段：政治正式开启与真题套卷推进", "message": "不要随意变换已经使用熟练的知识参考书籍和主要软件平台。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：每天一套数学真题。\n✅ 提醒：分数高低此时不具有绝对参考价值，主要是适应整套试卷题量的时间分配。\n✅ 注意：同时观看武忠祥的选填技巧课。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：把模板压缩到考场上看到图片即可默认写出的肌肉反应级别。\n✅ 提醒：单词仍旧每天按系统记忆曲线复习不能断绝。\n✅ 注意：二刷真题应该速度较快。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：继续阅读手册以及每天的几十道选择测验任务。\n✅ 提醒：对马原中比较拗口的原理稍加记忆。\n✅ 注意：这阶段复习状态相对机械化，执行就能够达到目的。"}}, {"week": 33, "dates": "2025.11.10 - 11.16", "theme": "第六阶段：全科考纲模考与全面收尾阶段", "message": "将各科的错题集提纯，形成精简化的几页纸随身可以拿出来回忆翻看。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：继续真题套卷练习。同时结合武忠祥老师选填技巧对应的知识点去找网课短视频观看。\n✅ 提醒：把学会的客观题技巧运用到每天的套卷中去验证。\n✅ 注意：将套卷中犯的错随时补充进真题错题本。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：维持英语二刷真题的手感状态。\n✅ 提醒：如果错题较多，仔细在APP内复核解析。\n✅ 注意：每天复习自己整理的高频主题作文词汇本。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：等待最新版《肖四》出版信息的发布之前，维持固有任务。\n✅ 提醒：重新把小程序前面自己标红的常错选择题单独重新过一遍。\n✅ 注意：不用急于进行主观题的大段背诵。"}}, {"week": 34, "dates": "2025.11.17 - 11.23", "theme": "第六阶段：全科考纲模考与全面收尾阶段", "message": "进入冲刺最后阶段，每天复读考场相关记忆内容，保证考试输出正常。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：完成近两三年的真题之前，暂时保留这近三年的卷子在冲刺期进行模考。\n✅ 提醒：剩余的历年卷子应已大部分过完。\n✅ 注意：总结近期套卷表现，调整心态。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：开始接触最后留存的那两三套真题试卷。\n✅ 提醒：找一个下午完整的整段时间进行包含了作文全写的真实模拟。\n✅ 注意：体会写完整个卷宗的体力消耗情况。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：《肖四》实体卷发布并到货之后。\n✅ 提醒：直接翻到最后的主观大题部分，把答案的主要知识点核心句子进行直接背诵。\n✅ 注意：背不住没有关系，能记大概意思对最终成绩影响不大。"}}, {"week": 35, "dates": "2025.11.24 - 11.30", "theme": "第六阶段：全科考纲模考与全面收尾阶段", "message": "可以自行安排进行完全模拟时间的限时测验演练，测试整体安排。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：开始做模拟卷：李林6套卷。要求每天完成一套并订正。\n✅ 提醒：模拟卷出题逻辑与真题有差异，成绩波动不用在意。\n✅ 注意：只当做保持日常计算手感的练习。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：总结在这套卷子里花费时间最久的题型。\n✅ 提醒：在真题伴侣APP里重点突破这部分最弱项的一些经验。\n✅ 注意：不需要再去听任何有关做题技巧长视频了。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：每天抽取部分时间反复熟读肖四的大题框架。\n✅ 提醒：客观题继续可以在小程序上做相关的肖四电子更新版验证水平。\n✅ 注意：不要去背诵一些市面上的名家预测材料和时事长篇。"}}, {"week": 36, "dates": "2025.12.01 - 12.07", "theme": "第六阶段：全科考纲模考与全面收尾阶段", "message": "核对准考证的各项事宜，了解考场周边的交通和住宿相关安排。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：进行李林4套卷的习题安排。每天一套。\n✅ 提醒：所有的模拟题都不需要做证明题。\n✅ 注意：模拟卷的错题也需要归入到模拟卷错题本内单独放着。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：对全卷模拟的问题进行汇总和心理准备。\n✅ 提醒：坚持背诵已经成型的固定作文模板以及话题词汇库。\n✅ 注意：词汇背诵在考前最后几天绝对不容停下。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：背诵主观答题的逻辑和格式排布。\n✅ 提醒：对于实在绕口难以记忆的条目，背其小标题和开头即可。\n✅ 注意：这段时间的政治不要去压缩其它科目的宝贵份额。"}}, {"week": 37, "dates": "2025.12.08 - 12.14", "theme": "第六阶段：全科考纲模考与全面收尾阶段", "message": "平复日常心情，不焦虑剩下的内容未完成量，多背一题即多拿对应成绩。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：停止做新的模拟题。重新将近三年的官方历年真题按规定时间标准模考一次。\n✅ 提醒：最近三年的卷子风格是最贴近真实考试的试卷。\n✅ 注意：利用它们建立起考场的肌肉记忆。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：复看在APP中收集的一百来个顽固真题词汇即可。\n✅ 提醒：不需要再买最后任何出书大师的模拟预测卷去做。\n✅ 注意：最后时期英语保持平缓的手感即可。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：最后几天去B站上搜索‘考研政治主观题如何抄材料’相关的指导视频。\n✅ 提醒：此项技能务必学会，掌握如何在没有背过的情况下从题目材料摘抄融合得分。\n✅ 注意：上了考场大部分学生遇到难题也只有运用这套摘抄法。"}}, {"week": 38, "dates": "2025.12.15 - 12.20", "theme": "第六阶段：全科考纲模考与全面收尾阶段", "message": "考前停止做新买的各色押题试卷套卷，利用已存资料稳定基础保证顺利完考。", "math": {"title": "理科逻辑与数学要求", "content": "✅ 规划：最后一周，只进行错题的整理和翻阅。不再做任何成套新卷子。\n✅ 提醒：翻看整理的真题常考题型归纳本。\n✅ 注意：保证心态平和与每日的基础公式默写即可。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：最后一周不再吸收任何新知识，只进行基础材料巩固。\n✅ 提醒：背诵一遍作文模板，看两遍真题生词。\n✅ 注意：以最正常的日常状态走上考场。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：把这几十天积攒下来的所有常考政治小知识点在脑子里过一遍。\n✅ 提醒：对于考场上的主观大题，保证书写整洁并利用材料法按编号一条条写满。\n✅ 注意：在心态上无需任何政治焦虑。"}}];
+    function renderWeeks() {
+        const container = document.getElementById('weeks-container');
+        planData.forEach((st, index) => {
+            const card = document.createElement('div');
+            card.className = 'week-card';
+            let subjectsHtml = '';
+            
+            if (st.math) {
+                subjectsHtml += `<div class="subject"><div class="subject-header"><span class="subject-name math">📐 理科数学建议</span></div>
+                                 <div class="subject-content">${st.math.content.replace(/\n/g, '<br/>')}</div></div>`;
+            }
+            if (st.english) {
+                subjectsHtml += `<div class="subject"><div class="subject-header"><span class="subject-name english">📖 英语专项建议</span></div>
+                                 <div class="subject-content">${st.english.content.replace(/\n/g, '<br/>')}</div></div>`;
+            }
+            if (st.politics) {
+                subjectsHtml += `<div class="subject"><div class="subject-header"><span class="subject-name politics">🏛️ 政治专项建议</span></div>
+                                 <div class="subject-content">${st.politics.content.replace(/\n/g, '<br/>')}</div></div>`;
+            }
+
+            card.innerHTML = `
+                <div class="week-header" onclick="toggleWeek(${index})">
+                    <h3>第 ${st.week} 周：${st.theme}</h3><span class="dates">${st.dates}</span>
+                </div>
+                <div class="week-content" id="week-${index}">
+                    <div class="message">${st.message}</div>${subjectsHtml}
+                </div>`;
+            container.appendChild(card);
+        });
+        document.getElementById('week-0').classList.add('active');
+    }
+    function toggleWeek(index) { document.getElementById('week-' + index).classList.toggle('active'); }
+    let allExpanded = false;
+    function toggleAll() {
+        allExpanded = !allExpanded;
+        document.querySelectorAll('.week-content').forEach(el => { el.classList.toggle('active', allExpanded); });
+    }
+    renderWeeks();
+    </script>
+</body>
+</html>
