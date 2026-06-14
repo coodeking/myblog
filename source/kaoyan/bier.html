@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比尔 868电子学基础专业课分周规划</title>
+    <style>
+        :root {
+            --bg: #f7f1e8;
+            --paper: rgba(255, 253, 248, 0.96);
+            --ink: #282018;
+            --muted: #70665c;
+            --line: rgba(64, 44, 24, 0.14);
+            --accent: #8a4f20;
+            --accent-2: #246a5a;
+            --soft: #f2e2d0;
+            --card: #fffdf8;
+            --shadow: 0 24px 58px -42px rgba(58, 35, 14, 0.48);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            color: var(--ink);
+            font-family: "Noto Serif SC", "Microsoft YaHei", serif;
+            line-height: 1.78;
+            background:
+                radial-gradient(circle at 10% 0%, rgba(158, 96, 38, 0.12), transparent 30%),
+                radial-gradient(circle at 92% 8%, rgba(54, 118, 96, 0.12), transparent 28%),
+                linear-gradient(180deg, #fffaf2 0%, var(--bg) 100%);
+        }
+        .container { max-width: 1080px; margin: 0 auto; padding: 30px 20px 60px; }
+        header, .overview, .week-card, .source-box {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+        }
+        header { border-radius: 26px; padding: 36px; margin-bottom: 22px; }
+        h1 { font-size: clamp(1.9rem, 3vw, 2.72rem); line-height: 1.16; letter-spacing: -0.03em; margin-bottom: 18px; }
+        .meta { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-size: .96rem; }
+        .meta span { padding: 8px 12px; border: 1px solid var(--line); background: rgba(255,255,255,.74); border-radius: 999px; }
+        .overview { border-radius: 22px; padding: 28px; margin-bottom: 24px; }
+        .overview h2 { font-size: 1.34rem; margin-bottom: 14px; }
+        .note { background: #fff8ef; border: 1px solid rgba(111,74,43,.18); border-radius: 16px; padding: 16px 18px; margin-bottom: 16px; }
+        .phase-table { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 16px; }
+        .phase { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; }
+        .phase strong { display: block; color: var(--accent); margin-bottom: 6px; }
+        .guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .guide-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 17px; }
+        .guide-card h3 { margin-bottom: 10px; font-size: 1.08rem; color: var(--accent); }
+        ul { margin-left: 18px; }
+        li { margin-bottom: 8px; }
+        .toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin: 22px 0 16px; }
+        .toolbar-note { color: var(--muted); font-size: .94rem; }
+        button { font: inherit; }
+        .expand-button { border: 0; border-radius: 999px; background: var(--ink); color: #fffaf2; padding: 11px 18px; cursor: pointer; font-weight: 700; }
+        .weeks-list { display: grid; gap: 15px; }
+        .week-card { border-radius: 18px; overflow: hidden; }
+        .week-header { width: 100%; border: 0; background: linear-gradient(180deg, rgba(255,253,248,.98), rgba(248,240,229,.94)); color: var(--ink); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-align: left; cursor: pointer; }
+        .week-title { display: grid; gap: 7px; }
+        .week-kicker { width: fit-content; border-radius: 999px; padding: 5px 10px; background: var(--soft); color: var(--accent); font-size: .78rem; font-weight: 700; }
+        .week-title h3 { font-size: 1.08rem; line-height: 1.42; }
+        .week-meta { display: flex; align-items: center; gap: 12px; color: var(--muted); white-space: nowrap; }
+        .chevron { width: 32px; height: 32px; border-radius: 999px; display: grid; place-items: center; background: rgba(111,74,43,.1); transition: transform .18s ease; }
+        .is-open .chevron { transform: rotate(180deg); }
+        .week-content { display: none; padding: 0 20px 20px; }
+        .week-content.active { display: block; }
+        .message { background: #fff8ef; border: 1px solid rgba(111,74,43,.16); border-radius: 14px; padding: 13px 15px; margin-bottom: 14px; color: #3e2e21; }
+        .subject-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .subject { background: var(--card); border: 1px solid var(--line); border-radius: 15px; padding: 16px; }
+        .subject-title { font-weight: 800; padding-bottom: 9px; margin-bottom: 12px; border-bottom: 1px solid var(--line); color: var(--accent-2); }
+        .subject-content { color: #453b32; font-size: .96rem; white-space: pre-line; }
+        .source-box { border-radius: 18px; margin-top: 18px; padding: 18px; color: var(--muted); }
+        .source-box h2 { font-size: 1.08rem; color: var(--ink); margin-bottom: 10px; }
+        .source-box a { color: var(--accent); text-decoration: none; }
+        footer { text-align: center; color: var(--muted); font-size: .9rem; padding-top: 22px; }
+        @media (max-width: 860px) {
+            .guide-grid, .subject-grid, .phase-table { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 760px) {
+            .container { padding: 18px 14px 44px; }
+            header, .overview { padding: 22px 18px; border-radius: 18px; }
+            .week-header { flex-direction: column; align-items: stretch; }
+            .week-meta { justify-content: space-between; white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>比尔 868电子学基础专业课分周规划</h1>
+        <div class="meta"><span>目标院校：西安交通大学</span><span>目标方向：085400 电子信息</span><span>只规划专业课</span></div>
+        <div class="meta" style="margin-top: 8px;"><span>专业课：868 电子学基础</span><span>教材：康华光 模拟部分 / 数字部分</span><span>跨度：2026-08-01 到 2026-12-20，共 21 周</span></div>
+    </header>
+
+    <section class="overview">
+        <h2>这份专业课规划怎么用</h2>
+        <div class="note">这位同学只规划专业课，所以页面里只展开 868 电子学基础。当前公开目录里，西安交通大学电子科学与工程学院 085400 电子信息初试专业课是 868 电子学基础；表单里给出的两本主教材是康华光《电子技术基础·模拟部分》和《电子技术基础·数字部分》。8 月才起步，时间不长，所以不按慢慢听课排，直接按教材章节、课后题、回忆版真题和器件应用题往前推。</div>
+        <div class="phase-table" id="phase-table"></div>
+        <div class="guide-grid" id="guide-grid"></div>
+    </section>
+
+    <div class="toolbar">
+        <div class="toolbar-note">默认展开前 2 周。每周只写 868 专业课任务，不混公共课。</div>
+        <button class="expand-button" id="toggle-all" type="button" onclick="toggleAll()">展开全部21周</button>
+    </div>
+    <div id="weeks-container" class="weeks-list"></div>
+
+    <section class="source-box">
+        <h2>调研依据</h2>
+        <ul id="source-list"></ul>
+    </section>
+
+    <footer>比尔 868电子学基础专业课规划｜按 2026-08-01 起步排到 2026-12-20</footer>
+</div>
+
+<script>
+const weeks = [
+  {
+    "week": 1,
+    "dates": "2026.08.01 - 08.07",
+    "phase": "教材第一轮",
+    "title": "先把两本书接起来",
+    "message": "把参考书、课后题、回忆版真题放到一个表里，不急着追难题。第一周先弄清楚西交大 868 电子学基础的主线就是模电和数电，之后每周都按“看一小段书、做本章例题、补课后题、整理器件应用”走。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "康华光《电子技术基础·模拟部分》第1章绪论、第2章运算放大器。重点写清理想运放两条虚短虚断、反相/同相/加减/积分/微分这些基本电路，课后题先做基础计算题和读图题。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "康华光《电子技术基础·数字部分》第1章数字逻辑概论、第2章逻辑代数基础。数制码制、基本逻辑运算、逻辑函数表示方法、基本公式和定理先过一遍，卡诺图只做到 4 变量，先别追太绕的化简。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "把回忆版真题先按“模电计算、数电设计、概念简答、器件应用”分四类建表。第一周只做分类，不评价自己会不会。"
+      }
+    ]
+  },
+  {
+    "week": 2,
+    "dates": "2026.08.08 - 08.14",
+    "phase": "教材第一轮",
+    "title": "二极管和逻辑化简",
+    "message": "这周开始进入真正会出题的内容。模电先把二极管的模型和应用题弄稳，数电把化简练到不怕动笔。薄弱不是问题，关键是别只看概念，一定要把等效电路画出来。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第3章二极管及其基本电路：理想模型、恒压降模型、小信号模型、整流、限幅、钳位、稳压二极管。周内做例题，周末补课后题，所有题都要写“先判断导通状态，再换模型”。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第2章继续：逻辑函数标准与或式、最小项、最大项、卡诺图化简、无关项处理。每天做 8-12 个化简小题，周末做 2 道组合逻辑化简到门电路实现。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版里如果有二极管稳压、限幅、逻辑化简题，先抄题不计时做一遍。不会的题标“模型不会”还是“代数不会”。"
+      }
+    ]
+  },
+  {
+    "week": 3,
+    "dates": "2026.08.15 - 08.21",
+    "phase": "教材第一轮",
+    "title": "场效应管和门电路",
+    "message": "这一周别怕器件名多。模电的场效应管重点是工作区判断、偏置和小信号参数，数电的门电路重点是电平、扇出和 CMOS/TTL 使用限制，不要只背定义。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第4章场效应管及其放大电路：JFET/MOSFET 结构、转移特性、输出特性、偏置电路、共源/共漏基本放大电路、小信号等效。每种组态至少做 2 道静态加动态分析题。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第3章逻辑门电路：TTL、CMOS 门电路，高低电平、噪声容限、输入输出特性、OC/OD 门和三态门。把门电路参数整理成一页表，不用背长段话。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版里凡是问“某器件能不能这样接”的题，单独放到器件应用表。这里后面很容易反复错。"
+      }
+    ]
+  },
+  {
+    "week": 4,
+    "dates": "2026.08.22 - 08.28",
+    "phase": "教材第一轮",
+    "title": "BJT 放大电路和组合逻辑分析",
+    "message": "这周任务会重一点，因为 BJT 是模电计算题的底盘。先把静态工作点算明白，再算放大倍数。数电进入组合逻辑，分析题要按步骤写，不要跳。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第5章双极结型三极管及放大电路：BJT 工作区、固定偏置/分压偏置、共射/共集/共基、小信号等效、电压放大倍数、输入输出电阻。课后题优先做静态工作点和微变等效。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第4章组合逻辑电路前半：组合电路分析、由门电路写逻辑表达式、列真值表、判断功能。周内每天 2 道分析题，周末做一套组合逻辑小综合。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "把 BJT 题按“静态、动态、失真判断”分三栏。每道错题旁边写错在公式、模型还是电路方向。"
+      }
+    ]
+  },
+  {
+    "week": 5,
+    "dates": "2026.08.29 - 09.04",
+    "phase": "教材第一轮",
+    "title": "组合逻辑设计和多级放大",
+    "message": "这周开始把应用题做起来。模电看多级放大和差分的前置概念，数电做编码器、译码器、数据选择器这些常见器件。别把芯片功能背成散点，要会用。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第5章收尾并预习第7章相关基础：多级放大耦合方式、直接耦合问题、差分放大电路的共模和差模概念。课后题重点做多级增益、输入输出电阻、失真判断。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第4章组合逻辑设计：编码器、译码器、数据选择器、加法器、数值比较器。每种器件做 2 道“用指定芯片实现逻辑函数”的题，写清输入输出对应。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版组合逻辑题开始动手做。不要只看答案，至少要自己列真值表或画卡诺图。"
+      }
+    ]
+  },
+  {
+    "week": 6,
+    "dates": "2026.09.05 - 09.11",
+    "phase": "教材第一轮",
+    "title": "频率响应和触发器",
+    "message": "模电的频响容易看着懂、做题卡。做题时先画中频等效，再看低频和高频哪个电容或结电容起作用。数电触发器要把特性方程写熟。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第6章频率响应：低频/高频等效电路、波特图、上限频率、下限频率、密勒效应。周内做单管放大频响题，周末做一道多级放大频响题。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第5章锁存器和触发器：SR、D、JK、T 触发器，特性表、特性方程、状态转换图。每天做 10 个触发器状态小题，重点防止时钟沿和电平触发混。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "把频响公式、触发器特性方程做成两张小卡片。后面限时题直接用这两张。"
+      }
+    ]
+  },
+  {
+    "week": 7,
+    "dates": "2026.09.12 - 09.18",
+    "phase": "教材第一轮",
+    "title": "集成运放和时序逻辑分析",
+    "message": "这周把模电里最容易出应用题的集成运放继续往前推。数电开始时序逻辑，先分析后设计，别一上来就写状态机。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第7章模拟集成电路：差分放大、电流源、有源负载、集成运放主要参数、运放线性应用和非线性应用。重点做差分放大和运放应用题。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第6章时序逻辑电路前半：同步/异步时序电路分析，状态方程、驱动方程、输出方程、状态表、状态图。周末完整做 2 道时序分析题。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版中涉及运放应用、时序状态表的题开始计时做。先给自己宽一点时间，目标是步骤完整。"
+      }
+    ]
+  },
+  {
+    "week": 8,
+    "dates": "2026.09.19 - 09.25",
+    "phase": "教材第一轮",
+    "title": "反馈放大电路和计数器",
+    "message": "反馈这章不要背四种组态的名字，要会从输入端、输出端看取样和混合。数电的计数器要按状态序列走，不要凭感觉改电路。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第8章反馈放大电路：反馈判断、正负反馈、四种反馈组态、深度负反馈下增益估算、输入输出电阻变化、自激和稳定性。课后题重点做反馈判断和闭环增益。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第6章时序逻辑后半：计数器、寄存器、移位寄存器、同步计数器设计。用 D/JK 触发器各做 1 道计数器设计题。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "把反馈判断题整理成流程：找输出取样、看输入混合、判断极性、再算增益。这个流程后面反复用。"
+      }
+    ]
+  },
+  {
+    "week": 9,
+    "dates": "2026.09.26 - 10.02",
+    "phase": "教材第一轮",
+    "title": "功率放大和常用时序器件",
+    "message": "功放题不一定难，但容易漏效率、最大输出功率、交越失真这些点。数电继续把寄存器和计数器做熟，器件题要写清有效端。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第9章功率放大电路：甲类、乙类、甲乙类、OCL/OTL、交越失真、效率、最大输出功率。做题时统一写清电源电压、负载和峰值关系。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第6章继续：寄存器、移位寄存器、环形计数器、扭环计数器、集成计数器应用。周末做 2 道“用集成计数器构成 N 进制计数器”的题。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版里如果有功放或计数器题，这周做第一遍。错题别只抄答案，把电路端口作用写出来。"
+      }
+    ]
+  },
+  {
+    "week": 10,
+    "dates": "2026.10.03 - 10.09",
+    "phase": "教材第一轮",
+    "title": "信号处理、振荡和存储器",
+    "message": "这周内容看起来杂，其实常考点很集中：滤波器、比较器、振荡条件、存储器容量和扩展。每一类都抓一个标准题型。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第10章信号处理与信号产生电路：有源滤波器、比较器、非正弦波发生器、RC 正弦波振荡、LC 振荡基本判断。重点写清振荡的幅值条件和相位条件。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第7章半导体存储器：ROM/RAM 基本结构、容量计算、字扩展和位扩展；附带看可编程逻辑器件的基本使用。每类扩展做 2 道题。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版简答题开始整理关键词。比如滤波器特点、振荡条件、存储器容量计算，答案要短但要准。"
+      }
+    ]
+  },
+  {
+    "week": 11,
+    "dates": "2026.10.10 - 10.16",
+    "phase": "教材第一轮",
+    "title": "直流稳压和数模转换",
+    "message": "第一轮教材快收口了。模电把电源题补齐，数电把 ADC/DAC 和脉冲波形拿下。这里很多题不像前面那么长，但概念问法多。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电第11章直流稳压电源：整流、滤波、稳压管稳压、串联型稳压、三端稳压器。做题重点是纹波、输出电压范围、稳压条件和器件选择。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电第8章数/模和模/数转换、脉冲波形产生与整形：权电阻 DAC、倒 T 网络、逐次逼近 ADC、施密特触发器、单稳态、多谐振荡。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "把两本书第一轮没做完的课后题清一次，只补基础题和中等题，偏怪题先放一边。"
+      }
+    ]
+  },
+  {
+    "week": 12,
+    "dates": "2026.10.17 - 10.23",
+    "phase": "教材第一轮",
+    "title": "第一轮总复盘",
+    "message": "这周不再开新章，专门把两本书接成一张图。薄弱点现在暴露出来是好事，后面还有二轮。重点是把“概念遗漏”和“器件应用不熟”这两个担心压下去。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电按题型复盘：二极管应用、BJT/FET 放大、频响、反馈、运放应用、功放、振荡、稳压。每类选 3-5 道代表题重做，不看答案先写步骤。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电按题型复盘：逻辑化简、组合逻辑设计、触发器、时序分析、计数器、存储器、ADC/DAC。每类做 2-3 道题，重点补步骤不完整的问题。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版真题按专题插入复盘。到周末要形成一份“868 第一轮错题目录”，不用很漂亮，但要能找到题。"
+      }
+    ]
+  },
+  {
+    "week": 13,
+    "dates": "2026.10.24 - 10.30",
+    "phase": "二轮专题",
+    "title": "二轮：模电计算题专项",
+    "message": "二轮开始不要重看整本书。模电先抓计算题，因为它最能拉开差距。每道题都按考试写法走，别只在草稿纸上算个结果。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "二轮模电专题 1：静态工作点、小信号模型、放大倍数、输入输出电阻、频率响应。周一到周五每天 2-3 道计算题，周末做 1 组 90 分钟模电小卷。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电穿插保持：逻辑化简和组合逻辑设计每天 30-40 分钟。重点做卡诺图、译码器、数据选择器、加法器和比较器应用题。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版里模电计算题做第二遍。错题按“模型没画、公式套错、参数看漏、单位问题”分类。"
+      }
+    ]
+  },
+  {
+    "week": 14,
+    "dates": "2026.10.31 - 11.06",
+    "phase": "二轮专题",
+    "title": "二轮：反馈、运放、振荡专项",
+    "message": "这周处理模电里最像应用题的部分。反馈、运放、振荡不能只背结论，题目换一个连接方式就会变，所以每题都要画信号走向。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电专题 2：反馈判断、深负反馈增益、运放线性/非线性应用、有源滤波、比较器、振荡条件。每天做 2 道反馈/运放题，周末集中做振荡和滤波。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电专题 2：触发器和时序逻辑分析。每天 1 道状态表/状态图题，周末做 1 道同步计数器设计题和 1 道异步计数器分析题。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "把反馈、运放、振荡的简答题统一写成短句模板，不写长段话。"
+      }
+    ]
+  },
+  {
+    "week": 15,
+    "dates": "2026.11.07 - 11.13",
+    "phase": "二轮专题",
+    "title": "二轮：数电应用题专项",
+    "message": "这周数电要加量。数电不是背芯片名，核心是把输入、输出、有效电平和状态转移写清楚。模电只维持错题回做。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电维持：功放、稳压、电源、器件应用题每天 1-2 道。重点补针对具体器件的应用，尤其是稳压管、三端稳压器、运放比较器。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电专题 3：组合逻辑设计、触发器应用、计数器、寄存器、存储器扩展、ADC/DAC。周内每天 3 道小题，周末做 1 份数电专题卷。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版数电题做第二遍。每道题旁边标出它考的是“化简、器件、时序、容量、转换”哪一类。"
+      }
+    ]
+  },
+  {
+    "week": 16,
+    "dates": "2026.11.14 - 11.20",
+    "phase": "真题与混合训练",
+    "title": "回忆版真题第一轮限时",
+    "message": "这周开始按真题感觉来做。回忆版不一定完整，但足够看出问法和重点。做的时候别边做边翻书，先按考试状态写完，再回去查漏。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电按回忆版年份或题组限时做：每次 60-75 分钟，做完马上对书和答案，把不会的知识点回扣到康华光对应章节。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电按回忆版年份或题组限时做：每次 45-60 分钟，重点看组合设计和时序设计有没有步骤漏写。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "这一周结束前做出“高频考法清单”：每个考法后面只放 1 道代表错题。"
+      }
+    ]
+  },
+  {
+    "week": 17,
+    "dates": "2026.11.21 - 11.27",
+    "phase": "真题与混合训练",
+    "title": "回忆版真题第二轮订正",
+    "message": "这周不是为了多做新题，是把上周做过的题改到能讲清楚。薄弱同学最容易做完就放过，这次不能放过步骤。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电真题二轮：把错题重做，不看原答案。二极管、三极管、反馈、运放、振荡、电源每类至少回做 2 道。周末整理公式和判定流程。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电真题二轮：组合逻辑、时序逻辑、计数器、存储器、ADC/DAC 每类至少回做 2 道。器件引脚有效电平、状态转换顺序要写完整。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "真题订正本只保留真正会复看的内容：错因、正确第一步、下次看到同类题先干什么。"
+      }
+    ]
+  },
+  {
+    "week": 18,
+    "dates": "2026.11.28 - 12.04",
+    "phase": "真题与混合训练",
+    "title": "混合卷一",
+    "message": "这周做第一轮混合训练，模电和数电放在一起。考试时不会单独提醒你这是哪一章，所以要练切换。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电混合：安排 2 次 90 分钟训练，题目从错题、课后中等题、回忆版里拼。做完只改关键题，不把时间耗在抄解析上。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电混合：安排 2 次 60 分钟训练，组合、时序、存储器、转换各放一点。周末补一组器件应用题。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "把混合卷里连续错两次的知识点单独列出来，下周只盯这些点补。"
+      }
+    ]
+  },
+  {
+    "week": 19,
+    "dates": "2026.12.05 - 12.11",
+    "phase": "真题与混合训练",
+    "title": "混合卷二和概念简答",
+    "message": "这周要把概念简答拉上来。西交大专业课如果问概念，答案不需要写成教材，但关键词要准。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电：反馈类型、频响、功放效率、振荡条件、稳压条件、运放参数这些做成简答卡。计算题继续做 2 次限时。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电：TTL/CMOS 特点、触发器差异、组合/时序区别、存储器扩展、ADC/DAC 基本过程做成简答卡。设计题继续保持每天 1 道。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版简答题集中背关键词。每题控制在 3-5 句，别写空话。"
+      }
+    ]
+  },
+  {
+    "week": 20,
+    "dates": "2026.12.12 - 12.18",
+    "phase": "考前收口",
+    "title": "最后一轮错题压缩",
+    "message": "现在不要再铺新资料。把错题压成能带进考前几天看的版本。会的题划掉，不会的题留下第一步。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电错题压缩：每章留下 3-5 道代表题。重点保留二极管模型、BJT/FET 放大、反馈、运放、振荡、稳压。周末做近似整卷一套。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电错题压缩：每章留下 3-5 道代表题。重点保留卡诺图、组合设计、触发器、计数器、存储器、ADC/DAC。周末做近似整卷一套。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "把公式页、器件应用页、真题高频页合成 10 页以内。后面只看这份。"
+      }
+    ]
+  },
+  {
+    "week": 21,
+    "dates": "2026.12.19 - 12.20",
+    "phase": "考前收口",
+    "title": "考前收口",
+    "message": "最后几天不要再换资料，也不要突然找很难的题。专业课现在最要紧的是稳定，把会做的题写完整，把概念题关键词写准。",
+    "subjects": [
+      {
+        "name": "模拟电子技术基础",
+        "content": "模电只回看 10 页压缩资料和错题代表题。每天做 3-5 道短题保持手感，重点看反馈、运放、振荡、稳压和器件应用。考前一天只看公式和流程。"
+      },
+      {
+        "name": "数字电子技术基础",
+        "content": "数电只回看化简、组合、时序、计数器、存储器、转换器。每天做 3-5 道短题，不再开新卷。考前一天看触发器方程和常用器件表。"
+      },
+      {
+        "name": "回忆版真题与错题",
+        "content": "回忆版真题只看错题和高频考法，不再整套重做。睡前别刷新资料。"
+      }
+    ]
+  }
+];
+const overviewCards = [
+  {
+    "title": "模电主线",
+    "items": [
+      "康华光模拟部分按第1-11章走：运放、二极管、FET、BJT、频响、集成运放、反馈、功放、信号产生、稳压。",
+      "每章先看本章讨论的问题和例题，再做课后基础题和中等题。计算题必须画等效电路，不靠脑子里想。",
+      "器件应用题单独整理，尤其是二极管、稳压管、三极管、场效应管、运放比较器、三端稳压器。"
+    ]
+  },
+  {
+    "title": "数电主线",
+    "items": [
+      "按数制码制、逻辑代数、门电路、组合逻辑、触发器、时序逻辑、存储器、ADC/DAC、脉冲整形推进。",
+      "卡诺图、组合设计、触发器方程、计数器和存储器容量计算要反复写步骤。",
+      "遇到芯片应用题，先写有效电平、输入输出、状态序列，不要直接套答案。"
+    ]
+  },
+  {
+    "title": "真题和错题",
+    "items": [
+      "表单里写有回忆版真题，所以从第一轮开始就分类，不等教材全看完才碰真题。",
+      "错题按章节和题型双标签整理：模型不会、公式错、器件端口看漏、状态转移写错。",
+      "最后只保留能复看的 10 页左右压缩资料，考前不再翻一大堆笔记。"
+    ]
+  }
+];
+const phases = [
+  {
+    "title": "8.1 - 8.14：把范围和底层概念接起来",
+    "text": "先做目录表、真题题型表，模电从运放和二极管进，数电从逻辑代数和卡诺图进。"
+  },
+  {
+    "title": "8.15 - 9.18：两本书第一轮主体",
+    "text": "模电推进二极管、FET、BJT、频响、集成运放；数电推进门电路、组合逻辑、触发器、时序逻辑。"
+  },
+  {
+    "title": "9.19 - 10.23：高频应用章节",
+    "text": "模电重点放反馈、功放、振荡、稳压；数电重点放计数器、存储器、ADC/DAC。"
+  },
+  {
+    "title": "10.24 - 11.20：二轮专题",
+    "text": "不重看整本教材，按模电计算、反馈运放、数电应用题、回忆版真题分专题。"
+  },
+  {
+    "title": "11.21 - 12.11：限时混合训练",
+    "text": "模电和数电混在一起做，补概念简答和器件应用，形成 868 高频考法清单。"
+  },
+  {
+    "title": "12.12 - 考前：错题压缩",
+    "text": "只看错题代表题、公式页、器件应用页和回忆版高频题，不再临时换新资料。"
+  }
+];
+const sources = [
+  {
+    "title": "西安交通大学2026年硕士研究生招生专业目录",
+    "url": "https://yzbm.xjtu.edu.cn/zsml/sszsml/detailtk/bfo8%40yEtRpW1EyxsEKg7eQ%3D%3D?dsbh=&key=&ml=&xxfs=&yxsdm=053&zydm=",
+    "text": "电子科学与工程学院 085400 电子信息初试科目列出 868 电子学基础。"
+  },
+  {
+    "title": "高等教育出版社《模拟电子技术基础（第六版）》",
+    "url": "https://www.hep.com.cn/recommend/show/F3J4J4QND",
+    "text": "模拟部分共十一章，适合按章节做教材第一轮和课后题。"
+  },
+  {
+    "title": "中国大学MOOC 华中科技大学数字电子技术基础",
+    "url": "https://www.icourse163.org/learn/HUST-1001909001?tid=1450217469",
+    "text": "课程以康华光数字部分第六版为蓝本，主线是逻辑分析与设计、组合逻辑、时序逻辑、存储器、转换电路。"
+  }
+];
+const defaultOpen = 2;
+
+function makeList(items) {
+    return '<ul>' + items.map(item => `<li>${item}</li>`).join('') + '</ul>';
+}
+
+function renderPhases() {
+    const box = document.getElementById('phase-table');
+    box.innerHTML = phases.map(p => `<div class="phase"><strong>${p.title}</strong>${p.text}</div>`).join('');
+}
+
+function renderOverview() {
+    const box = document.getElementById('guide-grid');
+    box.innerHTML = overviewCards.map(card => `
+        <div class="guide-card">
+            <h3>${card.title}</h3>
+            ${makeList(card.items)}
+        </div>
+    `).join('');
+}
+
+function renderSources() {
+    const box = document.getElementById('source-list');
+    box.innerHTML = sources.map(s => `<li><a href="${s.url}" target="_blank" rel="noreferrer">${s.title}</a>：${s.text}</li>`).join('');
+}
+
+function renderWeeks() {
+    const container = document.getElementById('weeks-container');
+    container.innerHTML = weeks.map((week, index) => {
+        const isOpen = index < defaultOpen;
+        return `
+            <article class="week-card ${isOpen ? 'is-open' : ''}">
+                <button class="week-header" type="button" onclick="toggleWeek(${index})">
+                    <div class="week-title">
+                        <span class="week-kicker">${week.phase}</span>
+                        <h3>第 ${week.week} 周：${week.title}</h3>
+                    </div>
+                    <div class="week-meta"><span>${week.dates}</span><span class="chevron">⌄</span></div>
+                </button>
+                <div class="week-content ${isOpen ? 'active' : ''}">
+                    <div class="message">${week.message}</div>
+                    <div class="subject-grid">
+                        ${week.subjects.map(subject => `
+                            <div class="subject">
+                                <div class="subject-title">${subject.name}</div>
+                                <div class="subject-content">${subject.content}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join('');
+}
+
+function toggleWeek(index) {
+    const card = document.querySelectorAll('.week-card')[index];
+    const content = card.querySelector('.week-content');
+    card.classList.toggle('is-open');
+    content.classList.toggle('active');
+}
+
+function toggleAll() {
+    const cards = [...document.querySelectorAll('.week-card')];
+    const shouldOpen = cards.some(card => !card.classList.contains('is-open'));
+    cards.forEach(card => {
+        card.classList.toggle('is-open', shouldOpen);
+        card.querySelector('.week-content').classList.toggle('active', shouldOpen);
+    });
+    document.getElementById('toggle-all').textContent = shouldOpen ? '收起全部21周' : '展开全部21周';
+}
+
+renderPhases();
+renderOverview();
+renderSources();
+renderWeeks();
+</script>
+</body>
+</html>

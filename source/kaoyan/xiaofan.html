@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小范 考研公共课分周规划</title>
+    <style>
+        :root {
+            --bg: #f7f1e8;
+            --paper: rgba(255, 253, 248, 0.96);
+            --ink: #282018;
+            --muted: #70665c;
+            --line: rgba(64, 44, 24, 0.14);
+            --accent: #6f4a2b;
+            --accent-2: #126f5a;
+            --soft: #f3e4d2;
+            --card: #fffdf8;
+            --shadow: 0 24px 58px -42px rgba(58, 35, 14, 0.48);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            color: var(--ink);
+            font-family: "Noto Serif SC", "Microsoft YaHei", serif;
+            line-height: 1.78;
+            background:
+                radial-gradient(circle at 10% 0%, rgba(158, 96, 38, 0.12), transparent 30%),
+                radial-gradient(circle at 92% 8%, rgba(54, 118, 96, 0.12), transparent 28%),
+                linear-gradient(180deg, #fffaf2 0%, var(--bg) 100%);
+        }
+        .container { max-width: 1080px; margin: 0 auto; padding: 30px 20px 60px; }
+        header, .overview, .week-card, .source-box {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+        }
+        header { border-radius: 26px; padding: 36px; margin-bottom: 22px; }
+        h1 { font-size: clamp(1.9rem, 3vw, 2.72rem); line-height: 1.16; letter-spacing: -0.03em; margin-bottom: 18px; }
+        .meta { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-size: .96rem; }
+        .meta span { padding: 8px 12px; border: 1px solid var(--line); background: rgba(255,255,255,.74); border-radius: 999px; }
+        .overview { border-radius: 22px; padding: 28px; margin-bottom: 24px; }
+        .overview h2 { font-size: 1.34rem; margin-bottom: 14px; }
+        .note { background: #fff8ef; border: 1px solid rgba(111,74,43,.18); border-radius: 16px; padding: 16px 18px; margin-bottom: 16px; }
+        .phase-table { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 16px; }
+        .phase { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 15px 16px; }
+        .phase strong { display: block; color: var(--accent); margin-bottom: 6px; }
+        .guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .guide-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 17px; }
+        .guide-card h3 { margin-bottom: 10px; font-size: 1.08rem; color: var(--accent); }
+        ul { margin-left: 18px; }
+        li { margin-bottom: 8px; }
+        .toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin: 22px 0 16px; }
+        .toolbar-note { color: var(--muted); font-size: .94rem; }
+        button { font: inherit; }
+        .expand-button { border: 0; border-radius: 999px; background: var(--ink); color: #fffaf2; padding: 11px 18px; cursor: pointer; font-weight: 700; }
+        .weeks-list { display: grid; gap: 15px; }
+        .week-card { border-radius: 18px; overflow: hidden; }
+        .week-header { width: 100%; border: 0; background: linear-gradient(180deg, rgba(255,253,248,.98), rgba(248,240,229,.94)); color: var(--ink); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-align: left; cursor: pointer; }
+        .week-title { display: grid; gap: 7px; }
+        .week-kicker { width: fit-content; border-radius: 999px; padding: 5px 10px; background: var(--soft); color: var(--accent); font-size: .78rem; font-weight: 700; }
+        .week-title h3 { font-size: 1.08rem; line-height: 1.42; }
+        .week-meta { display: flex; align-items: center; gap: 12px; color: var(--muted); white-space: nowrap; }
+        .chevron { width: 32px; height: 32px; border-radius: 999px; display: grid; place-items: center; background: rgba(111,74,43,.1); transition: transform .18s ease; }
+        .is-open .chevron { transform: rotate(180deg); }
+        .week-content { display: none; padding: 0 20px 20px; }
+        .week-content.active { display: block; }
+        .message { background: #fff8ef; border: 1px solid rgba(111,74,43,.16); border-radius: 14px; padding: 13px 15px; margin-bottom: 14px; color: #3e2e21; }
+        .subject-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .subject { background: var(--card); border: 1px solid var(--line); border-radius: 15px; padding: 16px; }
+        .subject-title { font-weight: 800; padding-bottom: 9px; margin-bottom: 12px; border-bottom: 1px solid var(--line); color: var(--accent-2); }
+        .subject-content { color: #453b32; font-size: .96rem; white-space: pre-line; }
+        .source-box { border-radius: 18px; margin-top: 18px; padding: 18px; color: var(--muted); }
+        .source-box h2 { font-size: 1.08rem; color: var(--ink); margin-bottom: 10px; }
+        .source-box a { color: var(--accent); text-decoration: none; }
+        footer { text-align: center; color: var(--muted); font-size: .9rem; padding-top: 22px; }
+        @media (max-width: 860px) {
+            .guide-grid, .subject-grid, .phase-table { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 760px) {
+            .container { padding: 18px 14px 44px; }
+            header, .overview { padding: 22px 18px; border-radius: 18px; }
+            .week-header { flex-direction: column; align-items: stretch; }
+            .week-meta { justify-content: space-between; white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>小范 考研公共课分周规划</h1>
+        <div class="meta"><span>目标院校：江南大学</span><span>目标方向：083200 食品科学与工程</span><span>只规划公共课</span></div>
+        <div class="meta" style="margin-top: 8px;"><span>数学二 / 英语一 / 政治</span><span>二战，数学和英语优先</span><span>跨度：2026-06-15 到 2026-12-20，共 27 周</span></div>
+    </header>
+
+    <section class="overview">
+        <h2>这份公共课规划怎么用</h2>
+        <div class="note">这位同学只规划公共课，所以每周只写数学二、英语一、政治。表单里写二战、数学只学不练、英语完型翻译小作文失分，这版会把做题和订正写得更硬一点。公共课按 6 月 15 日起步到 12 月 20 日初试排成 27 周；政治虽然表单写现在就开始，但这里不提前看大课，10 月初再正式进腿姐手册、苍盾和一页纸。</div>
+        <div class="phase-table" id="phase-table"></div>
+        <div class="guide-grid" id="guide-grid"></div>
+    </section>
+
+    <div class="toolbar">
+        <div class="toolbar-note">默认展开前 2 周。每周只写公共课，不写专业课。</div>
+        <button class="expand-button" id="toggle-all" type="button" onclick="toggleAll()">展开全部27周</button>
+    </div>
+    <div id="weeks-container" class="weeks-list"></div>
+
+    <section class="source-box">
+        <h2>调研依据</h2>
+        <ul id="source-list"></ul>
+    </section>
+
+    <footer>小范公共课规划｜按 2026-06-15 起步排到 2026-12-20</footer>
+</div>
+
+<script>
+const weeks = [
+  {
+    "week": 1,
+    "dates": "2026.06.15 - 06.21",
+    "phase": "基础补齐",
+    "title": "高数从极限开始",
+    "message": "第一周先别急着补很多课。二战最大的问题不是没资料，是数学只学不练。这周把每天做题的手感立住，题做慢一点也可以，但必须写到纸上。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "张宇《基础30讲》高数第1讲函数、极限、连续。周一到周五看讲义例题并做课后题，每天配 1000题基础 15-20 题；周末把极限等价无穷小、洛必达、连续间断点整理成一页。"
+      },
+      {
+        "name": "英语一",
+        "content": "《不背单词》考研核心词第一轮 1-500。每天早上 6-8 点背新词，晚上回看错词；只做真题长难句 2 句，不开阅读套题。四级未过没关系，先把词补上。"
+      },
+      {
+        "name": "政治",
+        "content": "本周不正式开政治。不看徐涛长课，也不做肖1000题。只把 10 月后要用的腿姐冲刺背诵手册、苍盾小程序、澄箫宇政治一页纸列进资料清单。"
+      }
+    ]
+  },
+  {
+    "week": 2,
+    "dates": "2026.06.22 - 06.28",
+    "phase": "基础补齐",
+    "title": "导数和微分",
+    "message": "这周继续高数基础。导数这一块后面会反复用，别只听研途课，听完必须做题。遇到不会的题，先看答案第一步，再回到讲义同类例题。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲高数第2-3讲一元函数导数与微分。重点做导数定义、复合函数求导、隐函数求导、参数方程求导。1000题基础每天 20 题，周末重做错题。"
+      },
+      {
+        "name": "英语一",
+        "content": "核心词 501-1000。长难句每天 2 句，句子只拆主干、从句和修饰，不精翻全文。周末用 30 分钟复盘本周假熟词。"
+      },
+      {
+        "name": "政治",
+        "content": "仍不正式开政治。把公共课时间给数学和英语，政治现在只保留一点认知，不提前把精力耗掉。"
+      }
+    ]
+  },
+  {
+    "week": 3,
+    "dates": "2026.06.29 - 07.05",
+    "phase": "基础补齐",
+    "title": "导数应用和第一批阅读",
+    "message": "这周开始有一点阅读，但英语主线仍然是单词。数学要把导数应用题的步骤写全，特别是单调、极值、最值、凹凸和渐近线。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲高数第4-5讲导数应用、中值定理。1000题基础做对应题，导数应用题每天至少 8 道；周末整理“求单调区间、极值、最值、证明不等式”的固定步骤。"
+      },
+      {
+        "name": "英语一",
+        "content": "核心词 1001-1600。英一 2005 年阅读 Text 1-2，只做题不精翻；错题写清是单词不认识、定位错，还是选项偷换。"
+      },
+      {
+        "name": "政治",
+        "content": "政治继续不启动。不要因为表单里写现在开始就去看一整套课，10 月开始完全来得及。"
+      }
+    ]
+  },
+  {
+    "week": 4,
+    "dates": "2026.07.06 - 07.12",
+    "phase": "基础补齐",
+    "title": "不定积分",
+    "message": "积分开始以后，计算能力会暴露出来。这里不能靠看懂，必须每天算。算错很正常，但错题要回写，不然二战还是会变成只看不练。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲高数第6讲不定积分。重点做换元、分部、三角代换、简单有理函数。1000题基础每天 20-25 题；周末把常用积分公式默写一遍。"
+      },
+      {
+        "name": "英语一",
+        "content": "核心词 1601-2200。英一 2005 年 Text 3-4 + 2006 年 Text 1。真题伴侣里标生词，只背真题语境里的意思。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不做题。可以把腿姐手册目录看一眼，知道后面按马原、毛中特、史纲、思修、时政走就行。"
+      }
+    ]
+  },
+  {
+    "week": 5,
+    "dates": "2026.07.13 - 07.19",
+    "phase": "基础补齐",
+    "title": "定积分和应用",
+    "message": "这周的数学会有点累。定积分题不要跳步骤，变量替换、上下限、对称性都要写清楚。英语阅读开始慢慢形成固定流程。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲高数第7-8讲定积分、反常积分和定积分应用。1000题基础对应题每天 20 题；周末做一组定积分应用题，面积、体积、变限积分都要碰到。"
+      },
+      {
+        "name": "英语一",
+        "content": "核心词 2201-2800，第一轮接近收口。英一 2006 年 Text 2-4，两天一篇阅读，做完只分析错题句和定位句。"
+      },
+      {
+        "name": "政治",
+        "content": "政治仍然不正式开始。不要买太多资料，后面只用腿姐手册、苍盾、一页纸、肖四大题。"
+      }
+    ]
+  },
+  {
+    "week": 6,
+    "dates": "2026.07.20 - 07.26",
+    "phase": "基础补齐",
+    "title": "微分方程",
+    "message": "这周把一元微积分收一下。数学二会考微分方程，题型不算特别杂，但基础公式要熟。英语单词第一轮这周结束，后面进入第二轮。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲高数第9讲常微分方程。重点做可分离变量、一阶线性、二阶常系数齐次/非齐次。1000题基础对应题做完；周末复盘高数第1-9讲错题。"
+      },
+      {
+        "name": "英语一",
+        "content": "核心词第一轮 2801-3000+假熟词收尾。英一 2007 年 Text 1-2；阅读错题只写一句话错因，不抄长解析。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不做。把 10 月政治开始日期写到计划表里，避免现在被政治挤掉数学。"
+      }
+    ]
+  },
+  {
+    "week": 7,
+    "dates": "2026.07.27 - 08.02",
+    "phase": "基础补齐",
+    "title": "多元函数微分",
+    "message": "进入多元函数以后，先别怕符号。偏导、全微分、极值这几类题固定性很强。早上状态好，优先给数学，英语放在晚一点也行。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲高数第10-11讲多元函数微分学。偏导、全微分、复合函数求导、隐函数求导、多元极值。1000题基础每天 20 题；周末整理偏导链式法则图。"
+      },
+      {
+        "name": "英语一",
+        "content": "单词第二轮 1-700。英一 2007 年 Text 3-4 + 2008 年 Text 1。真题伴侣继续标生词，第二轮单词重点看第一轮错词。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不正式开。现在公共课里数学和英语更值时间。"
+      }
+    ]
+  },
+  {
+    "week": 8,
+    "dates": "2026.08.03 - 08.09",
+    "phase": "基础补齐",
+    "title": "二重积分",
+    "message": "这周把数二高数的另一个大块做起来。二重积分题先画区域，不画区域很容易算错上下限。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲高数第12讲二重积分。直角坐标、极坐标、积分区域转换、交换积分次序。1000题基础每天 18-22 题；周末集中做 8 道换序题。"
+      },
+      {
+        "name": "英语一",
+        "content": "单词第二轮 701-1400。英一 2008 年 Text 2-4，两天一篇；做完把定位句和正确选项对应关系写出来。"
+      },
+      {
+        "name": "政治",
+        "content": "政治继续放着。不要提前看大课。"
+      }
+    ]
+  },
+  {
+    "week": 9,
+    "dates": "2026.08.10 - 08.16",
+    "phase": "基础补齐",
+    "title": "高数第一轮收尾",
+    "message": "这周不碰数二不考的板块。把高数必考部分回收一遍，比继续开新内容更重要。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "高数第1-12讲回收。1000题基础补漏，优先补极限、导数应用、积分、多元微分、二重积分、微分方程。周末做一套高数基础小卷，限时 120 分钟。"
+      },
+      {
+        "name": "英语一",
+        "content": "单词第二轮 1401-2100。英一 2009 年 Text 1-3；完型和翻译暂时不作为主任务，只从阅读里补词。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不做题。把 10 月前的政治焦虑先按住。"
+      }
+    ]
+  },
+  {
+    "week": 10,
+    "dates": "2026.08.17 - 08.23",
+    "phase": "基础补齐",
+    "title": "线代：行列式和矩阵",
+    "message": "线代开始以后，要整理框架。行列式和矩阵是后面方程组、特征值、二次型的底子，别只刷选择题。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲线代第1-2讲行列式、矩阵。行列式性质、矩阵运算、逆矩阵、初等变换。1000题基础每天 20 题；周末整理矩阵等价、相似、合同的区别。"
+      },
+      {
+        "name": "英语一",
+        "content": "单词第二轮 2101-3000。英一 2009 年 Text 4 + 2010 年 Text 1-2。第二轮单词 6 月底到这周基本收口。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不正式开始。后面 10 月再做选择题更合适。"
+      }
+    ]
+  },
+  {
+    "week": 11,
+    "dates": "2026.08.24 - 08.30",
+    "phase": "基础补齐",
+    "title": "线代：向量和方程组",
+    "message": "这周线代进入容易混的部分。向量组、秩、线性相关这些概念要配题理解，不要背一堆定义。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲线代第3-4讲向量、线性方程组。重点做向量组线性相关、最大无关组、秩、齐次/非齐次方程组解结构。1000题基础对应题做完。"
+      },
+      {
+        "name": "英语一",
+        "content": "单词第三轮查漏，只看错词和阅读生词。英一 2010 年 Text 3-4 + 2011 年 Text 1。开始积累作文主题词，不背模板。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不启动。"
+      }
+    ]
+  },
+  {
+    "week": 12,
+    "dates": "2026.08.31 - 09.06",
+    "phase": "基础补齐",
+    "title": "线代：特征值",
+    "message": "这周线代题会更像考试。特征值题别只算特征多项式，要会看矩阵性质和相似对角化条件。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲线代第5讲特征值、特征向量、相似对角化。每天做 12-15 道线代题，周末整理特征值题常见入口。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2011 年 Text 2-4。Monkey 作文模板课开始听第一小段，只定小作文格式，不急着背大作文。单词继续错词回看。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不做题。"
+      }
+    ]
+  },
+  {
+    "week": 13,
+    "dates": "2026.09.07 - 09.13",
+    "phase": "基础补齐",
+    "title": "线代：二次型",
+    "message": "二次型是线代收口章，公式不多，但步骤容易漏。到这周线代第一轮要基本结束。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "基础30讲线代第6讲二次型。正定判断、合同变换、配方法、正交变换。1000题基础对应题做完；周末做线代小卷一套。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2012 年 Text 1-4。Monkey 小作文模板定稿一版，周末默写 1 次，不追求漂亮句子。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不做。"
+      }
+    ]
+  },
+  {
+    "week": 14,
+    "dates": "2026.09.14 - 09.20",
+    "phase": "真题分类",
+    "title": "660 一阶题开始",
+    "message": "基础一轮结束后，不要马上觉得自己会了。660 一阶题是拿来筛基础漏洞的，两分钟没思路就先跳，订正比硬耗更重要。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "660一阶题高数部分：极限、导数、不定积分、定积分。周一到周五每天 35-45 题，周末集中订正；对应不会的点回看基础30讲例题。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2013 年 Text 1-4。Monkey 大作文模板听第一遍，只整理个人能背下来的句型。每天继续 30 分钟错词。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不做。"
+      }
+    ]
+  },
+  {
+    "week": 15,
+    "dates": "2026.09.21 - 09.27",
+    "phase": "真题分类",
+    "title": "660 高数后半和作文接入",
+    "message": "这周继续用题筛漏洞。错题别抄很多解析，写清第一步就行。英语作文开始有固定版本，但阅读不能停。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "660一阶题高数后半：多元微分、二重积分、微分方程。每天 35-45 题，周末做高数错题二刷。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2014 年 Text 1-4。Monkey 大作文模板定一版，周末默写 1 次；阅读错题开始按主旨、细节、推断、词义分类。"
+      },
+      {
+        "name": "政治",
+        "content": "政治不做。"
+      }
+    ]
+  },
+  {
+    "week": 16,
+    "dates": "2026.09.28 - 10.04",
+    "phase": "真题分类",
+    "title": "真题一本通高数专题",
+    "message": "9月底开始把真题分类放到前面。于文涛《真题一本通》题量大，别贪快，每题要知道对应章节。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "于文涛《真题一本通》数二高数专题：极限、导数、积分。每天 12-18 道真题分类，错题按章节写进真题错题本。660 没订正完的题穿插补。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2015 年 Text 1-4。作文小作文和大作文各默写 1 次，错词继续。翻译先不系统刷，只从阅读长句里练。"
+      },
+      {
+        "name": "政治",
+        "content": "10月1日开始政治。腿姐冲刺背诵手册先看马原前两章，只要求熟读；苍盾暂时不刷套卷，等手册过一小段再刷。"
+      }
+    ]
+  },
+  {
+    "week": 17,
+    "dates": "2026.10.05 - 10.11",
+    "phase": "真题分类",
+    "title": "政治正式开始",
+    "message": "这周公共课变成三科一起走，但主次不要乱。数学仍是最大块，英语不断，政治每天少量推进。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "真题一本通高数专题：多元微分、二重积分、微分方程。每天 12-18 道；周末把高数真题错题按章节重排。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2016 年 Text 1-4。二刷 2005-2007 年阅读错题，不重做全篇，只看错题和定位句。作文模板默写 1 次。"
+      },
+      {
+        "name": "政治",
+        "content": "腿姐冲刺背诵手册：马原基础概念和毛中特开头。每天 40-60 分钟熟读，不背长段。苍盾小程序开始隔天刷 30 道选择题。"
+      }
+    ]
+  },
+  {
+    "week": 18,
+    "dates": "2026.10.12 - 10.18",
+    "phase": "真题分类",
+    "title": "真题一本通线代",
+    "message": "这周数学重点转线代真题。线代提分快，但前提是每类题入口清楚。政治不要加课，照手册走。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "真题一本通线代专题：行列式、矩阵、向量、方程组。每天 12-15 道；周末做线代专题小卷。不会的题回到基础30讲对应例题。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2017 年 Text 1-4。二刷 2008-2010 年阅读错题；作文小作文按通知、建议信、道歉信各写一篇框架。"
+      },
+      {
+        "name": "政治",
+        "content": "腿姐手册：毛中特继续，配澄箫宇政治一页纸看框架。苍盾隔天 30 题，错题只记知识点，不抄题干。"
+      }
+    ]
+  },
+  {
+    "week": 19,
+    "dates": "2026.10.19 - 10.25",
+    "phase": "套卷与政治",
+    "title": "澄箫宇大观和阅读后半",
+    "message": "这周数学用澄箫宇大观补体系。看大观时不要一直播放，题目出现先暂停自己做，再听讲。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "澄箫宇大观系列 1-4，每两天一个大观。基础知识部分快速看，习题部分必须暂停先做。真题一本通错题每天回做 5 题。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2018 年 Text 1-4。二刷 2011-2012 年阅读错题；翻译开始每周 2 句，从真题里挑，不买手译本。"
+      },
+      {
+        "name": "政治",
+        "content": "腿姐手册：史纲前半。苍盾每天或隔天 30 题，看当天数学强度调整。政治一页纸读到史纲对应部分。"
+      }
+    ]
+  },
+  {
+    "week": 20,
+    "dates": "2026.10.26 - 11.01",
+    "phase": "套卷与政治",
+    "title": "大观收尾和660线代",
+    "message": "这周继续补数学框架。不要被进度焦虑带跑，能把错题真正改掉，比多刷一套卷更有用。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "澄箫宇大观系列 5-7 收尾，二刷大观里自己不会的题。660一阶题线代部分速刷，周末整理线代错题。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2019 年 Text 1-4。二刷 2013-2014 年阅读错题；大作文模板默写 1 次，并积累食品、科技、教育、环保这类主题词。"
+      },
+      {
+        "name": "政治",
+        "content": "腿姐手册：史纲后半、思修开头。苍盾 30 题继续，错题回到手册对应页。"
+      }
+    ]
+  },
+  {
+    "week": 21,
+    "dates": "2026.11.02 - 11.08",
+    "phase": "套卷与政治",
+    "title": "二轮真题套卷开始",
+    "message": "11月开始按套卷练数学。数二 2009-2026 要进入二轮套卷节奏，先从 2009 往后做。做完当天订正，不拖到周末。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "数二真题二轮套卷 2009-2013，每天一套或一套半天完成订正。重点看高数计算、线代入口、选择填空速度。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2020 年 Text 1-4。二刷 2015-2016 年阅读错题；完型开始每周 1 篇，只练选项和固定搭配。"
+      },
+      {
+        "name": "政治",
+        "content": "腿姐手册：思修、时政基础。苍盾每天 30 题，政治一页纸跟读。不要加肖1000题。"
+      }
+    ]
+  },
+  {
+    "week": 22,
+    "dates": "2026.11.09 - 11.15",
+    "phase": "套卷与政治",
+    "title": "真题套卷中段",
+    "message": "这周数学套卷继续。每套卷不要只看分数，要把错题拆成计算错、概念错、题型入口错。英语近年阅读要更认真。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "数二真题二轮套卷 2014-2018。每天一套，晚上订正；周末把 2009-2018 错题按高数/线代分两本整理。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2021 年 Text 1-4。二刷 2017-2018 年阅读错题；小作文默写 2 次，大作文默写 1 次。"
+      },
+      {
+        "name": "政治",
+        "content": "腿姐手册二轮熟读：马原、毛中特。苍盾每天 30 题，错题当天查手册。"
+      }
+    ]
+  },
+  {
+    "week": 23,
+    "dates": "2026.11.16 - 11.22",
+    "phase": "套卷与政治",
+    "title": "真题套卷后段",
+    "message": "这周进入近年真题。近年卷最接近考试风格，别拿模拟题替代它。数学做完要复盘，英语也要开始整套限时。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "数二真题二轮套卷 2019-2023。每天一套，订正时把近年重复题型圈出来；周末重做近年卷错题。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2022-2023 年阅读与新题型。安排 2 次整套限时，不写作文也要卡时间；作文模板继续默写。"
+      },
+      {
+        "name": "政治",
+        "content": "腿姐手册二轮：史纲、思修、时政。苍盾每天 30 题，政治一页纸继续熟读。"
+      }
+    ]
+  },
+  {
+    "week": 24,
+    "dates": "2026.11.23 - 11.29",
+    "phase": "套卷与政治",
+    "title": "近三年和错题浓缩",
+    "message": "这周把近三年卷和错题本压缩。不要再铺很多新题，先把真题错题变少。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "数二 2024-2026 真题限时做，近三年每套都完整订正。把真题错题本浓缩成 20-30 道代表题，标出对应知识点。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一 2024-2026 年阅读、翻译和作文。近三年阅读至少精改错题；翻译每年挑 2 句练；作文按模板写 2 篇。"
+      },
+      {
+        "name": "政治",
+        "content": "腿姐手册三轮熟读重点页。苍盾继续 30 题；开始关注肖四发布时间，先不提前背其他大题。"
+      }
+    ]
+  },
+  {
+    "week": 25,
+    "dates": "2026.11.30 - 12.06",
+    "phase": "考前收口",
+    "title": "李林6套卷",
+    "message": "这周用李林6套卷练考场节奏。模拟卷只是查漏，不要因为模拟卷分数影响状态。真题错题仍然更重要。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "李林6套卷每天一套，做完当天订正。错题只收录有代表性的选择填空和常规大题，不收偏题。穿插回看武忠祥选填技巧课里自己薄弱的部分。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一二刷近年错题。安排 2 次整套限时，作文必须写出来，不能只背模板。每天 30 分钟错词和真题词。"
+      },
+      {
+        "name": "政治",
+        "content": "苍盾每天 30 题，腿姐手册只看标注页，政治一页纸每天 20 分钟。肖四没出前不背大题。"
+      }
+    ]
+  },
+  {
+    "week": 26,
+    "dates": "2026.12.07 - 12.13",
+    "phase": "考前收口",
+    "title": "李林4套卷和肖四",
+    "message": "这周进入最后冲刺。数学模拟卷做完就收，不再到处找新卷。政治等肖四出来后直接背大题关键词。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "李林4套卷四天完成，剩余时间回近三年真题和错题本。每天保留 30-40 分钟做计算，防止手生。"
+      },
+      {
+        "name": "英语一",
+        "content": "英一近三年整套回看，作文模板每天默写一类：建议信、通知、图画作文。翻译只练真题句，不额外买资料。"
+      },
+      {
+        "name": "政治",
+        "content": "肖四出来后背大题关键词和材料展开方式。苍盾每天 30 题保持选择题手感；最后几天看 B 站政治材料写法。"
+      }
+    ]
+  },
+  {
+    "week": 27,
+    "dates": "2026.12.14 - 12.20",
+    "phase": "考前收口",
+    "title": "考前收口",
+    "message": "最后一周不再扩内容。数学看错题和近三年，英语看模板和错词，政治背肖四关键词。能稳定写完，比突然追新资料更重要。",
+    "subjects": [
+      {
+        "name": "数学二",
+        "content": "数学二只做错题本、近三年真题和公式页。每天 1 小组选择填空 + 2 道常规大题保持手感。数二不考的板块都不碰。"
+      },
+      {
+        "name": "英语一",
+        "content": "英语一只看近年错题、作文模板、真题词。考前 3 天每天默写一篇小作文框架和一篇大作文框架，不再开新阅读。"
+      },
+      {
+        "name": "政治",
+        "content": "肖四大题背关键词，背不完整也没关系，要会按材料写。苍盾选择题保持到考前两天，最后一天只看政治一页纸和错题。"
+      }
+    ]
+  }
+];
+const overviewCards = [
+  {
+    "title": "数学二主线",
+    "items": [
+      "张宇基础30讲只取数二内容：极限、一元微积分、多元微分、二重积分、微分方程和线代。",
+      "张宇1000题基础配合章节做；9月以后做660一阶题和于文涛《真题一本通》。",
+      "数二范围外的板块不写进计划。真题比模拟题优先，李林6+4放到最后查漏。"
+    ]
+  },
+  {
+    "title": "英语一主线",
+    "items": [
+      "6月底到7月先把《不背单词》核心词第一轮过完，后面二轮和真题生词不断。",
+      "英一阅读按年份做，不精翻全文，不买手译本；真题伴侣只用来标生词和定位错题。",
+      "9月接 Monkey 作文模板，小作文和大作文各定一套能默写的版本。"
+    ]
+  },
+  {
+    "title": "政治主线",
+    "items": [
+      "10月初再正式开始，不提前看徐涛长课，也不做肖1000题。",
+      "腿姐冲刺背诵手册只要求熟读，苍盾小程序每天或隔天 30 道选择题。",
+      "澄箫宇政治一页纸用来串框架，12月肖四出来后直接背大题关键词。"
+    ]
+  }
+];
+const phases = [
+  {
+    "title": "6.15 - 7.26：高数第一轮前半 + 单词第一轮",
+    "text": "高数从极限、导数、积分、微分方程开始；英语先把考研核心词第一轮过完。"
+  },
+  {
+    "title": "7.27 - 9.13：高数收尾 + 线代第一轮",
+    "text": "数二只做必考内容，不碰数二范围外的板块；英语阅读按英一真题年份推进。"
+  },
+  {
+    "title": "9.14 - 10.18：660 + 真题一本通 + 作文",
+    "text": "数学开始筛漏洞和做真题分类；英语接 Monkey 作文模板；政治 10 月 1 日后正式开始。"
+  },
+  {
+    "title": "10.19 - 11.29：大观 + 真题套卷 + 政治选择",
+    "text": "数学从分类题转套卷；英语做近年阅读和作文；政治用腿姐手册、苍盾、一页纸。"
+  },
+  {
+    "title": "11.30 - 12.13：李林6+4 + 肖四",
+    "text": "数学用李林 6+4 查漏；英语近年卷和作文模板收口；政治等肖四后背大题关键词。"
+  },
+  {
+    "title": "12.14 - 考前：最后稳定",
+    "text": "只看错题、近三年、作文模板、肖四关键词，不再到处加新资料。"
+  }
+];
+const sources = [
+  {
+    "title": "张宇《基础30讲》书课包",
+    "url": "https://jixun.iqihang.com/listen/gs/2022510.html",
+    "text": "用于确认基础30讲作为数学基础阶段材料。"
+  },
+  {
+    "title": "2027考研数学基础30讲目录信息",
+    "url": "https://blog.csdn.net/2601_96184542/article/details/161456643",
+    "text": "高数部分可拆为极限、一元微积分、多元微分、二重积分等阶段，数二按自身范围安排。"
+  },
+  {
+    "title": "于文涛真题一本通商品信息",
+    "url": "https://www.jd.com/jiage/1713542693066653aa3e.html",
+    "text": "用于确认真题一本通是数一、数二、数三通用的历年真题分章材料。"
+  },
+  {
+    "title": "腿姐冲刺背诵手册使用参考",
+    "url": "https://www.bilibili.com/video/BV1CmCoYJEjv/",
+    "text": "用于确认政治冲刺背诵手册适合10月后熟读和冲刺使用。"
+  }
+];
+const defaultOpen = 2;
+
+function makeList(items) {
+    return '<ul>' + items.map(item => `<li>${item}</li>`).join('') + '</ul>';
+}
+
+function renderPhases() {
+    const box = document.getElementById('phase-table');
+    box.innerHTML = phases.map(p => `<div class="phase"><strong>${p.title}</strong>${p.text}</div>`).join('');
+}
+
+function renderOverview() {
+    const box = document.getElementById('guide-grid');
+    box.innerHTML = overviewCards.map(card => `
+        <div class="guide-card">
+            <h3>${card.title}</h3>
+            ${makeList(card.items)}
+        </div>
+    `).join('');
+}
+
+function renderSources() {
+    const box = document.getElementById('source-list');
+    box.innerHTML = sources.map(s => `<li><a href="${s.url}" target="_blank" rel="noreferrer">${s.title}</a>：${s.text}</li>`).join('');
+}
+
+function renderWeeks() {
+    const container = document.getElementById('weeks-container');
+    container.innerHTML = weeks.map((week, index) => {
+        const isOpen = index < defaultOpen;
+        return `
+            <article class="week-card ${isOpen ? 'is-open' : ''}">
+                <button class="week-header" type="button" onclick="toggleWeek(${index})">
+                    <div class="week-title">
+                        <span class="week-kicker">${week.phase}</span>
+                        <h3>第 ${week.week} 周：${week.title}</h3>
+                    </div>
+                    <div class="week-meta"><span>${week.dates}</span><span class="chevron">⌄</span></div>
+                </button>
+                <div class="week-content ${isOpen ? 'active' : ''}">
+                    <div class="message">${week.message}</div>
+                    <div class="subject-grid">
+                        ${week.subjects.map(subject => `
+                            <div class="subject">
+                                <div class="subject-title">${subject.name}</div>
+                                <div class="subject-content">${subject.content}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join('');
+}
+
+function toggleWeek(index) {
+    const card = document.querySelectorAll('.week-card')[index];
+    const content = card.querySelector('.week-content');
+    card.classList.toggle('is-open');
+    content.classList.toggle('active');
+}
+
+function toggleAll() {
+    const cards = [...document.querySelectorAll('.week-card')];
+    const shouldOpen = cards.some(card => !card.classList.contains('is-open'));
+    cards.forEach(card => {
+        card.classList.toggle('is-open', shouldOpen);
+        card.querySelector('.week-content').classList.toggle('active', shouldOpen);
+    });
+    document.getElementById('toggle-all').textContent = shouldOpen ? '收起全部27周' : '展开全部27周';
+}
+
+renderPhases();
+renderOverview();
+renderSources();
+renderWeeks();
+</script>
+</body>
+</html>
