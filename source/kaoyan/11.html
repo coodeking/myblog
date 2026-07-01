@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 2028考研公共课前半程规划</title>
+    <style>
+        :root {
+            --bg: #f6f1e8;
+            --paper: rgba(255,255,255,.94);
+            --text: #211f1b;
+            --muted: #6d665c;
+            --line: rgba(34,31,27,.12);
+            --accent: #71563a;
+            --accent-soft: #f2e4d2;
+            --math: #2f6f73;
+            --english: #456fb4;
+            --politics: #ad6c36;
+            --shadow: 0 24px 60px -42px rgba(43,33,22,.45), 0 10px 28px -24px rgba(43,33,22,.36);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 12% 0%, rgba(128, 92, 54, .16), transparent 28%),
+                radial-gradient(circle at 88% 12%, rgba(47, 111, 115, .14), transparent 24%),
+                linear-gradient(180deg, #fbf8f1 0%, var(--bg) 100%);
+            color: var(--text);
+            font-family: "Noto Serif SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.78;
+        }
+        .container { width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 64px; }
+        header {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,245,236,.94));
+            box-shadow: var(--shadow);
+            padding: 34px;
+            margin-bottom: 22px;
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            right: -74px;
+            bottom: -108px;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(113,86,58,.18), transparent 68%);
+        }
+        h1 { max-width: 760px; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.14; letter-spacing: -.04em; margin-bottom: 18px; }
+        .meta { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); position: relative; z-index: 1; }
+        .meta span {
+            display: inline-flex;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.7);
+            border-radius: 999px;
+            padding: 7px 12px;
+            font-size: .95rem;
+        }
+        .panel {
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--paper);
+            box-shadow: var(--shadow);
+            padding: 26px;
+            margin-bottom: 22px;
+        }
+        .panel h2 { font-size: 1.3rem; margin-bottom: 14px; letter-spacing: -.02em; }
+        .strategy {
+            border-radius: 18px;
+            border: 1px solid rgba(113,86,58,.18);
+            background: #fffaf2;
+            padding: 16px 18px;
+            color: #302b24;
+            margin-bottom: 16px;
+        }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .course {
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: #fff;
+            padding: 18px;
+            text-align: left;
+        }
+        .course h3 { font-size: 1.05rem; margin-bottom: 10px; }
+        .course.math { box-shadow: inset 4px 0 0 var(--math); }
+        .course.english { box-shadow: inset 4px 0 0 var(--english); }
+        .course.politics { box-shadow: inset 4px 0 0 var(--politics); }
+        .course.math h3 { color: var(--math); }
+        .course.english h3 { color: var(--english); }
+        .course.politics h3 { color: var(--politics); }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 9px; color: #403a32; }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin: 24px 0 16px;
+            color: var(--muted);
+            flex-wrap: wrap;
+        }
+        button {
+            border: 0;
+            border-radius: 999px;
+            background: var(--text);
+            color: white;
+            padding: 11px 17px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .weeks { display: grid; gap: 14px; }
+        .week-card {
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background: rgba(255,255,255,.9);
+            overflow: hidden;
+            box-shadow: 0 18px 38px -34px rgba(43,33,22,.5);
+        }
+        .week-card.open { border-color: rgba(113,86,58,.28); }
+        .week-head {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            gap: 16px;
+            padding: 18px 20px;
+            background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(250,245,236,.95));
+            color: var(--text);
+            border-radius: 0;
+        }
+        .week-head h3 { font-size: 1.05rem; line-height: 1.45; }
+        .kicker {
+            display: inline-flex;
+            width: fit-content;
+            margin-bottom: 6px;
+            border-radius: 999px;
+            padding: 4px 9px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: .78rem;
+            font-weight: 800;
+        }
+        .date {
+            flex: 0 0 auto;
+            color: var(--muted);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: .86rem;
+            border-radius: 999px;
+            padding: 7px 10px;
+            background: rgba(0,0,0,.045);
+        }
+        .chev { font-size: 1.1rem; color: var(--accent); }
+        .week-card.open .chev { transform: rotate(180deg); }
+        .week-body { display: none; padding: 0 20px 20px; }
+        .week-card.open .week-body { display: block; }
+        .message {
+            margin-bottom: 14px;
+            border: 1px solid rgba(113,86,58,.18);
+            border-radius: 18px;
+            background: #fff7ec;
+            color: #30271e;
+            padding: 15px 17px;
+        }
+        .subjects { display: grid; gap: 12px; }
+        .subject {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: white;
+            padding: 15px 16px;
+        }
+        .subject h4 { margin-bottom: 8px; font-size: 1rem; }
+        .subject.math h4 { color: var(--math); }
+        .subject.english h4 { color: var(--english); }
+        .subject.politics h4 { color: var(--politics); }
+        .subject p { white-space: pre-line; color: #464038; }
+        footer { text-align: center; color: var(--muted); margin-top: 26px; font-size: .92rem; }
+        @media (max-width: 860px) {
+            .grid { grid-template-columns: 1fr; }
+            header, .panel { padding: 22px; border-radius: 22px; }
+            .week-head { align-items: flex-start; flex-direction: column; }
+            .date { white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>11 的 2028 考研公共课前半程规划</h1>
+            <div class="meta" id="meta-one"></div>
+            <div class="meta" id="meta-two" style="margin-top: 8px;"></div>
+        </header>
+
+        <section class="panel">
+            <h2>这份表怎么用</h2>
+            <p class="strategy" id="intro"></p>
+            <p class="strategy" id="strategy"></p>
+            <div class="grid">
+                <div class="course math">
+                    <h3>数学一主线</h3>
+                    <ul id="math-list"></ul>
+                </div>
+                <div class="course english">
+                    <h3>英语一主线</h3>
+                    <ul id="english-list"></ul>
+                </div>
+                <div class="course politics">
+                    <h3>政治主线</h3>
+                    <ul id="politics-list"></ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="toolbar">
+            <span>共 27 周，只排到 2026 年 12 月；2027 年部分先留空。</span>
+            <button type="button" id="toggle-all">展开全部</button>
+        </div>
+        <section class="weeks" id="weeks"></section>
+        <footer>本页只作为 2026 年 7-12 月公共课前半程安排，后续月份暂不展开。</footer>
+    </main>
+
+    <script>
+        const planData = {
+  "student": {
+    "name": "11",
+    "target": "大连理工大学 · 085800 能源与动力",
+    "exam_year": "2028",
+    "period": "2026.07.01 - 2026.12.31",
+    "subjects": "数学一 / 英语一 / 政治",
+    "hours": "平日 <4h / 周末 <4h"
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "date": "2026.07.01 - 2026.07.07",
+      "title": "先把高数入口打开",
+      "message": "这周不要急着囤课，也不要一上来就翻很多资料。你现在数学最需要的是把手感找回来，把《张宇基础30讲》高数册从函数、极限、连续这一块开始接上。英语从单词和阅读习惯开始，不用在第一周就追求速度。",
+      "math": "《张宇基础30讲》高数册先看“函数、极限、连续”这一章，重点放在函数性质、常见初等函数、极限定义、无穷小比较、连续与间断点。讲义例题不要只看结论，先自己盖住答案写第一步，能写多少算多少。课后题先做基础题，错题单独记在一个本子里，标清楚是概念不会、公式不熟，还是计算断掉。《1000题》本周只碰对应章节的基础题，数量不用贪，做完要订正。",
+      "english": "《不背单词》建一个考研核心词计划，本周先背 300-350 个词，目标是把每天背词的节奏固定下来。阅读只做入门：用《真题伴侣》找英语一 2001 年阅读 Text 1，先不限时读一遍，第二遍只做三件事：圈生词、划主干、把题干问什么写在旁边。不精翻，也不买手译本，读懂大意和选项错因就够。",
+      "politics": "政治这半年不安排正式任务。现在离 2027 年 10 月正式进场还早，本周只要知道政治后面会用腿姐冲刺背诵手册、苍盾小程序、澄箫宇政治一页纸和肖四，不需要开始看课。"
+    },
+    {
+      "week": 2,
+      "date": "2026.07.08 - 2026.07.14",
+      "title": "极限和连续要算到纸上",
+      "message": "这一周容易出现的问题是看例题觉得会，自己一算就卡。卡住很正常，先把计算过程写完整，想两分钟还没思路就看答案第一步，再关上书把这一题重写一遍。",
+      "math": "继续推进《张宇基础30讲》高数册“函数、极限、连续”，把等价无穷小、洛必达法则、夹逼、单调有界、重要极限和间断点分类放在一起练。课后题按小节做，遇到证明味道很重的题先放过去，计算题和选择填空要写过程。《1000题》对应基础题至少做一轮，错题旁边写一句错因，比如“等价替换条件没看清”“左右极限漏了”。不会的知识点直接去 B 站搜关键词，不要从头听一长段课。",
+      "english": "单词继续按每天 45-55 个新词推进，加上 App 里的复习词，第一轮不要追求每个词都背到很熟，先把核心词面扫过去。阅读用 2001 年 Text 2，做完后不要大段翻译，只把每个选项为什么错写一句话。阅读里的生词放进《真题伴侣》反复看，优先记它在真题里的意思。",
+      "politics": "政治保持留空。这周如果手痒想看政治，就把时间收回来给数学极限题，政治不是现在的得分点。"
+    },
+    {
+      "week": 3,
+      "date": "2026.07.15 - 2026.07.21",
+      "title": "导数先练计算，再谈题型",
+      "message": "本周开始导数，计算量会变多。你线代底子相对好，高数一般，所以前半程别急着换到线代找安全感，高数这一关先老老实实过。",
+      "math": "《张宇基础30讲》高数册进入“一元函数微分学的概念与计算”。重点是导数定义、可导与连续关系、复合函数求导、隐函数求导、参数方程求导、高阶导数和微分。每个公式都要配两三道题写出来，不要只在书上看。《1000题》做对应基础题，导数计算题要把中间步骤写清楚，错题按“公式用错、链式法则漏项、隐函数符号错”分类。",
+      "english": "单词第一轮继续，本周累计新词尽量到 1000 个左右。阅读做 2001 年 Text 3，读的时候先找题干定位词，再回原文找同义替换。你担心阅读，先别把问题归结成英语差，多数时候是题干和选项没有回到原文。每篇阅读结束后整理 8-12 个真题生词。",
+      "politics": "政治不做周任务。现在不要买肖1000题，也不要开徐涛等长课，后面真到该开始时再用更短的材料。"
+    },
+    {
+      "week": 4,
+      "date": "2026.07.22 - 2026.07.28",
+      "title": "中值定理别只背名字",
+      "message": "中值定理这一块很容易听懂但不会用。你本周的目标不是把所有难题啃完，而是看到罗尔、拉格朗日、柯西这些名字时，知道题目一般在找什么条件。",
+      "math": "《张宇基础30讲》高数册看“微分中值定理”和“导数应用”前半部分。罗尔定理、拉格朗日中值定理、柯西中值定理要各整理一张小卡片：条件、结论、常见切入点。课后题先做基础题和典型题，偏证明的题不作为主线。《1000题》对应基础题做完后，挑 5-8 道错题回看 B 站讲解，优先搜题目关键词或知识点，看千羽、考研数学777、没咋了这类讲解时先暂停自己写。",
+      "english": "《不背单词》继续第一轮，复习词不要跳。阅读做 2001 年 Text 4，开始记录选项陷阱：偷换范围、因果倒置、原文没说、语气过重。每篇文章只挑 2 个长句拆主干，别把整篇文章都精翻，时间不够也没有必要。",
+      "politics": "政治继续空着。你这半年公共课的有效产出主要在数学和英语，不要因为政治看起来简单就提前分心。"
+    },
+    {
+      "week": 5,
+      "date": "2026.07.29 - 2026.08.04",
+      "title": "导数应用要把图像感补起来",
+      "message": "这一周把单调、极值、凹凸、拐点、渐近线串起来。这里不是背一堆结论，核心是把导数符号和函数图像联系起来。",
+      "math": "《张宇基础30讲》高数册完成“导数应用”：单调性、极值最值、凹凸性、拐点、渐近线、方程根的讨论。先把讲义例题重做一遍，再做课后题和《1000题》基础题。遇到综合题时先写出求导、列符号表、判断区间这三步，不要直接跳到答案。张宇课里一些超出考试主线的内容不用展开，比如超实数、压缩映射原理这类，不作为你的任务。",
+      "english": "单词第一轮进入第二个千词段。阅读做 2002 年 Text 1，按“先题干、再定位、再比选项”的顺序来。做完把错题原因写在题号旁边，不要只写“没看懂”。如果文章读起来慢，就把当天数学任务收尾后再读，不要在很疲惫的时候硬读新文章。",
+      "politics": "政治不安排。后面真正进场时会从腿姐冲刺背诵手册开始，现在只保留这个认知就行。"
+    },
+    {
+      "week": 6,
+      "date": "2026.08.05 - 2026.08.11",
+      "title": "不定积分先把基本法练熟",
+      "message": "本周开始积分，计算会比前几周更磨人。别一做错就怀疑自己基础不行，积分本来就是靠反复写出来的。",
+      "math": "《张宇基础30讲》高数册进入“不定积分”。重点做原函数、换元积分法、分部积分法、有理函数积分和常见三角变换。讲义例题每类至少重写 2 道，课后题先按方法分类做。《1000题》对应基础题本周只要求稳，不追难题。错题本里不要只抄题，要写“这题为什么想到换元/分部”，把方法触发点记下来。",
+      "english": "《不背单词》第一轮继续推进，暑假这段时间单词不能断。本周阅读做 2002 年 Text 2 和 Text 3，文章不用精翻，但每篇至少整理 1 个你完全没读明白的句子，拆出主语、谓语、宾语或从句。真题生词继续放进《真题伴侣》，不要另开太多词书。",
+      "politics": "政治保持空白。现在提前背政治容易忘，也会挤掉数学积分练习时间。"
+    },
+    {
+      "week": 7,
+      "date": "2026.08.12 - 2026.08.18",
+      "title": "定积分要理解性质和计算",
+      "message": "定积分不是只套公式，本周要把性质、几何意义和计算放在一起。你平时学习时间不到 4 小时，任务要按块完成，不要一天换好几科资料。",
+      "math": "《张宇基础30讲》高数册看“定积分”这一章，重点是定积分定义、性质、牛顿-莱布尼茨公式、换元、分部、对称区间积分。课后题和《1000题》基础题同步做，计算题必须写到最后，不要看到思路就停。变上限积分先接触基础型，复杂题留到下周。错题按“性质没用上、上下限处理错、换元后限没改”整理。",
+      "english": "单词第一轮本周尽量推进到 2000 个左右。阅读做 2002 年 Text 4，另外回看 2001 年错题，把当时标过的生词再过一遍。阅读复盘只做三件事：定位句、正确选项对应原文、错误选项错在哪里。不要为了好看写很长的翻译笔记。",
+      "politics": "政治不做题。后期会用苍盾小程序刷模拟卷选择题，现在不用提前装一堆材料。"
+    },
+    {
+      "week": 8,
+      "date": "2026.08.19 - 2026.08.25",
+      "title": "变限积分和应用慢一点做",
+      "message": "这一周容易被定积分应用拖住。你不用追求所有题型都见过，先把变限积分、面积体积这些常规题写顺。",
+      "math": "《张宇基础30讲》高数册推进“变限积分、反常积分、定积分应用”。变限积分重点练求导，反常积分先掌握敛散性判断的基础题，应用题做平面图形面积、旋转体体积、弧长这几类。数一会遇到更多应用和综合，不需要现在扩得太深。课后题做完后，《1000题》只刷对应基础题，遇到两分钟没有入口的题先做标记，订正时看答案第一步。",
+      "english": "单词第一轮继续，开始把易混词单独建一组。阅读做 2003 年 Text 1，本周开始轻微计时，单篇控制在 25-30 分钟内，不追求快，先追求读完后能说清文章主线。阅读里的熟词僻义优先记录，比如词面认识但放进句子里意思变了的词。",
+      "politics": "政治继续留空。这个阶段不需要每天看时政，别让信息流占掉上午清醒时间。"
+    },
+    {
+      "week": 9,
+      "date": "2026.08.26 - 2026.09.01",
+      "title": "微分方程做基础模型",
+      "message": "暑假后半段别把前面内容全忘了。本周新学微分方程，同时要给极限、导数、积分留一点回看时间。",
+      "math": "《张宇基础30讲》高数册看“微分方程”。一阶可分离变量、齐次方程、一阶线性方程、可降阶高阶方程、二阶常系数线性微分方程先按模板练。课后题做基础模型，《1000题》对应基础题只做常规计算。每两天抽 20 分钟回看前面错题，尤其是积分换元和分部。微分算子法不用作为主线，按常规方法会解就行。",
+      "english": "《不背单词》第一轮接近收尾，本周目标是把 3000 个核心词扫完第一遍，没背牢没关系，先完成覆盖。阅读做 2003 年 Text 2 和 Text 3，重点练题干定位和同义替换。做完别急着看讲解，先自己把每道题对应原文句子划出来。",
+      "politics": "政治不进场。你现在的政治安排就是不提前消耗，后面到 2027 年再集中做。"
+    },
+    {
+      "week": 10,
+      "date": "2026.09.02 - 2026.09.08",
+      "title": "多元函数先把偏导算稳",
+      "message": "进入 9 月以后，学校课程会慢慢占时间，所以周计划不能排得太满。多元函数先从偏导和全微分开始，不要一口气冲到综合题。",
+      "math": "《张宇基础30讲》高数册进入“多元函数微分法”。重点是二元函数极限与连续的基本判断、偏导数、全微分、复合函数求导、隐函数求导。讲义例题先重写，再做课后题。《1000题》对应基础题以计算为主，遇到抽象证明题先跳。你高数一般，这一章要把链式法则的层级画出来，别在脑子里硬转。",
+      "english": "单词第二轮开始，核心词每天以复习为主，新词量可以降下来，把第一轮没记住的词标红。阅读做 2003 年 Text 4，另抽一篇前面错得多的文章重读。第二轮单词不是重新背一遍那么简单，要把真题里出现过的意思优先记住。",
+      "politics": "政治本周仍然空。不要买太早的政治书，版本和时政都会变，后面再买更合适。"
+    },
+    {
+      "week": 11,
+      "date": "2026.09.09 - 2026.09.15",
+      "title": "多元极值要把步骤固定",
+      "message": "本周多元函数会进入极值和应用，做题时最怕步骤混乱。你可以把每类题固定成几个动作，先照着动作写，熟了再提速度。",
+      "math": "继续《张宇基础30讲》高数册“多元函数微分法及其应用”。普通极值、条件极值、拉格朗日乘数法、方向导数和梯度先做基础题。课后题每一类至少做 3-5 道，《1000题》对应基础题做完后，把错题按“偏导算错、驻点漏掉、条件方程没列全”归类。方向导数和梯度数一要会，但不要延展到很偏的题。",
+      "english": "第二轮单词继续，本周阅读做 2004 年 Text 1 和 Text 2。每篇文章做完后，用两三句话写文章主旨，不要写成长摘要。错题只复盘到能解释“为什么这个选项和原文不一致”，不需要把整篇文章抄一遍。",
+      "politics": "政治不安排任务。把本周空出来的精力留给多元函数，后期政治会有自己的集中窗口。"
+    },
+    {
+      "week": 12,
+      "date": "2026.09.16 - 2026.09.22",
+      "title": "二重积分先练画区域",
+      "message": "二重积分很多错误不是公式不会，而是区域画错、次序换错。本周要多动笔画图，图画清楚了题就顺很多。",
+      "math": "《张宇基础30讲》高数册进入“重积分”里的二重积分。重点是直角坐标计算、极坐标计算、积分区域画法、交换积分次序。讲义例题先自己画区域，再看书上的处理。课后题和《1000题》基础题同步做，错题本里必须留下区域草图。不会画区域时去 B 站搜“二重积分 交换积分次序”这类关键词，看高播放讲解，不要泛泛看一整章课。",
+      "english": "第二轮单词保持每天复习，阅读做 2004 年 Text 3。开始把阅读错题分成三类：定位错、句子没读懂、选项比较没比出来。你担心阅读，真正要改的是复盘方式，不是多买一本阅读书。",
+      "politics": "政治留白。这个月不需要政治打卡，先把英语阅读和数学计算的习惯固定住。"
+    },
+    {
+      "week": 13,
+      "date": "2026.09.23 - 2026.09.29",
+      "title": "三重积分只吃基础框架",
+      "message": "数学一内容多，本周三重积分先把坐标系和基础计算吃下来。不要为了追难题把前面的二重积分丢掉。",
+      "math": "《张宇基础30讲》高数册看“三重积分”。直角坐标、柱面坐标、球面坐标的基本题先做，重点是识别区域和选择坐标。课后题挑基础和典型题，《1000题》对应基础题做一轮。复杂综合题先标记，不作为本周主线。每周末回看二重积分错题 6-8 道，确认交换积分次序和极坐标还会写。",
+      "english": "阅读做 2004 年 Text 4 和 2005 年 Text 1。单词第二轮继续，真题生词要回到原句里看，不要只看中文释义。阅读速度如果慢，先把每篇文章做完后的复盘压到 25 分钟内，别在一篇文章上耗一晚上。",
+      "politics": "政治继续空。后面真正要学政治时，也不会靠长课，主要靠腿姐手册熟读和选择题训练。"
+    },
+    {
+      "week": 14,
+      "date": "2026.09.30 - 2026.10.06",
+      "title": "国庆周用来补洞，不换资料",
+      "message": "假期容易突然想加量，也容易被别人的进度影响。本周不用换新资料，就用《基础30讲》和《1000题》把空间解析几何和前面错题补一下。",
+      "math": "《张宇基础30讲》高数册看“向量代数与空间解析几何”。重点是向量运算、平面与直线方程、点线面距离、空间曲面基础。假期里把前 12 周错题按章节翻一遍，每章挑 5 道最容易再错的题重做。《1000题》对应基础题做完，证明味道重的题先放掉。澄箫宇大观系列现在可以先记在后续清单里，2027 年强化前后再集中看更合适。",
+      "english": "单词第二轮继续，利用假期把第一轮标红词集中清掉一批。阅读做 2005 年 Text 2 和 Text 3，尽量保持隔天一篇。做题顺序还是题干定位、原文核对、选项比较，不要因为假期时间多就开始全文精翻。",
+      "politics": "政治不排学习量。假期里如果想整理公共课资料，只列后续要买的材料清单，不开始刷题。"
+    },
+    {
+      "week": 15,
+      "date": "2026.10.07 - 2026.10.13",
+      "title": "曲线积分先分清两类",
+      "message": "曲线积分一开始会有点乱，主要是第一类和第二类别混。本周按题型慢慢写，先把基本计算和格林公式入口搞清楚。",
+      "math": "《张宇基础30讲》高数册进入“曲线积分”。第一类曲线积分按弧长元素处理，第二类曲线积分按方向处理，格林公式先掌握适用条件和基本变形。课后题优先做基础计算题，《1000题》对应基础题同步走。遇到路线方向、闭合曲线、补线这类题，要把图画出来再算。太偏的证明题不写，真题里出现的证明思路后面再处理。",
+      "english": "阅读做 2005 年 Text 4，另回看 2003-2004 年错题。第二轮单词进入后半段，本周重点是熟词僻义和动词短语。每次复盘别超过文章本身用时太多，复盘要服务下次做题，不是做笔记给自己看。",
+      "politics": "政治留空。10 月这个时间点对 2027 年考试的同学才可能开始政治，你是 2028 考研，这里不提前开。"
+    },
+    {
+      "week": 16,
+      "date": "2026.10.14 - 2026.10.20",
+      "title": "曲面积分和公式不要硬背",
+      "message": "本周内容会显得抽象，但不用慌。先把第一类、第二类曲面积分和高斯公式的基础题写出来，不要在难题上耗太久。",
+      "math": "《张宇基础30讲》高数册看“曲面积分”。第一类曲面积分先练投影法，第二类曲面积分注意法向方向，高斯公式、斯托克斯公式先掌握基础适用场景。课后题做基础题，《1000题》对应基础题挑常规题做。数一这部分不能完全不管，但 2026 年先打框架，不要追偏题怪题。错题本里把“方向错、投影区域错、公式条件没看”分开标。",
+      "english": "阅读做 2006 年 Text 1。单词第二轮继续，开始把阅读里反复出现但总记不住的词单独列到每周回看页。句子拆解还是只挑关键长句，不要把整篇文章手译。作文不用现在开始，Monkey 作文模板课放到后面暑期再用。",
+      "politics": "政治不做。后期政治的重点会是选择题和材料抄写能力，现在提前背不会带来稳定收益。"
+    },
+    {
+      "week": 17,
+      "date": "2026.10.21 - 2026.10.27",
+      "title": "级数先把判别法分清",
+      "message": "无穷级数要靠分类。你本周不要把所有判别法混在一起，先看题目属于哪一类，再决定用什么方法。",
+      "math": "《张宇基础30讲》高数册进入“无穷级数”。常数项级数先看正项级数、交错级数、收敛强弱关系和条件收敛，判别法重点练比较、比值、根值、莱布尼茨。课后题按判别法分类做，《1000题》对应基础题做一轮。错题要写清楚“为什么不用另一个判别法”，这样后面二刷才有用。",
+      "english": "阅读做 2006 年 Text 2 和 Text 3。第二轮单词尽量在本周末前收尾，没记住的词不要焦虑，第三轮还会再过。阅读复盘时把正确选项和原文同义替换写在一起，这是阅读提分最实际的地方。",
+      "politics": "政治继续留白。不要开始背腿姐手册，2026 年背了也容易在 2027 年忘掉。"
+    },
+    {
+      "week": 18,
+      "date": "2026.10.28 - 2026.11.03",
+      "title": "幂级数和数一补充收尾",
+      "message": "高数已经走到后段，本周要把幂级数和前面最容易断的章节一起收一下。不是所有题都要做漂亮，先把基础题做稳。",
+      "math": "《张宇基础30讲》高数册继续“无穷级数”，重点是幂级数收敛半径、收敛域、展开与求和，傅里叶级数只做数一要求下的基础认识。课后题做完后，用两天时间整理高数总错题：极限、导数应用、积分、多元、曲线曲面、级数各挑 5 道重做。《1000题》高数基础部分把漏做题补完，仍然不做习题册里的证明题。",
+      "english": "第三轮单词开始，把《不背单词》里标红词、真题伴侣生词、阅读熟词僻义合到一起复习。阅读做 2006 年 Text 4，另选一篇 2005 年错题重做。重做时不要记答案，要重新定位，看看自己是不是真的读懂了。",
+      "politics": "政治不安排。你可以把 2027 年 10 月以后要做的政治材料写在总清单里，但本页不展开。"
+    },
+    {
+      "week": 19,
+      "date": "2026.11.04 - 2026.11.10",
+      "title": "线代从行列式开始，不用求快",
+      "message": "你线代基础较好，这是优势，但也别跳过基础题。行列式和矩阵后面会串到特征值、二次型，前面写稳一点后面会省很多事。",
+      "math": "《张宇基础30讲》线代部分进入“行列式”。重点是行列式性质、展开定理、特殊行列式、克拉默法则。讲义例题先自己算，再做课后题。《1000题》线代对应基础题开始做，不会的题去 B 站搜题型，不要从头听完整线代课。行列式计算要保留过程，别只写最后结果。",
+      "english": "阅读做 2007 年 Text 1。第三轮单词每天以复习为主，真题生词要反复回到原句。到这个阶段你可以开始轻微提速，单篇阅读控制在 22-25 分钟，但正确率比速度重要。错题复盘仍然只写定位句和选项错因。",
+      "politics": "政治空着。现在政治最好的安排就是不挤占线代开头这几周。"
+    },
+    {
+      "week": 20,
+      "date": "2026.11.11 - 2026.11.17",
+      "title": "矩阵要练运算和秩",
+      "message": "矩阵这一周计算量不小，但它比高数更适合通过题目找规律。你线代较好，可以稍微压快一点，但错题仍然要写原因。",
+      "math": "《张宇基础30讲》线代部分看“矩阵”。矩阵运算、逆矩阵、初等变换、矩阵秩、分块矩阵先做基础和典型题。课后题做完后，《1000题》对应基础题同步推进。每做完一组题，回头看自己有没有把初等变换写乱。矩阵题不建议只看答案，过程错一步后面全错，要在纸上写完整。",
+      "english": "阅读做 2007 年 Text 2 和 Text 3。第三轮单词继续，复习压力如果变大，就把新文章数量降一点，但单词不能断。阅读里出现的抽象名词和态度词要多留意，英语一阅读常常靠这些词区分选项。",
+      "politics": "政治不做周推进。后面会等到合适时间再集中处理选择题和背诵材料。"
+    },
+    {
+      "week": 21,
+      "date": "2026.11.18 - 2026.11.24",
+      "title": "向量组和方程组要串起来",
+      "message": "这一周的线代很适合建立框架。向量组、秩、线性相关、方程组不是几块分开的内容，要尽量放在同一张纸上看。",
+      "math": "《张宇基础30讲》线代部分看“向量组、线性方程组”。重点是线性表示、线性相关与无关、无关组提取、向量组的秩、齐次和非齐次方程组解的结构。课后题和《1000题》基础题同步做。错题本里把“秩的关系没想清、自由变量漏写、基础解系写错”分开。做题时先判断对象是向量组还是方程组，别一上来乱算。",
+      "english": "阅读做 2007 年 Text 4。把 2001-2004 年所有错题的选项原因快速翻一遍，每篇只看题干、定位句和错因，不重读全文。第三轮单词本周重点看真题高频动词和形容词，尤其是影响态度判断的词。",
+      "politics": "政治继续留空。这个阶段公共课的主线仍是数学基础收口和英语阅读习惯。"
+    },
+    {
+      "week": 22,
+      "date": "2026.11.25 - 2026.12.01",
+      "title": "特征值别只套公式",
+      "message": "特征值这章很重要，也容易被做成机械计算。本周要把定义、相似、对角化放在一起理解，题目会比前面更综合。",
+      "math": "《张宇基础30讲》线代部分看“特征值与特征向量、相似矩阵、对角化”。重点是特征多项式、特征向量求法、相似对角化条件、实对称矩阵。讲义例题重写后做课后题，《1000题》对应基础题做一轮。错题要写清楚是特征值算错，还是对角化条件没判断。看到抽象矩阵题不要怕，先回到定义。",
+      "english": "阅读做 2008 年 Text 1 和 Text 2。第三轮单词继续，开始把近几周阅读里反复错的同义替换整理成小表，比如原文一个说法、正确选项一个说法。这个表不用漂亮，能帮你下次认出来就行。",
+      "politics": "政治不提前学。等 2027 年 10 月左右再用腿姐手册和苍盾小程序，效率会更高。"
+    },
+    {
+      "week": 23,
+      "date": "2026.12.02 - 2026.12.08",
+      "title": "二次型做完，线代基础先收口",
+      "message": "这周把线代基础阶段先收住。线代不要拖成长期拉锯，行列式、矩阵、向量组、特征值、二次型都过完后，后面靠错题回炉。",
+      "math": "《张宇基础30讲》线代部分看“二次型”。重点是二次型矩阵表示、合同变换、正定判断、标准形。课后题做基础题，《1000题》线代对应基础题收尾。周末把线代五块内容各挑 3 道错题重做，确认行列式、矩阵秩、基础解系、特征值、正定判断还能独立写。线代强化和 660 一阶题不放在 2026 年主线里，先把基础账结清。",
+      "english": "阅读做 2008 年 Text 3。第三轮单词继续，另外把 2005-2007 年的真题生词复习一遍。阅读复盘时少看长篇讲解，多问自己：定位有没有错、选项有没有偷换、句子主干有没有看反。",
+      "politics": "政治留白。12 月快到了也不用开始肖四，因为你的考试不是 2026 年底。"
+    },
+    {
+      "week": 24,
+      "date": "2026.12.09 - 2026.12.15",
+      "title": "概率论只开基础入口",
+      "message": "概率论本周只开头，不追进度。你概率基础一般，先把事件、概率公式和独立性练顺，后面再加随机变量。",
+      "math": "《张宇基础30讲》概率论部分看“随机事件与概率”。重点是样本空间、事件关系、古典概型、条件概率、全概率公式、贝叶斯公式、事件独立性。课后题先做基础计算，《1000题》概率对应基础题只做入门题。错题要写清楚“条件概率条件是谁”“独立和互斥有没有混”。这部分不要听很久课，先用题把公式用熟。",
+      "english": "阅读做 2008 年 Text 4 和 2009 年 Text 1。单词第三轮继续，年底前目标不是再开新书，而是把核心词、真题词和阅读错题反复压实。每篇阅读复盘控制在 30 分钟内，防止一篇文章拖掉数学时间。",
+      "politics": "政治不安排。你只要记住后面政治最早 2027 年 10 月进场，现在不做选择题。"
+    },
+    {
+      "week": 25,
+      "date": "2026.12.16 - 2026.12.22",
+      "title": "随机变量和常见分布要对上",
+      "message": "这一周概率论会出现很多符号。别被符号吓住，先把分布函数、概率密度、常见分布和题目语言对应起来。",
+      "math": "《张宇基础30讲》概率论部分看“一维随机变量及其分布、二维随机变量及其分布”的基础内容。离散型、连续型、分布函数、概率密度、边缘分布、条件分布先做常规题。常见分布重点看 0-1 分布、二项分布、泊松分布、均匀分布、指数分布、正态分布。课后题和《1000题》基础题同步做，错题按“分布函数不会转、积分区间写错、边缘分布漏变量”整理。",
+      "english": "阅读做 2009 年 Text 2。第三轮单词继续，开始回看 2001-2009 年做过文章里的高频生词。不要急着做近年真题，近年卷留到 2027 年更有价值，2026 年先用早年阅读练方法。",
+      "politics": "政治空着。这个时间段如果看到别人背肖四，不要跟，因为你不是今年上考场。"
+    },
+    {
+      "week": 26,
+      "date": "2026.12.23 - 2026.12.29",
+      "title": "数字特征和年底复盘一起做",
+      "message": "年底这周不要开太多新坑。概率论把数字特征做完，同时把数学和英语都整理成能接到 2027 年的状态。",
+      "math": "《张宇基础30讲》概率论部分看“随机变量数字特征”。数学期望、方差、协方差、相关系数、常见分布的期望方差要会用。课后题做基础题，《1000题》概率基础题挑常规题做。周末整理 2026 年数学清单：高数哪些章节完成、线代哪些错题要二刷、概率论开到哪里。2027 年再接 660 一阶题、澄箫宇大观和《真题一本通》，现在先把基础错题本做干净。",
+      "english": "阅读做 2009 年 Text 3 和 Text 4。第三轮单词继续，把 App 里的标红词和《真题伴侣》生词清一次。年底前不要开作文课，Monkey 作文模板课放到后面更合适。你现在英语的成果应该是：核心词过了三轮雏形，早年阅读知道怎么定位和复盘。",
+      "politics": "政治仍然不展开。后续 2027 年 1 月到 12 月本页先留空，等之后需要再接着排。"
+    },
+    {
+      "week": 27,
+      "date": "2026.12.30 - 2026.12.31",
+      "title": "两天收尾，别硬塞新内容",
+      "message": "这一周只有 12 月 30 日到 31 日两天，不要把它当完整一周塞满。做一个收口，把 2026 年前半程公共课整理清楚就行。",
+      "math": "这两天不学新章。把《张宇基础30讲》高数、线代、概率论已经做过的目录对一遍，标出三类内容：已经能独立做、看答案能懂但自己写不出、暂时没碰。每类各挑几道错题重写。重点不是刷数量，而是确认 2027 年接着走时不会找不到入口。《1000题》基础题漏做的地方只登记，不在这两天硬补。",
+      "english": "《不背单词》把第三轮未完成的复习词清一下，《真题伴侣》里 2001-2009 年阅读生词统一回看。选两篇错得多的阅读只看题干、定位句和错因，不重新做全套。给 2027 年留下一个清楚入口：单词继续滚，早年阅读错题继续回炉，近年真题暂时不动。",
+      "politics": "政治本阶段到这里仍然留空。2027 年的政治学习、真题和冲刺材料先不写在本页，避免把完整长线规划提前挤乱。"
+    }
+  ],
+  "overview": {
+    "intro": "这份页面只写公共课：数学一、英语一、政治。表单里是 2028 考研，真实初试在 2027 年 12 月左右，但这次按要求只排到 2026 年 12 月，所以本页是前小半程，不是完整总规划。2027 年 1 月到 12 月先留空，后面需要时再接着排。",
+    "strategy": "你现在是大二，平日和周末都写的是 4 小时以内，还要兼顾学校课程，所以 2026 年下半年不能把每天塞满。公共课内部先按数学 60%、英语 30%、政治 10% 的思路理解，但政治在这半年不真正占用周任务。数学一是主线，先用《张宇基础30讲》高数、线代、概率论打底，配套做课后题和《1000题》基础题；英语一从《不背单词》考研核心词和早年阅读开始，阅读用《真题伴侣》复盘生词和选项错因；政治留到 2027 年 10 月左右再集中处理，不提前看长课、不提前刷肖1000题。",
+    "math": [
+      "数学一这半年只做基础段，不碰大量模拟卷，也不急着做整套真题。",
+      "高数按《张宇基础30讲》高数册走：函数极限连续、导数与中值定理、一元积分、微分方程、多元微分、重积分、空间解析几何、曲线曲面积分、无穷级数。",
+      "线代按行列式、矩阵、向量组与方程组、特征值特征向量、二次型推进；概率论年底只开随机事件、随机变量、数字特征这些入口。",
+      "做题以课后题和《1000题》基础题为主，不会的题去 B 站按知识点搜讲解，1000题讲解可以看千羽、考研数学777、没咋了。",
+      "张宇课不建议整段整段听，讲义和题目要先动笔。超实数、微分算子法、海涅定理、压缩映射原理、stolz 这些不作为任务。"
+    ],
+    "english": [
+      "英语一这半年不买很多资料，先把《不背单词》考研核心词过三轮雏形。",
+      "7-8 月做第一轮核心词，9-10 月做第二轮，11-12 月做第三轮和真题生词回收。",
+      "阅读用英语一早年真题，从 2001 年开始往后做，先不动近年真题。每篇只抓题干定位、句子主干、选项错因和真题生词。",
+      "不精翻整篇文章，不买手译本。阅读里的生词放进《真题伴侣》，反复背它在真题里的意思。",
+      "作文课不用现在开始，Monkey 作文模板课放到后面暑期或更接近考试时再用。"
+    ],
+    "politics": [
+      "政治这半年先留空，不安排每周学习量。",
+      "2027 年 10 月左右再正式进场，材料用腿姐冲刺背诵手册、苍盾小程序、澄箫宇政治一页纸，12 月再背肖四大题。",
+      "现在不要提前刷肖1000题，也不要提前听很长的政治课。政治早开始不代表有效，反而会挤掉数学和英语。"
+    ]
+  }
+};
+        const subjectDefs = [
+            ["math", "数学一", "math"],
+            ["english", "英语一", "english"],
+            ["politics", "政治", "politics"]
+        ];
+
+        function addPill(parent, text) {
+            const span = document.createElement("span");
+            span.textContent = text;
+            parent.appendChild(span);
+        }
+
+        function fillList(id, items) {
+            const ul = document.getElementById(id);
+            items.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                ul.appendChild(li);
+            });
+        }
+
+        addPill(document.getElementById("meta-one"), `目标：${planData.student.target}`);
+        addPill(document.getElementById("meta-one"), `年份：${planData.student.exam_year} 考研`);
+        addPill(document.getElementById("meta-two"), `本页时间：${planData.student.period}`);
+        addPill(document.getElementById("meta-two"), `科目：${planData.student.subjects}`);
+        addPill(document.getElementById("meta-two"), `可用时间：${planData.student.hours}`);
+        document.getElementById("intro").textContent = planData.overview.intro;
+        document.getElementById("strategy").textContent = planData.overview.strategy;
+        fillList("math-list", planData.overview.math);
+        fillList("english-list", planData.overview.english);
+        fillList("politics-list", planData.overview.politics);
+
+        const weeksEl = document.getElementById("weeks");
+        planData.weeks.forEach((week, index) => {
+            const card = document.createElement("article");
+            card.className = `week-card${index < 2 ? " open" : ""}`;
+
+            const head = document.createElement("button");
+            head.type = "button";
+            head.className = "week-head";
+            head.setAttribute("aria-expanded", index < 2 ? "true" : "false");
+
+            const titleWrap = document.createElement("div");
+            const kicker = document.createElement("span");
+            kicker.className = "kicker";
+            kicker.textContent = `WEEK ${String(week.week).padStart(2, "0")}`;
+            const h3 = document.createElement("h3");
+            h3.textContent = week.title;
+            titleWrap.appendChild(kicker);
+            titleWrap.appendChild(h3);
+
+            const date = document.createElement("span");
+            date.className = "date";
+            date.textContent = week.date;
+            const chev = document.createElement("span");
+            chev.className = "chev";
+            chev.textContent = "⌄";
+
+            head.appendChild(titleWrap);
+            head.appendChild(date);
+            head.appendChild(chev);
+            card.appendChild(head);
+
+            const body = document.createElement("div");
+            body.className = "week-body";
+            const message = document.createElement("p");
+            message.className = "message";
+            message.textContent = week.message;
+            body.appendChild(message);
+
+            const subjects = document.createElement("div");
+            subjects.className = "subjects";
+            subjectDefs.forEach(([key, label, klass]) => {
+                const subject = document.createElement("section");
+                subject.className = `subject ${klass}`;
+                const h4 = document.createElement("h4");
+                h4.textContent = label;
+                const p = document.createElement("p");
+                p.textContent = week[key];
+                subject.appendChild(h4);
+                subject.appendChild(p);
+                subjects.appendChild(subject);
+            });
+            body.appendChild(subjects);
+            card.appendChild(body);
+
+            head.addEventListener("click", () => {
+                const isOpen = card.classList.toggle("open");
+                head.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
+            weeksEl.appendChild(card);
+        });
+
+        document.getElementById("toggle-all").addEventListener("click", (event) => {
+            const cards = [...document.querySelectorAll(".week-card")];
+            const shouldOpen = cards.some((card) => !card.classList.contains("open"));
+            cards.forEach((card) => {
+                card.classList.toggle("open", shouldOpen);
+                const head = card.querySelector(".week-head");
+                head.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
+            });
+            event.currentTarget.textContent = shouldOpen ? "收起全部" : "展开全部";
+        });
+    </script>
+</body>
+</html>
