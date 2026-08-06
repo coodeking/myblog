@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>田艺冰 801材料力学专业课规划</title>
+<style>
+:root{--bg:#f4efe6;--paper:rgba(255,255,255,.94);--ink:#261f18;--muted:#756b60;--line:#e4d5c2;--accent:#9b5a22;--deep:#1f5e54;--brick:#8b3d22;--soft:#f7ecdc;--shadow:0 24px 70px rgba(82,50,22,.13)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;color:var(--ink);font-family:"Noto Serif SC","Microsoft YaHei","PingFang SC",serif;line-height:1.78;background:radial-gradient(circle at 7% 8%,rgba(155,90,34,.16),transparent 30%),radial-gradient(circle at 93% 12%,rgba(31,94,84,.14),transparent 28%),linear-gradient(135deg,#f2dfc4 0%,#fff8ee 48%,#ead2b5 100%)}
+.wrap{width:min(1120px,calc(100% - 28px));margin:0 auto;padding:28px 0 52px}
+.hero{position:relative;overflow:hidden;border:1px solid rgba(125,82,41,.23);border-radius:30px;background:rgba(255,253,248,.9);box-shadow:var(--shadow);padding:34px;margin-bottom:20px}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(116deg,rgba(155,90,34,.08),transparent 45%,rgba(31,94,84,.08));pointer-events:none}
+.tag{position:relative;display:inline-flex;color:var(--deep);font-weight:800;letter-spacing:.05em;margin-bottom:12px}
+h1{position:relative;font-size:clamp(2rem,5vw,4rem);line-height:1.1;letter-spacing:-.04em;margin-bottom:18px;max-width:920px}
+.meta{position:relative;display:flex;flex-wrap:wrap;gap:10px;color:var(--muted)}
+.meta span{border:1px solid var(--line);background:rgba(255,255,255,.7);border-radius:999px;padding:7px 12px}
+.panel{border:1px solid var(--line);border-radius:26px;background:rgba(255,253,248,.9);padding:24px;margin-bottom:20px;box-shadow:0 16px 46px rgba(82,50,22,.08)}
+h2{font-size:1.38rem;margin-bottom:12px;letter-spacing:-.02em}
+.strategy{border:1px solid rgba(125,82,41,.16);border-radius:18px;background:#fff6e9;padding:15px 17px;color:#43372c;white-space:pre-line;margin-bottom:14px}
+.overview{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
+.course{border:1px solid var(--line);border-radius:20px;background:var(--paper);padding:17px;text-align:left;box-shadow:inset 4px 0 0 var(--accent)}
+.course:nth-child(2){box-shadow:inset 4px 0 0 var(--deep)}
+.course:nth-child(3){box-shadow:inset 4px 0 0 var(--brick)}
+.course:nth-child(4){box-shadow:inset 4px 0 0 #7b6a45}
+.course h3{font-size:1.02rem;margin-bottom:8px;color:#5a361d}
+.course p{color:#474039;font-size:.96rem}
+.blocks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.block{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#fffdf8,#f8ecdd);padding:16px;min-height:150px}
+.block b{display:block;color:var(--deep);margin-bottom:4px}
+.block em{display:block;font-style:normal;color:var(--accent);font-weight:800;margin-bottom:8px}
+.block span{color:var(--muted);font-size:.94rem}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:24px 0 15px;color:var(--muted);flex-wrap:wrap}
+button{border:0;border-radius:999px;background:#2a2118;color:#fffaf1;padding:10px 17px;cursor:pointer;font:inherit;font-weight:800}
+.weeks{display:grid;gap:14px}
+.week-card{border:1px solid var(--line);border-radius:24px;background:rgba(255,253,248,.93);overflow:hidden;box-shadow:0 10px 34px rgba(82,50,22,.08)}
+.week-card.open{border-color:rgba(155,90,34,.42)}
+.week-head{width:100%;display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;background:transparent;color:var(--ink);border:0;border-radius:0;padding:18px 20px;text-align:left}
+.week-head:hover{background:rgba(247,236,220,.64)}
+.kicker{display:block;color:var(--muted);font-size:.82rem;letter-spacing:.08em}
+.week-head h3{font-size:1.08rem;line-height:1.42}
+.date{color:var(--muted);white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.9rem}
+.chev{color:var(--muted)}
+.week-body{display:none;border-top:1px solid var(--line);padding:18px 20px 20px;background:rgba(255,255,255,.38)}
+.week-card.open .week-body{display:block}
+.week-body p{white-space:pre-line;color:#3f3933;font-size:1rem}
+footer{text-align:center;color:var(--muted);margin-top:26px;font-size:.92rem}
+@media(max-width:1050px){.overview,.blocks{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.overview,.blocks{grid-template-columns:1fr}.week-head{grid-template-columns:1fr}.date{white-space:normal}.hero{padding:24px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero">
+<div class="tag">801材料力学专业课-only</div>
+<h1 id="title"></h1>
+<div class="meta">
+<span id="target"></span>
+<span id="exam"></span>
+<span id="period"></span>
+<span id="subject"></span>
+</div>
+</header>
+<section class="panel">
+<h2>这份表怎么用</h2>
+<div class="strategy" id="intro"></div>
+<div class="strategy" id="strategy"></div>
+<div class="overview" id="materials"></div>
+</section>
+<section class="panel">
+<h2>阶段安排</h2>
+<div class="blocks" id="blocks"></div>
+</section>
+<div class="toolbar"><span id="countText"></span><button id="toggleAll" type="button">展开全部</button></div>
+<section class="weeks" id="weeks"></section>
+<footer>本页只写田艺冰同学的801材料力学专业课安排。</footer>
+</main>
+<script>
+const planData = {
+  "student": {
+    "name": "田艺冰",
+    "target": "石家庄铁道大学 / 081400 土木工程",
+    "exam": "2027考研，按2026年12月20日初试排",
+    "period": "2026.08.10 - 2026.12.20",
+    "weeks": 19,
+    "subject": "801 材料力学",
+    "hours": "专业课每天按2-4小时设计，基础周偏理解和例题，9月以后逐步加题量",
+    "status": "已毕业，本科土木相关，专业课按零基础重新起步，主要问题是还没正式开始、概念和计算题都要从头稳住"
+  },
+  "overview": {
+    "intro": "这份表只写801材料力学。石家庄铁道大学当前公开大纲里，材料力学考选择、填空、计算这类客观题和主观题，核心不是背目录，而是会画内力图、会算应力和位移、会把强度条件写到题里。你现在还没正式开始，日均专业课时间大概2-4小时，所以这份计划不按“先把书看完再说”来排，而是每章都让你边看边算。\n\n资料先固定三类。第一类是学校参考书口径里的孙训方等《材料力学》1、2册第六版，用它确认概念、公式来龙去脉和教材例题。第二类是你手里的《材料力学考研复习全书》，这本按章节做主线，目录里有绪论、轴向拉压、扭转、弯曲内力、截面几何性质、弯曲应力、梁位移、应力状态、组合变形、压杆稳定、能量法、超静定、动荷载交变应力等章节，和学校大纲能对上。第三类是真题和同类院校材料力学习题，真题拿到后立刻按年份、题型、章节拆开，不拿它当摆设。",
+    "strategy": "每章按同一个顺序走：先看孙训方教材对应小节，把符号、正负号、适用条件写清楚；再看《材料力学考研复习全书》对应章节的例题，把解题步骤抄一遍但不能只抄结论；接着自己做本章综合练习题；最后把错题按“受力图错、内力图错、公式条件错、计算错、单位错”分到电子错题本里。\n\n9月中旬会有完整版大纲和2小时讲解视频，这个时间点不需要停下来等资料。8月到9月上旬先把轴向拉压、扭转、弯曲、截面几何性质这些基础章节做起来。拿到讲解后，用一晚把讲解里提到的重点标到这份表里，再把后面几周题量做一次微调。真题买到或拿到后，先不要一整套硬做，先按章节切开，和正在学的章节一起用。",
+    "materials": [
+      "主教材：孙训方等《材料力学》1、2册第六版，高等教育出版社。用来确认概念、基本公式、推导条件、教材例题。",
+      "章节主线：《材料力学考研复习全书》。按第1章绪论，第2章轴向拉伸和压缩，第3章扭转，第4章弯曲内力，第5章截面几何性质，第6章弯曲应力，第7章梁弯曲时位移，第8章应力状态和强度理论，第9章组合变形及连接部分计算，第10章压杆稳定，第11章能量法，第12章超静定问题，第13章动荷载和交变应力来走。",
+      "做题资料：先做复习全书每章综合练习题和教材例题、课后题；9月中旬后加入学校真题、内部重点题和同类院校材料力学计算题。题不在多套资料之间乱跳，先把同一章的典型题做熟。",
+      "无纸化方法：平板或电脑建4个固定文档：公式表、例题步骤、错题本、真题拆分表。错题只写必要信息，不整页抄答案，每题保留错误原因和下次重做日期。"
+    ],
+    "blocks": [
+      [
+        "8月10日-9月13日",
+        "基础起步",
+        "先把拉压、扭转、弯曲内力、截面几何性质和弯曲应力打开。这个月不追求快，重点是把内力图、正负号、单位、应力和变形公式算顺。"
+      ],
+      [
+        "9月14日-10月18日",
+        "按大纲加题",
+        "拿到完整版大纲和讲解后复核重点，继续做梁位移、超静定、应力状态、组合变形。题量开始加，每章至少做一轮综合练习。"
+      ],
+      [
+        "10月19日-11月22日",
+        "稳定、能量法和专题",
+        "压杆稳定、能量法、动荷载交变应力补齐，同时开始按题型做专题训练，特别是计算题的完整书写和答案格式。"
+      ],
+      [
+        "11月23日-12月20日",
+        "真题和回炉",
+        "把真题、错题、公式、易混章节集中回炉。后期不再换资料，完整套卷和章节错题交替做，最后一周只保熟题和公式。"
+      ]
+    ]
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "date": "2026.08.10 - 2026.08.16",
+      "phase": "基础起步",
+      "title": "把801材料力学资料和学习流程搭起来，先学绪论和轴向拉压开头",
+      "body": "这周是专业课起步周，不要一上来就翻很多资料。先把孙训方《材料力学》1册和《材料力学考研复习全书》放到同一个目录里，电子笔记建好四个文件：公式表、例题步骤、错题本、真题拆分表。正式学习从复习全书第1章绪论开始，看§1-1材料力学的基本任务、§1-2可变形固体的基本假设、§1-3外力内力和应力、§1-4变形与应变、§1-5构件变形的四种基本形式。这里不要背大段定义，重点是知道轴力、扭矩、剪力、弯矩分别从哪里来，截面法为什么要先切开，再列平衡。\n\n后半周进入第2章轴向拉伸和压缩，先做到§2-1拉伸与压缩的概念和实例、§2-2横截面上的内力和应力。任务量控制在20-30道小题和例题重做，主要练轴力图、截面法、拉压正负号、单位换算。每做完一道题都要问自己三件事：截面切在哪里、轴力方向怎么设、最后应力单位是不是MPa。不要急着把第2章整章学完，第一周先把手感找回来，尤其是零基础起步时，图画错比公式背不熟更麻烦。"
+    },
+    {
+      "week": 2,
+      "date": "2026.08.17 - 2026.08.23",
+      "phase": "基础起步",
+      "title": "完成轴向拉伸和压缩：强度、变形、胡克定律和材料力学性能",
+      "body": "这周把复习全书第2章轴向拉伸和压缩补完整，对照孙训方教材把§2-3拉伸与压缩时的变形与位移、§2-4拉伸与压缩的应变能、§2-5材料拉伸与压缩时的力学性能、§2-6强度条件安全因数和许用应力、§2-7应力集中的概念做完。学校大纲把轴力计算、轴力图、横截面和斜截面应力、强度条件、胡克定律、变形计算都标成重点，所以这一章不能只看例题，要自己算到能把步骤写完整。\n\n题量按45-60题安排，其中简单概念题和选择填空大概20题，计算题25-35题。计算题重点做三类：分段杆轴力图和应力计算、强度条件反求截面或荷载、静不定拉压杆的变形协调雏形。错题本这周开始按原因分类：轴力方向设错、斜截面公式混、EA变形公式少长度、材料低碳钢和铸铁特性记反。每晚最后15分钟把本章公式表整理一遍，公式旁边必须写适用条件，比如σ=N/A只用于轴向拉压横截面正应力，不能看到力就硬套。"
+    },
+    {
+      "week": 3,
+      "date": "2026.08.24 - 2026.08.30",
+      "phase": "基础起步",
+      "title": "扭转整章：扭矩图、圆轴剪应力、强度条件和刚度条件",
+      "body": "这周做复习全书第3章扭转，按§3-1概述、§3-2传动轴的外力偶矩和扭矩图、§3-3薄壁圆筒的扭转、§3-4等直圆杆扭转的应力和强度条件、§3-5等直圆杆扭转的变形和刚度条件、§3-6扭转应变能、§3-7等直非圆杆自由扭转时的应力和变形推进。学校大纲里圆轴扭转的扭矩图、横截面和斜截面应力、强度计算、刚度计算都是重点，非圆杆自由扭转只做到了解，不要在偏题上耗太久。\n\n这周题量按45-55题。前半周用例题把T图画顺，特别是有多个外力偶矩时，先统一正方向，再一段一段写内力。后半周做圆轴强度和刚度计算，必须把τmax=TRp/Ip、φ=TL/GIp、Wp和Ip的区别写清楚。扭转这一章很容易看懂但一做题就错，原因通常是极惯性矩和抗扭截面系数混、直径半径漏平方或四次方、角度单位没有从弧度转过来。错题回写时不要只写正确答案，要把错的公式和正确公式并排写一次。"
+    },
+    {
+      "week": 4,
+      "date": "2026.08.31 - 2026.09.06",
+      "phase": "基础起步",
+      "title": "弯曲内力和截面几何性质开头：剪力图、弯矩图、形心和静矩",
+      "body": "这周进入弯曲主线。先做复习全书第4章弯曲内力，按§4-1对称弯曲的概念及梁的计算简图、§4-2梁的剪力和弯矩及剪力图和弯矩图、§4-3平面刚架和曲杆的内力图推进。学校大纲把梁的内力计算、平面刚架和曲杆内力计算、弯矩剪力与分布荷载集度的微分关系都放在弯曲应力部分前面，这里要当成大题基础来练。内力图不能靠眼睛猜，步骤固定为先求支座反力，再分段列方程，最后用q、Fs、M之间的关系检查图形。\n\n后半周开始第5章截面几何性质，先看§5-1截面的静矩和形心位置。题量按55-65题安排，弯曲内力题要占大头。建议这周把常见梁型单独整理成电子表：简支梁集中力、简支梁均布载、悬臂梁端力、悬臂梁均布载、外伸梁、带集中力偶的梁。截面几何性质先不要贪多，能把组合截面的形心坐标算准就行。这个阶段如果内力图不稳，后面弯曲应力、梁位移、能量法都会跟着乱。"
+    },
+    {
+      "week": 5,
+      "date": "2026.09.07 - 2026.09.13",
+      "phase": "基础起步",
+      "title": "截面几何性质收完整，再进入弯曲应力的正应力和切应力",
+      "body": "这周先把复习全书第5章截面几何性质做完整：§5-2极惯性矩、惯性矩和惯性积，§5-3平行移轴公式，§5-4主惯性矩和惯性积的转轴公式。学校大纲里截面静矩、形心、惯性矩、惯性积、平行移轴公式都是重点，这章虽然看起来像数学计算，但它会直接影响弯曲应力、组合变形、压杆稳定里的I值。每一道组合截面题都要画坐标轴，先求形心，再移轴，不要把各小块自己的形心轴惯性矩直接相加当答案。\n\n后半周进入第6章弯曲应力，先做§6-1梁横截面上的正应力和梁的正应力强度条件、§6-2梁横截面上的切应力和梁的切应力强度条件、§6-3非对称纯弯曲梁的正应力。题量按50-60题，其中截面几何性质20题左右，弯曲应力30题左右。弯曲应力题要把M、I、y的位置写清楚，最大拉应力和最大压应力不要只凭感觉判断。到这周结束，电子公式表里应该已经有拉压、扭转、弯曲正应力、弯曲切应力、截面几何性质五块内容。"
+    },
+    {
+      "week": 6,
+      "date": "2026.09.14 - 2026.09.20",
+      "phase": "按大纲加题",
+      "title": "拿大纲讲解后复核重点，补完弯曲应力和梁的合理设计",
+      "body": "这周时间点比较重要，9月中旬拿到完整版大纲和2小时讲解视频后，用一晚把讲解里明确强调的题型、章节和易错点标到电子真题拆分表里。不要因为有新资料就推翻前面学过的内容，先对照学校公开大纲检查：轴向拉压、扭转、弯曲内力、弯曲应力、梁位移、超静定、应力状态、组合变形、压杆稳定、能量法、动荷载、截面几何性质这些主线是否都在表里。讲解视频只看一遍，边看边记题型，不要反复听。\n\n本周学习内容是复习全书第6章剩余部分：§6-4开口薄壁截面梁的切应力与弯曲中心、§6-5两种材料的组合梁、§6-6梁的合理设计，再做第6章综合练习题。题量按60题左右安排，其中弯曲应力综合题40题，前面拉压、扭转、截面几何性质回炉20题。弯曲应力这章的检查点是：能不能从内力图找到危险截面，能不能从截面几何性质找到危险点，能不能用强度条件反推截面尺寸或许可荷载。"
+    },
+    {
+      "week": 7,
+      "date": "2026.09.21 - 2026.09.27",
+      "phase": "按大纲加题",
+      "title": "梁弯曲时的位移：挠曲线微分方程、积分法、叠加法和刚度条件",
+      "body": "这周做复习全书第7章梁弯曲时的位移，按§7-1梁的位移、挠度及转角，§7-2梁的挠曲线近似微分方程及其积分，§7-3叠加原理计算梁的挠度和转角，§7-4梁的刚度校核和提高梁刚度的措施推进。学校大纲里积分法和叠加法都是重点，梁刚度条件和弯曲应变能也要掌握。学习时不要只背简支梁公式，先理解边界条件怎么来，哪些位置挠度为0，哪些位置转角连续。\n\n题量按50-60题。前半周做积分法，题目不求难，但每题要完整写出边界条件和连续条件。后半周做叠加法，整理常见标准梁的挠度和转角公式，做题时先拆荷载，再查公式，再叠加。梁位移题最容易出的问题是符号和边界条件乱，所以电子错题本要专门开一个“位移条件”小类。到周末再做一组弯曲内力和弯曲应力回顾题，因为梁位移里的M(x)一错，后面全错。"
+    },
+    {
+      "week": 8,
+      "date": "2026.09.28 - 2026.10.04",
+      "phase": "按大纲加题",
+      "title": "简单超静定问题：拉压、扭转、弯曲三类都要会列协调条件",
+      "body": "这周做复习全书第12章超静定问题，按§12-1三类基本超静定问题、§12-2组合截面梁、§12-3温度超静定问题、§12-4装配超静定问题、§12-5力法求解超静定结构、§12-6对称性的应用推进。学校大纲要求会用几何、物理、静力三方面条件求拉压、扭转、弯曲等简单超静定问题，这一章要特别重视“多一个未知量，就要多一个变形协调条件”。\n\n题量按45-55题，不追难题，先把标准题写顺。拉压超静定重点练并联杆、温度变化、装配误差；扭转超静定重点练两端固定圆轴；弯曲超静定重点练一端固定一端支承、连续梁的简单力法。每题都按三步写：静力平衡方程、变形协调方程、本构关系或位移公式。国庆这周如果状态不稳，也不能把专业课断掉，至少保证每天重做2道本章例题或错题，别让前面内力图和变形公式掉线。"
+    },
+    {
+      "week": 9,
+      "date": "2026.10.05 - 2026.10.11",
+      "phase": "按大纲加题",
+      "title": "应力状态和强度理论：解析法、应力圆、广义胡克定律和四个强度理论",
+      "body": "这周做复习全书第8章应力状态和强度理论，按§8-1一点处应力状态、§8-2平面应力状态解析法、§8-3平面应力状态图解法、§8-4空间应力状态、§8-5广义胡克定律、§8-6空间应力状态下的应变能密度、§8-7强度理论推进。学校大纲把平面应力状态解析法、应力圆、广义胡克定律、体应变和四个强度理论都列为重点，这章是后面组合变形和复杂强度题的基础。\n\n题量按55-65题。前半周把主应力、主平面、最大切应力、应力圆画法做熟；后半周重点做强度理论，能判断脆性材料和塑性材料通常用哪个理论，能把危险点的应力状态代入对应表达式。错题本这周要记录两类问题：第一是角度符号和2θ关系错，第二是强度理论套错。不要把应力状态学成纯公式，做每道题都先画出微元体和受力方向，图画清楚以后公式才不容易乱。"
+    },
+    {
+      "week": 10,
+      "date": "2026.10.12 - 2026.10.18",
+      "phase": "按大纲加题",
+      "title": "组合变形和连接件：弯拉、弯扭、剪切挤压都按危险点写清楚",
+      "body": "这周做复习全书第9章组合变形及连接部分的计算，按§9-1两相互垂直平面内的弯曲、§9-2拉压弯曲、§9-3弯扭组合与弯拉压扭组合、§9-4剪切与挤压推进。学校大纲要求会分析组合变形问题中的内力、应力和变形，会用强度条件和强度理论做强度计算，也要求掌握连接件的剪切和挤压实用计算。组合变形题的关键不是公式多，而是找危险截面和危险点。\n\n题量按55-65题。前半周做斜弯曲、拉压弯曲，先把截面上哪些点受拉、哪些点受压判断清楚；后半周做弯扭组合和连接件，弯扭题要和第8章强度理论连起来，连接件题要区分剪切面面积和挤压面积。每道组合题最后都要写一句检查：危险点取哪里、用的是正应力还是切应力、强度理论是否符合题目材料。到这周结束，基础大纲的主体章节已经过了大半，后面开始补压杆稳定、能量法和动荷载。"
+    },
+    {
+      "week": 11,
+      "date": "2026.10.19 - 2026.10.25",
+      "phase": "稳定和能量法",
+      "title": "压杆稳定：欧拉公式、约束长度、柔度分类和安全系数法",
+      "body": "这周做复习全书第10章压杆稳定，按§10-1压杆稳定性的概念、§10-2两端铰支细长中心受压直杆临界力的欧拉公式、§10-3不同杆端约束下细长压杆的欧拉公式、§10-4欧拉公式适用范围和临界应力、§10-5实际压杆的稳定因数、§10-6提高压杆稳定性的措施推进。学校大纲把压杆稳定概念、欧拉公式、非细长压杆临界压力、安全系数法和折减系数法都列为重点。\n\n题量按45-55题。学习时先把有效长度系数μ和约束形式对应起来，再算柔度λ，不要上来就套欧拉公式。细长杆、非细长杆、短粗杆的判断要写在题目步骤里，因为很多错题不是算错，而是公式适用范围没判断。折减系数表如果讲解资料里有，就在这周整理成电子表；如果真题里出现过稳定设计题，就把题目按“求临界力、验算稳定、反求截面、合理设计”四类归档。"
+    },
+    {
+      "week": 12,
+      "date": "2026.10.26 - 2026.11.01",
+      "phase": "稳定和能量法",
+      "title": "能量法：应变能、卡氏第二定理、单位荷载法和简单超静定",
+      "body": "这周做复习全书第11章能量法，按§11-1能量法概述、§11-2互等定理、§11-3应变能和余能、§11-4卡氏第一定理、§11-5卡氏第二定理、§11-6单位荷载法推进。学校大纲强调线弹性杆件应变能计算、卡氏第二定理求静定结构位移、用卡氏第二定理解简单超静定结构。单位荷载法虽然在大纲里没有单独展开，但它和位移计算互相验证，做题时很有用。\n\n题量按45-55题。先练轴向拉压、扭转、弯曲的应变能表达式，再做卡氏第二定理求位移，最后接简单超静定。每道能量法题都要先判断内力表达式怎么写，积分区间怎么分，不能直接找最终公式。错题本里把积分上限、内力表达式、求偏导对象三类错误分开。到周末做一组混合题，把第7章梁位移、第12章超静定、第11章能量法放在一起，因为学校大纲里这几块经常连成一道计算题。"
+    },
+    {
+      "week": 13,
+      "date": "2026.11.02 - 2026.11.08",
+      "phase": "稳定和能量法",
+      "title": "动荷载和交变应力：等加速、匀速转动、自由落体冲击和疲劳概念",
+      "body": "这周做复习全书第13章动荷载和交变应力，按§13-1惯性力问题、§13-2冲击荷载、§13-3提高构件抵抗冲击能力的措施、§13-4材料的疲劳破坏推进。学校大纲要求掌握动载荷概念，会做构件等加速直线运动或匀速转动时的动应力计算，会做自由落体冲击时的动应力计算，了解水平冲击、突然制动和交变应力疲劳破坏。\n\n题量按35-45题即可，这章不需要刷到很偏。重点是把静载应力、动荷系数、冲击高度、弹簧刚度或杆件变形之间的关系写清楚。自由落体冲击题先用能量思路，不要只背冲击系数。交变应力和疲劳破坏部分以选择、填空、简答口径准备，整理疲劳极限、应力循环、对称循环、非对称循环这些基本词。到这周结束，第一轮内容基本完整，后面不要再开新资料，主要靠专题题和真题把会的内容变成能写出来。"
+    },
+    {
+      "week": 14,
+      "date": "2026.11.09 - 2026.11.15",
+      "phase": "专题和真题",
+      "title": "第一轮专题：内力图、截面性质、应力强度三条线合在一起练",
+      "body": "这周开始从章节学习转到专题训练。先把手里的真题或已买到的资料按题型拆开，建立年份、题型、章节、错误原因四列。没有必要一上来整套限时，先做专题。第一条线是内力图：轴力图、扭矩图、剪力图、弯矩图、平面刚架内力图，每天至少做4-6个图。第二条线是截面几何性质：形心、静矩、惯性矩、惯性积、平行移轴公式，每天做2-3题。第三条线是强度计算：拉压、扭转、弯曲、组合变形，每天做3-4道计算题。\n\n总题量按70题左右安排，但不要只追数量。每一道计算题都按考试格式写，不再只在草稿上算结果。尤其是弯曲正应力、切应力、组合变形和强度理论题，必须写危险截面、危险点、强度条件和结论。周末用半天把这周错题按章节回填：如果内力图错，就回第4章；如果I值错，就回第5章；如果强度理论错，就回第8章。这个回填比继续刷新题更重要。"
+    },
+    {
+      "week": 15,
+      "date": "2026.11.16 - 2026.11.22",
+      "phase": "专题和真题",
+      "title": "第二轮专题：梁位移、超静定、能量法和压杆稳定集中训练",
+      "body": "这周做第二轮专题，重点放在容易拉开分的计算题上。梁位移专题做积分法、叠加法、刚度条件；超静定专题做拉压、扭转、弯曲三类简单超静定；能量法专题做应变能、卡氏第二定理、单位荷载法；压杆稳定专题做欧拉公式、柔度分类、安全系数法和折减系数法。每个专题至少做一组例题重写和一组新题，别只看答案。\n\n题量按60-70题安排，其中完整大题不少于25道。每道大题限时训练，简单题15分钟以内，中等题25分钟以内，超过时间就先看答案第一步，弄清思路后合上答案重写。错题回写要写出“下次第一步怎么做”，比如梁位移题第一步先列M(x)，能量法第一步先找内力表达式，压杆稳定第一步先判断约束和柔度。到周末做一次小模拟：选择填空一组加4道计算题，时间控制在2小时内，主要看书写速度和计算准确率。"
+    },
+    {
+      "week": 16,
+      "date": "2026.11.23 - 2026.11.29",
+      "phase": "专题和真题",
+      "title": "开始成套卷和真题回炉：一套卷拆成订正、重做、补章三步",
+      "body": "这周进入成套训练。把已经拿到的801真题、内部资料题或同类院校材料力学卷按套来做，至少完成2套完整卷或等量综合卷。第一次做不要翻书，按考试时间写；订正时不要只标红答案，而是把每道错题归到章节里。材料力学成套卷里常见的链条是：先画内力图，再用截面性质求I，再做弯曲应力或位移，再接强度或刚度条件。只要前面一步错，后面分数就会掉很多。\n\n这周还要把公式表压到可复习状态。每个公式旁边写三个东西：适用对象、常见已知量、容易错的单位。比如压杆稳定公式旁边写约束、长度系数、柔度判断；能量法公式旁边写积分变量和内力表达式；弯曲应力公式旁边写危险点。题量不用再无限加，核心是2套综合卷、30道章节错题重做、20道选择填空。周末复盘时把错题按“必须会”“可以会”“太偏先放”分层，最后三周只保必须会和常规题。"
+    },
+    {
+      "week": 17,
+      "date": "2026.11.30 - 2026.12.06",
+      "phase": "冲刺回炉",
+      "title": "套卷二刷和错题压缩，12月5日前后低强度也要保专业课手感",
+      "body": "这周继续做套卷，但重点从新题转向错题压缩。前半周完成1-2套综合卷，做完后立刻订正，第二天把错题不看答案重写一遍。每套卷都要统计选择填空丢分、计算题丢分、书写不完整丢分。计算题如果只是算错，错题本里要写具体算错的位置；如果是思路错，就回到对应章节重做2道同类题。\n\n12月5日前后如果有搬东西或路上时间，专业课不要安排大套卷，只保三个小任务：背公式表30分钟，重画2个内力图，重做2道曾经错过的计算题。低强度那几天的目标不是推进新内容，而是不断手。到周末把公式表压缩成考前版：轴向拉压、扭转、弯曲、截面性质、位移、超静定、应力状态、组合变形、压杆稳定、能量法、动荷载各一页以内。"
+    },
+    {
+      "week": 18,
+      "date": "2026.12.07 - 2026.12.13",
+      "phase": "冲刺回炉",
+      "title": "最后一轮完整训练：常规题必须稳，偏题不要抢时间",
+      "body": "这周按考前强度处理。12月7日到8日如果还在收拾或路上，就只做公式、选择填空和错题重写；从12月9日开始恢复完整训练。完成2套综合卷或真题卷，每套做完后当天订正，第二天上午重做错题。不要再新开一本习题册，也不要在网上乱搜偏题。石家庄铁道大学大纲里的重点很清楚，最后阶段要保证常规题拿分：内力图、轴向拉压强度和变形、圆轴扭转强度和刚度、梁弯曲应力和位移、简单超静定、应力状态、组合变形、压杆稳定、能量法。\n\n这周题量按2套卷、40道错题、30道选择填空安排。每次订正都要补一句“考场上我下一次第一步写什么”。比如看到梁题先求支反力和内力图，看到组合变形先找危险截面和危险点，看到压杆稳定先判断约束和柔度，看到能量法先写内力表达式。周末把近一个月所有错题再筛一遍，只留下还会错的题，其他题不再反复看。"
+    },
+    {
+      "week": 19,
+      "date": "2026.12.14 - 2026.12.20",
+      "phase": "冲刺回炉",
+      "title": "考前最后一周：公式、错题、常规计算题，不再碰新难题",
+      "body": "最后一周不要再扩内容。前四天每天按一套小组合来做：20-30分钟公式表，1组选择填空，3道计算题，1小时错题重写。计算题只选常规题，覆盖轴向拉压、扭转、弯曲应力、梁位移、超静定、应力状态、组合变形、压杆稳定、能量法。每题都按考试格式写完整，尤其是强度条件、单位、危险截面、危险点、最后结论。不要为了多看几道新题牺牲睡眠和稳定性。\n\n考前两三天只看考前版公式表和错题本里的高频错误。重点检查：截面法和内力图正负号，惯性矩和抗扭截面系数是否混，梁位移边界条件，强度理论选择，欧拉公式适用范围，卡氏第二定理求偏导对象，动荷载冲击题的能量关系。考试当天进场前不再翻长答案，只看自己压缩过的公式和错误清单。801材料力学最后拼的是常规题稳定书写，不是临场想新方法。"
+    }
+  ]
+};
+const setText = (id, text) => { document.getElementById(id).textContent = text; };
+setText("title", `${planData.student.name} 801材料力学专业课规划`);
+setText("target", `目标：${planData.student.target}`);
+setText("exam", planData.student.exam);
+setText("period", `周期：${planData.student.period}`);
+setText("subject", `科目：${planData.student.subject}`);
+setText("intro", planData.overview.intro);
+setText("strategy", planData.overview.strategy);
+setText("countText", `共 ${planData.weeks.length} 周，默认展开前两周`);
+
+const materialTitles = ["主教材", "章节主线", "做题资料", "无纸化方法"];
+const materials = document.getElementById("materials");
+planData.overview.materials.forEach((item, index) => {
+    const card = document.createElement("article");
+    card.className = "course";
+    card.innerHTML = `<h3>${materialTitles[index]}</h3><p>${item}</p>`;
+    materials.appendChild(card);
+});
+
+const blocks = document.getElementById("blocks");
+planData.overview.blocks.forEach((item) => {
+    const card = document.createElement("article");
+    card.className = "block";
+    card.innerHTML = `<b>${item[0]}</b><em>${item[1]}</em><span>${item[2]}</span>`;
+    blocks.appendChild(card);
+});
+
+const weeksNode = document.getElementById("weeks");
+planData.weeks.forEach((week, index) => {
+    const card = document.createElement("article");
+    card.className = `week-card${index < 2 ? " open" : ""}`;
+    const head = document.createElement("button");
+    head.className = "week-head";
+    head.type = "button";
+    head.innerHTML = `
+        <div>
+            <span class="kicker">第${week.week}周 · ${week.phase}</span>
+            <h3>${week.title}</h3>
+        </div>
+        <span class="date">${week.date}</span>
+        <span class="chev">${index < 2 ? "收起" : "展开"}</span>
+    `;
+    const body = document.createElement("div");
+    body.className = "week-body";
+    const p = document.createElement("p");
+    p.textContent = week.body;
+    body.appendChild(p);
+    head.addEventListener("click", () => {
+        card.classList.toggle("open");
+        head.querySelector(".chev").textContent = card.classList.contains("open") ? "收起" : "展开";
+    });
+    card.appendChild(head);
+    card.appendChild(body);
+    weeksNode.appendChild(card);
+});
+
+const toggle = document.getElementById("toggleAll");
+toggle.addEventListener("click", () => {
+    const cards = Array.from(document.querySelectorAll(".week-card"));
+    const shouldOpen = cards.some((card) => !card.classList.contains("open"));
+    cards.forEach((card) => {
+        card.classList.toggle("open", shouldOpen);
+        card.querySelector(".chev").textContent = shouldOpen ? "收起" : "展开";
+    });
+    toggle.textContent = shouldOpen ? "收起全部" : "展开全部";
+});
+</script>
+</body>
+</html>
