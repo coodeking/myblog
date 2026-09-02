@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小戴 管综专业课分周规划（16周版）</title>
+    <style>
+        :root {
+            --bg-color: #f7f4ee;
+            --paper-strong: #ffffff;
+            --text-color: rgba(0, 0, 0, 0.92);
+            --muted: #6b665e;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --accent: #7c5cff;
+            --accent-soft: #f3efff;
+            --accent-deep: #5d3fe0;
+            --math: #2f6fed;
+            --logic: #0f9f73;
+            --writing: #d18c18;
+            --shadow: rgba(15, 23, 42, 0.08) 0 20px 45px -24px, rgba(15, 23, 42, 0.08) 0 10px 20px -18px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: radial-gradient(circle at top, rgba(124, 92, 255, 0.12), transparent 28%), linear-gradient(180deg, #fbfaf7 0%, var(--bg-color) 100%);
+            color: var(--text-color);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container { max-width: 1040px; margin: 0 auto; padding: 28px 20px 56px; }
+        header {
+            text-align: left;
+            padding: 34px 34px 30px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(250,247,241,0.94) 100%);
+            border-radius: 28px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            inset: auto -40px -70px auto;
+            width: 220px;
+            height: 220px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.18), rgba(124, 92, 255, 0));
+            pointer-events: none;
+        }
+        header h1 {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            line-height: 1.1;
+            color: var(--text-color);
+            letter-spacing: -0.04em;
+            margin-bottom: 18px;
+            max-width: 820px;
+        }
+        .meta { color: var(--muted); font-size: 0.98rem; display: flex; flex-wrap: wrap; gap: 10px 12px; }
+        .meta span {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.72);
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .overview {
+            background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(248,245,240,0.96) 100%);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 28px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+        .overview h2 { margin-bottom: 18px; font-size: 1.34rem; letter-spacing: -0.02em; }
+        .strategy {
+            margin-bottom: 16px;
+            padding: 16px 18px;
+            background: var(--paper-strong);
+            border-radius: 18px;
+            border: 1px solid rgba(124, 92, 255, 0.14);
+            color: #2b2925;
+            line-height: 1.9;
+            font-size: 1rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+        .grid-box { display: grid; gap: 16px; margin-bottom: 20px; }
+        .grid-item {
+            padding: 20px;
+            border-radius: 20px;
+            background: var(--paper-strong);
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .grid-math { box-shadow: inset 3px 0 0 var(--math); }
+        .grid-logic { box-shadow: inset 3px 0 0 var(--logic); }
+        .grid-writing { box-shadow: inset 3px 0 0 var(--writing); }
+        h3 { margin-bottom: 12px; font-size: 1.08rem; }
+        .grid-math h3 { color: var(--math); }
+        .grid-logic h3 { color: var(--logic); }
+        .grid-writing h3 { color: var(--writing); }
+        ul { margin-left: 20px; color: #3e3a34; }
+        li { margin-bottom: 10px; }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .toolbar-note { color: var(--muted); font-size: 0.95rem; }
+        .expand-all button {
+            background: var(--text-color);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.96rem;
+            font-weight: 600;
+            box-shadow: 0 10px 18px -14px rgba(0,0,0,0.45);
+        }
+        .expand-all button:hover { background: var(--accent-deep); transform: translateY(-1px); }
+        .weeks-list { display: grid; gap: 16px; }
+        .week-card {
+            background: rgba(255,255,255,0.88);
+            border-radius: 22px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 18px 36px -28px rgba(0,0,0,0.15);
+        }
+        .week-header {
+            background: linear-gradient(90deg, rgba(124, 92, 255, 0.14), rgba(124, 92, 255, 0.03));
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            gap: 12px;
+        }
+        .week-header h3 { font-size: 1.05rem; color: var(--accent-deep); margin: 0; }
+        .week-header .dates { color: #77706a; font-size: 0.92rem; font-family: monospace; white-space: nowrap; }
+        .week-content { padding: 20px; display: none; }
+        .week-content.active { display: block; }
+        .message {
+            background: rgba(124, 92, 255, 0.08);
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent);
+            color: #2d2a27;
+            line-height: 1.75;
+            font-size: 0.96rem;
+        }
+        .subject {
+            background: rgba(255,255,255,0.9);
+            border-radius: 14px;
+            padding: 16px 16px 14px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .subject-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        .subject-body { color: #3a3733; line-height: 1.8; font-size: 0.96rem; white-space: normal; }
+        .subject.math .subject-title { color: var(--math); }
+        .subject.logic .subject-title { color: var(--logic); }
+        .subject.writing .subject-title { color: var(--writing); }
+        .footer-note {
+            margin-top: 24px;
+            color: var(--muted);
+            font-size: 0.92rem;
+            text-align: center;
+        }
+        @media (min-width: 900px) {
+            .grid-box { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>小戴 管综专业课分周规划（16周版）</h1>
+            <div class="meta"><span>目标院校：福州大学</span><span>考试时间：2026.12.20</span><span>起步：2026.09.03</span><span>总周数：16 周</span><span>状态：在职</span><span>时长：4-6h</span></div>
+        </header>
+
+        <section class="overview">
+            <h2>先把这条线说清楚</h2>
+            <p class="strategy">这份页子只管管综专业课，不碰公共课。按你现在在职、每天 4-6 小时、9 月 3 日起步来排，工作日就拆成小块，周末再把成套练习补上。</p>
+<p class="strategy">199 管理类综合能力是 180 分钟闭卷，数学 75 分，逻辑 60 分，写作 65 分，不能用计算器。你现在最要紧的不是找更多资料，而是把三块各自的位置先认准。</p>
+<p class="strategy">数学按《考点清单》里的算术、代数、几何、数据分析四块走；逻辑按《72技》的导学、形式逻辑、综合推理、论证逻辑往前推；写作按张乃心这条线，先把论证有效性分析和论说文的框架搭起来，再进真题。</p>
+<p class="strategy">前半段先把基础题和章节题做顺，10 月开始把真题拆开做，11 月起做完整计时卷，12 月只留错题、本子和模板。你现在的目标不是把题看很多遍，而是让每一类题都能按固定步骤写出来。</p>
+<div class="grid-box">
+    <div class="grid-item grid-math">
+        <h3>数学</h3>
+        <ul>
+            <li>先按算术、代数、几何、数据分析四块推进。</li>
+            <li>每周都要留纸面计算，不要只看答案。</li>
+            <li>真题比新题重要，错题要分章节放。</li>
+        </ul>
+    </div>
+    <div class="grid-item grid-logic">
+        <h3>逻辑</h3>
+        <ul>
+            <li>先认题型，再决定方法，不要先猜答案。</li>
+            <li>形式逻辑、综合推理、论证题分开学，再混着做。</li>
+            <li>条件关系和关键词一定要写下来。</li>
+        </ul>
+    </div>
+    <div class="grid-item grid-writing">
+        <h3>写作</h3>
+        <ul>
+            <li>先学两道题的结构，再练完整写。</li>
+            <li>论证有效性分析先找漏洞，论说文先定中心。</li>
+            <li>后面每周都要留一次限时写作。</li>
+        </ul>
+    </div>
+</div>
+        </section>
+
+        <div class="toolbar">
+            <div class="toolbar-note">按在职 4-6 小时的节奏排，工作日拆小块，周末补整套。</div>
+            <div class="expand-all"><button type="button" onclick="toggleAll()">展开/收起全部周计划</button></div>
+        </div>
+
+        <div class="weeks-list" id="weeksList"></div>
+
+        <div class="footer-note">这份页子只写管综专业课，最后一周只留轻量复盘，不再加新任务。</div>
+    </div>
+
+    <script>
+        const planData = [{"theme": "先把199管综的卷面和起步书目弄明白", "message": "这周先别急着把题刷得很满。你现在最需要的是把卷面结构、三块分值、三本书各自管什么先弄顺。\n工作日时间不算多，就按“小块推进、当天收尾、周末补回顾”来走，别让一晚上的时间全被看书吃掉。", "math": {"title": "张伟男《考点清单》：算术篇起步", "content": "先过算术这条线：整数、分数、小数、百分数、比与比例、数轴、绝对值、整除、质因数、同余。\n每个点先看书上的例题，再做对应基础题，先把步骤写完整，不要一眼会就直接跳过去。\n本周把 20 到 25 道基础题做完，错题只记三件事：卡在哪一步、公式哪里没想起、下次怎么更快识别题型。"}, "logic": {"title": "李焕《72技》：导学 + 形式逻辑入门", "content": "先把判断、命题、条件关系这些概念区分开，再整理一页自己的符号表：且、或、非、如果…就…、只有…才…、除非、必要、充分。\n不要一上来就碰大题。先做 15 到 20 道最基础的形式逻辑题，目标是看懂题干，不是冲速度。\n这周做完以后，你至少要能说清每道题是在问真值关系，还是在问条件关系。"}, "writing": {"title": "张乃心作文：先把两道题的样子看明白", "content": "先分清论证有效性分析和论说文。前者看材料漏洞，后者看题目立意。\n找 2 道论证有效性分析和 2 道论说文真题，只写提纲，不急着写全文。\n先把四步顺一遍：审题、定点、展开、收尾。先会搭架子，再考虑写得顺不顺。"}, "week": 1, "dates": "2026.09.03 - 2026.09.09"}, {"theme": "代数先打底，别一上来就追难题", "message": "这周开始就别只看例题了。算术和代数都要落到纸上，不然看着会，手上还是空的。\n工作日每天都要留一点时间给错题回看，别把题做完就算结束。", "math": {"title": "张伟男《考点清单》：代数篇一", "content": "把整式、分式、因式分解、方程、方程组这些先稳住。重点放在移项、通分、配方、提公因式这几种最常见的变形。\n本周至少做 30 道题，其中 10 道要自己从头算，不看答案先试一遍。\n读题时先把已知条件和要求写在草稿纸上，别直接往复杂式子里钻。"}, "logic": {"title": "李焕《72技》：直言判断和条件关系", "content": "继续形式逻辑，重点放在直言判断、对当关系、联言、选言、假言。\n把矛盾、反对、下反对、从属关系画成一张小表，别只靠背。\n做题时先判断是不是命题真值关系，再看是不是条件推理，顺序别乱。"}, "writing": {"title": "张乃心作文：先把论证有效性分析的漏洞分好类", "content": "这周把常见漏洞分成 8 类：概念不清、因果倒置、样本太小、偷换概念、以偏概全、论据不足、前后矛盾、结论过大。\n每类挑一条真题材料对一下，先练会找漏洞，不急着追漂亮句子。\n周末写 1 篇完整提纲，提纲里只保留漏洞点、分析句和收尾句，别把篇幅浪费在复述材料。"}, "week": 2, "dates": "2026.09.10 - 2026.09.16"}, {"theme": "函数、不等式、数列先顺一遍", "message": "函数、不等式和数列是后面一直会回头碰到的块。你这周要做的是把图像、变形和条件判断先弄顺，别急着追速度。\n只要遇到卡住的地方，就先退回去看一遍书上的例题，别硬顶。", "math": {"title": "张伟男《考点清单》：代数篇二", "content": "这一周把函数、图像、指数对数、方程、不等式、数列都过一遍。\n重点盯住函数单调性、零点、图像平移、解不等式、等差等比数列这几块。每一块都要在纸上推一遍，不要只看答案。\n本周做 25 到 30 道题，错题回看时只看自己第一步为什么没走对。"}, "logic": {"title": "李焕《72技》：条件推理和三段论", "content": "把充分条件、必要条件、三段论这些题型走一遍，练看到题先画条件链。\n题目里一旦出现“只有”“除非”“只要”“当且仅当”，先别急着选，先把条件关系翻过来写一遍。\n本周做 20 道左右，目标是把题干读清，不让符号关系把自己绕住。"}, "writing": {"title": "张乃心作文：论说文先学怎么落点", "content": "论说文这周开始正式进场。每道题先写一句中心论点，再列 3 个分论点，不追求文采，先把意思说直。\n挑 2 道真题各写一版提纲，提纲写完后再补一版开头和结尾，看看是不是能自己接得上。"}, "week": 3, "dates": "2026.09.17 - 2026.09.23"}, {"theme": "几何先做平面，再补综合", "message": "几何题看着散，其实就是条件读清楚。工作日先做单题，周末再把综合题放上来，别一上来就拿整套卷子吓自己。\n这周开始，草稿纸上要开始画图，不能只在脑子里想。", "math": {"title": "张伟男《考点清单》：几何篇一", "content": "先过三角形、四边形、圆、扇形、相似和全等这些平面几何内容。\n每一种题型都要写一次辅助线思路，别只看答案。面积、周长、角度关系都要自己算出来。\n本周做 25 到 30 道题，遇到图形题先标条件，再下结论，别一上来就套公式。"}, "logic": {"title": "李焕《72技》：综合推理入门", "content": "这一周开始碰综合推理里的排序、对应、真假话。\n先学怎么把条件排开，别急着一口气把题做完。题目复杂的时候，先用表格把条件拆下来，再往下推。\n本周做 20 道左右，目标是把题型认出来，不在条件一多的时候直接乱选。"}, "writing": {"title": "张乃心作文：第一次限时写分析", "content": "周末挑 1 篇论证有效性分析做 25 分钟限时，写完马上回头看有没有漏掉关键漏洞。\n这周不要贪多，重点是把“找漏洞—说问题—收尾”这条线写顺。"}, "week": 4, "dates": "2026.09.24 - 2026.09.30"}, {"theme": "立体几何和解析几何开始上桌", "message": "这周的题会比前面杂一点，草稿纸要用规整一些。题没必要做很多，先把每种题型的开头写法固定下来。\n你现在最怕的不是不会，而是会的题做着做着把步骤丢了。", "math": {"title": "张伟男《考点清单》：几何篇二", "content": "把立体几何、平面直角坐标系、直线和圆这几块过完。\n空间关系图要画出来，面积、体积、距离题要自己列式。解析几何题先写已知点、线、圆的关系，再动手算。\n本周至少做 30 道题，做完后把画图步骤和列式顺序记到本子上。"}, "logic": {"title": "李焕《72技》：综合推理继续往下走", "content": "继续做综合推理，重点盯住排序和多条件组合。\n这周的题不要急着追时间，先把条件一条条摆清楚。哪条条件是硬条件，哪条只是提示，这一点要分出来。\n本周做 20 到 25 道，做完后把自己最容易漏掉的条件标个红圈。"}, "writing": {"title": "张乃心作文：论说文第一次完整写", "content": "周末完整写 1 篇论说文，时间控制在 40 分钟左右。\n写完以后只看两件事：立意是不是跑偏了，三段结构是不是能撑住全文。不要一上来盯着辞藻看。"}, "week": 5, "dates": "2026.10.01 - 2026.10.07"}, {"theme": "数据分析先从计数和排列组合进来", "message": "数据分析开始后，很多题会卡在排列组合和概率。这个时候别硬顶，先把题型拆开，做完一类再换下一类。\n这周重点是把“看见题先分块”的习惯养出来。", "math": {"title": "张伟男《考点清单》：数据分析篇一", "content": "先过计数原理、排列组合、平均数、方差、图表题。\n每道题先判断是分类、分步，还是在算统计量。排列组合题不要急着写公式，先想顺序和限制条件。\n本周做 30 道左右，其中 10 道专门练排列组合，题做完后把分类条件单独抄一遍。"}, "logic": {"title": "李焕《72技》：加强、削弱、解释", "content": "这周正式进论证逻辑。先学怎么找结论、前提、论据，再分清题目是加强、削弱还是解释。\n做题时先圈结论句，再看选项是不是在补前提、拆因果或者换概念。\n本周做 25 道，错题只记“结论是什么、前提缺什么、选项怎么动的”。"}, "writing": {"title": "张乃心作文：把一篇分析写完整", "content": "本周写 1 篇完整的论证有效性分析，再把其中最弱的一段重写一遍。\n你要开始习惯只抓漏洞，不要把篇幅浪费在复述原文上。"}, "week": 6, "dates": "2026.10.08 - 2026.10.14"}, {"theme": "概率补上，真题先从对应章节进场", "message": "真题这时候可以开始慢慢进来了，但不要一下子把整套卷子全搬出来。\n先按章节做，再看自己到底是题型不熟，还是计算不稳。这样错题回头才有方向。", "math": {"title": "张伟男《考点清单》：数据分析篇二", "content": "把概率、独立事件、加法公式、乘法公式这些补上。\n这周可以开始把部分历年真题拆开做，优先做和当前章节对应的题。每做完一题，都回到《考点清单》上对照一下考点。\n本周题量控制在 25 到 30 道，不追花活，先把基础题的正确率做稳。"}, "logic": {"title": "李焕《72技》：评价、假设和谬误识别", "content": "继续强化篇，重点练评价题、假设题和常见谬误。\n做题时先看选项是在补条件，还是在把原话换了一个说法。题干长也别急，先找论点，再找论据。\n本周做 25 道左右，把“题干在说什么”写在题号边上，别一口气看完就算。"}, "writing": {"title": "张乃心作文：开始固定自己的模板", "content": "这周把开头、分论点过渡、结尾这三块固定下来。\n先写一版模板，再拿真题题目去套，看看是不是每道题都能落进去。"}, "week": 7, "dates": "2026.10.15 - 2026.10.21"}, {"theme": "真题先从算术和代数拆开做", "message": "这周开始真题要进来。不要再把主要时间都给新讲义，真题里的出题方式更重要。\n你现在要练的是看到题就知道从哪一步下手，而不是看很多题都觉得熟。", "math": {"title": "历年真题：算术和代数分块刷", "content": "把算术和代数相关的历年真题拆开做，先做问题求解，再做条件充分性判断。\n每做完一题就写一句错因，不要抄题干。要是题目卡住，就立刻回到《考点清单》对应章节找原型。\n本周至少完成 2 个分块练习，每块都要有错题整理。"}, "logic": {"title": "李焕《72技》：真题对应练", "content": "逻辑部分开始和真题对照着做。每做一题都先判断是形式逻辑、综合推理，还是论证类题。\n本周做 20 到 25 道真题或真题变式，重点不是数量，而是把题型和方法对上。"}, "writing": {"title": "张乃心作文：第一次两题连做", "content": "周末做 1 次两题连写：先写 1 篇论证有效性分析，再写 1 篇论说文。\n时间加起来控制在 65 分钟左右。写完以后只看结构和立意，不要拿词句找自己毛病。"}, "week": 8, "dates": "2026.10.22 - 2026.10.28"}, {"theme": "几何和数据分析的真题接上", "message": "几何和数据分析的真题会把计算和条件提取一起考。你这周要做的是把题型和章节对上，不是单纯刷数量。\n草稿纸上要把中间过程留出来，别只写答案。", "math": {"title": "历年真题：几何和数据分析分块刷", "content": "这周把几何、计数、排列组合、概率这些相关真题继续拆开做。\n做题时先把题型标出来，再看是图形题、统计题，还是组合概率题。每道错题都回到对应章节，补一条方法。\n本周至少完成 2 个分块练习，错题本里要分清是图没画对、条件没看清，还是公式没记牢。"}, "logic": {"title": "李焕《72技》：真题混合练", "content": "逻辑这周开始做混合题，不再只盯一个小专题。\n你要练的是从题干里快速认题型，再决定用哪种方法下手。做完后把常错类型单独归一页。"}, "writing": {"title": "张乃心作文：把一篇分析写得更稳", "content": "这周继续写 1 篇论证有效性分析和 1 篇论说文。\n重点不是把字写多，而是把每一段都写完整。开头别绕，结尾别拖，正文每段只说一个点。"}, "week": 9, "dates": "2026.10.29 - 2026.11.04"}, {"theme": "开始做混合题，别再按章节单独往前冲", "message": "这周开始要练“看到题就知道先切哪一步”，而不是看到题目先找感觉。\n真题和错题本要一起看，做题时别只盯着对错，还要看自己是在概念上卡住，还是在计算上卡住。", "math": {"title": "历年真题：混合题型第一轮", "content": "把前面几章的真题混起来做，重点看问题求解和条件充分性判断。\n本周安排 2 次 60 分钟左右的混合训练，每次做完都要把错误拆成“概念没稳”“算得慢”“读题漏条件”三类。"}, "logic": {"title": "李焕《72技》：混合题型回炉", "content": "这周把前面学过的形式逻辑、综合推理和论证题重新混在一起做。\n目的是让你看到题干就有反应，不用先翻半天书再动笔。做完后，把最常错的 3 种题型贴在本子首页。"}, "writing": {"title": "张乃心作文：完整计时第一次成套", "content": "周末做一次完整计时：论证有效性分析 30 分钟，论说文 35 分钟。\n写完后不要马上重写全文，只把最弱的一段重写一遍，看看是不是能写得更直一点。"}, "week": 10, "dates": "2026.11.05 - 2026.11.11"}, {"theme": "完整计时卷开始上桌", "message": "完整计时卷要上桌了。分数浮动会比较大，这是正常的，关键是把错题分成能改的和暂时放一放的两类。\n这周做卷子时，别把精力都压在某一道题上，先把整张卷子的节奏守住。", "math": {"title": "完整 199 计时卷一", "content": "周末做 1 套完整 199 管综计时卷，按 180 分钟走，不用计算器。\n做完以后把数学错题按章节分类，看看是算术、代数、几何还是数据分析在拖后腿。别只记分数，要记为什么错。"}, "logic": {"title": "完整 199 计时卷一中的逻辑部分", "content": "这周逻辑也要跟着完整卷走一遍。\n做完后只看三件事：题型识别是不是慢了、条件有没有漏、选项是不是看得太快。错题旁边写一个“慢”“漏”“急”就够。"}, "writing": {"title": "张乃心作文：计时后改结构", "content": "这周保持 1 次完整写作训练。\n写完以后重点改结构，不改成花哨句子。论证有效性分析看漏洞够不够清，论说文看分论点是不是站得住。"}, "week": 11, "dates": "2026.11.12 - 2026.11.18"}, {"theme": "第二轮完整卷，节奏要更稳", "message": "这一周继续做完整卷，但节奏要更稳。工作日少折腾新东西，周末把一整张卷子从头到尾过完，然后只看错题。\n你现在不是缺材料，是缺把旧题重新看一遍的耐心。", "math": {"title": "完整 199 计时卷二", "content": "再做 1 套完整卷，这次更看重时间分配。\n数学部分先把能拿的分拿到手，别让难题拖住后面的步骤。做完以后把错题和上一套卷子对比，看看是同一类问题反复出现，还是新的问题冒出来。"}, "logic": {"title": "完整卷中的逻辑回看", "content": "这一周逻辑错题要做回头看，不要只改一遍答案。\n把 72 技里对应的方法再翻一遍，确认自己是在题型判断上慢了，还是在关键条件上漏了。"}, "writing": {"title": "张乃心作文：保持两题连做", "content": "继续保持两题连做的节奏。\n这一周把开头和结尾再顺一遍，尽量做到看到题目就能先落框架，别在考场上临时想。"}, "week": 12, "dates": "2026.11.19 - 2026.11.25"}, {"theme": "别再追新题，先把错题本压缩一遍", "message": "后面这几周不要再追新题了。你现在最值钱的是前面做过的题和错题本，把它们重新看一遍比看新资料有用。\n这周的重点是把答案背下来，而是把自己为什么错搞清楚。", "math": {"title": "错题本压缩：数学三块一起回看", "content": "把前面做错的题按算术、代数、几何、数据分析四类重新过一遍。\n每类只保留最典型的错题，别把本子抄得太厚。能够重新做对的题，旁边写“已回头”；还是错的题，单独标红。"}, "logic": {"title": "错题本压缩：逻辑三类题型回看", "content": "逻辑也按形式逻辑、综合推理、论证类三块重看。\n看错题时，先把原来的条件重新读一遍，再看自己是哪一步想快了。不要只看答案说“懂了”，要把那一步重新写出来。"}, "writing": {"title": "张乃心作文：重写一篇旧分析", "content": "这一周挑 1 篇以前写过的论证有效性分析重写一次。\n重点不是换词，而是把漏洞说得更清楚。重写完后自己对着原文看，看看是不是少了关键一层。"}, "week": 13, "dates": "2026.11.26 - 2026.12.02"}, {"theme": "继续回到错题，开始守住稳定分", "message": "这周开始基本进入收尾。看到没做过的新题不要兴奋，先把整套卷子的答题节奏守住。\n你的目标不是把书再翻一遍，而是把已经会的东西稳稳写出来。", "math": {"title": "近年真题回刷 + 常错点清单", "content": "重新做近年真题里最容易错的题。不要全卷乱翻，直接盯着以前错过的题型。\n这周把“总是算错”“总是漏条件”“总是图画乱”这三类问题列出来，逐条修。"}, "logic": {"title": "近年真题回刷 + 72技对照", "content": "逻辑继续回刷近年真题，把题型和 72 技对应起来。\n这周要练的是看完题干后 20 秒内知道自己该用哪一类方法，别再犹豫太久。"}, "writing": {"title": "张乃心作文：再写一组完整题", "content": "保持 1 组完整写作训练，写完以后只看结构是否稳、论点是否站得住。\n这时候不再追新表达，稳稳把整篇写完就行。"}, "week": 14, "dates": "2026.12.03 - 2026.12.09"}, {"theme": "最后两套练习，重点是把错误率压下来", "message": "这周不要贪量，重点是把错误率压下来。你要做的是把会拿的分拿稳，不是去碰不熟的题。\n练习的时候别临时换节奏，照着前面形成的顺序走就行。", "math": {"title": "最后两套练习：数学只看高频错点", "content": "这周再过 1 到 2 套高频练习，但每套都只看以前错过的地方。\n对于已经反复错的题型，直接在本子上写一句提醒，考前只扫那一句就行。"}, "logic": {"title": "最后两套练习：逻辑只看高频题型", "content": "逻辑这周也只盯常错题型，不再追新变化。\n把题干关键词和常见陷阱再过一遍，看到熟悉陷阱时要能马上停一下。"}, "writing": {"title": "张乃心作文：把模板再抄顺一遍", "content": "这周把开头句、过渡句、结尾句再抄顺一遍。\n重点是考试时别慌，先落框架，再往里填内容。"}, "week": 15, "dates": "2026.12.10 - 2026.12.16"}, {"theme": "最后四天只留轻量复盘", "message": "最后四天只留轻量复盘，不再开新内容。把公式、条件、模板和常错点扫一遍就行，别临时加量。\n这时候最重要的是让手感保持平稳，不要自己把节奏弄乱。", "math": {"title": "考前轻量复盘：公式和错题卡", "content": "只看公式卡、常错点和前面整理过的几道典型题。\n这几天不再做新卷，最多拿一两道基础题活动一下手，保证上考场时不会一下子手生。"}, "logic": {"title": "考前轻量复盘：题型识别表", "content": "只看逻辑题型识别表和错题标签。\n你要保证自己看到题目时，能先判断是形式逻辑、综合推理还是论证题，而不是先紧张。"}, "writing": {"title": "考前轻量复盘：模板和结尾", "content": "只看模板、常用开头和结尾，不再追新句子。\n考前这几天把节奏放慢一点，保持手写顺，不要再往计划里塞新任务。"}, "week": 16, "dates": "2026.12.17 - 2026.12.20"}];
+
+        function renderText(text) {
+            return String(text || '').split(String.fromCharCode(10)).join('<br>');
+        }
+
+        function renderWeek(item, index) {
+            return `
+                <div class="week-card">
+                    <div class="week-header" onclick="toggleWeek(${index})">
+                        <h3>第 ${item.week} 周 · ${item.theme}</h3>
+                        <div class="dates">${item.dates}</div>
+                    </div>
+                    <div class="week-content" id="week-${index}">
+                        <div class="message">${renderText(item.message)}</div>
+                        <div class="subject math">
+                            <div class="subject-title">${item.math.title}</div>
+                            <div class="subject-body">${renderText(item.math.content)}</div>
+                        </div>
+                        <div class="subject logic">
+                            <div class="subject-title">${item.logic.title}</div>
+                            <div class="subject-body">${renderText(item.logic.content)}</div>
+                        </div>
+                        <div class="subject writing">
+                            <div class="subject-title">${item.writing.title}</div>
+                            <div class="subject-body">${renderText(item.writing.content)}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAll() {
+            const root = document.getElementById('weeksList');
+            root.innerHTML = planData.map((item, index) => renderWeek(item, index)).join('');
+        }
+
+        function toggleWeek(index) {
+            const el = document.getElementById('week-' + index);
+            if (el) el.classList.toggle('active');
+        }
+
+        function toggleAll() {
+            const items = document.querySelectorAll('.week-content');
+            const allOpen = Array.from(items).every(el => el.classList.contains('active'));
+            items.forEach(el => el.classList.toggle('active', !allOpen));
+        }
+
+        renderAll();
+        document.querySelectorAll('.week-content').forEach((el, index) => {
+            if (index === 0) el.classList.add('active');
+        });
+    </script>
+</body>
+</html>
