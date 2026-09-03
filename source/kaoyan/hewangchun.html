@@ -65,14 +65,13 @@
     }
     h2 { font-size: 1.4rem; margin-bottom: 12px; }
     .strategy { color: #4e4337; white-space: pre-line; margin: 10px 0; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
     .course { border: 1px solid var(--line); border-radius: 20px; background: var(--card); padding: 18px; }
     .course h3 { margin-bottom: 8px; text-align: left; }
     .course ul { padding-left: 18px; color: #4d4439; }
     .course li { margin: 7px 0; }
     .materials h3 { color: var(--blue); }
     .checks h3 { color: var(--brick); }
-    .sources h3 { color: var(--green); }
     .toolbar { display: flex; justify-content: space-between; align-items: center; margin: 22px 2px 14px; gap: 12px; color: var(--muted); }
     button {
       font: inherit;
@@ -127,7 +126,6 @@
       <div class="grid">
         <div class="course materials"><h3>教材和资料</h3><ul id="materials-list"></ul></div>
         <div class="course checks"><h3>每周验收</h3><ul id="checks-list"></ul></div>
-        <div class="course sources"><h3>调研依据</h3><ul id="sources-list"></ul></div>
       </div>
     </section>
 
@@ -166,32 +164,6 @@
       "857每周都要留下能检查的东西：名词解释、简答题、综合题提纲或完整答案，不把看书时长当成果。",
       "每周末做一次闭卷输出。315看能否独立写公式、步骤和反应条件；857看能否不翻书写出4到6个答题点。",
       "错题只记录题号、章节、错因和重做日期。专业课资料很多，但本表主线只围绕315联考资料和857四本参考书展开。"
-    ],
-    "sources": [
-      {
-        "label": "南京农业大学研究生招生网：招生简章、专业目录、参考书目入口",
-        "url": "https://zsgz.njau.edu.cn/zsxx/sszs/jzml.htm"
-      },
-      {
-        "label": "南京农业大学研究生招生网：2027年硕士招生专业目录预通知",
-        "url": "https://zsgz.njau.edu.cn/info/1007/1732.htm"
-      },
-      {
-        "label": "315化学（农）大纲和资料参考：新东方在线整理",
-        "url": "https://kaoyan.koolearn.com/20250304/1808154.html"
-      },
-      {
-        "label": "857农业资源环境概论参考书目参考：金盾考研整理",
-        "url": "https://www.jingdunkaoyan.com/news/detail/137728.html"
-      },
-      {
-        "label": "土壤学课程章节参考：中国大学MOOC土壤学",
-        "url": "https://www.icourse163.org/course/SAU-1207422810?tid=1469763442"
-      },
-      {
-        "label": "环境学基础教材信息参考：爱教材书目页",
-        "url": "https://caixuan.aijiaocai.com/textbook/details?textbook_id=367077"
-      }
     ]
   },
   "weeks": [
@@ -599,13 +571,6 @@
       target.innerHTML = items.map((item) => `<li>${block(item)}</li>`).join('');
     }
 
-    function renderSources() {
-      const target = document.getElementById('sources-list');
-      target.innerHTML = planData.overview.sources.map((item) => (
-        `<li><a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.label)}</a></li>`
-      )).join('');
-    }
-
     function renderMeta() {
       const s = planData.student;
       document.getElementById('meta-one').innerHTML = [
@@ -680,7 +645,6 @@
     renderMeta();
     renderList('materials-list', planData.overview.materials);
     renderList('checks-list', planData.overview.checks);
-    renderSources();
     renderWeeks();
     bindToggle();
   </script>
