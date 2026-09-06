@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>肖瑞成 199管综 2026年12月初试规划</title>
+  <style>
+    :root {
+      --bg-color: #f5efe4;
+      --card-bg: #fffaf1;
+      --text-color: #2b241d;
+      --accent: #9a5d27;
+      --accent-light: #c47b38;
+      --border-color: #e1d2bf;
+      --muted: #786a5c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(196,123,56,0.16), transparent 24%),
+        radial-gradient(circle at top right, rgba(154,93,39,0.12), transparent 22%),
+        linear-gradient(135deg, #f8efe1 0%, #fff9f1 54%, #eedcc0 100%);
+      color: var(--text-color);
+      font-family: "Inter", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.68;
+    }
+    .container {
+      width: min(1080px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 22px 0 46px;
+    }
+    header {
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fffdf8 0%, #f2e5d4 100%);
+      box-shadow: 0 24px 70px rgba(124, 84, 36, .12);
+      padding: 30px 28px;
+      margin-bottom: 18px;
+    }
+    .tag {
+      display: inline-block;
+      color: #8f5725;
+      font-weight: 700;
+      letter-spacing: .06em;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.12;
+      margin-bottom: 12px;
+      color: #2b241d;
+    }
+    .meta {
+      color: #6f6256;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: .95rem;
+    }
+    .meta span {
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: rgba(255,255,255,.78);
+    }
+    .panel {
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      background: rgba(255,250,241,.96);
+      box-shadow: 0 18px 40px rgba(124, 84, 36, .08);
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+    .panel h2 {
+      color: #8f5725;
+      font-size: 1.22rem;
+      margin-bottom: 14px;
+      letter-spacing: -.02em;
+    }
+    .strategy {
+      background: #fff5e7;
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      color: #3d3329;
+      white-space: pre-line;
+    }
+    .grid-box {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .grid-item {
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      background: #fffdf9;
+      padding: 16px;
+    }
+    .grid-item h3 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+      color: #8f5725;
+    }
+    .grid-item p {
+      color: #4b4138;
+      white-space: pre-line;
+    }
+    .blocks {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .block {
+      min-height: 146px;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #fffdf9, #f7ebdd);
+      padding: 16px;
+    }
+    .block b {
+      display: block;
+      color: #8f5725;
+      margin-bottom: 4px;
+    }
+    .block em {
+      display: block;
+      font-style: normal;
+      color: #2b241d;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .block span {
+      color: #5f5246;
+      font-size: .95rem;
+    }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin: 22px 0 14px;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+    button {
+      font: inherit;
+    }
+    .toolbar button {
+      background: #3a2f24;
+      color: #fff7eb;
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .weeks {
+      display: grid;
+      gap: 14px;
+    }
+    .week-card {
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      background: rgba(255,250,241,.98);
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(124, 84, 36, .07);
+    }
+    .week-card.open {
+      border-color: rgba(154,93,39,.42);
+    }
+    .week-head {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 12px;
+      align-items: center;
+      padding: 18px 20px;
+      background: transparent;
+      color: inherit;
+      border: 0;
+      text-align: left;
+      cursor: pointer;
+    }
+    .week-head:hover {
+      background: rgba(154,93,39,.08);
+    }
+    .kicker {
+      display: block;
+      color: #8a7a69;
+      font-size: .82rem;
+      letter-spacing: .06em;
+      margin-bottom: 4px;
+    }
+    .week-head h3 {
+      font-size: 1.05rem;
+      line-height: 1.4;
+      color: #2b241d;
+    }
+    .date {
+      color: #7c6b58;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: .92rem;
+      white-space: nowrap;
+    }
+    .chev {
+      color: #7a6b5c;
+      font-size: .92rem;
+      white-space: nowrap;
+    }
+    .week-body {
+      display: none;
+      border-top: 1px solid var(--border-color);
+      padding: 18px 20px 20px;
+      background: #fffdf9;
+    }
+    .week-card.open .week-body {
+      display: block;
+    }
+    .message {
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      background: #fff5e7;
+      padding: 14px 16px;
+      color: #3a3027;
+      margin-bottom: 16px;
+      white-space: pre-line;
+    }
+    .subjects {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .subject {
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      background: #fffdf9;
+      padding: 15px 16px;
+    }
+    .subject h4 {
+      color: #8f5725;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .subject.writing h4 {
+      color: #b46b25;
+    }
+    .subject p {
+      color: #4b4138;
+      white-space: pre-line;
+    }
+    footer {
+      text-align: center;
+      color: #7f6e5f;
+      margin-top: 22px;
+      font-size: .92rem;
+    }
+    @media (max-width: 980px) {
+      .grid-box, .blocks, .subjects {
+        grid-template-columns: 1fr;
+      }
+      .week-head {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+      .date, .chev {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="tag">199 管综 · 只写这一门</div>
+      <h1>肖瑞成 2026年12月初试规划</h1>
+      <div class="meta">
+        <span>目标院校：未定</span>
+        <span>起步：2026-09-01</span>
+        <span>初试：2026-12-20</span>
+        <span>总周数：16 周</span>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>这份表怎么用</h2>
+      <div class="strategy">这页只写 199 管综，不放别的科目。199 这门课不是拼听课时长，是拼算得稳不稳、题型认得快不快、整套卷子能不能按时写完。你现在算题慢，最怕的是同一道题来回卡很久，所以这份表不会把时间全塞给看课，而是把陈剑数学分册、老吕逻辑母题800练、老吕写作母题50练一周一周往前推，先把手上能写出来的东西做出来。<br/><br/>后面卡到真题和套卷时，就按管综的正式节奏来，数学 50 分钟、逻辑 50 分钟、论证有效性分析 25 分钟、论说文 35 分钟，最后留一点时间涂卡和检查。你不需要一开始就把每套题都刷得很猛，先把一道题的第一步写对，再把这一步变成习惯。</div>
+      <div class="strategy">数学是这门课的底子。你基础薄，计算题又慢，所以前两个月先把算术、代数、几何、数据分析四块按顺序过一遍，陈剑数学分册里的例题和基础题先动笔，再去陈剑1000题里找同章节的基础题补手感。遇到 2 分钟还没有思路的题，先看答案第一步，不在一道题上磨太久。<br/><br/>逻辑不适合整块听很多课。老吕逻辑母题800练一共 3 大部分、11 章、40 类题型，前半先把形式逻辑和削弱、支持、假设这几类常考题型做顺，中段再上解释、推论、评论，后面再碰综合推理。写作也不能拖太晚，老吕写作母题50练里先看清楚“论证有效性分析精讲”和“论说文精讲”两块，先会找漏洞、会定观点，再慢慢把模板写顺。</div>
+      <div class="grid-box">
+        <div class="grid-item"><h3>数学主线</h3><p>先把算术、代数、几何、数据分析按书上的顺序过一遍，再去陈剑1000题里找对应错题回炉。</p></div><div class="grid-item"><h3>逻辑主线</h3><p>老吕逻辑母题800练按形式逻辑、论证逻辑、综合推理推进，先把题型认清，再谈速度。</p></div><div class="grid-item"><h3>写作主线</h3><p>老吕写作母题50练先看题型，再开始成篇；后面配合真题和自己的模板卡片收尾。</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>资料和阶段</h2>
+      <div class="grid-box">
+        <div class="grid-item"><h3>数学</h3><p>陈剑《数学分册》+ 陈剑1000题 + 199历年真题。先按算术、代数、几何、数据分析四块走，别一上来就追偏题怪题。</p></div><div class="grid-item"><h3>逻辑</h3><p>老吕《逻辑母题800练》。这本书按形式逻辑、论证逻辑、综合推理三部分排，40 类题型够你把常见坑都摸到。</p></div><div class="grid-item"><h3>写作</h3><p>老吕《写作母题50练》+ 199写作真题。先把论证有效性分析和论说文分开练，别把两道题混成一锅。</p></div>
+      </div>
+      <div style="height:14px"></div>
+      <div class="blocks">
+        <div class="block"><b>9.1 - 9.28</b><em>先把入口弄顺</em><span>算术、形式逻辑、写作题型认识，先把第一遍能动笔的东西做出来。</span></div><div class="block"><b>9.29 - 10.26</b><em>把代数、几何和论证逻辑补齐</em><span>代数、几何、数据分析前半段往前推，写作开始写成段。</span></div><div class="block"><b>10.27 - 11.23</b><em>开始混合刷题</em><span>综合推理、概率、真题和写作成篇一起上，错题开始分类。</span></div><div class="block"><b>11.24 - 12.20</b><em>按考试时间收尾</em><span>整卷限时、错题回炉、作文模板固定，最后几周只做熟题和轻回看。</span></div>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <span>只规划199管综，目标院校先按未定处理。起步时间按 2026-09-01 算，初试按 2026-12-20 算，总共 16 周。你现在的问题不在于资料不够，而是在于计算题慢、步骤容易丢、做题时容易发懈。</span>
+      <button id="toggleAll" type="button">展开全部</button>
+    </div>
+
+    <section class="weeks" id="weeks">
+      
+    <article class="week-card open">
+      <button class="week-head" type="button" aria-expanded="true">
+        <div>
+          <span class="kicker">第 1 周</span>
+          <h3>先把算术和复言命题走顺</h3>
+        </div>
+        <span class="date">2026.09.01 - 2026.09.07</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周先不要想着把 199 一口气推进很多。你最需要的是把最基础的算术步骤和逻辑里的条件链先搭起来，不然后面看着会的题，真到纸上还是会卡住。每天把固定时间留给动手写，别把时间全花在看答案上。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑《数学分册》：算术前半</h4>
+            <p>先过整数及其运算、整除、公倍数、公约数、奇数偶数、质数合数，再把分数、小数、百分数、比与比例、数轴和取值范围顺一遍。每个小块先看一眼例题，再自己把基础题写出来，不要只看懂就过去。<br/><br/>本周在陈剑1000题里只挑对应的基础题做 20 道左右，先把“算得出”放在第一位。草稿纸上一定把步骤写出来，错题只记三类：算错、题意看漏、第一步没想起来。周末把前面错过的题再算一遍，能自己重写出来就算过关。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：第一部分形式逻辑·复言命题</h4>
+            <p>先把第 1 章复言命题过掉，重点看充分必要条件、德摩根定律、箭头的串联、隐含三段论、二难推理、假言命题的负命题、真假话这些题型。每做一题都先在草稿纸上把条件链画一遍，再去对答案。<br/><br/>本周逻辑不追速度，先做 15 到 20 题就行。你现在最容易丢的是条件顺序，所以每道题的复盘只留一句话：这题到底是条件没翻对，还是箭头连错了。把符号写熟，比一下子刷很多题更有用。</p>
+          </div>
+          <div class="subject writing">
+            <h4>老吕《写作母题50练》：先看两道题长什么样</h4>
+            <p>先把论证有效性分析和论说文的区别看清楚。老吕写作母题50练里先翻“论证有效性分析精讲”和“论说文精讲”的导读，知道一题是找漏洞，一题是先定观点再展开，不要把两道题混着看。<br/><br/>本周只挑 2 道论证有效性分析和 2 道论说文，各自写一版提纲，不急着写全文。每道题都只练三件事：审题、定点、收尾。先把题目的骨架看明白，后面才有东西往里填。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 2 周</span>
+          <h3>算术收尾，代数开头</h3>
+        </div>
+        <span class="date">2026.09.08 - 2026.09.14</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周开始要把纸面动作做得更实一点，尤其是分式、比例和整式这些地方。你现在不怕题目多，怕的是一忙就只看不写，所以这周要强迫自己把每道题的第一步先落到纸上。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑《数学分册》：算术后半 + 代数前半</h4>
+            <p>算术部分把数轴、取值范围、比例应用再扫一遍，接着进整式、整式的运算、因式分解、分式及其运算。别急着碰难题，先把运算规则和常见化简写顺，免得后面一看式子就乱。<br/><br/>这周在陈剑1000题里把算术和代数前半对应的基础题做 25 到 30 道，做题时尽量把每一步写全，少做心算。周末把自己最容易算错的式子单独抄一遍，再算一遍，看是移项慢了，还是分母处理错了。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：简单命题、概念与定义</h4>
+            <p>第 2 章简单命题和第 3 章概念与定义要顺着过。对当关系、简单命题的负命题、真假话问题先学会画表，定义题、概念间的关系、概念的划分、偷换概念这些题型先分清，不要一看到“是”或“不是”就直接选。<br/><br/>本周做 20 题左右，重点练“先判断题型再动手”。你如果两分钟还没看清题到底在问什么，就先把命题结构和概念关系写下来，再看选项。逻辑这一块，前面慢一点没事，只要思路不乱，后面速度会自己上来。</p>
+          </div>
+          <div class="subject writing">
+            <h4>老吕《写作母题50练》：谬误分析先起步</h4>
+            <p>这一周先看“谬误分析”那一块，把论证有效性分析里最常见的几类漏洞先列出来：概念不清、因果倒置、样本太小、偷换概念、以偏概全、论据不足、前后矛盾、结论过大。不要背成一长串，先知道每类漏洞长什么样。<br/><br/>周内挑 2 道论证有效性分析，先只写漏洞点和一句点评，每道控制在 200 字上下。你现在不适合一上来追长文，先把“看见漏洞—说清漏洞”练出来。周末把本周的漏洞归成一页清单，后面写作就靠这页往下接。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 3 周</span>
+          <h3>函数和削弱题上手</h3>
+        </div>
+        <span class="date">2026.09.15 - 2026.09.21</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这周开始，题目会明显比前面绕一点。你别急着找捷径，先把函数和方程这些基础图像、关系和条件弄明白，再去碰削弱题。卡住的时候先回书上看一眼例题，不要一直盯着同一道题发呆。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑《数学分册》：函数、方程</h4>
+            <p>这一周把函数、集合、一元二次函数及其图像、指数函数、对数函数、代数方程这些内容过一遍。重点是函数单调性、零点、图像平移、方程组的基本解法，这些地方最容易在 199 里出计算题。<br/><br/>陈剑1000题里对应章节做 25 题左右，做完后别只看答案，最好把图像和式子再画一遍。你现在算题慢，就更要练“先看关系、再下笔”，别一上来就急着算到最后。周末把函数和方程各挑 2 道错题，重做一遍，看看自己到底是想法慢还是计算慢。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：削弱题</h4>
+            <p>这周开始进入第 4 章削弱题。题型里先看论证型削弱、因果关系型削弱、求因果五法型削弱、措施目的型削弱、调查统计型削弱、类比型削弱、数字陷阱型削弱，先把“先找结论，再找支撑，再找反例”这条线走顺。<br/><br/>本周做 20 到 25 题，错题只留一个动作：这道题到底是削弱结论，还是削弱中间那条因果链。削弱题不用背很多话术，先把题干里的论点和论据分开就够了。卡住两分钟后就看答案第一步，不要闷头耗时间。</p>
+          </div>
+          <div class="subject writing">
+            <h4>老吕《写作母题50练》：克罗特审题立意法</h4>
+            <p>这一周把“克罗特审题立意法”看一遍，重点不是花哨说法，而是把题目先翻成自己的话。论说文这门课最怕一开始就写偏，所以本周先练“题目在说什么、我站哪边、我准备举什么例子”。<br/><br/>周内选 2 道论说文，只写审题和提纲，不写全文。每道题都把中心观点写成一句白话，再写出 3 个分论点，最后补一句收尾。你要先把脑子里的路搭出来，后面写成文的时候才不会卡壳。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 4 周</span>
+          <h3>不等式和数列接上，支持题、假设题一起走</h3>
+        </div>
+        <span class="date">2026.09.22 - 2026.09.28</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周开始不能只盯着单章题了，要把不等式、数列和论证逻辑的常见题型串起来。你现在最容易的问题是看得懂题但下笔慢，所以这周一定要保留限时感，不要把每道题都拖很久。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑《数学分册》：不等式、数列</h4>
+            <p>把不等式的性质、均值不等式、不等式求解、一元一次不等式组、一元二次不等式、含取值范围的不等式、简单分式不等式都过一遍，再把等差数列、等比数列的基本公式顺手写下来。<br/><br/>本周在陈剑1000题里做 30 道左右，重点盯住“条件往哪边转”和“等差等比的通项、求和”。你如果一边算一边乱，就先停下来把条件写全，再继续往下推。周末把最容易混的几个公式抄到一页纸上，后面每次开练先看这一页。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：支持题和假设题</h4>
+            <p>第 5 章支持题和第 6 章假设题要开始接上。支持题重点看论证型支持、因果型支持、求异法型支持、措施目的型支持；假设题重点看搭桥法、因果型假设、措施目的型假设、数字型假设。你要先学会从题干里把结论和缺口拆开。<br/><br/>本周做 20 题左右，做题顺序固定成“先找结论、再看证据、最后找缺口”。支持题不要乱扩展，假设题不要多选。错题只记一句话：这题是在补桥，还是在补因果。说清这个，后面再刷同类型题就快了。</p>
+          </div>
+          <div class="subject writing">
+            <h4>老吕《写作母题50练》：名人名言、典型事例先存一点</h4>
+            <p>这一周开始往论说文里攒能直接用的材料，先看“名人名言”和“典型事例”这两块，不用背很多，先把常用主题能接上的例子记住。你不用把写作想得很复杂，先能把一个观点说圆，再把例子放进去就行。<br/><br/>周内写 1 篇论说文提纲，外加 1 篇 300 到 400 字的半成品。提纲里只写观点、分论点和例子，不追求句子多漂亮。你现在要做的是把素材和观点挂上钩，别每次都临场现想例子。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 5 周</span>
+          <h3>几何先平面，再把推论题接起来</h3>
+        </div>
+        <span class="date">2026.09.29 - 2026.10.05</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周开始图形题会多一点，草稿纸一定要画图。你最容易在这里丢步骤，所以别省那几笔。逻辑上也从支持、假设转到解释、推论，开始把题型顺序完整走一遍。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑《数学分册》：平面几何</h4>
+            <p>先过三角形、四边形、矩形、平行四边形、梯形、圆与扇形这些平面几何内容。每一种题型都要写一次辅助线思路，别只看答案。面积、周长、角度关系都要自己算出来。<br/><br/>本周做 25 到 30 道题，遇到图形题先标条件，再下结论，别一上来就套公式。你如果画图后还是乱，就把已知条件按顺序写到旁边，再重做一遍。周末把前面做错的几道几何题重画一遍，看看是不是图没画清楚。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：解释题、推论题</h4>
+            <p>第 7 章解释题和第 8 章推论题要跟上。解释题不是乱猜意思，先看题干里前后矛盾的位置，再找最能对上的解释；推论题则要先看前提，再看能不能往下推出结论，不要把自己的常识硬塞进去。<br/><br/>本周做 20 题左右，每题都强迫自己先写出前提和结论，再看选项。你一旦发现自己老是靠感觉，就把这类题再拆回去看一遍题干。解释题和推论题的错法不一样，别混着记。</p>
+          </div>
+          <div class="subject writing">
+            <h4>老吕《写作母题50练》：学员范文和老吕点评</h4>
+            <p>这一周开始看“学员范文”和“老吕点评”，不是为了背漂亮句子，而是为了看同一道题别人是怎么搭结构的。你现在如果一写论说文就散，就先看别人是怎么把一个观点拆成两到三个小点的。<br/><br/>本周至少写 1 篇完整论证有效性分析，25 分钟左右收尾，再写 1 篇论说文提纲。写完后不要大改，先对照范文看看自己少了哪一层。你现在更需要的是结构感，不是花哨表达。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 6 周</span>
+          <h3>立体几何和综合推理开始上桌</h3>
+        </div>
+        <span class="date">2026.10.06 - 2026.10.12</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周会比前面杂一些，但你要守住一个原则：图形题先画图，综合推理先排表。你如果一边想一边乱写，后面会特别花时间，所以这周开始就把草稿写规整一点。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑《数学分册》：立体几何、解析几何</h4>
+            <p>把空间几何体里的长方体、柱体、球体过一遍，再接平面解析几何：平面直角坐标系、直线方程与圆的方程、两点间距离公式与点到直线的距离公式。近年大纲里新增的幂函数和锥体也顺手扫一下，不用单独拎很久。<br/><br/>本周做 25 道左右，重点是把图形和公式对应起来。你算题慢，就不要在一道立体几何题上来回转很多圈，先把已知条件和要求写清楚，再一步一步算。周末把前面做错的图形题重画一遍，确认是不是公式记串了。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：评论题 + 综合推理排序题</h4>
+            <p>第 9 章评论题要开始看，先把评论逻辑漏洞、评论逻辑技法、评价削弱加强、争论焦点这些题型摸熟。随后进第三部分综合推理，先从排序题开始，不要一上来就把自己往复杂条件里塞。<br/><br/>本周做 20 到 25 题，做排序题时先排最明显的条件，别把所有信息一口气摊开。评论题和综合推理都很吃条理，所以错题只记“是评论点没抓到，还是顺序没理清”。这类题越晚越要稳，不要凭直觉冲。</p>
+          </div>
+          <div class="subject writing">
+            <h4>老吕《写作母题50练》：问题作文分析</h4>
+            <p>这一周看“问题作文分析”，重点不是看别人怎么写得漂亮，而是看自己常犯哪种毛病：题意没吃透、观点太虚、例子太散、结尾没收住。把这些问题先认出来，后面写作才不会一写就跑偏。<br/><br/>周内写 1 篇论证有效性分析和 1 篇论说文，都尽量控制时间。分析题先练“找漏洞”，论说文先练“立观点、分层次、落例子”。写完后只改三处：题意有没有偏、段落是不是散、结尾有没有收回来。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 7 周</span>
+          <h3>计数原理和综合推理对应题接上</h3>
+        </div>
+        <span class="date">2026.10.13 - 2026.10.19</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">到这一步，题目已经不能只靠会不会了，还要看你能不能在有限时间里把条件捋顺。数学开始碰计数原理，逻辑开始碰对应和分组，这两块都容易卡人，所以每次做题都先列条件，不要硬冲。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑《数学分册》：计数原理</h4>
+            <p>这周把数据分析里的计数原理先打牢：加法原理、乘法原理、排列、排列数、组合、组合数。你如果一看到排列组合就发懵，就先从最简单的分类计数做起，不要直接去碰太绕的综合题。<br/><br/>本周做 20 到 25 道题，重点是把“分类还是分步”“能不能重复”“顺序算不算”这三件事想清楚。陈剑1000题里对应章节的基础题先做一遍，错题要把计数方法写出来，别只记答案。你这门课的计算慢，很多时候就是这里没分清。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：综合推理对应题、分组题</h4>
+            <p>综合推理继续往下走，先做对应题、分组题、条件分配题这些最常见的类型。做这类题不要直接冲答案，先把条件整理成表格或草稿格，谁和谁能搭在一起，谁不能放一起，先写清楚。<br/><br/>本周做 20 题左右。你如果老是把条件看漏，就把题干抄一遍再做，别怕慢。综合推理本来就靠条理，错一两题不奇怪，关键是每次错完要知道自己少看了哪条条件。</p>
+          </div>
+          <div class="subject writing">
+            <h4>老吕《写作母题50练》：开始把素材和观点挂起来</h4>
+            <p>这周不再只看范文，要开始自己动笔。论说文先从“观点—分论点—例子”这三层写起，别一上来追求文采。你可以先拿一个简单主题，写出 1 个中心观点和 3 个小点，再补 2 个能用的例子。<br/><br/>周内至少写 1 篇论说文成稿和 1 篇论证有效性分析提纲。成稿不要追太长，先把结构写顺。写完以后把最能直接复用的例子单独摘出来，后面遇到类似主题直接拿来用，别每次都从零想。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 8 周</span>
+          <h3>数据描述和概率补上，写作开始成篇</h3>
+        </div>
+        <span class="date">2026.10.20 - 2026.10.26</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周要把 199 数学里最后一块关键内容补上，概率和数据描述都要动手。写作也不能再只停在提纲上，至少要开始一题一题写成完整文章。你现在如果还习惯一直听课，不练笔，这周就会很吃亏。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑《数学分册》：数据描述、概率</h4>
+            <p>把平均值、方差与标准差、直方图、饼图、数表这些数据描述内容过掉，再把事件及其简单运算、加法公式、乘法公式、古典概型、伯努利概率顺一遍。数据分析的题，很多时候不是算不过，是条件看漏了。<br/><br/>本周做 25 道左右，重点是把“题里给了哪些信息、我到底需要哪一步”写清楚。你可以把概率题拆成小步骤，不要一上来就往公式里套。周末把前几周算错的题合在一起重做一遍，找出自己最容易丢分的那一类。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：对应、真假、综合推理再回头</h4>
+            <p>这一周把前面综合推理里容易混的对应、分组、真假题再回头看一遍。你要开始学会把题干信息压成表格，不然条件一多就会乱。形式逻辑和论证逻辑也顺手各刷几道，把前面学过的东西连起来。<br/><br/>本周逻辑做 25 题左右，别贪多。重点不是把题刷完，而是把“题型—方法—错因”三件事写到一张纸上。你如果同一种题型总是错，就把那类题单独圈出来，后面专门回刷，别让它一直挂在那儿。</p>
+          </div>
+          <div class="subject writing">
+            <h4>老吕《写作母题50练》：论证有效性分析和论说文都写成篇</h4>
+            <p>这一周开始，两道写作题都要往成篇推进。论证有效性分析先卡 25 分钟，练的是“找漏洞、写分析、收尾”；论说文先卡 35 到 40 分钟，练的是“立观点、分层次、落例子”。写的时候别去追太花的句子，先让文章顺顺地写完。<br/><br/>周内至少各写 1 篇完整稿，写完后只改三类问题：有没有偏题、段落是不是散、有没有明显语病。你现在要建立的是稳定感，不是临场灵感。写作一旦能成篇，后面分数就会稳很多。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 9 周</span>
+          <h3>把前半年的错题回炉一次</h3>
+        </div>
+        <span class="date">2026.10.27 - 2026.11.02</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周开始，不能再只顾着往前跑了，前面算错、看漏、方法没记住的地方都要回头看一次。你最容易的问题是做完新题就忘，所以这周要给错题一个单独的位置，不然后面越做越乱。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑1000题：算术、代数错题回炉</h4>
+            <p>这一周先回到算术和代数，把前面做错的题重新做一遍，尤其是分式化简、函数图像、方程、不等式和数列这些地方。不是重新看答案，而是先自己拿草稿纸再算一轮，能独立写对才算真的会了。<br/><br/>陈剑1000题里对应章节错题至少重做 20 题，错题要按“计算错”“公式忘了”“条件没读清”分开。你现在的慢，不是因为题难，而是因为基础步骤没有变成习惯。这周把这些步骤往回拉一拉，后面做真题会轻一点。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：削弱、支持、假设二刷</h4>
+            <p>这一周逻辑不急着开新题型，先把削弱、支持、假设这三大块再刷一遍。你要盯的是选项怎么和论点、论据、缺口对应，不要只记结论。老吕800题前面的核心方法这周要重新过熟。<br/><br/>周内做 20 题左右，错题单独记成一页“母题回放”。每次错完都先问自己：我是没看清论点，还是没看清选项在补什么。只要这一步稳了，后面碰到真题时就不会乱选。</p>
+          </div>
+          <div class="subject writing">
+            <h4>老吕《写作母题50练》：论文结构再捋一遍</h4>
+            <p>这一周写作不再只看素材，要回头把论文结构捋清楚。论证有效性分析继续练“漏洞分类”，论说文继续练“中心观点—分论点—例子—收尾”四步法。你可以把前面写过的稿子拿出来改，但不要改成完全另一篇。<br/><br/>周内做 1 篇论证有效性分析和 1 篇论说文的限时成稿，再把两篇里最顺手的句子抄到一张小卡片上。你后面考场上就靠这些固定句子起步，不用每次都临时想。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 10 周</span>
+          <h3>把近年的真题拆开练</h3>
+        </div>
+        <span class="date">2026.11.03 - 2026.11.09</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">从这一周开始，真题的地位要明显往上提。你前面已经把书上的主线过了一遍，现在就该把真题拆成小块练。不要一上来就整套硬做，先把数学、逻辑、写作各自的真题节奏分开跑顺。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>199历年真题：数学基础按题型拆开</h4>
+            <p>这一周开始做 199 真题的数学部分，先按问题求解和条件充分性判断拆开来练，不要一上来就整卷。问题求解先挑前面 15 题里最基础的做，条件充分性判断先练判断速度和条件翻译，不要和别人比谁刷得多。<br/><br/>本周至少做 2 套分题型练习，做完后把错题按算术、代数、几何、数据分析四栏归类。你要开始慢慢接近真题的出题方式，但还不用追完美分数，先把常见坑摸清楚就行。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：真题感的综合推理</h4>
+            <p>这一周逻辑开始更像真题。综合推理继续做排序、对应、真假、条件分配，形式逻辑和论证逻辑则按真题常见的问法回头刷一轮。你要把“题型感”往真题上靠，不要再只停留在母题本身。<br/><br/>本周逻辑做 2 组分题型练习，每组做完都用一句话写清楚自己的错因。你如果总是被条件绕住，就把题干抄成表格，再重做一遍。真题感不是看出来的，是这样一点点练出来的。</p>
+          </div>
+          <div class="subject writing">
+            <h4>199写作真题：先写一篇完整稿</h4>
+            <p>这一周开始碰真题写作，不再只看书里的例子。先拿一篇论证有效性分析真题，严格卡 25 分钟写完，再拿一篇论说文真题卡 35 分钟写完。写完不用大修，只改明显跑题、语病和结构问题。<br/><br/>你现在写作要做的是把老吕50练里的方法落到真题上。每篇写完后，把“题干漏洞”和“分论点”各写成一句卡片，后面复习直接翻这两句，不用再翻整篇文章。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 11 周</span>
+          <h3>把 1000 题错题和真题连起来</h3>
+        </div>
+        <span class="date">2026.11.10 - 2026.11.16</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这周不要再一味往新题里冲了，得把前面陈剑1000题里最常错的地方再拉回来。尤其是计算题，慢不是问题，算错才是问题。你现在要做的是让同一类题第二次见面时不再发懵。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑1000题：错题二刷 + 真题混刷</h4>
+            <p>这周把 1000 题里算术、代数、几何、数据分析四块的高频错题重做一遍，再穿插做一组真题混合题。你如果题算得慢，就把 25 题拆成几个小段做，不要一口气闷着写完。<br/><br/>每做完一段，都把自己最容易卡的步骤标一下：是公式记岔了，还是条件转不过来。周末把这几类错题单独整理成一页，后面每次开练先看这页。你到这一步，算题应该开始有一点熟了，但还不能松。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：形式逻辑和论证逻辑混刷</h4>
+            <p>这周逻辑把前面学过的形式逻辑和论证逻辑混在一起刷，重点回看复言命题、概念定义、削弱、支持、假设这几块。你要开始练的是“先识别题型，再套方法”，而不是看哪个选项顺眼就选哪个。<br/><br/>本周做 25 题左右，做完后把题型标签写在题号旁边。错题只看一个点：我到底是在条件上错了，还是在选项比较上错了。把这个分清，后面做整套卷子的速度会舒服很多。</p>
+          </div>
+          <div class="subject writing">
+            <h4>论证有效性分析和论说文各写一篇完整稿</h4>
+            <p>这一周写作不再只写半成品，两道题都要写完整。论证有效性分析继续卡 25 分钟，重点是把漏洞点说清楚；论说文继续卡 35 到 40 分钟，重点是把观点写稳、例子落实。写完以后别急着改文采，先看结构是不是完整。<br/><br/>周内至少各写 1 篇成稿，再把每篇里最稳的开头和结尾单独摘出来。你现在最值钱的是能直接复用的句子，不是临场灵感。把能用的部分固定下来，后面冲刺时就会轻松一点。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 12 周</span>
+          <h3>再把数据分析和综合推理压一遍</h3>
+        </div>
+        <span class="date">2026.11.17 - 2026.11.23</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这周是前半程往后半程的一个分水岭。数据分析和综合推理都不是靠一眼看懂就能稳拿分的，必须把题干翻成表格、关系和步骤。你现在要开始接受一个现实：题做得慢一点没关系，步骤清楚最重要。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑1000题：数据分析二刷</h4>
+            <p>这一周回到数据分析，把计数原理、数据描述、概率几个小块再做一遍，尤其是排列组合、平均值、方差、古典概型、伯努利概率这些地方。你如果一看到概率就发懵，就先把事件关系写出来，再慢慢往下推。<br/><br/>本周做 20 到 25 题，尽量把每道题的条件都写全，别凭记忆往下冲。你前面已经看过一轮，这一轮要把“为什么这么做”说清楚。周末把最卡的三个公式再抄一遍，别嫌麻烦，后面真会用到。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：综合推理继续往后走</h4>
+            <p>这一周继续刷综合推理，重点放在排序、对应、分组、真假这些最容易卡时间的题型。你要学会先把条件铺在纸上，再决定谁先排、谁后排，不要一看到条件多就慌。<br/><br/>本周做 20 题左右，每题都强迫自己先写一个小表格。错题不要长篇大论，只记录哪条条件没用上。综合推理的提分点很多时候就在这里：少丢条件、少返工、少乱猜。</p>
+          </div>
+          <div class="subject writing">
+            <h4>论说文开始写得像样一点</h4>
+            <p>这一周论说文不能再只停在提纲上了，至少要开始让整篇文章读起来连起来。你可以继续用老吕50练里的“名人名言”“典型事例”素材，但重点不是堆材料，而是让观点和例子贴上。<br/><br/>周内写 1 篇论说文完整稿，再写 1 篇论证有效性分析的提纲。论说文写完后，先看是否有“开头—分论点—例子—结尾”四层结构，别急着改句式。先把文章能写完，再慢慢写得更顺。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 13 周</span>
+          <h3>开始按正式时间做一整套</h3>
+        </div>
+        <span class="date">2026.11.24 - 2026.11.30</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周以后，真题就不能再只拆题型了，要开始按整套的节奏走。第一次按正式时间做整套，分数高低先放一边，你要先学会 3 小时里怎么分配体力和注意力。后面每次做卷子都按这套节奏走。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>199真题：第一次整卷模拟</h4>
+            <p>这一周拿一套完整真题，按正式考试顺序把数学部分完整做一遍，先做问题求解，再做条件充分性判断，卡 50 分钟左右。做卷子时不要回头反复改，先把会的题稳稳拿住。<br/><br/>做完后把错题按算术、代数、几何、数据分析四类分开，尤其把“算错”和“不会”分清。你现在不是没有分，而是一些基础题和计算题会白白丢。把这一步抓牢，后面整卷分数才会上来。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕《逻辑母题800练》：正式计时做一组</h4>
+            <p>这一周逻辑也开始按正式时间走，一整组混合题要在规定时间内做完。你先给自己设一个不太松的时长，目标是练手感，不是追满分。做的时候一定把草稿纸用起来，尤其是综合推理。<br/><br/>做完以后，把错题分成“题型认错”“条件漏看”“选项比较失误”三类。你只要能把这三类分开，后面再刷同类题时就知道先改哪里。逻辑这一周的重点是从母题往真题过渡。</p>
+          </div>
+          <div class="subject writing">
+            <h4>论证有效性分析先稳住，再写论说文</h4>
+            <p>这一周写作第一次按正式顺序完整写。先写论证有效性分析，再写论说文，尽量把节奏贴近考试。论证有效性分析先稳住漏洞定位，论说文先稳住观点和层次，别一边写一边来回改。<br/><br/>写完后只改两件事：结构是不是完整，句子有没有明显语病。你现在不需要把每篇都写成范文，先能按时写完、写顺、写完整，就已经比以前稳了很多。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 14 周</span>
+          <h3>开始做 3 小时完整模拟</h3>
+        </div>
+        <span class="date">2026.12.01 - 2026.12.07</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这周开始，整套卷子要真正按 3 小时跑起来了。你前面做过分题型、做过单块训练，现在该让三块内容同时出现，看看自己到底是哪一段最容易掉链子。第一次跑完整套，不求高分，只求流程顺。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>199整卷模拟：数学 50 分钟内完成</h4>
+            <p>这一周挑一套完整真题或模拟卷，数学部分严格按 50 分钟左右完成。你要先把能拿的基础题和计算题做稳，遇到特别绕的题先跳，不要让一题拖垮整段。做完后再回头补不会的题。<br/><br/>这一轮重点是时间感，不是分数。做完后把错题按四大块整理，尤其看自己是不是在算术和代数上花了太多时间。你如果总觉得时间不够，就把前面最熟的题做快一点，给后面留出余量。</p>
+          </div>
+          <div class="subject">
+            <h4>199整卷模拟：逻辑 50 分钟内完成</h4>
+            <p>逻辑这一周也要按整卷节奏做一次。做的时候你要盯住时间，别在一道综合推理题上来回耗。题干长的时候先抓条件，先把表格写出来，再看选项，不要被文字堆住。<br/><br/>做完后，把题型错因分成三类：条件漏看、题型没认出来、选项比较失误。只要这三类分得清，后面再跑整卷就会快一些。你现在的目标是跑出流程，不是一次做到很高分。</p>
+          </div>
+          <div class="subject writing">
+            <h4>写作第一次按正式顺序写满</h4>
+            <p>这一周写作要第一次按正式顺序写满，先论证有效性分析，再论说文。你要开始习惯在有限时间里把文章写完整，不再一遍一遍改开头。写的时候别怕普通，普通但完整，比华而不实更稳。<br/><br/>写完后只看三样：题意有没有偏、结构是不是完整、有没有明显语病。把这三项改完就收，不要一直修到晚。你现在最需要的是形成固定流程，别每次考场都临时想一套。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 15 周</span>
+          <h3>把热题和易错题都收回本子里</h3>
+        </div>
+        <span class="date">2026.12.08 - 2026.12.14</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周要开始收尾，不是开新局。你前面已经把整套卷跑过几轮了，这周就把热题、易错题、写作模板都收回本子里，看看自己真正能稳定拿分的是哪些内容。别让材料越堆越多。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>陈剑1000题：热题清单再刷一次</h4>
+            <p>这一周把陈剑1000题里最常见的热题再刷一遍，尤其是你最容易算错的算术题、函数题、几何题和概率题。你如果某个地方老是算慢，就给自己设一个更短的时间，看是不是能把步骤压缩。<br/><br/>本周重点不是把题做完，而是把自己的热题清单缩短。你只保留那些反复错的题，其他做对的就放过。这样到后面翻本子时，看到的都是你真正需要再补一遍的地方。</p>
+          </div>
+          <div class="subject">
+            <h4>老吕800题：题型清单化回看</h4>
+            <p>这一周逻辑把高频题型清单化回看，形式逻辑、削弱、支持、假设、综合推理这些常考点都要再扫一遍。你要看的是自己哪种题型还会慢，哪种题型还会错，不要再往新题里钻。<br/><br/>本周做 20 题左右，做完后把题型清单压到最短。每个题型只留一行最容易错的点，这样后面考前复看时不会乱。逻辑这一周的核心就是把最常见的坑都放到眼前。</p>
+          </div>
+          <div class="subject writing">
+            <h4>写作模板固定成一版</h4>
+            <p>这一周写作把模板彻底固定成一版，不再摇摆。论证有效性分析就固定你的漏洞顺序，论说文就固定你的观点结构和例子顺序。模板不用多，够顺、够稳、能直接拿来写就行。<br/><br/>周内再写 1 篇论说文和 1 篇论证有效性分析，写完后把模板里最顺的句子复制到一页单独纸上。以后如果临场慌了，就直接看这一页，不用再在脑子里重新搭。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 16 周</span>
+          <h3>只看错题和公式卡</h3>
+        </div>
+        <span class="date">2026.12.15 - 2026.12.20</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">离考试越来越近，这周就不要再动新题了。你现在看新题容易乱，看错题和公式卡更值。每天就把最熟的东西过一遍，保持手感，不要把自己弄得太累。</div>
+        <div class="subjects">
+          <div class="subject">
+            <h4>数学：只看公式卡和错题卡</h4>
+            <p>这一周数学只保留最轻量的动作：看公式卡、看错题卡、重做一小批最常见题。你已经不需要去碰新的难题了，重点是把算术、代数、几何、数据分析四块最容易错的地方再过一遍，确认看到题能想起第一步。<br/><br/>每天只做少量热题，别把手感弄散。你现在要的是稳，不是快。周末把考试当天最常用的公式和步骤再看一遍，草稿纸上尽量写得整洁一点，别让自己临场慌。</p>
+          </div>
+          <div class="subject">
+            <h4>逻辑：只看题型清单和错因短句</h4>
+            <p>这一周逻辑只看题型清单和错因短句，形式逻辑、削弱、支持、假设、综合推理这些地方都再扫一遍。你不用再大规模做题，只要保证看到题型时脑子里能跳出方法就行。<br/><br/>本周每天做少量热题，外加 10 分钟错题回看。你如果担心综合推理，就把表格画法再看一遍。到了这个阶段，逻辑已经不靠堆题了，靠的是熟悉和稳。</p>
+          </div>
+          <div class="subject writing">
+            <h4>写作：只看模板和开头结尾</h4>
+            <p>这一周写作只看最顺手的模板和开头结尾卡片，不再扩展内容。论证有效性分析看漏洞顺序，论说文看观点、分论点和收尾句。你要保证的是考场上拿到题以后，脑子里能马上起手。<br/><br/>本周只做轻量练习，不再追新的材料。你如果担心写不完，就把前面最顺的两三套句子再抄一遍，保证手上能写出来。最后这周，写作只求稳，不求多。</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    </section>
+
+    <footer>本页只写 199 管综。看完如果要调，我再按你的反馈改一版。</footer>
+  </main>
+
+  <script>
+    const cards = Array.from(document.querySelectorAll('.week-card'));
+    const heads = Array.from(document.querySelectorAll('.week-head'));
+    heads.forEach((head) => {
+      head.addEventListener('click', () => {
+        const card = head.closest('.week-card');
+        const open = card.classList.toggle('open');
+        head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+
+    const toggleAll = document.getElementById('toggleAll');
+    let allOpen = false;
+    toggleAll.addEventListener('click', () => {
+      allOpen = !allOpen;
+      cards.forEach((card, idx) => {
+        card.classList.toggle('open', allOpen || idx === 0);
+        const head = card.querySelector('.week-head');
+        head.setAttribute('aria-expanded', (allOpen || idx === 0) ? 'true' : 'false');
+      });
+      toggleAll.textContent = allOpen ? '收起全部' : '展开全部';
+    });
+  </script>
+</body>
+</html>
