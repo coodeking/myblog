@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>黄嘻嘻 公共课考研规划</title>
+  <style>
+    :root {
+      --bg: #f7efe3;
+      --paper: #fffaf1;
+      --paper-2: #fff5e8;
+      --text: #2a241d;
+      --muted: #756656;
+      --line: #e3d3bf;
+      --math: #9b5b22;
+      --english: #3f7c67;
+      --politics: #a94d35;
+      --shadow: rgba(113, 78, 42, .13);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(201, 130, 64, .18), transparent 25%),
+        radial-gradient(circle at 92% 10%, rgba(63, 124, 103, .14), transparent 28%),
+        linear-gradient(135deg, #f8ecd9 0%, #fffaf2 58%, #f1dcc0 100%);
+      color: var(--text);
+      font-family: "Noto Serif SC", "Microsoft YaHei", serif;
+      line-height: 1.72;
+    }
+    .container { width: min(1080px, calc(100% - 28px)); margin: 0 auto; padding: 24px 0 48px; }
+    header {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(135deg, #fffdf8 0%, #f2e1ca 100%);
+      box-shadow: 0 24px 70px var(--shadow);
+      padding: 32px 28px;
+      margin-bottom: 18px;
+    }
+    .tag { display: inline-block; color: var(--math); font-weight: 700; letter-spacing: .08em; margin-bottom: 12px; }
+    h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.12; margin-bottom: 14px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-size: .95rem; }
+    .meta span { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; background: rgba(255,255,255,.72); }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,250,241,.96);
+      box-shadow: 0 18px 42px rgba(113, 78, 42, .08);
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+    .panel h2 { color: var(--math); font-size: 1.22rem; margin-bottom: 14px; }
+    .strategy { background: var(--paper-2); border-left: 4px solid var(--math); border-radius: 12px; padding: 15px 16px; white-space: pre-line; color: #3a3027; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+    .info-card, .phase {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fffdf8;
+      padding: 16px;
+    }
+    .info-card h3, .phase b { display: block; color: var(--math); margin-bottom: 8px; font-size: 1rem; }
+    .info-card p, .phase span { color: #4b4138; white-space: pre-line; }
+    .phase em { display: block; font-style: normal; font-weight: 700; margin-bottom: 6px; color: #2a241d; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: 22px 0 14px; color: var(--muted); flex-wrap: wrap; }
+    button { font: inherit; }
+    .toolbar button { background: #3a3027; color: #fff7eb; border: 0; border-radius: 999px; padding: 10px 16px; font-weight: 700; cursor: pointer; }
+    .weeks { display: grid; gap: 14px; }
+    .week-card { border: 1px solid var(--line); border-radius: 20px; background: rgba(255,250,241,.98); overflow: hidden; box-shadow: 0 12px 30px rgba(113, 78, 42, .07); }
+    .week-card.open { border-color: rgba(155, 91, 34, .45); }
+    .week-head { width: 100%; display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; padding: 18px 20px; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
+    .week-head:hover { background: rgba(155, 91, 34, .08); }
+    .kicker { display: block; color: #8a7a69; font-size: .82rem; letter-spacing: .08em; margin-bottom: 4px; }
+    .week-head h3 { font-size: 1.08rem; line-height: 1.38; }
+    .date, .chev { color: #7b6b59; white-space: nowrap; font-size: .92rem; }
+    .date { font-family: Consolas, ui-monospace, monospace; }
+    .week-body { display: none; border-top: 1px solid var(--line); padding: 18px 20px 20px; background: #fffdf8; }
+    .week-card.open .week-body { display: block; }
+    .message { background: var(--paper-2); border-left: 4px solid var(--math); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; white-space: pre-line; color: #3a3027; }
+    .subjects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .subject { border: 1px solid var(--line); border-radius: 16px; background: #fffdf8; padding: 16px; }
+    .subject h4 { margin-bottom: 9px; font-size: 1.02rem; }
+    .subject.math h4 { color: var(--math); }
+    .subject.english h4 { color: var(--english); }
+    .subject.politics h4 { color: var(--politics); }
+    .subject p { white-space: pre-line; color: #4b4138; }
+    footer { text-align: center; color: #7f6e5f; margin-top: 22px; font-size: .92rem; }
+    @media (max-width: 920px) {
+      .grid, .subjects { grid-template-columns: 1fr; }
+      .week-head { grid-template-columns: 1fr; }
+      .date, .chev { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="tag">公共课规划 · 数学二 / 英语二 / 政治</div>
+      <h1>黄嘻嘻 2026 年 12 月初试公共课规划</h1>
+      <div class="meta">
+        <span>目标院校：重庆交通大学</span>
+        <span>目标专业：土木工程</span>
+        <span>起步：2026-09-07</span>
+        <span>初试：2026-12-20</span>
+        <span>总周数：15 周</span>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>这份表怎么用</h2>
+      <div class="strategy">这份表只写公共课：数学二、英语二、政治。你现在是大三，数学又是零基础，时间也比较赶，所以前面不会把内容铺得太散。先把最容易起步的内容做起来，再慢慢往后补。你现在最需要的是一个能照着做的表，不是很多空话。<br/><br/>数学二这边，前面先把高数最基础的一套拉起来。你现在不适合一上来就追难题，也不用把太多时间放在听课上。数学主线还是按“讲义 + 题”走：张宇《基础三十讲》、张宇 1000 题基础题、660 一阶题、于文涛《真题一本通》、李林 6+4。你这次要特别注意的一点是，证明题、太偏的题都不要硬啃，题目能写出常规步骤就先往前走。<br/><br/>英语二现在的状态是四级过了，但基础一般，阅读、翻译、作文都紧张。前期只有一个重点：背单词。暑假前没法等到“单词背完再做题”，所以这版会把单词和真题阅读同时往前推。唐迟阅读论可以接着看，但不适合一直开着大课；田静每日一句继续保留，主要用来补长难句主干。作文等 10 月以后再慢慢上。<br/><br/>政治你表里写的是现在就开始，但我不会把它排得太重。前期先让你知道马原、史纲、毛中特、思修法基这些块怎么分，10 月初再正式开始刷题。腿姐冲刺背诵手册要买，苍盾小程序每天刷一套选择题，肖四出来以后再集中背主观题。</div>
+      <div class="grid">
+        <div class="info-card"><h3>数学时间</h3><p>前期放在上午和晚上都可以，先听一小块课，再马上写题。高数、线代都要跟上，但前两周先把高数和函数部分抓住。</p></div>
+        <div class="info-card"><h3>英语时间</h3><p>背词放碎片时间，阅读放整块时间。唐迟阅读论、田静每日一句、Monkey 作文模板按阶段接上，不要一开始全都铺开。</p></div>
+        <div class="info-card"><h3>政治时间</h3><p>10 月初正式开始。前期只做预热和认结构，后面用腿姐手册、苍盾小程序、肖四接上，不抢数学和英语时间。</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>资料和阶段</h2>
+      <div class="grid">
+        <div class="info-card"><h3>数学二</h3><p>张宇《基础三十讲》+ 张宇 1000 题基础题 + 660 一阶题 + 于文涛《真题一本通》+ 李林 6+4。你现在先把高数打底，再上线代。</p></div><div class="info-card"><h3>英语二</h3><p>《不背单词》先背考研核心词；唐迟阅读论补方法；田静每日一句补长难句；10 月以后再上 Monkey 作文模板课。</p></div><div class="info-card"><h3>政治</h3><p>10 月初正式开始。腿姐冲刺背诵手册熟读，苍盾小程序每天 30 道选择题，12 月背肖四大题。</p></div>
+      </div>
+      <div class="grid">
+        <div class="phase"><b>9.7 - 9.27</b><em>数学先起步，英语先背词</em><span>先把极限、函数、导数这些高数入口接住；英语每天背词不间断，阅读只做少量。</span></div><div class="phase"><b>9.28 - 10.18</b><em>积分和线代开头</em><span>高数开始进积分，线代开头；英语按年份做阅读；政治正式起步。</span></div><div class="phase"><b>10.19 - 11.08</b><em>真题分类和作文接上</em><span>数学转真题一本通，英语开始作文和整卷，政治继续选择题。</span></div><div class="phase"><b>11.09 - 11.29</b><em>整卷和错题回看</em><span>数学限时整卷，英语限时整卷，政治继续刷选择题和手册。</span></div><div class="phase"><b>11.30 - 12.20</b><em>考前回看</em><span>数学、英语看错题卡和模板，政治背肖四和材料题方法。</span></div>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <span>只规划公共课。你现在最需要的是一个能照着做的节奏，不要一下子把自己铺太满。</span>
+      <button id="toggleAll" type="button">展开全部</button>
+    </div>
+
+    <section class="weeks">
+      
+    <article class="week-card open">
+      <button class="week-head" type="button" aria-expanded="true">
+        <div>
+          <span class="kicker">第 1 周</span>
+          <h3>极限和单调性先接住，英语只做最基础的词</h3>
+        </div>
+        <span class="date">2026.09.07 - 2026.09.13</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">你这周不要想着把所有科目都排得很满。数学二零基础，最先要做的是把极限、函数、单调性这些入口接上，不然后面的导数和积分会更卡。英语也别急着去做很多题，先把背词和长难句做起来。政治这周只看个大概，不正式开大任务。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>数学先从极限、函数、数列、无穷小无穷大、函数极限开始。张宇《基础三十讲》对应章节要看完，每看一小节就做对应例题和课后基础题。你现在别追很多量，先把“怎么判断极限存在、怎么找单调区间、怎么做基本函数图像”写顺。<br/><br/>这一周 1000 题只做基础题，不碰难题。每天 6 到 8 道就行，做完把错题按“概念不清、计算出错、第一步没想到”分开。周末把极限和函数这两块再重做一遍，能自己写出第一步就算不错。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语只保留背词和最基本的长难句。背单词用《不背单词》，先把考研核心词开始滚起来，不要一上来就想着拼速度。每天背词 30 到 40 分钟，晚上一遍复习就行。<br/><br/>田静每日一句可以开始，每天 1 句，先找主干，再看修饰。唐迟阅读论只补导读和做题方法，不要把整套课听很久。真题先不大量开，只挑 2010 年最早的阅读做 1 篇，先练手感。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治这周只做很轻的准备。看一看马原、史纲、毛中特、思修法基是怎么分的，知道每块大概讲什么就行。现在不用背很多，也不用做 1000 题。<br/><br/>如果你手里已经有腿姐手册，可以先翻目录，知道后面会怎么展开。政治现在的任务就是不陌生，不占数学时间。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 2 周</span>
+          <h3>导数和中值定理，单词开始成套推进</h3>
+        </div>
+        <span class="date">2026.09.14 - 2026.09.20</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周数学会开始进导数，题目比前面更像考试了。你如果在导数那儿发懵，就先把定义、求导公式、基本初等函数导数写下来，再做题。英语这周还是背词为主，但要开始注意真题里常见的熟词僻义，不然单词表背了也不太会用。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>继续张宇《基础三十讲》高数，重点放在导数、微分、中值定理、洛必达法则、导数应用。你现在最容易丢的是求导公式和函数图像联系，所以每做一道题都尽量把函数画出来或者写成表格判断。<br/><br/>1000 题这周做导数和中值定理对应基础题，控制在 35 到 40 题。不会的题不要硬耗，先看答案第一步，再合上自己写一遍。周末把求导公式和常见函数图像整理成一页，后面做最值题、单调性题都用得上。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>背词继续，每天 200 个左右的复习和新词都别断。你四级过了，但基础不算稳，所以单词不要停。田静每日一句继续拆主干，遇到从句嵌套就先找主句。<br/><br/>唐迟阅读论如果还没补完，可以把阅读方法课继续往后看一点，但这周重点还是阅读真题的第一篇。做完以后只看定位句和错误原因，不翻整篇。你现在不用追很多篇数，先把阅读题的做法做顺。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治还是预热，不正式进题。你可以翻一翻手册目录，知道马原大致是哲学和政治经济学，史纲是时间线，毛中特是理论，思修法基是道德和法治。就这样看就行，不要把 9 月前半段都送给政治。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 3 周</span>
+          <h3>积分入口，英语开始按年份做阅读</h3>
+        </div>
+        <span class="date">2026.09.21 - 2026.09.27</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周数学会从导数往积分上走，很多人到这里会开始觉得量变大了。你不用着急，把不定积分的基本方法先写顺，后面再接定积分。英语这周开始正式按年份做阅读，不要只背词不碰题。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>数学开始进不定积分，重点看换元积分法、分部积分法、有理函数积分、三角代换。张宇《基础三十讲》对应章节过完以后，马上做 1000 题基础题和例题后面的练习。你现在只求把常见积分方法认出来，不用追偏题。<br/><br/>本周高数题量 40 题左右，积分类题目占大头。错题还是按“换元没换对、积分常数漏了、步骤写反”记。周末把不定积分里最常见的几类题重做一轮，自己能独立把第一步写出来就行。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>开始做 2010 年英二真题阅读，先从最早的年份做起都可以，重点是把阅读节奏跑起来。每篇都要限时，做完以后只改阅读错题，不精翻全文。你现在做题速度可能慢一点，这没关系，第一轮就是找问题。<br/><br/>《不背单词》继续每天 30 到 40 分钟。真题里遇到不认识的词，记在真题词本里，后面重复刷。田静每日一句照旧，主要拆句子主干和从句。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治继续只做轻预热。你可以先把腿姐冲刺背诵手册放进购物清单里，不用急着背。现在政治不抢数学和英语的时间。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 4 周</span>
+          <h3>定积分和应用题，英语把第一轮阅读跑稳</h3>
+        </div>
+        <span class="date">2026.09.28 - 2026.10.04</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周要开始把积分往定积分和应用上接。你会发现题目更容易绕，所以草稿纸一定写清楚，不然自己会被步骤绕乱。英语继续阅读第一轮，先把错题模式摸清楚。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>定积分概念、性质、计算、变上限积分函数、面积和体积应用开始看。张宇《基础三十讲》这里的内容要和题一起走，不要只看讲义。1000 题基础题照着做，尽量把定积分和不定积分的区别分开记。<br/><br/>这周数学做 40 到 45 题，定积分和应用题占大头。你如果算题慢，就把题拆成小步，不要一口气闷着写。周末把变上限积分函数和求面积体积的题整理到一起，后面还会反复用。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语继续做阅读真题，至少做完 2010 年的四篇并往后推一部分。错题只看定位句和选项差异，不把整篇翻成中文。你现在最重要的是看懂出题人怎么换词，而不是把原文逐字译出来。<br/><br/>背词继续，《不背单词》里的核心词每天都要碰一下。田静每日一句继续，遇到比较长的句子就先圈谓语，再看主谓宾。阅读做完以后，记得把错因分类，不要只改答案。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治继续放着，还是预热阶段。你可以把腿姐手册加到待买清单，不要急着背。10 月一到就正式开始。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 5 周</span>
+          <h3>高数收尾一部分，线代正式起步</h3>
+        </div>
+        <span class="date">2026.10.05 - 2026.10.11</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周数学会从高数慢慢转到线代。你零基础，线代一开始最容易烦，但其实就是矩阵和方程组这些东西。别一听抽象就停，先把计算步骤写熟。英语继续做阅读，不要停词。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>高数把二重积分和简单微分方程先带起来，能看懂定义和常规求法就行。接着正式进入线代：行列式、矩阵、逆矩阵、初等变换、矩阵秩。张宇《基础三十讲》线代部分这一周要开头，1000 题基础题也跟着做。<br/><br/>这一周数学题量 40 题左右，线代占一半。每道题都把步骤写全，特别是矩阵变换，不要心算。周末把行列式性质、矩阵运算、秩的判断整理成一页，后面方程组和特征值都要接着用。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语阅读继续推进到 2011 年左右，按篇做。你这阶段最适合练“定位句 + 选项差异”，不要精翻。唐迟阅读论如果还没补完，就只回看自己老错的题型片段，不再一节一节往下拖。<br/><br/>单词还是每天不间断。你如果晚上状态更好，就把阅读放晚上做，背词放零碎时间。田静每日一句继续每天 1 句，别断。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治继续预热，不开大任务。能知道马原、史纲、毛中特、思修法基四块怎么分就够了。手里资料多的话先别乱翻，等 10 月正式开始再集中处理。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 6 周</span>
+          <h3>方程组和特征值，英语开始补翻译感觉</h3>
+        </div>
+        <span class="date">2026.10.12 - 2026.10.18</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">线代这周会进方程组和特征值，这一块对零基础最不友好，所以你要更老实一点，步骤写全，别图快。英语开始稍微碰一点翻译感觉，不用完整精翻，先练句子主干。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>线代继续看向量组、线性相关与无关、线性方程组解的判定、特征值和特征向量、相似和对角化。张宇《基础三十讲》对应讲义看完以后，1000 题继续做基础题，题型别跳太快。<br/><br/>本周数学 40 到 45 题，线代比高数占得更多。你要盯住“把题转成矩阵”和“把结论写出来”这两步。周末把特征值、特征向量和相似的关系整理一下，后面二次型也靠这个。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>阅读继续做，开始有意识看翻译题的句子结构。你不用逐字翻，只要把主语、谓语、宾语找出来，再处理从句和修饰语就行。田静每日一句继续，专门练长句拆分。<br/><br/>背词仍然不掉。阅读真题做完后把不认识的词抄到一个小本子里，后面重复看。作文这周还不用正式开，先把阅读和单词稳住。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治继续放着，还是预热阶段。你现在更该做的是让数学、英语别断。等 10 月开始，政治再正式进题。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 7 周</span>
+          <h3>二次型收尾，英语开始接作文</h3>
+        </div>
+        <span class="date">2026.10.19 - 2026.10.25</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这周数学会把线代二次型收一收，不再往新块上开。你数学二后面只把高数和线代继续往前推，不额外加别的板块。英语这周可以开始接一点作文，但还是以模板和结构为主，不用追很花的句子。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>线代继续看二次型、正定矩阵和正交变换，把前面学过的行列式、矩阵、秩、方程组、特征值串起来。张宇《基础三十讲》线代部分这一周要收尾，1000 题基础题跟上。你现在只要把线代的常规流程写熟，不要给自己再加新的块。<br/><br/>本周数学 40 到 45 题左右，还是线代和高数交错着做。周末把线代前面最容易错的几类题重做一遍，尤其是方程组、特征值和二次型。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语这周可以开始接一点作文，但还是以模板和结构为主。先看 Monkey 模板课的导入部分，了解小作文和大作文的基本结构，不要一下子全背。<br/><br/>阅读继续做，单词保持每天不间断。田静每日一句继续。作文还不用追很多篇，先把模板看顺，知道小作文怎么开头，大作文怎么分段就够了。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治继续预热，还是不占主时间。你现在更该做的是让数学和英语别掉线。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 8 周</span>
+          <h3>10 月正式起步，政治和英语作文都接上</h3>
+        </div>
+        <span class="date">2026.10.26 - 2026.11.01</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周开始，政治正式上场，但量不能太大，不然会压掉数学和英语。数学继续往前推，英语开始真写作文。你现在最重要的是把节奏稳住，不要一口气往太多地方冲。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>高数继续往下走，把二重积分、无穷级数、简单常微分方程再补一遍。线代继续回看方程组、特征值、二次型。现在开始接于文涛《真题一本通》，先做高数和线代的分类真题，不急着一次做很多。<br/><br/>本周数学 45 题左右，真题分类和基础题混着做。你要开始适应“真题怎么问”这个节奏，题目做完必须回头看题型，不要只看对错。错题按章节整理，后面二刷会省很多时间。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语开始看 Monkey 作文模板课的正式内容，小作文先写建议信、邀请信、通知这几类，大作文先写图画作文结构。你作文勉强凑字，所以这周重点不是文采，而是能写完整。<br/><br/>阅读还是继续做真题。单词每天不间断，田静每日一句也不能停。翻译题如果卡住，就先把主干译出来，不要因为一个从句卡半天。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治从 10 月初开始。先用腿姐冲刺背诵手册或者你手里的核心背诵笔记熟悉马原框架，苍盾小程序每天刷 30 道选择题。你数学和英语还在起步期，所以政治这周先控制在 30 到 40 分钟。<br/><br/>你如果觉得马原抽象，就先理解再记。比如物质、意识、实践、规律这些词，先知道它们之间是什么关系，再去做题。肖 1000 题这周不要当主线。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 9 周</span>
+          <h3>真题分类继续，作文写成稿</h3>
+        </div>
+        <span class="date">2026.11.02 - 2026.11.08</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这周数学和英语都要开始往真题和成稿上走了。你前面已经铺了基础，现在就得开始把东西往考场写法上靠。政治继续稳着刷，不要一下子变很多。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>于文涛《真题一本通》开始按章节做真题分类，优先做高数的极限、导数、积分、多元、线代方程组和二次型相关题。你要把真题当成最重要的习题册之一来用，题量不小，错题最好按章节整理。<br/><br/>本周真题做 45 到 55 题，难题不硬抠，常规题要弄懂。做完后别把真题扔一边，要回到张宇讲义或 1000 题对应章节补一下没稳住的知识点。你现在更需要把“真题里怎么考”看明白。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>阅读继续做真题，同时开始写作文成稿。小作文先写一篇通知或邀请信，大作文先写一篇图画作文。Monkey 模板不要来回换，先把一版用顺。你这阶段作文要开始练“在有限时间里写完”，不是再去想更漂亮的句子。<br/><br/>单词继续。阅读错题继续回原文定位。翻译题这周可以多看一点，练主干和修饰的拆分。完型保持就行，不要占掉阅读和作文时间。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治继续苍盾选择题。手册熟读可以开始更细一点，但还是别把自己压太狠。你现在要的是慢慢顺，不是一下子背很多。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 10 周</span>
+          <h3>真题和作文继续往前走</h3>
+        </div>
+        <span class="date">2026.11.09 - 2026.11.15</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这一周要继续把真题一本通往前推，别让真题只做了一点就停。英语要把作文和翻译一起补一点，题量不需要很夸张，但要让手上有感觉。政治还是每天刷一点选择题，别断。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>真题一本通继续按章节做，重点放在二重积分、级数、线代特征值、二次型和线性方程组。你现在会发现真题比基础题更像考场，所以每道题做完都要想一想它是怎么把知识点串起来的。<br/><br/>本周数学 50 题左右。错题一律按章节放，不要按“今天做了什么题”放。周末把近两周错题压缩成一页，后面二刷时就按这页走，不用翻很多书。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语继续真题训练。阅读做一套，翻译做 2 到 3 段，大作文和小作文各写一篇。Monkey 模板不要来回换，先把一版用顺。你作文目前勉强凑字，所以这周重点是把结构写完整、句子写通顺。<br/><br/>单词继续每天碰。田静每日一句继续，翻译时只拆主干。阅读错因分类别忘了继续做，这一步会直接影响后面二刷的效率。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治继续每天 30 道左右。手册熟读可以开始第二遍，但不要一下子逼自己背很多。你现在政治的任务是让它保持存在感，而不是占掉主时间。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 11 周</span>
+          <h3>整卷试跑，政治继续熟读</h3>
+        </div>
+        <span class="date">2026.11.16 - 2026.11.22</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">到这一周，数学和英语都要开始更像正式考试了。整卷不用做很多，关键是把时间感找回来。政治也要继续保持，不要因为数学和英语忙了就把它放掉。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>数学开始做少量李林 6+4 的套卷，先 1 套试试手感。李林卷不要做很多，重点是查漏补缺，看你在常规题上会不会掉链子。真题一本通继续看错题，尤其是积分和线代方程组。<br/><br/>本周数学做 1 套模拟卷 + 30 到 40 道真题分类错题。证明题如果是常规真题可以写，习题册里的证明题不必强求。你现在最需要的是把会的题稳稳拿到。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语做一套完整真题，再把作文模板手写一遍。小作文和大作文都不要换结构了，先用一版顺手的。你这阶段作文要开始练“在有限时间里写完”，不是再去想更漂亮的句子。<br/><br/>单词继续。阅读错题继续回原文定位。翻译题这周可以多看一点，练主干和修饰的拆分。完型保持节奏就行。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治继续苍盾选择题。手册熟读可以开始更细一点，但还是别把自己压太狠。你现在要的是慢慢顺，不是一下子背很多。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 12 周</span>
+          <h3>近年卷限时，政治开始熟读手册</h3>
+        </div>
+        <span class="date">2026.11.23 - 2026.11.29</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">11 月以后，很多人会开始慌，但你不用把自己拉得很紧。数学继续做真题错题，英语继续做整卷，政治开始认真熟读手册。你最重要的是节奏别乱。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>数学做近年真题限时练，优先做 2022、2023 这类完整卷的数学部分。你前面已经看过分类题，这周就要试着把时间压进去。做卷子的时候不要总回头改，先把能拿的题写完。<br/><br/>本周再做 20 到 30 道真题错题回炉。高数和线代各挑几道代表题重写。你如果发现某个知识点一错再错，就回到张宇讲义和 1000 题对应章节看一眼，不要一直靠感觉。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语整卷继续做，阅读和作文要按正式时间来。阅读做完后，必须看同义替换和定位句，不要只对答案。作文每天可以抽 20 到 30 分钟默写一遍模板，保持手感。<br/><br/>单词继续不断。你现在的阅读问题不在“看不见字”，而在“细节抓不稳”，所以每篇错题都要回原文。翻译和完型保持就行，不要占掉阅读和作文时间。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治正式熟读腿姐手册。马原、史纲、毛中特、思修法基按顺序来，不要今天翻一点、明天翻一点。苍盾小程序每天 30 道选择题继续，错题当天过掉。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 13 周</span>
+          <h3>考前第二轮回看</h3>
+        </div>
+        <span class="date">2026.11.30 - 2026.12.06</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这周开始不能再加很多新东西了。数学、英语都要看错题和模板，政治开始往肖四靠。你现在最怕的是把脑子搞乱，所以这周要把任务再压一压。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>数学只看错题卡和公式卡，近三年真题里错过的题再重做。李林 6+4 只保留错题和没弄懂的题，不再做新卷。你现在要看的是自己哪里总掉分，而不是再去追新题量。<br/><br/>这周数学每天保持 60 到 90 分钟就够，重点是复盘。高数看积分、级数、多元，线代看方程组、特征值、二次型。会做的题不要反复消耗，能省一点是一点。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语开始看近三年错题和作文模板。阅读错题重新做一遍，确认自己为什么错。作文每天手写一遍模板里的关键句，别临时换版本。<br/><br/>单词继续，真题词优先。你这时候不用扩展新材料，只要把已经背过的内容保持住。翻译题如果还有卡点，就看主干拆法，不需要重新听大课。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治如果肖四到了，就开始背大题。别要求自己逐字不差，先把关键词和答题顺序背下来。苍盾小程序继续刷选择题，错题看手册对应页。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 14 周</span>
+          <h3>肖四和最后回看，英语只保模板</h3>
+        </div>
+        <span class="date">2026.12.07 - 2026.12.13</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">这周开始政治最重要，肖四出来以后要集中背。数学和英语都不再开新内容，主要是把自己最熟的东西再过一遍。你现在的目标不是做很多，而是把会的东西稳住。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>数学继续看错题卡和近年卷。把高数和线代最容易错的几类题各重做几道，保持手感。模拟卷不再加量，李林卷只看错题和第一遍没看懂的题。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语只保作文模板和真题错词。阅读不再大量开新卷，只看错题和定位句。作文每天手写一遍模板，确认开头、过渡、结尾都能顺着写出来。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>肖四出来以后开始背大题。马原、史纲、毛中特、思修法基分开背，不要混着记。背不住也不要慌，先把每道题的关键词和第一句记住，后面还能补。苍盾选择题继续保持每天 30 道。</p></section>
+        </div>
+      </div>
+    </article>
+    
+
+    <article class="week-card">
+      <button class="week-head" type="button" aria-expanded="false">
+        <div>
+          <span class="kicker">第 15 周</span>
+          <h3>考前最后几天，别再折腾</h3>
+        </div>
+        <span class="date">2026.12.14 - 2026.12.20</span>
+        <span class="chev">展开 / 收起</span>
+      </button>
+      <div class="week-body">
+        <div class="message">最后几天就别折腾新资料了。数学看错题卡，英语看模板和单词，政治看肖四和材料题方法。你现在最需要的是把作息稍微往前挪一点，晚上别熬太晚。</div>
+        <div class="subjects">
+          <section class="subject math"><h4>数学二</h4><p>数学只看最后一遍错题和公式卡。把你最容易错的积分、方程组、特征值再过一遍，能写出第一步就行。不要临场再去碰新卷子。</p></section>
+          <section class="subject english"><h4>英语二</h4><p>英语最后几天只看作文模板、真题错词和阅读错题定位句。作文把开头和结尾再默一遍，保持手不生。阅读不再追新题，保持平稳就行。</p></section>
+          <section class="subject politics"><h4>政治</h4><p>政治继续背肖四大题和看选择题错题。最后几天再去 B 站看一节政治抄材料的方法课，知道考场上怎么把不会的题写满。不要对答案，考完一门就放下一门。</p></section>
+        </div>
+      </div>
+    </article>
+    
+    </section>
+
+    <footer>本页按黄嘻嘻当前表单生成，后面如果时间或院校变了，再按新信息调。</footer>
+  </main>
+
+  <script>
+    const cards = Array.from(document.querySelectorAll('.week-card'));
+    const heads = Array.from(document.querySelectorAll('.week-head'));
+    heads.forEach((head) => {
+      head.addEventListener('click', () => {
+        const card = head.closest('.week-card');
+        const open = card.classList.toggle('open');
+        head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+    const toggleAll = document.getElementById('toggleAll');
+    let allOpen = false;
+    toggleAll.addEventListener('click', () => {
+      allOpen = !allOpen;
+      cards.forEach((card, index) => {
+        card.classList.toggle('open', allOpen || index === 0);
+        card.querySelector('.week-head').setAttribute('aria-expanded', (allOpen || index === 0) ? 'true' : 'false');
+      });
+      toggleAll.textContent = allOpen ? '收起全部' : '展开全部';
+    });
+  </script>
+</body>
+</html>
