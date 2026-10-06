@@ -1,1 +1,0 @@
-# proof that git push over the proxy works normally now
