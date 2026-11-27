@@ -1,0 +1,351 @@
+# -*- coding: utf-8 -*-
+import json
+from datetime import datetime, timedelta
+
+def build():
+    weeks = []
+    start_date = datetime(2026, 3, 5)
+    
+    # 数学一 阶段规划 (共41周)
+    # 数一包含：高数+线代+概率论
+    math_stages = [
+        (6, "【高数基础】三十讲课后题+1000题基础", "张宇基础三十讲课后题+1000题基础做完。\n⚠️不听张宇课！整理错题并选看网课(去B站搜1000题讲解，千羽、考研数学777、没咋了等)。"),
+        (4, "【线代基础】三十讲课后题+1000题基础", "张宇三十讲线代课后题+1000题基础做完。\n⚠️同样不听课！有不懂直接去B站搜播放量高的UP主讲解。"),
+        (3, "【概率基础】三十讲课后题+1000题基础", "张宇三十讲概率课后题+1000题基础做完。\n⚠️保持以练带学，只做计算不做证明。"),
+        (2, "【澄箫宇大观】第一遍", "b站“澄箫宇”大观系列首刷，每个大观都要看（大概7个，两天一个）。\n⚠️每讲一个题之前必须【暂停自己先做一遍】，然后继续听！"),
+        (3, "【660题速刷】一阶速刷", "660一阶题速刷。\n⚠️速刷意思是把会做的做了，但凡2分钟没思路的直接跳过，然后对答案订正。"),
+        (7, "【第一轮真题】真题一本通（于文涛）", "整个考研期最重要的习题册没有之一！\n✅ 搞个单独错题本，按章节分类整理，每个题务必弄懂！\n✅ 以计算题为重点复习，所有习题册只做这里的证明题！"),
+        (2, "【澄箫宇大观】二刷", "带着前期的磨砺，二刷澄箫宇大观，串联知识点网络。"),
+        (3, "【二轮真题】数一真题", "每天一套数一（09-26年）。\n✅ 借套卷把真题错题本浓缩一下，整理对应的题型。"),
+        (2, "【全真模拟】李林6+4", "每天一套李林6+4（10套）。练习真实考场分配节奏。"),
+        (3, "【武忠祥选填课+错题本】", "啃两本错题：真题错题本、模拟卷错题本。\n✅ 配合武忠祥选填技巧课，对应错题知识点看网课视频查漏补缺。"),
+        (6, "【考前冲刺】近3年真题再刷", "最后阶段主要是看错题，不要光看！\n✅ 整理错题与知识点。\n✅ 做近3年真题熟悉考试风格（和模拟卷出入大，最相似的就是近3年卷子）。")
+    ]
+    
+    math_tasks = []
+    for duration, title, content in math_stages:
+        for _ in range(duration):
+            math_tasks.append({"title": title, "content": content, "hours": "占大盘60%"})
+
+    # 英语一 阶段规划
+    eng_stages = [
+        (17, "【暑假前】疯狂背单词", "唯一的任务：疯狂背考研核心词（约3000个）。\n⚠️强推《不背单词》APP，暑假前最好刷三遍！\n🚫考研英语少听课或者不听课，每天读阅读和背单词，不精翻文章，不买手译本！"),
+        (16, "【暑假开始】英一真题+Monkey作文课", "✅ 两天一套英一真题（不写作文）。\n✅ 用《真题伴侣》APP标生词，反复背真题里的意思（期间原单词APP不能断！）。\n✅ 听Monkey考研作文模板课，背模板并积累主题词！"),
+        (8, "【冲刺时间】二刷真题+练熟模板", "✅ 重点二刷错题。\n✅ 把作文模板练熟练透。\n⚠️ 持续背单词，绝对不能断！")
+    ]
+    eng_tasks = []
+    for duration, title, content in eng_stages:
+        for _ in range(duration):
+            eng_tasks.append({"title": title, "content": content, "hours": "占大盘30%"})
+
+    # 政治 阶段规划
+    pol_stages = [
+        (30, None, None),  # 3月到10月初不动政治
+        (8, "【十月初起步】腿姐手册+苍盾刷题+一页纸", "⚠️ 远离徐涛冗长课，远离肖1000题！\n✅ 腿姐冲刺背诵手册（熟读）。\n✅《苍盾小程序》每天刷一套(30选择题)。\n✅ 熟读澄箫宇“政治一页纸”。"),
+        (3, "【冲刺保命】死背肖四+B站抄材料", "✅ 等肖四出来后直接背大题（背不住没关系，对成绩影响不大）。\n🔥 最后几天务必看B站“考研政治抄材料”，上了考场基本只能抄材料，学会绝杀！")
+    ]
+    pol_tasks = []
+    for duration, title, content in pol_stages:
+        for _ in range(duration):
+            if title is None:
+                pol_tasks.append(None)
+            else:
+                pol_tasks.append({"title": title, "content": content, "hours": "占大盘10%"})
+
+    messages = [
+        "所有科目都不准当「耐听王」，多想多算多做，一定要亲自落实到笔头上！",
+        "时间安排务必合理！这里的时间100%是排除了专业课，别忘了自行在日程里给专业课留出预定时间！",
+        "专业课的学习时间默认比数学少一点，请自行把控好天平的倾斜度！",
+        "不要大量时间听课！听课永远学不会，靠做题才能真正在考场写出来！",
+        "遇到不会的题目直接去B站搜播放量高的UP主，很多比大机构讲得都要好！",
+        "张宇“超实数”、微分算子法、海涅定理、压缩映射原理、stolz法则，连想考150的都不需要看！",
+        "明确优先级：真题最优先，习题册往后稍稍，模拟题少做！",
+        "所有习题册+模拟卷均不做证明题，我们只写历年真题的证明题！"
+    ]
+
+    for i in range(41):
+        cur = start_date + timedelta(days=i*7)
+        nxt = start_date + timedelta(days=i*7+6)
+        
+        week_data = {
+            "week": i + 1,
+            "dates": f"{cur.strftime('%m.%d')} - {nxt.strftime('%m.%d')}",
+            "theme": math_tasks[i]["title"].split("】")[0].replace("【", ""),
+            "message": messages[i % len(messages)],
+            "math": math_tasks[i],
+            "english": eng_tasks[i]
+        }
+        
+        if pol_tasks[i]:
+            week_data["politics"] = pol_tasks[i]
+            
+        weeks.append(week_data)
+
+    data = {"student": "李白白", "weeks": weeks}
+    
+    with open("D:/myblog/source/kaoyan/李白白/libaibai.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+    html_template = '''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李白白 2027考研全程深度定制规划</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0f;
+            --card-bg: #12121a;
+            --text-color: #e0e0e0;
+            --accent: #d946ef;
+            --accent-light: #f472b6;
+            --border-color: #2a2a3a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        header h1 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        .meta { color: #888; font-size: 0.95rem; }
+        .meta span { margin: 0 10px; display: inline-block; }
+        .overview {
+            background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        .overview h2 {
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+        .strategy {
+            margin-bottom: 16px; 
+            padding: 12px; 
+            background: rgba(217, 70, 239, 0.15); 
+            border-radius: 8px; 
+            border-left: 3px solid var(--accent);
+            color: #fff; 
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .grid-box { display: grid; gap: 16px; margin-bottom: 20px; }
+        .grid-item { padding: 18px; border-radius: 8px; }
+        .grid-math { background: rgba(244,114,182,0.08); border-left: 3px solid #f472b6; }
+        .grid-english { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; }
+        .grid-politics { background: rgba(251,191,36,0.08); border-left: 3px solid #fbbf24; }
+        
+        h3 { margin-bottom: 12px; font-size: 1.1rem; }
+        .grid-math h3 { color: #f472b6; }
+        .grid-english h3 { color: #34d399; }
+        .grid-politics h3 { color: #fbbf24; }
+        
+        ul { margin-left: 20px; color: #ddd; }
+        li { margin-bottom: 8px; }
+        
+        .week-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .week-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(217, 70, 239, 0.15); }
+        .week-header {
+            background: linear-gradient(90deg, rgba(217, 70, 239, 0.2), rgba(217, 70, 239, 0.05));
+            padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+        }
+        .week-header h3 { font-size: 1.1rem; color: var(--accent-light); margin: 0; }
+        .week-header .dates { color: #aaa; font-size: 0.9rem; font-family: monospace; }
+        .week-content { padding: 20px; display: none; }
+        .week-content.active { display: block; }
+        .message {
+            background: rgba(217, 70, 239, 0.1); padding: 14px 18px; border-radius: 8px;
+            margin-bottom: 20px; border-left: 3px solid var(--accent); font-style: italic; font-weight: bold; color: #fff;
+        }
+        .subject { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .subject-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .subject-name { font-weight: bold; font-size: 1.05rem; }
+        .subject-name.math { color: #f472b6; }
+        .subject-name.english { color: #34d399; }
+        .subject-name.politics { color: #fbbf24; }
+        .hours { background: rgba(255, 255, 255, 0.1); padding: 4px 12px; border-radius: 12px; font-size: 0.85rem; color: #ddd; }
+        .subject-title { font-weight: bold; margin-bottom: 8px; color: #fff; }
+        .subject-content { color: #bbb; white-space: pre-line; font-size: 0.95rem; line-height: 1.7; }
+        .expand-all { text-align: center; margin-bottom: 25px; }
+        .expand-all button {
+            background: var(--accent); color: white; border: none; padding: 12px 28px;
+            border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: background 0.2s;
+        }
+        .expand-all button:hover { background: var(--accent-light); }
+        footer { text-align: center; padding: 30px; color: #666; font-size: 0.9rem; margin-top: 20px; border-top: 1px solid var(--border-color); }
+        
+        @media(max-width: 600px) { .week-header { flex-direction: column; align-items: flex-start; gap: 8px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>李白白 2027考研全程深度定制规划</h1>
+            <div class="meta">
+                <span>🎯 南京邮电大学·物联网学院</span>
+                <span>📅 周期：2026.03.05 - 2026.12 考前 (共41周)</span>
+            </div>
+            <div class="meta" style="margin-top: 8px;">
+                <span>📚 必考：数学一 / 英语一 / 政治 / 专业课</span>
+            </div>
+        </header>
+
+        <!-- 总体规划概览 -->
+        <div class="overview">
+            <h2>🎯 全局时间红线与死磕原则</h2>
+            
+            <p class="strategy">
+                <strong>🔥 核心绝杀：所有科目都不准当「耐听王」！听课永远学不会，只有通过做题才能真正在考场上写出来！多想多算多做，务必落实到笔头！</strong><br><br>
+                <span style="color: #ffb86c;">⚠️ 时间排布：抛开专业课，其余公共课分为数学 60%、英语 30%、政治 10%（只算不含专业课的占比大盘）。千万不要忘记在日历中为专业课留足时间（专业课学习时间默认比数学少一点，但必须保证其固定席位，自行安排）！</span>
+            </p>
+            
+            <div class="grid-box">
+                <div class="grid-item grid-math">
+                    <h3>📐 数学一（占公共课大盘 60%）</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">果断弃课投题：</strong>不推荐看张宇的课程！做题时不会的直接去B站搜播放量高的UP主（千羽、考研数学777、没咋了均可），比大机构讲得好！</li>
+                        <li><strong style="color: #fff;">不需要学的部分：</strong>张宇"超实数"、微分算子法、海涅定理、压缩映射原理、stolz定理想考150也不需要看！</li>
+                        <li><strong style="color: #fff;">练习策略铁律：</strong>真题分类最优先 -> 习题册往后推 -> 模拟题少做。<br>所有习题册+模拟卷【均不做证明题】，只写真题的证明题！</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item grid-english">
+                    <h3>📖 英语一（占公共课大盘 30%）</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">底线原则：</strong>少听课或不听课！不精翻文章！绝对不买手译本！每天核心就是读阅读和背单词，暑假开始搞阅读，慢慢搞作文，最后不慌不忙拿高分。</li>
+                        <li><strong style="color: #fff;">单词至上：</strong>暑假前只能疯狂用《不背单词》背核心3000词，刷3遍！中后期换《真题伴侣》背文章里的真题生词。</li>
+                    </ul>
+                </div>
+                
+                <div class="grid-item grid-politics">
+                    <h3>🏛️ 政治（占公共课大盘 10%）</h3>
+                    <ul>
+                        <li><strong style="color: #f43f5e;">🚫 10月初前绝对不动：</strong>最早10月初才开始！远离徐涛等名师的长线废话课，坚决远离肖1000题！</li>
+                        <li><strong style="color: #fff;">短平快收尾：</strong>买腿姐冲刺手册+《苍盾小程序》刷模拟选择即可。12月死背肖四大题（背不住没关系，对成绩影响不大）。考前几天务必看B站政治抄材料绝技。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="expand-all">
+            <button onclick="toggleAll()">展开/收起全部计划周</button>
+        </div>
+
+        <div id="weeks-container"></div>
+        
+        <footer>
+            <p>💪 按照严格的周次路线图走。去用笔尖击穿所有纸面的阻碍！</p>
+        </footer>
+    </div>
+
+    <script>
+    const planData = ''' + json.dumps(data["weeks"], ensure_ascii=False) + ''';
+
+    function renderWeeks() {
+        const container = document.getElementById('weeks-container');
+        planData.forEach((week, index) => {
+            const card = document.createElement('div');
+            card.className = 'week-card';
+
+            let subjectsHtml = `
+                <div class="subject">
+                    <div class="subject-header">
+                        <span class="subject-name math">📐 数学</span>
+                        <span class="hours">${week.math.hours}</span>
+                    </div>
+                    <div class="subject-title">${week.math.title}</div>
+                    <div class="subject-content">${week.math.content.replace(/\\n/g, '<br/>')}</div>
+                </div>
+                <div class="subject">
+                    <div class="subject-header">
+                        <span class="subject-name english">📖 英语</span>
+                        <span class="hours">${week.english.hours}</span>
+                    </div>
+                    <div class="subject-title">${week.english.title}</div>
+                    <div class="subject-content">${week.english.content.replace(/\\n/g, '<br/>')}</div>
+                </div>
+            `;
+
+            if (week.politics) {
+                subjectsHtml += `
+                    <div class="subject">
+                        <div class="subject-header">
+                            <span class="subject-name politics">🏛️ 政治</span>
+                            <span class="hours">${week.politics.hours}</span>
+                        </div>
+                        <div class="subject-title">${week.politics.title}</div>
+                        <div class="subject-content">${week.politics.content.replace(/\\n/g, '<br/>')}</div>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="week-header" onclick="toggleWeek(${index})">
+                    <h3>第 ${week.week} 周：${week.theme}</h3>
+                    <span class="dates">${week.dates}</span>
+                </div>
+                <div class="week-content" id="week-${index}">
+                    <div class="message">💡 ${week.message}</div>
+                    ${subjectsHtml}
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        document.getElementById('week-0').classList.add('active');
+    }
+
+    function toggleWeek(index) {
+        document.getElementById('week-' + index).classList.toggle('active');
+    }
+
+    let allExpanded = false;
+    function toggleAll() {
+        allExpanded = !allExpanded;
+        document.querySelectorAll('.week-content').forEach(el => {
+            el.classList.toggle('active', allExpanded);
+        });
+    }
+
+    renderWeeks();
+    </script>
+</body>
+</html>
+'''
+
+    with open("D:/myblog/source/kaoyan/libaibai.html", "w", encoding="utf-8") as f:
+        f.write(html_template)
+        
+if __name__ == "__main__":
+    build()

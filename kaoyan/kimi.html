@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>专业课规划：408 计算机学科专业基础｜贵州大学 6 周冲刺</title>
+<style>
+:root {
+    --bg-color: #f7f4ee;
+    --paper: rgba(255, 255, 255, 0.92);
+    --text-color: rgba(0, 0, 0, 0.92);
+    --muted: #6b665e;
+    --accent: #7c5cff;
+    --major: #c0392b;
+    --shadow: rgba(15, 23, 42, 0.08) 0 20px 45px -24px, rgba(15, 23, 42, 0.08) 0 10px 20px -18px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, 'Microsoft YaHei', sans-serif;
+    background:
+        radial-gradient(circle at top, rgba(124, 92, 255, 0.12), transparent 28%),
+        linear-gradient(180deg, #fbfaf7 0%, var(--bg-color) 100%);
+    color: var(--text-color);
+    line-height: 1.75;
+    min-height: 100vh;
+}
+.container { max-width: 1180px; margin: 0 auto; padding: 28px 20px 56px; }
+header {
+    text-align: left; padding: 34px 34px 30px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(250,247,241,0.94) 100%);
+    border-radius: 28px; margin-bottom: 24px;
+    border: 1px solid rgba(0,0,0,0.1); box-shadow: var(--shadow);
+}
+header h1 { font-size: clamp(1.7rem, 2.6vw, 2.4rem); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px; }
+.meta { display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--muted); font-size: 0.95rem; }
+.overview {
+    background: var(--paper); border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 24px; padding: 30px 32px; margin-bottom: 24px; box-shadow: var(--shadow);
+}
+.overview h2 { font-size: 1.4rem; margin-bottom: 16px; letter-spacing: -0.01em; }
+.strategy { color: #33302b; font-size: 0.98rem; margin-bottom: 16px; text-align: left; }
+.grid-box { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 22px 0; }
+.grid-box-3 { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 22px 0; }
+@media (min-width: 900px) { .grid-box-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.grid-item { border-radius: 18px; padding: 20px 22px; color: #fff; text-align: left; }
+.grid-mat { background: linear-gradient(135deg, #c0392b, #8e2a20); }
+.grid-eng { background: linear-gradient(135deg, #0f9f73, #0a7a57); }
+.grid-pol { background: linear-gradient(135deg, #d18c18, #a86a08); }
+.grid-item h3 { font-size: 1.1rem; margin-bottom: 12px; text-align: left; }
+.grid-item ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.grid-item li { font-size: 0.93rem; line-height: 1.7; color: rgba(255,255,255,0.95); text-align: left; }
+.toolbar {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    flex-wrap: wrap; margin-bottom: 18px; padding: 0 4px;
+}
+.toolbar-note { color: var(--muted); font-size: 0.92rem; }
+.expand-all button {
+    font: inherit; font-size: 0.92rem; cursor: pointer;
+    padding: 10px 20px; border-radius: 999px;
+    border: 1px solid var(--accent); background: #fff; color: var(--accent);
+    transition: background 0.15s, color 0.15s;
+}
+.expand-all button:hover { background: var(--accent); color: #fff; }
+.weeks-list { display: flex; flex-direction: column; gap: 12px; }
+.week-card {
+    background: var(--paper); border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);
+}
+.week-header {
+    width: 100%; font: inherit; text-align: left; cursor: pointer;
+    background: transparent; border: 0; padding: 18px 24px;
+    display: flex; justify-content: space-between; align-items: center; gap: 18px;
+}
+.week-header:hover { background: rgba(124, 92, 255, 0.05); }
+.week-title { display: flex; flex-direction: column; gap: 5px; }
+.week-kicker { font-size: 0.78rem; color: var(--accent); letter-spacing: 0.04em; font-weight: 600; }
+.week-title h3 { font-size: 1.04rem; font-weight: 600; line-height: 1.45; }
+.week-meta { display: flex; align-items: center; gap: 14px; color: var(--muted); font-size: 0.86rem; white-space: nowrap; }
+.bknote { color: #8c1d18; background: rgba(255, 255, 255, 0.92); border: 1px solid rgba(0, 0, 0, 0.10);
+          border-radius: 3px; padding: 0 4px; font-weight: 700; font-size: 0.86em; }
+.week-chevron { font-size: 1.05rem; }
+.week-content { display: none; padding: 0 24px 22px; }
+.week-content.active { display: block; }
+.message {
+    background: #fbf8f2; border-left: 3px solid var(--accent);
+    border-radius: 0 12px 12px 0; padding: 14px 18px; margin-bottom: 18px;
+    font-size: 0.95rem; color: #3a3630;
+}
+.subject-grid { display: flex; flex-direction: column; gap: 14px; }
+.subject { border: 1px solid rgba(0,0,0,0.1); border-radius: 14px; overflow: hidden; }
+.subject-header { padding: 11px 16px; background: #f6f4ef; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.subject-name { font-size: 0.93rem; font-weight: 600; }
+.subject-name.major { color: var(--major); }
+.subject-content { padding: 15px 18px; font-size: 0.93rem; color: #35322d; line-height: 1.8; }
+footer { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 34px 10px 10px; }
+@media (max-width: 720px) {
+    .container { padding: 18px 12px 40px; }
+    header { padding: 24px 20px; }
+    .overview { padding: 22px 18px; }
+    .week-header { padding: 16px 16px; }
+    .week-content { padding: 0 16px 18px; }
+    .week-meta { flex-direction: column; align-items: flex-end; gap: 4px; }
+}
+
+.subject-content p{margin:0 0 8px;}
+.week-content{display:none;}
+.week-card.is-open .week-content{display:block;}
+.week-chevron{transition:transform .2s;}
+.week-card.is-open .week-chevron{transform:rotate(180deg);}
+</style></head><body><div class="container">
+<header><h1>专业课规划（408 计算机学科专业基础）</h1><div class="meta">
+<span>2027 级硕士研究生招生 · 初试在 2026 年 12 月 19 日、20 日两天，408 在 12 月 20 日下午 14:00—17:00 考，三个小时。具体哪个考场、几点进场，以准考证上印的为准。</span>
+<span>408 计算机学科专业基础 150 分 · 这张表只管这一门，政治英语数学的时间不写在这里，你自己另外留</span>
+<span>2026.11.14 - 2026.12.20 · 一共 6 周</span>
+</div></header>
+<section class="overview"><h2>这份表是怎么排的</h2>
+<p class="strategy">山西工学院 · 计算机科学与技术 · 报考贵州大学学硕</p>
+<p class="strategy">你数据结构和你计算机组成原理已经学完了，操作系统学到第三章，所以前两周先把操作系统剩下的章节和计算机网络学完，第三周开始整套做真题，最后两天留出来翻错题和公式。408 满分 150，数据结构 45 分、计算机组成原理 45 分、操作系统 35 分、计算机网络 25 分；40 道单选题每题 2 分共 80 分，七道大题共 70 分。你手里有完整真题，这是最大的优势，从第三周起就要整套计时。</p>
+<p class="strategy"><strong>核心原则：合上书自己能写出来、能算对，才算真的学会。每一周都写清楚看的是书上第几章、做多少题、错题怎么处理。</strong><br/>
+四门用的书：数据结构用王道《数据结构考研复习指导》，计算机组成原理用王道《计算机组成原理考研复习指导》，操作用王道《操作系统考研复习指导》，网络用王道《计算机网络考研复习指导》。视频就看你手里那几套：数据结构看图领，计组看里昂，操作用你手里那套，网络看湖科大。一本书配一套视频跟到底，不要中途换来换去。<br/>
+时间按每天 4 到 6 小时算：周一到周五各 4 小时，周六 6 小时，周日 5 小时，一周 31 小时。你是大四，白天可能还有课，这 4 小时怎么放你自己定，但每天的量要坐满。最后一周开始把作息往下午两点到五点调，让身体习惯考试那个时段。<br/>
+真题的用法：第一周周日做一套真题里的操作系统部分，第二周把两门新课学完；第三周开始整套三个小时计时，每周两套，一直到考前；中间的时间用来订正和重做错题。真题做完一定要订正，错的题合上答案重写，写不出来的就是没会。</p>
+<div class="grid-box grid-box-3">
+<div class="grid-item grid-mat"><h3>四门的分值和时间</h3><ul>
+<li>数据结构 45 分：选择题约 11 道，大题 2 道，代码题常出在树和图</li>
+<li>计算机组成原理 45 分：选择题约 11 道，大题 2 道，Cache 和流水线常考</li>
+<li>操作系统 35 分：选择题约 10 道，大题 1 到 2 道，PV 和页面置换常考</li>
+<li>计算机网络 25 分：选择题约 8 道，大题 1 道，子网划分和 TCP 常考</li>
+<li>整卷：40 道单选 80 分 + 7 道大题 70 分，180 分钟</li>
+</ul></div>
+<div class="grid-item grid-eng"><h3>每周固定动作</h3><ul>
+<li>周一到周五：按当天那门课过章节，看完一节立刻做对应选择题</li>
+<li>周六：把这一周错的题重做一遍，二次错的单独标出来</li>
+<li>周日：下午做真题，第三周起按三个小时做整套</li>
+<li>错题本一道题记三行：考什么、错在哪一步、正确怎么起手</li>
+<li>晚上十一点前睡，最后一周开始按考试时段调作息</li>
+</ul></div>
+<div class="grid-item grid-pol"><h3>只用这些材料</h3><ul>
+<li>教材：王道四本复习指导（数据结构、计组、操作系统、计算机网络）</li>
+<li>视频：图领数据结构、里昂计组、湖科大网络，操作用你手里那套</li>
+<li>真题：你手里那套完整真题，2010 年以后的都做</li>
+<li>背诵：最后一周自己抄一张公式纸，只写常错的结论</li>
+<li>不需要再买新资料，把手里这几样做完就够了</li>
+</ul></div>
+</div>
+</section>
+<div class="toolbar"><span class="toolbar-note">第 1 周到第 6 周，从 2026 年 11 月 14 日到 12 月 20 日初试。点每一行展开。</span>
+<div class="expand-all"><button type="button" id="toggleAll">展开全部 6 周</button></div></div>
+<div class="weeks-list"><article class="week-card"><button class="week-header" type="button" aria-expanded="false"><div class="week-title"><span class="week-kicker">第 1 周</span><h3>操作系统剩下的章节先学完，计算机网络开个头</h3></div><div class="week-meta"><span class="dates">11.14 - 11.20</span><span class="week-chevron">⌄</span></div></button><div class="week-content"><div class="message">数据结构和你计算机组成原理已经看完了，这一周把操作系统剩下的章节收个尾，再把计算机网络的前两章看起来。你手里有真题，周日做一套真题里的操作系统部分，看看现在做题的感觉。</div><div class="subject-grid"><div class="subject"><div class="subject-header"><span class="subject-name major">408 计算机学科专业基础 · 操作系统剩下的章节先学完，计算机网络开个头</span></div><div class="subject-content"><p>✅ 规划：一周 31 小时：周一到周五各 4 小时，周六 6 小时，周日 5 小时。这周把操作系统第 3 章内存管理剩下的部分学完，再走第 4 章文件管理和第 5 章输入输出管理；计算机网络开第 1 章体系结构和第 3 章数据链路层。书用王道《操作系统考研复习指导》和《计算机网络考研复习指导》，视频还是你手里那两套，跟着看就行。</p><p>✅ 本周拆法：这周分两块走。操作系统这块，第 3 章从页面置换接着往下看，先进先出、最近最久未使用、最佳置换三种算法的缺页次数自己算一遍，给一个访问序列要能画出每一步的替换过程；分页、分段、段页式的地址转换各做两道题。第 4 章文件管理把文件的物理结构三种、目录结构、磁盘调度算法过一遍。第 5 章输入输出把四种控制方式对比着看，中断处理和 DMA 的过程各写一遍。计算机网络这块，第 1 章把 OSI 七层和 TCP/IP 四层的对应关系、每层的数据单元和设备说清楚；第 3 章看可靠传输的三种协议、滑动窗口、CSMA/CD、以太网帧格式、交换机和集线器的区别。每天晚上做完对应章节的选择题，周六把这一周错的题再做一遍，周日做一套真题里的操作系统部分，计时 50 分钟。</p><p>✅ 提醒：操作系统第三章的页面置换和地址转换是计算题常考的地方，别只看例题，自己拿纸算，算完对答案。计算机网络第 3 章的协议名字多，先记框架再记细节，别一上来就背。</p><p>✅ 注意：这一周不碰数据结构和计组的新内容，那两门你已经学完了，先放着，等第三周开始整套做题的时候再一起回顾。周日那半套真题做完先不对答案，晚上再对，错的题记清楚错在哪一步。</p><p>操作系统的书这一周要动笔的地方多，页面置换的题画表格做，一行写一次访问，命中就写命中，没命中就写换出哪一页，画完再数缺页次数。地址转换的题先把页号、页内偏移的位数算出来，再代入，别一上来就套公式。计算机网络刚开始，第 1 章别花太多时间，把七层各管什么、每层的数据单位叫什么记住就行，重点放在第 3 章。数据链路层那三种可靠传输协议容易混，停等、后退 N 帧、选择重传，各自窗口多大、出错之后重发哪些帧，列一张表对比着记。王道每章后面的选择题全做，做完对答案，错的题在题号旁边写一句错因。这一周每天拿出二十分钟翻一翻前面学过的操作系统章节，别让学过的内容放凉。</p><p>这一周的时间怎么放也说一下：周一到周三先把操作系统第 3 章的页面置换和地址转换学完，这三天里每天做题的时间不少于两个小时；周四周五看第 4 章文件管理和第 5 章输入输出，这两章内容不多，一天一章够用。周六把这一周操作系统和计算机网络错的选择题再做一遍，不会的翻回书上那一节看。周日下午做真题里的操作系统部分，只做选择题和大题，计时 50 分钟，做完把每道题考的是哪一章写在题号旁边，对答案的时候看自己判断的章节对不对。计算机网络这边，第 3 章的以太网帧格式、交换机怎么转发、冲突域和广播域怎么划分，这几块画一张图记，比背文字快。</p></div></div></div></div></article><article class="week-card"><button class="week-header" type="button" aria-expanded="false"><div class="week-title"><span class="week-kicker">第 2 周</span><h3>计算机网络这一周学完，操作系统回头过一遍</h3></div><div class="week-meta"><span class="dates">11.21 - 11.27</span><span class="week-chevron">⌄</span></div></button><div class="week-content"><div class="message">这周把计算机网络剩下的章节学完，周末把操作系统这一门从头顺一遍，学过的章节快速看，重点是第三章往后。计算机网络 25 分，题不难，分要拿到。</div><div class="subject-grid"><div class="subject"><div class="subject-header"><span class="subject-name major">408 计算机学科专业基础 · 计算机网络这一周学完，操作系统回头过一遍</span></div><div class="subject-content"><p>✅ 规划：一周 31 小时。这周把计算机网络第 4 章网络层、第 5 章传输层、第 6 章应用层学完，第 2 章物理层快速看。周六周日把操作系统从头顺一遍，第 3 章到第 5 章重点看，第 1、2 章快速过。书还是王道那两本。</p><p>✅ 本周拆法：计算机网络这块，第 4 章是重点，IP 地址的分类和子网划分要会算，给一个地址和掩码能算出网络号、广播地址、可用主机范围，CIDR 的地址聚合会合并，距离向量和链路状态两种路由算法的区别说清楚，NAT 怎么转换知道。第 5 章把 TCP 的三次握手四次挥手、拥塞控制的四个阶段、UDP 和 TCP 的区别讲明白，序号确认号的计算自己算几道。第 6 章把 DNS 解析过程、HTTP 请求响应、邮件协议说清楚。操作系统这块，把这周之前学过的章节按顺序翻一遍，第 3 章的页面置换和地址转换再做两道题，第 4、5 章的概念题过一遍，把之前标出来的错题重做。周六把计算机网络这一周错的选择题再做一遍，周日把操作系统那几张公式和结论背一遍。</p><p>✅ 提醒：子网划分的题每天算两道，练到看到地址就能写出来。TCP 的序号确认号别只看图，自己拿题算一遍。</p><p>✅ 注意：这一周结束后，四门课就都学完一遍了，从第三周开始整套做题。周日晚上把前两周的错题本翻一遍，把还不会做的题目标出来，第三周做整套卷的时候重点看这些。</p><p>计算机网络第 4 章是这一周的重头，子网划分的题每天算两道，从简单的开始，一个 C 类地址切成四个子网，再切八个，练到不用想就能写出网络号和广播地址。路由协议那块，距离向量和链路状态的区别用一张纸写清楚：一个只知道邻居、一个知道全网拓扑，一个是定期交换整张表、一个是有变化才发。第 5 章的 TCP 三次握手四次挥手，画一张时序图，标清楚每一段报文的标志位和序号，画完自己讲一遍。操作系统的复习别从头看，先看自己标出来的错题，再看每章后面的小结。第 3 章的页面置换再做两道题，第 4 章的磁盘调度算两道，第 5 章的四种输入输出方式对比着看一遍。周六把计算机网络这一周错的选择题再做一遍，周日把操作系统的公式和结论背一遍，背不出来的地方翻书看。</p><p>这一周还有个地方要留意：计算机网络的选择题一共八道左右，题量不大，但四章都可能有，第 4 章和第 5 章占得多一些，所以这两章看得细一点。子网划分的题除了算网络号，还要会算子网掩码的反推，给一个地址段问掩码是多少，这种题近两年出现过。操作系统的复习按章走，每章先看自己的错题，再看书上的小结，最后做两道题。第 3 章的页面置换和第 4 章的磁盘调度这两块最容易算错，算的时候把每一步写出来。周日把这两周学的内容在脑子里过一遍，哪一块想不起来，周一早上先翻那一块。</p></div></div></div></div></article><article class="week-card"><button class="week-header" type="button" aria-expanded="false"><div class="week-title"><span class="week-kicker">第 3 周</span><h3>四门都学完了，这周开始整套卷子计时</h3></div><div class="week-meta"><span class="dates">11.28 - 12.04</span><span class="week-chevron">⌄</span></div></button><div class="week-content"><div class="message">四门课都学完一遍了，这周开始按考试时间做整套卷子。周三和周六各一套，都是下午两点到五点三个小时。剩下几天把数据结构和计算机组成原理快速回顾一遍，学过的内容别放凉了。</div><div class="subject-grid"><div class="subject"><div class="subject-header"><span class="subject-name major">408 计算机学科专业基础 · 四门都学完了，这周开始整套卷子计时</span></div><div class="subject-content"><p>✅ 规划：一周 31 小时。这周两套完整真题，周三下午一套，周六下午一套，都是 14:00 到 17:00 三个小时。剩下的时间把数据结构和计算机组成原理快速回顾一遍，重点看当时标出来的难点和错题，不从头看。</p><p>✅ 本周拆法：周一周二回顾数据结构，把线性表、树、图、查找、排序这几章的公式和结论过一遍，树的遍历和图的算法各挑两道题重做，排序的复杂度表默写一遍。周四周五回顾计算机组成原理，把数据表示、存储系统、指令系统、CPU 这几章的计算题各做两道，Cache 地址划分和流水线周期数重点练。周三和周六的整套卷，做完当天晚上对答案，把错的题按四门分开记。周日把两套卷的错题整理一遍，看看哪一门错得最多，下一周就给那一门多一点时间。</p><p>✅ 提醒：整套卷做不完很正常，把没做完的题号记下来，订正的时候先看这些题。选择题错的回到书上那一节看一遍，大题把每一步写全。</p><p>✅ 注意：这周的分数别太在意，现在做题是为了找问题。做完一套一定要订正，不订正等于白做。这周开始晚上十一点前睡，把作息慢慢往考试时间上靠。</p><p>数据结构的回顾按章来，每一章先看小结再看错题，树的遍历和图的算法各挑两道重做，做完对答案。计算机组成原理的回顾把计算题挑出来做，Cache 地址划分每天两道，流水线周期数每天两道，浮点数转换每天两道，做完对答案。周三和周六的整套卷，选择题控制在 60 到 70 分钟，做完先涂卡，再做大题。大题按先易后难的顺序做，数据结构的代码题如果一时想不出来，先把思路用文字写清楚。做完当天晚上对答案，把错的题按四门分开记，第二天先订正错得最多的那一门。周日把两套卷的错题整理一遍，看看哪一门错得最多，下一周多给那一门一点时间。</p><p>这一周做整套卷子，时间怎么分要提前想好：选择题 60 到 70 分钟，大题 110 到 120 分钟，最后留十来分钟检查。做完一套先把没做完的题号记下来，订正的时候先看这些题。数据结构和计算机组成原理的回顾别贪多，每章挑两三道有代表性的题做，做完对答案，错的回书上那一节看。周三和周六这两套卷子做完，把分数记在一张纸上，看看自己现在的水平大概在哪，心里有个数。周日把两套卷的错题整理完，把还不会的题目标出来，下一周做卷子的时候重点看这些。</p></div></div></div></div></article><article class="week-card"><button class="week-header" type="button" aria-expanded="false"><div class="week-title"><span class="week-kicker">第 4 周</span><h3>整套卷子再做两套，错题一门一门清</h3></div><div class="week-meta"><span class="dates">12.05 - 12.11</span><span class="week-chevron">⌄</span></div></button><div class="week-content"><div class="message">这周再做两套完整真题，另外把前面几套卷的错题一门一门清一遍。数据结构和你计组学得早，忘的地方会多一点，这一周重点照顾这两门。</div><div class="subject-grid"><div class="subject"><div class="subject-header"><span class="subject-name major">408 计算机学科专业基础 · 整套卷子再做两套，错题一门一门清</span></div><div class="subject-content"><p>✅ 规划：一周 31 小时。这周两套完整真题，周二下午一套，周六下午一套，都是 14:00 到 17:00 三个小时。其余时间订正和重做错题，按门来，一门清完再换下一门。</p><p>✅ 本周拆法：周一把上一周两套卷的错题订正完，选择题错的回书上找，大题把过程写全。周二下午做第三套，晚上对答案，把错题按四门分开。周三到周五清错题：数据结构重点看树和图的算法题，二叉树的遍历和最短路的计算各挑几道重写；计算机组成原理重点看 Cache 地址划分和流水线周期数，把算错的步骤重新走一遍；操作系统重点看 PV 操作和页面置换；计算机网络重点看子网划分和 TCP 拥塞控制。周六下午做第四套，只做选择题加两道大题，控制时间。周日把三套卷的选择题错题过一遍，把常错的公式和结论抄到一张纸上：二叉树的性质、排序复杂度表、Cache 地址划分步骤、页面置换算法、TCP 拥塞控制、子网划分步骤。</p><p>✅ 提醒：重做错题的时候不许看答案，写完再对，写不出来就是没会。同一道题连着错三次，回到书上那一节从头读一遍再做题。</p><p>✅ 注意：这周开始不加新内容，就做卷子和错题。三套卷的分数和错题数记在一张纸上，看趋势不看单套。晚上十一点前睡。</p><p>错题按门清的时候，一门清完再换下一门，别四门混着来。每门挑出二次还错的题，抄到一张单独的纸上，这张纸就是最后几天的复习材料。三套卷的选择题错题统计一下，看看哪一门的错得最多，如果某一门连着两套都错三道以上，那就把那一门的重点章节再读一遍。大题的步骤分要重视，判稳那一行、公式的适用条件、结论那一句，这三样每道题都要写，缺一样就少一两分。这一周开始不加新内容，就做卷子和错题，晚上十一点前睡，中午可以眯二十分钟。</p><p>这一周按门清错题的时候，每门的错题数量不一样，多的那门多给一天，少的那门半天就够。数据结构的错题重点在树和图的算法题，把当时写错的代码重新写一遍；计算机组成原理的错题重点在 Cache 和流水线，把算错的步骤重新算；操作系统的错题重点在 PV 和页面置换；计算机网络的错题重点在子网划分和 TCP。周六那套卷只做选择题加两道大题，控制在两个小时以内，剩下的时间继续清错题。周日把这三套卷的错题过一遍，把常错的公式和结论抄到一张纸上，抄完背一遍。</p></div></div></div></div></article><article class="week-card"><button class="week-header" type="button" aria-expanded="false"><div class="week-title"><span class="week-kicker">第 5 周</span><h3>最后一周做整套卷子，错题本从头翻一遍</h3></div><div class="week-meta"><span class="dates">12.12 - 12.18</span><span class="week-chevron">⌄</span></div></button><div class="week-content"><div class="message">最后一周完整复习时间，这周做两套卷子，把错题本从头翻一遍，把常错的公式和结论抄到一张纸上。这周不看新东西，把会做的分稳稳拿到就是最好的状态。</div><div class="subject-grid"><div class="subject"><div class="subject-header"><span class="subject-name major">408 计算机学科专业基础 · 最后一周做整套卷子，错题本从头翻一遍</span></div><div class="subject-content"><p>✅ 规划：一周 31 小时。这周两套完整真题，周二下午一套，周六下午一套，都是 14:00 到 17:00 三个小时。其余时间把四门的错题本从头翻一遍，错过的题合上答案重做，二次还错的挑出来重点看。</p><p>✅ 本周拆法：周一把上一套卷订正完，晚上把错题本从头翻一遍。周二下午做第五套，做完当天晚上对答案，把错题按四门分开。周三到周五按门清错题，每门挑出二次还错的题重做一遍，还卡着的抄到一张单独的纸上，这张纸就是最后两天的复习材料。周六下午做第六套，只做选择题加两道大题，控制时间。周日把这张纸从头到尾看一遍，再把常错的公式和结论抄成一张公式纸：二叉树性质、排序复杂度、Cache 划分、页面置换、TCP 拥塞控制、子网划分步骤，抄完背两遍。</p><p>✅ 提醒：这周的量比前面几周少，但每道题都要弄懂。一道大题做完，合上答案自己讲一遍思路，讲得出来才算真的会。错题纸上只写关键的那一步，不抄整道题。</p><p>✅ 注意：这周开始晚上十一点前睡，中午可以眯二十分钟。考试前一天把准考证、身份证、笔袋摆在门口，早上出门不用找。</p><p>这周做题的量比前面几周少，但每道题都要弄懂。一道大题做完，合上答案自己讲一遍思路，讲得出来才算真的会。错题纸上只写关键的那一步，不抄整道题，写得越多你越不想回头看。公式纸抄完别扔，考前那两天还要翻。考试前一天把准考证、身份证、笔袋摆在门口，早上出门不用找。这一周的心情放平，五周多的时间把四门都过了一遍，真题也做了几套，该做的都做了。</p><p>这一周把错题本从头翻一遍的时候，按四门的顺序翻，一门翻完再翻下一门。翻的时候手里拿支笔，看到还不会的题就在旁边画个圈，翻完把画圈的题统计一下，哪门最多，考前一天就重点看哪门。公式纸抄的时候字写大一点，一张纸别写太满，留点空，考前看起来不费劲。周六那套卷做完，周日就不要再做新题了，把错题纸和公式纸翻一遍，下午出去走走，晚上早点睡。</p></div></div></div></div></article><article class="week-card"><button class="week-header" type="button" aria-expanded="false"><div class="week-title"><span class="week-kicker">第 6 周</span><h3>考试这两天不学新东西，翻翻错题和公式就进考场</h3></div><div class="week-meta"><span class="dates">12.19 - 12.20</span><span class="week-chevron">⌄</span></div></button><div class="week-content"><div class="message">最后两天了，不学新东西。19 号把错题本和公式纸翻一遍，20 号上午轻松过一遍，下午两点进考场。东西提前收好，钟点对好，别慌。</div><div class="subject-grid"><div class="subject"><div class="subject-header"><span class="subject-name major">408 计算机学科专业基础 · 考试这两天不学新东西，翻翻错题和公式就进考场</span></div><div class="subject-content"><p>✅ 规划：两天一共 8 小时：12 月 19 日 6 小时，12 月 20 日上午 2 小时。这周只有一件事：保持手感，把该记的记住，然后去考试。408 在 12 月 20 日下午 14:00 到 17:00 考，三个小时。</p><p>✅ 本周拆法：12 月 19 日上午把四门的错题本从头翻一遍，只看错因和正确做法，不动笔做新题，翻到哪算哪，翻完的题在旁边打个勾。下午把那张公式纸从头到尾背两遍，二叉树性质、排序复杂度、Cache 划分、页面置换、TCP 拥塞控制、子网划分步骤，背的时候出声，背不出来的地方回头再看一眼。晚上早睡。12 月 20 日上午把公式纸再看一遍，把答题顺序想清楚：选择题 40 道控制在 60 到 70 分钟，剩下时间给七道大题，数据结构的代码题和计组的大题先做，网络和操作系统的大题放后面。中午吃完饭歇一会儿，13:30 前到考场门口。</p><p>✅ 提醒：考前一晚睡不着别慌，闭眼躺着也是休息。进考场前把公式纸再看一眼就收起来，别带进考场。</p><p>✅ 注意：准考证和身份证提前装好，笔、尺子、橡皮都带上。答题时先写名字考号，选择题别空着，大题步骤写全，不会的先跳过去，最后回头写。考完就别再想了，去吃顿好的。</p><p>考试当天中午别喝太多水，进考场前去一趟洗手间。坐下来先把卷子从头翻一遍，心里有个数再动笔，遇到卡住的题先跳过，把能拿的分先拿到手。选择题做完先涂卡，别等到最后。大题写的时候字写清楚，步骤一行一行写，别挤在一起。考完这一门，408 就结束了，剩下的时间好好歇。</p></div></div></div></div></article></div>
+<footer>© 2026 aijian.top · 专业课定制 · 2026.11.14 - 2026.12.20 · 一共 6 周</footer>
+</div>
+<script>
+document.querySelectorAll('.week-card').forEach(function(card){
+  var btn=card.querySelector('.week-header');
+  btn.addEventListener('click',function(){
+    card.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', card.classList.contains('is-open') ? 'true' : 'false');
+  });
+});
+var allOpen=false;
+document.getElementById('toggleAll').addEventListener('click',function(){
+  allOpen=!allOpen;
+  document.querySelectorAll('.week-card').forEach(function(c){c.classList.toggle('is-open',allOpen);});
+  this.textContent = allOpen ? '收起全部 6 周' : '展开全部 6 周';
+});
+</script>
+</body></html>

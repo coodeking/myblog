@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的考研规划 | WJ的AI技术博客</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header .student-name { color: #aaa; margin-top: 8px; }
+        .phase-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .phase-btn {
+            padding: 10px 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .phase-btn:hover { border-color: #667eea; }
+        .phase-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: transparent;
+        }
+        .week-grid {
+            display: grid;
+            gap: 16px;
+        }
+        .week-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .week-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .week-date { color: #888; font-size: 14px; }
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .subject-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .subject-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .subject-title.math { color: #f5576c; }
+        .subject-title.english { color: #667eea; }
+        .subject-title.politics { color: #10b981; }
+        .subject-topic {
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+        .task-list {
+            list-style: none;
+            font-size: 13px;
+            color: #bbb;
+        }
+        .task-list li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .task-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+        .hours-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 10px;
+            font-size: 12px;
+            color: #667eea;
+            margin-top: 8px;
+        }
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #888;
+        }
+        .error {
+            text-align: center;
+            padding: 60px;
+            color: #f5576c;
+        }
+        .total-hours {
+            text-align: right;
+            margin-top: 12px;
+            font-size: 14px;
+            color: #888;
+        }
+        .no-plan {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .no-plan h2 { margin-bottom: 16px; }
+        .no-plan p { color: #888; }
+        @media print {
+            body { background: #fff; color: #333; }
+            .phase-nav { display: none; }
+            .week-card { border: 1px solid #ddd; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📅 我的考研周规划</h1>
+            <p class="student-name" id="studentName">加载中...</p>
+        </div>
+
+        <div id="content">
+            <div class="loading">⏳ 正在加载规划数据...</div>
+        </div>
+    </div>
+
+    <script>
+        // TODO: Replace with your Supabase credentials
+        const SUPABASE_URL = 'https://ukquyolgcstifhltvxku.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrcXV5b2xnY3N0aWZobHR2eGt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3MjkxMjQsImV4cCI6MjA4NDMwNTEyNH0.XQj8RupAYwRpxFkkLJUohx_MM3zfC1ZMLnc-vJ4jYFQ';
+
+        async function loadPlan() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const planId = urlParams.get('id');
+
+            if (!planId) {
+                showNoPlan();
+                return;
+            }
+
+            try {
+                // Fetch plan
+                const planRes = await fetch(
+                    `${SUPABASE_URL}/rest/v1/plans?id=eq.${planId}&select=*,students(name)`,
+                    {
+                        headers: {
+                            'apikey': SUPABASE_KEY,
+                            'Authorization': `Bearer ${SUPABASE_KEY}`
+                        }
+                    }
+                );
+
+                if (!planRes.ok) throw new Error('Failed to fetch');
+                
+                const plans = await planRes.json();
+                if (plans.length === 0) {
+                    showNoPlan();
+                    return;
+                }
+
+                const plan = plans[0];
+                const planData = plan.plan_json;
+
+                // Update header
+                document.getElementById('studentName').textContent = 
+                    `${plan.students?.name || '同学'}的专属规划`;
+
+                renderPlan(planData);
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('content').innerHTML = 
+                    '<div class="error">❌ 加载失败，请刷新重试或联系客服</div>';
+            }
+        }
+
+        function showNoPlan() {
+            document.getElementById('studentName').textContent = '';
+            document.getElementById('content').innerHTML = `
+                <div class="no-plan">
+                    <h2>🔍 未找到规划</h2>
+                    <p>请确认链接是否正确，或联系客服获取帮助</p>
+                </div>
+            `;
+        }
+
+        function renderPlan(data) {
+            const phases = data.phases || [];
+            const weeks = data.weeks || [];
+
+            let html = '';
+
+            // Phase navigation
+            if (phases.length > 0) {
+                html += '<div class="phase-nav">';
+                html += '<button class="phase-btn active" data-phase="all">全部</button>';
+                phases.forEach((phase, i) => {
+                    html += `<button class="phase-btn" data-phase="${i}">${phase.name} (${phase.weeks})</button>`;
+                });
+                html += '</div>';
+            }
+
+            // Weeks
+            html += '<div class="week-grid" id="weekGrid">';
+            weeks.forEach(week => {
+                html += renderWeek(week);
+            });
+            html += '</div>';
+
+            document.getElementById('content').innerHTML = html;
+
+            // Phase filter
+            document.querySelectorAll('.phase-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    filterWeeks(this.dataset.phase, phases, weeks);
+                });
+            });
+        }
+
+        function renderWeek(week) {
+            const totalHours = (week.math?.hours || 0) + (week.english?.hours || 0) + (week.politics?.hours || 0);
+            
+            return `
+                <div class="week-card" data-week="${week.week}">
+                    <div class="week-header">
+                        <span class="week-number">第 ${week.week} 周</span>
+                        <span class="week-date">${week.date || ''}</span>
+                    </div>
+                    <div class="subject-grid">
+                        ${renderSubject('math', '📐 数学', week.math)}
+                        ${renderSubject('english', '📖 英语', week.english)}
+                        ${renderSubject('politics', '🏛️ 政治', week.politics)}
+                    </div>
+                    <div class="total-hours">周总计: ${totalHours}h</div>
+                </div>
+            `;
+        }
+
+        function renderSubject(type, title, data) {
+            if (!data || !data.topic) {
+                return `
+                    <div class="subject-card">
+                        <div class="subject-title ${type}">${title}</div>
+                        <div class="subject-topic" style="color:#666;">-</div>
+                    </div>
+                `;
+            }
+
+            const tasks = data.tasks || [];
+            return `
+                <div class="subject-card">
+                    <div class="subject-title ${type}">${title}</div>
+                    <div class="subject-topic">${data.topic}</div>
+                    ${tasks.length > 0 ? `
+                        <ul class="task-list">
+                            ${tasks.map(t => `<li>${t}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                    ${data.hours ? `<span class="hours-badge">${data.hours}h</span>` : ''}
+                </div>
+            `;
+        }
+
+        function filterWeeks(phase, phases, weeks) {
+            const cards = document.querySelectorAll('.week-card');
+            
+            if (phase === 'all') {
+                cards.forEach(c => c.style.display = 'block');
+                return;
+            }
+
+            const phaseData = phases[parseInt(phase)];
+            if (!phaseData) return;
+
+            const [start, end] = phaseData.weeks.split('-').map(Number);
+            
+            cards.forEach(card => {
+                const weekNum = parseInt(card.dataset.week);
+                card.style.display = (weekNum >= start && weekNum <= end) ? 'block' : 'none';
+            });
+        }
+
+        loadPlan();
+    </script>
+</body>
+</html>

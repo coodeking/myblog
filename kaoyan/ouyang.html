@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欧阳宇轩 考研学习进度参考（38周版）</title>
+    <style>
+        :root {--bg-color: #0a0a0f;--card-bg: #12121a;--text-color: #e0e0e0;--accent: #d946ef;--accent-light: #f472b6;--border-color: #2a2a3a;}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: var(--bg-color); color: var(--text-color); line-height: 1.6; min-height: 100vh; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%); border-radius: 16px; margin-bottom: 30px; border: 1px solid var(--border-color); }
+        header h1 { font-size: 2.2rem; background: linear-gradient(90deg, var(--accent), var(--accent-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+        .meta { color: #888; font-size: 0.95rem; }
+        .meta span { margin: 0 10px; display: inline-block; }
+        .overview { background: linear-gradient(135deg, #1a1a2e 0%, #311b3d 100%); border-radius: 12px; padding: 24px; margin-bottom: 30px; border: 1px solid var(--border-color); }
+        .overview h2 { color: var(--accent-light); margin-bottom: 20px; font-size: 1.3rem; border-left: 4px solid var(--accent); padding-left: 10px; }
+        .strategy { margin-bottom: 16px; padding: 12px; background: rgba(217, 70, 239, 0.15); border-radius: 8px; border-left: 3px solid var(--accent); color: #fff; line-height: 1.8; font-size: 1.05rem; }
+        .grid-box { display: grid; gap: 16px; margin-bottom: 20px; }
+        .grid-item { padding: 18px; border-radius: 8px; }
+        .grid-math { background: rgba(59,130,246,0.08); border-left: 3px solid #3b82f6; }
+        .grid-english { background: rgba(52,211,153,0.08); border-left: 3px solid #34d399; }
+        .grid-politics { background: rgba(251,191,36,0.08); border-left: 3px solid #fbbf24; }
+        .grid-cs { background: rgba(167,139,250,0.08); border-left: 3px solid #a855f7; }
+        h3 { margin-bottom: 12px; font-size: 1.1rem; }
+        .grid-math h3 { color: #3b82f6; }
+        .grid-english h3 { color: #34d399; }
+        .grid-politics h3 { color: #fbbf24; }
+        .grid-cs h3 { color: #a855f7; }
+        ul { margin-left: 20px; color: #ddd; }
+        li { margin-bottom: 8px; }
+        .week-card { background: var(--card-bg); border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--border-color); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+        .week-header { background: linear-gradient(90deg, rgba(217, 70, 239, 0.2), rgba(217, 70, 239, 0.05)); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .week-header h3 { font-size: 1.1rem; color: var(--accent-light); margin: 0; }
+        .week-header .dates { color: #aaa; font-size: 0.9rem; font-family: monospace; }
+        .week-content { padding: 20px; display: none; }
+        .week-content.active { display: block; }
+        .message { background: rgba(217, 70, 239, 0.1); padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; border-left: 3px solid var(--accent); color: #fff; line-height: 1.6; font-size: 0.95rem; }
+        .subject { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 16px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .subject-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .subject-name { font-weight: bold; font-size: 1.05rem; }
+        .subject-name.math { color: #3b82f6; }
+        .subject-name.english { color: #34d399; }
+        .subject-name.politics { color: #fbbf24; }
+        .subject-name.cs { color: #a855f7; }
+        .subject-content { color: #bbb; white-space: pre-line; font-size: 0.95rem; line-height: 1.7; }
+        .expand-all { text-align: center; margin-bottom: 25px; }
+        .expand-all button { background: var(--accent); color: white; border: none; padding: 12px 28px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.2s; }
+        .expand-all button:hover { background: var(--accent-light); }
+        footer { text-align: center; padding: 30px; color: #666; font-size: 0.9rem; margin-top: 20px; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>欧阳宇轩 考研学习进度参考（38周版）</h1>
+            <div class="meta">
+                <span>🎯 目标：华东师范大学·智能教育 学硕</span>
+                <span>📅 周期：2026.03.30 - 2026.12.19</span>
+            </div>
+            <div class="meta" style="margin-top: 8px;">
+                <span>📚 纳入本表排版考科目：数学二 / 英语二 / 政治 / 408计算机基础综合</span>
+            </div>
+        </header>
+
+        <div class="overview">
+            <h2>🎯 全局时间规划概览</h2>
+            <p class="strategy">
+                <strong>时间分配原则：所有科目不准当“耐听王”。多想多算多做，全部落实到笔头上。</strong><br><br>
+                <span style="color: #ffb86c;">精力分配：以数学为绝对核心（占用50%时间），然后是408专业课（极大题量，必须早早开始，占用25%时间左右，不要挤压数学的时间），以及零星的英语和后期的极少量政治。</span>
+            </p>
+            <div class="grid-box">
+                <div class="grid-item grid-math">
+                    <h3>📐 数学复习建议</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">以练带学：</strong>不要花大量时间听网课，讲义课后题和《1000题》做起来。知识点不会直接去B站找千羽、考研数学777、没咋了等短视频，比大机构老师效果好。</li>
+                        <li><strong style="color: #fff;">果断舍弃：</strong>张宇的超实数、微分算子法、海涅定理、stolz都不需要看。除了真题，一切习题册和模拟卷的“证明题”全都不做！</li>
+                        <li><strong style="color: #fff;">真题核心：</strong>《真题一本通》是最重要的题集，做好真题错题本，最后近3年真题用来模拟。</li>
+                    </ul>
+                </div>
+                <div class="grid-item grid-cs">
+                    <h3>💻 408基础综合复习建议</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">尽早开始：</strong>408内容极多，必须马上开始。第一阶段用王道四单科教材配合B站官方课程，只做课后选择题（不做大题），标*号太复杂的章节直接暂时跳过。</li>
+                        <li><strong style="color: #fff;">分清阶段：</strong>基础阶段只刷选择、二刷选择错题；强化阶段看完一节课直接精刷真题大题解答题！</li>
+                        <li><strong style="color: #fff;">套卷掐表：</strong>后期进入套卷刷真题阶段时，正式考试3小时，平时训练务必掐表“2小时40分钟”完成。</li>
+                    </ul>
+                </div>
+                <div class="grid-item grid-english">
+                    <h3>📖 英语复习建议</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">集中精力背单词：</strong>英语少听或者不听课。暑假前只有一个核心任务，集中精力背单词（用《不背单词》APP核心3000词）。</li>
+                        <li><strong style="color: #fff;">APP刷真题：</strong>不精翻译文章，不买手译本。暑假开始用《真题伴侣》APP做真题，标注错题重复看。</li>
+                        <li><strong style="color: #fff;">模板作文：</strong>暑期开始听Monkey老师的作文课，只需要背他的模板，并练习套用就行，就能拿高分。</li>
+                    </ul>
+                </div>
+                <div class="grid-item grid-politics">
+                    <h3>🏛️ 政治复习建议</h3>
+                    <ul>
+                        <li><strong style="color: #fff;">最迟跟进：</strong>10月初才开始。远离长篇大课和肖1000厚题。只买《腿姐冲刺背诵手册》或者澄箫宇“政治一页纸”当小说熟读。</li>
+                        <li><strong style="color: #fff;">利用打卡小程序：</strong>每天在《苍盾小程序》零星做一套30题选择题看个解析即可。</li>
+                        <li><strong style="color: #fff;">最后抄材料保底：</strong>12月出版后直接背《肖四》大题，背不住没关系。务必去B站学“考研政治抄材料方法”，考场上保底就靠抄卷子给的材料字。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="expand-all"><button onclick="toggleAll()">展开/收起38周全部计划</button></div>
+        <div id="weeks-container"></div>
+    </div>
+
+    <script>
+    const planData = [{"week": 1, "dates": "2026.03.30 - 04.05", "theme": "第一阶段：看视频课与做基础题", "message": "开始培养每天按时学习的习惯。", "math": {"title": "数学复习建议", "content": "✅ 规划：看《基础三十讲》高数1-4讲（极限和导数），看完立刻做讲义后的练习题。\n✅ 提醒：遇到超实数、海涅定理、stolz定理等内容直接跳过不看。\n✅ 注意：不要用大块时间听视频课，自己看讲义。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：下载《不背单词》APP。每天抽时间背考研核心词。\n✅ 提醒：不听任何英语长视频课。\n✅ 注意：词表选定为英二核心词汇。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：开始408第一阶段：数据结构（DS）。购买王道四本书，听B站王道数据结构视频。\n✅ 提醒：在书上做笔记，学完一节就做一节王道课后选择题。\n✅ 注意：王道书上标*号的章节或者特别复杂的知识点暂时跳过，大题也不要做。"}}, {"week": 2, "dates": "2026.04.06 - 04.12", "theme": "第一阶段：看视频课与做基础题", "message": "遇到卡壳直接看解析或短视频，不要在某一道遇到瓶颈的题目上停留过久。", "math": {"title": "数学复习建议", "content": "✅ 规划：继续高数5-8讲及对应《1000题》基础部分。\n✅ 提醒：课后题和1000题如果想了2分钟没思路，直接对答案或去B站搜。\n✅ 注意：所有题目里涉及证明题的全部划掉不做。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：每天在APP上背新单词，复习旧单词。\n✅ 提醒：上厕所或排队时拿着手机按。\n✅ 注意：只要求看到英文迅速反应中文意思。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：继续推进数据结构基础进度（如线性表、栈、队列）。\n✅ 提醒：课后选择题每一道都认真弄懂，实在不会的去看B站官方讲解。\n✅ 注意：第一遍看书遇到想不通的细节可以做个标记先往后看，不要原地停滞太久。"}}, {"week": 3, "dates": "2026.04.13 - 04.19", "theme": "第一阶段：看视频课与做基础题", "message": "如果复习时总是分心，可以换个自习室或者图书馆的位置。", "math": {"title": "数学复习建议", "content": "✅ 规划：推进高数9-12讲（一元积分）及对应的《1000题》。\n✅ 提醒：在草稿纸上把每一步写清楚，不要心算。\n✅ 注意：算错的题用红笔在题号上画圈，不要当时重算。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：如果软件积压的待复习单词达到几百个，当天停止背新词全去复习。\n✅ 提醒：不能只往前进不去巩固。\n✅ 注意：背完单词不要去碰真题。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：推进数据结构（树、图等内容较多章节）。\n✅ 提醒：这部分算法选择题较多，能理顺基本逻辑即可。\n✅ 注意：做错的题在题号旁边用红笔做好圈选标记，这是后期二刷的重要目标。"}}, {"week": 4, "dates": "2026.04.20 - 04.26", "theme": "第一阶段：看视频课与做基础题", "message": "严格分配好各科的复习时间，不要在某个科目上浪费太多时间。", "math": {"title": "数学复习建议", "content": "✅ 规划：高数13-18讲（多元函数等）及对应《1000题》。\n✅ 提醒：微分算子法不需要学。题目做不完的话只做单数题。\n✅ 注意：数学始终占有最多时间。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：保持每天词汇打卡。\n✅ 提醒：不属于核心单词的偏僻词汇不要硬背。\n✅ 注意：这阶段英语只需要这一项任务。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：数据结构基础知识收尾（查找、排序）。把红圈标记的错题重新看一遍。\n✅ 提醒：所有数据结构的课后大题先不写，遇到直接跳过。\n✅ 注意：数据结构是比较难的一门，复习完这部分后面会相对顺利。"}}, {"week": 5, "dates": "2026.04.27 - 05.03", "theme": "第一阶段：看视频课与做基础题", "message": "每天早上列出今天要完成的任务，做完一项划掉一项。", "math": {"title": "数学复习建议", "content": "✅ 规划：高数错题复盘周。把画红圈的错题遮住答案重做。\n✅ 提醒：只做错题，对的题不用看，本周不开新进度。\n✅ 注意：遇到这遍还错的题，把知识点抄在错题本上。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：经常忘掉某个单词很正常，跟着软件提示按。\n✅ 提醒：背单词机械操作就行。\n✅ 注意：手不要停。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：开始408第一阶段：计算机组成原理（CO）。看王道计组对应的视频。\n✅ 提醒：计组难度较高，和数据结构一样先做课后选择题，跳过大题。\n✅ 注意：多花时间看书和视频，去理解原码补码、Cache等底层逻辑。"}}, {"week": 6, "dates": "2026.05.04 - 05.10", "theme": "第一阶段：看视频课与做基础题", "message": "看书久了或者算题累了，可以站起来背几分钟单词当做休息。", "math": {"title": "数学复习建议", "content": "✅ 规划：开始《基础三十讲》线代1-3讲（行列式矩阵）及《1000题》。\n✅ 提醒：线代刚开始概念多很杂是正常的，题型很死。\n✅ 注意：行列式矩阵计算容易算错，多算几遍。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：核心词汇大概过完了一轮半。\n✅ 提醒：不要去买纯长难句辅导书或长篇阅读材料。\n✅ 注意：就是一直背单词。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：继续推进计算机组成原理（存储系统、指令系统）。\n✅ 提醒：遇到做错的课后选择题重点看解析步骤。\n✅ 注意：依然要用红笔把错题圈出来以备后续使用。"}}, {"week": 7, "dates": "2026.05.11 - 05.17", "theme": "第一阶段：看视频课与做基础题", "message": "现在的作息规律应该已经形成了，每天按部就班执行就行。", "math": {"title": "数学复习建议", "content": "✅ 规划：线代4-6讲（向量与方程组等）及剩余线代1000题。\n✅ 提醒：向量如果抽象完全看不懂，立刻去B站搜对应知识点短视频。\n✅ 注意：线代的证明题也不写。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：每天按照计划接着过单词。\n✅ 提醒：如果专业课加重，缩短英语背单词时间但绝不中断。\n✅ 注意：保持语感。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：推进计算机组成原理（中央处理器、总线）。\n✅ 提醒：如果遇到数据通路图等复杂图表看不懂，先跳过去做后续内容。\n✅ 注意：记录下常考的概念点。"}}, {"week": 8, "dates": "2026.05.18 - 05.24", "theme": "第一阶段：看视频课与做基础题", "message": "不要去网上跟别人比复习进度，每个人的基础不一样。", "math": {"title": "数学复习建议", "content": "✅ 规划：基础阶段三科收尾（数二无概率论）。把线代高数的错题重做一遍。\n✅ 提醒：把错题涉及的公式集中记在一起。\n✅ 注意：清空手头积压的基础辅导书任务。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：大量重复刷脸。\n✅ 提醒：熟词僻义单独找个备忘录记下来。\n✅ 注意：不需在纸上手抄翻译。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：计组知识收尾（输入输出系统等），复盘红圈错题。\n✅ 提醒：至此408难度较大的两门科目已经结束。\n✅ 注意：如果发现时间紧迫，优先保证按计划往前推进新内容。"}}, {"week": 9, "dates": "2026.05.25 - 05.31", "theme": "第一阶段：看视频课与做基础题", "message": "遇到学校上课，可以适当微调考研计划，别完全停下就可以。", "math": {"title": "数学复习建议", "content": "✅ 规划：总结前10周所有错过的公式定理。\n✅ 提醒：把做错的微积分基础公式写在一张A4纸上。\n✅ 注意：每天默写一次。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：在APP里进入词表的第三遍过关。\n✅ 提醒：不用去看长难句网课。\n✅ 注意：只需要看APP里的词意。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：开始408第一阶段：操作系统（OS）。看王道OS视频。\n✅ 提醒：操作系统和计组联系相对紧密，学起来会较快一些。\n✅ 注意：学完一节做一节课后选择题，并标记错题。"}}, {"week": 10, "dates": "2026.06.01 - 06.07", "theme": "第一阶段：看视频课与做基础题", "message": "中午最好睡个午觉，保证下午和晚上的学习精力。", "math": {"title": "数学复习建议", "content": "✅ 规划：休息与调整。不开启新篇章。\n✅ 提醒：把所有的红笔错题集中在一起装订。\n✅ 注意：准备迎接下一步大观。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：定量巩固容易忘的顽固生词。\n✅ 提醒：关注单词的第二重意思。\n✅ 注意：还不需要写作文。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：推进操作系统（进程管理、内存管理）。\n✅ 提醒：PV操作的选择题可以多在纸上画图辅助理解。\n✅ 注意：带有*号标识的拓展部分可以直接跳过以节省时间。"}}, {"week": 11, "dates": "2026.06.08 - 06.14", "theme": "第二阶段：看强化解题视频", "message": "遇到很难的偏门超纲题，果断放弃，不要浪费时间。", "math": {"title": "数学复习建议", "content": "✅ 规划：每天看一个B站“澄箫宇”大观系列的高数部分视频。\n✅ 提醒：他每讲一道题之前，马上按下暂停你在白纸上做一遍。\n✅ 注意：做完再播放对比他的思路，不要只用眼睛看。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：随着暑假到来，把积累的那个“老忘的单词”清单单独过几次。\n✅ 提醒：为暑假做真题做地基准备。\n✅ 注意：单日英语耗时压缩。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：操作系统收尾（文件管理、I/O管理）。复盘OS阶段错题。\n✅ 提醒：把操作系统里常考的选择题结论进行简单汇总。\n✅ 注意：此时408的基础阶段已经推进了大部分内容。"}}, {"week": 12, "dates": "2026.06.15 - 06.21", "theme": "第二阶段：看强化解题视频", "message": "期末考试期间调整复习节奏，保证学校考试不挂科最重要。", "math": {"title": "数学复习建议", "content": "✅ 规划：继续看“澄箫宇”大观的剩余高数视频。\n✅ 提醒：主要学习他对相似题型的分类整理方法。\n✅ 注意：他讲的难点搞懂即可。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：检查《不背单词》上的后台记录。\n✅ 提醒：确认这3000词至少在APP里循环刷过了3遍。\n✅ 注意：基础已经能看懂大意。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：开始408第一阶段：计算机网络（CN）。看王道计网视频。\n✅ 提醒：计网需要记忆的内容较多，复习进度通常会比较快。\n✅ 注意：做选择题时如果遇到记错的知识点，直接翻书去背诵正确的。"}}, {"week": 13, "dates": "2026.06.22 - 06.28", "theme": "第二阶段：看强化解题视频", "message": "把每天的任务合理分配，不要给自己定无法完成的目标。", "math": {"title": "数学复习建议", "content": "✅ 规划：看“澄箫宇”大观系列线代部分。\n✅ 提醒：把课件里你之前算错的题再算一次。\n✅ 注意：去B站搜相关错题变式的短视频加深理解。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：下载《真题伴侣》APP，准备一套只有题目的纯试卷真题本。\n✅ 提醒：准备开始做真题卷。\n✅ 注意：单词任务每天降解为抽空打卡。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：推进计算机网络（各种协议层）。\n✅ 提醒：重点记忆某种协议处在那一层，以及IP地址的相关计算题。\n✅ 注意：继续把错题圈出来。"}}, {"week": 14, "dates": "2026.06.29 - 07.05", "theme": "第二阶段：看强化解题视频", "message": "用整块的时间来做计算或者一套卷子。", "math": {"title": "数学复习建议", "content": "✅ 规划：开始做《660题》第一部分的高数选填题。\n✅ 提醒：每天固定做30题左右，不要不限时的做。\n✅ 注意：两分钟想不出来直接跳过看解析。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：每天下午做两篇英语二（10年-15年区间）真题阅读。\n✅ 提醒：不写作文，不做手写全篇翻译。\n✅ 注意：做完后用《真题伴侣》APP查解析。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：计算机网络收尾。408第一轮全部结束。\n✅ 提醒：整理好这四本书，第一轮所有的选择题全部覆盖了一次。\n✅ 注意：准备进入二刷错题的阶段。"}}, {"week": 15, "dates": "2026.07.06 - 07.12", "theme": "第二阶段：看强化解题视频", "message": "自习的时候尽量把手机放远点，避免社交软件打扰。", "math": {"title": "数学复习建议", "content": "✅ 规划：做《660题》的高数剩余部分，记录错题。\n✅ 提醒：每天强行自己做新的客观题数量。\n✅ 注意：哪怕错一半也没关系，对答案找方法。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：继续两天一套英二的进度。\n✅ 提醒：真题不认识的单词直接收录进《真题伴侣》生词本。\n✅ 注意：重点记在上下文中的意思。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：开始408第二阶段：二刷课后选择题。从数据结构开始。\n✅ 提醒：这一遍只看之前有红圈标记的错题，动手重新计算和选择。\n✅ 注意：第一遍一次性做对的题可以先不看了。"}}, {"week": 16, "dates": "2026.07.13 - 07.19", "theme": "第二阶段：看强化解题视频", "message": "如果反复错同一种题，一定要回去把对应的知识点看明白。", "math": {"title": "数学复习建议", "content": "✅ 规划：做《660题》的线代客观题，并重做前3周的660错题。\n✅ 提醒：如果线代错误率很高把考点查讲义看补回来。\n✅ 注意：偏题怪题直接叉掉。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：做早期英二真题。\n✅ 提醒：早年错得多无所谓。\n✅ 注意：不用去看老师讲这个文章怎么推理的长视频课。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：数据结构错题二刷收尾，过渡到二刷计组的选择错题。\n✅ 提醒：如果有些题目第二次依然做错，把它们抄录到专门的错题本上。\n✅ 注意：这些就是目前概念比较薄弱的板块。"}}, {"week": 17, "dates": "2026.07.20 - 07.26", "theme": "第三阶段：分科大量练习题", "message": "暑假到了，找个安静有空调的地方，每天稳定复习。", "math": {"title": "数学复习建议", "content": "✅ 规划：开始做于文涛《真题一本通》（数学二版）。每天做高数题目。\n✅ 提醒：拿一个新的错题本，专门用来誊抄真题错题。\n✅ 注意：真题全盘按套路来，不发散思维。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：做完查单词和长难句中文意思。\n✅ 提醒：只要能看懂知道为啥选那个答案就行。\n✅ 注意：不纠结状语从句等名词定语。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：计算机组成原理错题二刷收尾。\n✅ 提醒：计组相关的计算题现在应该有更清晰的思路了，把算错的再算一遍。\n✅ 注意：每天安排给专业课的时间不要超过数学复习的时间。"}}, {"week": 18, "dates": "2026.07.27 - 08.02", "theme": "第三阶段：分科大量练习题", "message": "周末可以抽半天出去运动放松一下，不需要有罪恶感。", "math": {"title": "数学复习建议", "content": "✅ 规划：继续按章节做《真题一本通》的高数部分。\n✅ 提醒：真题的计算题不要用眼睛看，必须要纸面出结果。\n✅ 注意：不会的考点马上回查之前的讲义。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：体会出题人怎么设置错误选项。\n✅ 提醒：比如绝对化错误（所有人/一定等词）。\n✅ 注意：积累找错技巧。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：二刷操作系统的选择错题。\n✅ 提醒：操作系统的选择题错题多半是因为概念混淆，可以回去翻翻教材对应段落。\n✅ 注意：梳理操作系统的整体框架。"}}, {"week": 19, "dates": "2026.08.03 - 08.09", "theme": "第三阶段：分科大量练习题", "message": "做真题如果觉得压力太大可以稍微减一点量，但绝对不能完全停下。", "math": {"title": "数学复习建议", "content": "✅ 规划：推进《真题一本通》高数的极限等大题部分。\n✅ 提醒：只要卡住，去搜B站解题小视频。\n✅ 注意：记录下真题里常用的等价无穷小替换。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：两天一套卷子推进。\n✅ 提醒：如果遇到极其难读的长篇，看句子主语谓语，忽略人名修饰词。\n✅ 注意：每日背真题伴侣生词。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：二刷计算机网络的错题。\n✅ 提醒：计网的错题可以直接当成结论去记忆。\n✅ 注意：准备迎接大题实操阶段。"}}, {"week": 20, "dates": "2026.08.10 - 08.16", "theme": "第三阶段：分科大量练习题", "message": "这段时间的复习会比较枯燥，按部就班完成即可，不要有情绪起伏。", "math": {"title": "数学复习建议", "content": "✅ 规划：推进《真题一本通》高数的积分和微分方程大题部分。\n✅ 提醒：全是套路计算，步骤必须写清楚。\n✅ 注意：别省纸，草稿也要写整洁。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：缩短查单词看解析时间。\n✅ 提醒：做过的阅读就放在一边。\n✅ 注意：不要立刻重做去测试正确率骗自己。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：408所有选择题二刷正式结束。把这个错题本整理好。\n✅ 提醒：多翻看这本整理出来的错题本。\n✅ 注意：现在可以暂时放下书本里的选择题部分，不要反反复复重看。"}}, {"week": 21, "dates": "2026.08.17 - 08.23", "theme": "第四阶段：做历年真题阶段", "message": "背过的东西忘记是很正常的，回去再快速看两眼就行，别慌张。", "math": {"title": "数学复习建议", "content": "✅ 规划：高数大题综合部分练习。\n✅ 提醒：数二证明题出题方向固定，练真题考过的证明题格式。\n✅ 注意：所有的步骤严格参照官方答案写。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：加一点英语二新题型真题。\n✅ 提醒：同义词替换通常是正确选项。\n✅ 注意：重点标记。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：开始408第三阶段：看王道强化课。从数据结构开始。\n✅ 提醒：这阶段的核心是开始做每章课后的统考真题大题！\n✅ 注意：听完一节课就去认真刷这章对应的真题大题。"}}, {"week": 22, "dates": "2026.08.24 - 08.30", "theme": "第四阶段：做历年真题阶段", "message": "随时看看剩余资料的量，规划好每天需要做几页才能做完。", "math": {"title": "数学复习建议", "content": "✅ 规划：高数刷题疲劳期，减少每天做题量但不能完全停止做题操作。\n✅ 提醒：错题本按章节（如连续、导数）分类整理。\n✅ 注意：薄弱章节去搜对应的视频。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：英语二近几年份的阅读（比如16-20年）。\n✅ 提醒：留时间给数学实操科目。\n✅ 注意：每天继续查词。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：继续推进数据结构强化课和真题大题，做好方法总结。\n✅ 提醒：遇到写不出的数据结构算法大题，写个最基础的暴力解法拿到部分分数即可。\n✅ 注意：不用强求写出满分的复杂算法。"}}, {"week": 23, "dates": "2026.08.31 - 09.06", "theme": "第四阶段：做历年真题阶段", "message": "数学和408必须自己拿笔算，只看不算是无效的。", "math": {"title": "数学复习建议", "content": "✅ 规划：转入《真题一本通》的线代部分前期章节。\n✅ 提醒：特征值特征向量、解方程组，重点练矩阵初等行变换。\n✅ 注意：每天必须做完20道以上的线代真题。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：发现不同年份文章里反复考的词。\n✅ 提醒：真题高频僻义要极其重视。\n✅ 注意：查漏补缺。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：推进计组强化课与对应的计组真题大题。\n✅ 提醒：计组大题综合性很强，建议把大题的答案解析逐行读懂。\n✅ 注意：重点关注汇编和存储部分的大题。"}}, {"week": 24, "dates": "2026.09.07 - 09.13", "theme": "第四阶段：做历年真题阶段", "message": "开学了，尽快调整回在学校复习的作息规律。", "math": {"title": "数学复习建议", "content": "✅ 规划：完成《真题一本通》的线代部分剩余章节。\n✅ 提醒：注意线代真题的连环设问，第一问错后面全错。\n✅ 注意：多验算。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：如果有完全看不懂的长难句。\n✅ 提醒：看看答案是怎么划分从句的。\n✅ 注意：不用记语法名字。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：计组真题大题收尾。\n✅ 提醒：错题要做好标记，分析这些题目是如何从真题里延伸出来的。\n✅ 注意：专业课的大块复习时间可适当增加。"}}, {"week": 25, "dates": "2026.09.14 - 09.20", "theme": "第四阶段：做历年真题阶段", "message": "考研正式报名时，一定要仔细检查一切个人信息，千万不要填错。", "math": {"title": "数学复习建议", "content": "✅ 规划：再把之前的“澄箫宇”大观错题集对照真题一本通。\n✅ 提醒：看大观里的题是怎么由真题变形过来的。\n✅ 注意：把这两个资料的同类题型总结。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：历年卷子梳理完一遍了。周末不碰文章。\n✅ 提醒：把《真题伴侣》生词库从头刷掉所有红点。\n✅ 注意：为作文阶段扫清障碍。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：推进操作系统强化课与真题大题。\n✅ 提醒：操作系统的大题通常涉及PV操作或文件分配，需要花时间搞懂逻辑。\n✅ 注意：总结真题里常考的组合模型。"}}, {"week": 26, "dates": "2026.09.21 - 09.27", "theme": "第四阶段：做历年真题阶段", "message": "如果一科实在学不进去了，可以换个科目调剂一下大脑。", "math": {"title": "数学复习建议", "content": "✅ 规划：重做一遍《真题一本通》所有因为计算失误错的题。\n✅ 提醒：把马虎算错的题再算一次。\n✅ 注意：必须100%全对，否则就抄下来。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：在网上找《Monkey》老师的考研英语作文模板课。\n✅ 提醒：只听他的模板体系建立。\n✅ 注意：不需要听其他老师的作文课。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：操作系统真题大题收尾。\n✅ 提醒：继续做错题复盘。\n✅ 注意：在强化笔记上记录常考的解题套路。"}}, {"week": 27, "dates": "2026.09.28 - 10.04", "theme": "第五阶段：政治开始背诵与做套卷", "message": "刚做真题卷子大概率会错很多，这是正常的。", "math": {"title": "数学复习建议", "content": "✅ 规划：重做一遍《真题一本通》所有没思路的题。\n✅ 提醒：这些题用荧光笔标记。\n✅ 注意：缩减每天数学复习时间。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：把模板里的高级词汇和长句抄到本子上。\n✅ 提醒：去看看历年作文范文只背主题词汇。\n✅ 注意：《不背单词》每日打卡继续。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：推进计算机网络强化课与真题大题。\n✅ 提醒：计网大题很多是路由协议计算，计算格式比较固定。\n✅ 注意：把这些计算过程梳理清楚。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：最早10月初开始。买一本《腿姐冲刺背诵手册》，只熟读不背。\n✅ 提醒：远离徐涛等名师的长线大课，远离肖秀荣《1000题》。\n✅ 注意：每天看小说一样翻半小时。"}}, {"week": 28, "dates": "2026.10.05 - 10.11", "theme": "第五阶段：政治开始背诵与做套卷", "message": "放弃偏题怪题和各种花里胡哨的技巧，稳拿基础分。", "math": {"title": "数学复习建议", "content": "✅ 规划：把错题本浓缩，提炼成20页以内的题型框架笔记。\n✅ 提醒：比如“看到求极限思考哪四步”。\n✅ 注意：每天看一遍这个框架。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：在草稿纸上反复默写两三套模板。\n✅ 提醒：动词单复数、冠词低级错误一个都不能犯。\n✅ 注意：这是拿到作文底分的基础。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：408各科的大题全部梳理完毕，强化阶段结束。\n✅ 提醒：王道教材的初步学习任务已经完成。\n✅ 注意：准备进入做整卷真题的阶段。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：在微信搜索《苍盾小程序》。每天在手机上刷一套模拟卷（约30道选择题）。\n✅ 提醒：刷完对答案看解析就行。\n✅ 注意：不用手抄错题。"}}, {"week": 29, "dates": "2026.10.12 - 10.18", "theme": "第五阶段：政治开始背诵与做套卷", "message": "天气变冷了，多穿点衣服别感冒，生病会严重影响复习进度。", "math": {"title": "数学复习建议", "content": "✅ 规划：每天拿一整块时间（上午8:30-11:30）做一套数二真题（09-13年）当作套卷。\n✅ 提醒：严格卡时间。\n✅ 注意：对答案改分，不在乎分数高低。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：开始英语二真题的阅读二刷。\n✅ 提醒：二刷重点看每段的行文逻辑引出下一段。\n✅ 注意：套用背过的作文模板写一篇真题话题。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：开始408第四阶段：全卷套刷阶段，做真题整卷。\n✅ 提醒：每个年份的真题必须使用答题卡作答，并严格掐表计时在2小时40分钟内完成！\n✅ 注意：做完后对答案，保留好这张卷子和答题卡供后续使用。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：搜索澄箫宇“政治一页纸”相关的总结类资料进行熟读。\n✅ 提醒：这种高度浓缩资料已经理清常考的会议年代线索。\n✅ 注意：维持每日一套小程序的打卡。"}}, {"week": 30, "dates": "2026.10.19 - 10.25", "theme": "第五阶段：政治开始背诵与做套卷", "message": "政治开始了每天抽空用小程序刷点题就行，别占用大块时间。", "math": {"title": "数学复习建议", "content": "✅ 规划：每天一套数二真题（14-16年）。\n✅ 提醒：看武忠祥选填技巧课，用他的技巧算。\n✅ 注意：这十年的选择填空有很多较为快捷的解题思路。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：二刷阅读并坚持写作文。\n✅ 提醒：发现某个物品不会写用词典查出然后写进作文主题本。\n✅ 注意：把背诵转化在纸上。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：继续保持真题套卷的推进进度。\n✅ 提醒：第一遍整卷做完可能分数不高，这是很正常的现象，不用感到有压力。\n✅ 注意：复核所有错题并查阅教材里的对应笔记。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：每天固定的事就是：翻背诵手册、小程序刷那30道客观题。\n✅ 提醒：留意那些历史会议的转折点，不需要去大量刷题库死记硬背。\n✅ 注意：政治耗时不可超1小时。"}}, {"week": 31, "dates": "2026.10.26 - 11.01", "theme": "第五阶段：政治开始背诵与做套卷", "message": "不要频繁换复习资料或者背词软件，用熟手头上的就好。", "math": {"title": "数学复习建议", "content": "✅ 规划：每天一套数二真题（17-19年）。\n✅ 提醒：留出最近真题。罗列错题。\n✅ 注意：统计每次拿不到分的题型。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：严格买考研英语答题卡。\n✅ 提醒：把作文写在正规答题纸上练习排版。\n✅ 注意：一遍成型不涂改。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：以两天一套的节奏推进408真题卷。\n✅ 提醒：重点关注综合大题，尤其是计组和操作系统联合出题的部分。\n✅ 注意：计算题细心一点不用算错。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：小程序错得多没关系，翻开背诵手册去对应的章节加深印象即可。\n✅ 提醒：政治只看选择题，完全不管大题。\n✅ 注意：这阶段过线即可心态放平。"}}, {"week": 32, "dates": "2026.11.02 - 11.08", "theme": "第五阶段：政治开始背诵与做套卷", "message": "把各种错题本简化一下，变成考前几分钟能翻完的核心内容。", "math": {"title": "数学复习建议", "content": "✅ 规划：每天一套数二真题（20-22年）。\n✅ 提醒：全当全真模拟。\n✅ 注意：控制好180分钟全盘分配。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：这周顺畅默写大小作文模板。\n✅ 提醒：只要套作的模板熟悉到直接顺利地默写下来，作文分就不会低。\n✅ 注意：不做市面全真模拟卷阅读。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：推进近几年的408真题套卷。\n✅ 提醒：严格控制时间是为了防范考场上做不完的情况（408题量很大）。\n✅ 注意：保证选择题的正确率，这是得分的基础。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：政治拉不开太多分，继续保持机械做一套选择题。\n✅ 提醒：核心时间请让给数学或者408。\n✅ 注意：执行就行不用管旁边同学。"}}, {"week": 33, "dates": "2026.11.09 - 11.15", "theme": "第六阶段：做冲刺模拟卷与查漏补缺", "message": "一定要找时间进行一次完整的考场模拟考，体验一下体力消耗。", "math": {"title": "数学复习建议", "content": "✅ 规划：停止做新卷子，把这十几年套卷里的错题拿出来重算一遍。\n✅ 提醒：找出心态出错的题。\n✅ 注意：训练草稿纸排版，不要抄错数字。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：每天翻看几篇英语二前几年的真题，保持眼缘熟练度。\n✅ 提醒：完型填空错很多别纠结。\n✅ 注意：考研英语分差大多在阅读和作文。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：留下最近三年的官方真题不动，第一轮套题精刷结束。\n✅ 提醒：把这些试卷装订好，准备后面的二刷使用。\n✅ 注意：确报错题都已查漏补缺完毕。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：保持目前进度。\n✅ 提醒：不要听很多人说已经背熟了就产生落差感。\n✅ 注意：安静等待12月的《肖四》出版。"}}, {"week": 34, "dates": "2026.11.16 - 11.22", "theme": "第六阶段：做冲刺模拟卷与查漏补缺", "message": "提前定好考场周边的酒店和去考场的交通路线。", "math": {"title": "数学复习建议", "content": "✅ 规划：每天做一套李林6套卷（前3套）。\n✅ 提醒：只为了练习考场不顺手的防守心态。\n✅ 注意：卷子里哪怕有很难的证明题也直接跳过，不做。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：拿出一直没做的那近三年官方真题做全测试。\n✅ 提醒：适应考试时间的脑力下降感，中途不暂停。\n✅ 注意：估算耗时。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：开始408第五阶段：二刷真题卷。\n✅ 提醒：直接拿之前做过的真题试卷重发一份空白的再重新做。\n✅ 注意：这一遍要求错题率大幅降低。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：《肖四》（肖秀荣四套卷）出版。直接开始背大题的标答。\n✅ 提醒：这四套卷子的选择题可以适当做看个分，不用管。\n✅ 注意：除了《肖四》大题，其他模拟资料都不需要看。"}}, {"week": 35, "dates": "2026.11.23 - 11.29", "theme": "第六阶段：做冲刺模拟卷与查漏补缺", "message": "复习重点转向怎么能在答题卡上写出能得分的要点。", "math": {"title": "数学复习建议", "content": "✅ 规划：每天做一套李林6套卷（后3套）。\n✅ 提醒：卡三个小时。\n✅ 注意：重点纠正速度。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：看全真模拟错掉的题。\n✅ 提醒：里面第一次碰见的生词，立刻记在扉页上。\n✅ 注意：保证这半月天天看到。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：二刷真卷收尾。\n✅ 提醒：对那些依然算不对的数据通路大题或路由大题做好重点标记。\n✅ 注意：这部分不用再去看视频课，直接看笔记回忆即可。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：每天用一个多小时直接背肖四大题。\n✅ 提醒：每一段标答，背第一句黑粗体核心论点，剩下的记住大概用自己的话说。\n✅ 注意：不用一字不差地死记硬背原话。"}}, {"week": 36, "dates": "2026.11.30 - 12.06", "theme": "第六阶段：做冲刺模拟卷与查漏补缺", "message": "这段时间不要在意还剩多少没看，多背一题就能多拿一分。", "math": {"title": "数学复习建议", "content": "✅ 规划：每天做一套李林4套卷。\n✅ 提醒：严格时间控制。\n✅ 注意：遇到超出线代范围的大思考题直接扔。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：分析全科模拟考试中的失误。\n✅ 提醒：看是不是把太多时间花在一道选择题上。\n✅ 注意：每天翻汇总的主题作文词。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：拿出一直没做的最后三年408真题，进行全天候全真模拟。\n✅ 提醒：尽量在正式考试的时段（下午14:00-17:00）作答并涂卡。\n✅ 注意：在这个过程中去适应考场大脑疲惫的状态。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：继续背肖四大题，反复循环保障熟练度。\n✅ 提醒：确保每道题遇到类似话题，脑子里起码有3个点可以作答。\n✅ 注意：这个时候也绝对不能停下数学的计算手感。"}}, {"week": 37, "dates": "2026.12.07 - 12.13", "theme": "第六阶段：做冲刺模拟卷与查漏补缺", "message": "考前不要再做新的押题卷，看看错题。", "math": {"title": "数学复习建议", "content": "✅ 规划：拿出一直舍不得做的那最后三年官方真题。每天一套。\n✅ 提醒：用标准答题卡作答涂卡。\n✅ 注意：算分看看水平但不崩溃。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：《真题伴侣》里面标出来的阅读高频错因汇总。\n✅ 提醒：读不懂不要紧张，回归基础辨识词汇。\n✅ 注意：看中心词。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：开始408第六阶段：冲刺与最后回顾。\n✅ 提醒：回顾你之前整理的那本错题本。\n✅ 注意：针对不熟悉的知识点进行再熟悉。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：上B站搜“考研政治主观大题抄材料方法”，务必学会该排版技巧。\n✅ 提醒：考场如果没遇上押中的题，纯靠这个方法整合卷子上所给材料拿笔墨分。\n✅ 注意：这是最后的保底手段。"}}, {"week": 38, "dates": "2026.12.14 - 12.19", "theme": "第六阶段：做冲刺模拟卷与查漏补缺", "message": "保持平常心上考场即可。", "math": {"title": "数学复习建议", "content": "✅ 规划：考前最后一周。停做所有新题。\n✅ 提醒：把真题笔记和错题本拿出来过最后一遍。\n✅ 注意：只算错过的基础计算题找手感，严禁看难题。"}, "english": {"title": "英语复习建议", "content": "✅ 规划：每天花20分钟看一下核心词汇和作文模板。\n✅ 提醒：看到大概知道意思就行。\n✅ 注意：放松心情准备初试。"}, "cs": {"title": "统考408复习建议", "content": "✅ 规划：考前最后一周，把该背的文字知识点（如计网、操作系统的概念）再背一背。\n✅ 提醒：专业课完全停止看那些很难的新题。\n✅ 注意：准备一套书写整洁的大题答题模板，调整心态上考场。"}, "politics": {"title": "政治复习建议", "content": "✅ 规划：考前几天复习记下来的核心大标题词。\n✅ 提醒：拿卷子写满空白处就行。\n✅ 注意：字写好看点，排布好段落，不需要慌张。"}}];
+    function renderWeeks() {
+        const container = document.getElementById('weeks-container');
+        planData.forEach((st, index) => {
+            const card = document.createElement('div');
+            card.className = 'week-card';
+            let subjectsHtml = '';
+            
+            if (st.math) {
+                subjectsHtml += `<div class="subject"><div class="subject-header"><span class="subject-name math">📐 数学复习建议</span></div>
+                                 <div class="subject-content">${st.math.content.replace(/\n/g, '<br/>')}</div></div>`;
+            }
+            if (st.english) {
+                subjectsHtml += `<div class="subject"><div class="subject-header"><span class="subject-name english">📖 英语复习建议</span></div>
+                                 <div class="subject-content">${st.english.content.replace(/\n/g, '<br/>')}</div></div>`;
+            }
+            if (st.cs) {
+                subjectsHtml += `<div class="subject"><div class="subject-header"><span class="subject-name cs">💻 408综合复习建议</span></div>
+                                 <div class="subject-content">${st.cs.content.replace(/\n/g, '<br/>')}</div></div>`;
+            }
+            if (st.politics) {
+                subjectsHtml += `<div class="subject"><div class="subject-header"><span class="subject-name politics">🏛️ 政治复习建议</span></div>
+                                 <div class="subject-content">${st.politics.content.replace(/\n/g, '<br/>')}</div></div>`;
+            }
+
+            card.innerHTML = `
+                <div class="week-header" onclick="toggleWeek(${index})">
+                    <h3>第 ${st.week} 周：${st.theme}</h3><span class="dates">${st.dates}</span>
+                </div>
+                <div class="week-content" id="week-${index}">
+                    <div class="message">📌 ${st.message}</div>${subjectsHtml}
+                </div>`;
+            container.appendChild(card);
+        });
+        document.getElementById('week-0').classList.add('active');
+    }
+    function toggleWeek(index) { document.getElementById('week-' + index).classList.toggle('active'); }
+    let allExpanded = false;
+    function toggleAll() {
+        allExpanded = !allExpanded;
+        document.querySelectorAll('.week-content').forEach(el => { el.classList.toggle('active', allExpanded); });
+    }
+    renderWeeks();
+    </script>
+</body>
+</html>

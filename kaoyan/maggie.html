@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maggie 政治单科规划</title>
+<style>
+:root{--bg:#f5efe4;--paper:rgba(255,255,255,.93);--ink:#2a2119;--muted:#75695c;--line:#e3d4c0;--accent:#9c5c26;--deep:#1f5f55;--brick:#8d3d22;--soft:#f7eddc;--shadow:0 24px 70px rgba(82,50,22,.13)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;color:var(--ink);font-family:"Noto Serif SC","Microsoft YaHei","PingFang SC",serif;line-height:1.78;background:radial-gradient(circle at 7% 8%,rgba(156,92,38,.15),transparent 30%),radial-gradient(circle at 93% 12%,rgba(31,95,85,.14),transparent 28%),linear-gradient(135deg,#f2dfc4 0%,#fff8ee 48%,#ead2b5 100%)}
+.wrap{width:min(1120px,calc(100% - 28px));margin:0 auto;padding:28px 0 52px}
+.hero{position:relative;overflow:hidden;border:1px solid rgba(125,82,41,.23);border-radius:30px;background:rgba(255,253,248,.9);box-shadow:var(--shadow);padding:34px;margin-bottom:20px}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(116deg,rgba(156,92,38,.08),transparent 45%,rgba(31,95,85,.08));pointer-events:none}
+.tag{position:relative;display:inline-flex;color:var(--deep);font-weight:800;letter-spacing:.05em;margin-bottom:12px}
+h1{position:relative;font-size:clamp(2rem,5vw,4rem);line-height:1.1;letter-spacing:-.04em;margin-bottom:18px;max-width:920px}
+.meta{position:relative;display:flex;flex-wrap:wrap;gap:10px;color:var(--muted)}
+.meta span{border:1px solid var(--line);background:rgba(255,255,255,.7);border-radius:999px;padding:7px 12px}
+.panel{border:1px solid var(--line);border-radius:26px;background:rgba(255,253,248,.9);padding:24px;margin-bottom:20px;box-shadow:0 16px 46px rgba(82,50,22,.08)}
+h2{font-size:1.38rem;margin-bottom:12px;letter-spacing:-.02em}
+.strategy{border:1px solid rgba(125,82,41,.16);border-radius:18px;background:#fff6e9;padding:15px 17px;color:#43372c;white-space:pre-line;margin-bottom:14px}
+.overview{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
+.course{border:1px solid var(--line);border-radius:20px;background:var(--paper);padding:17px;text-align:left;box-shadow:inset 4px 0 0 var(--accent)}
+.course:nth-child(2){box-shadow:inset 4px 0 0 var(--deep)}
+.course:nth-child(3){box-shadow:inset 4px 0 0 var(--brick)}
+.course:nth-child(4){box-shadow:inset 4px 0 0 #7b6a45}
+.course h3{font-size:1.02rem;margin-bottom:8px;color:#5a361d}
+.course p{color:#474039;font-size:.96rem}
+.blocks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.block{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#fffdf8,#f8ecdd);padding:16px;min-height:150px}
+.block b{display:block;color:var(--deep);margin-bottom:4px}
+.block em{display:block;font-style:normal;color:var(--accent);font-weight:800;margin-bottom:8px}
+.block span{color:var(--muted);font-size:.94rem}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:24px 0 15px;color:var(--muted);flex-wrap:wrap}
+button{border:0;border-radius:999px;background:#2a2118;color:#fffaf1;padding:10px 17px;cursor:pointer;font:inherit;font-weight:800}
+.weeks{display:grid;gap:14px}
+.week-card{border:1px solid var(--line);border-radius:24px;background:rgba(255,253,248,.93);overflow:hidden;box-shadow:0 10px 34px rgba(82,50,22,.08)}
+.week-card.open{border-color:rgba(156,92,38,.42)}
+.week-head{width:100%;display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;background:transparent;color:var(--ink);border:0;border-radius:0;padding:18px 20px;text-align:left}
+.week-head:hover{background:rgba(247,237,220,.64)}
+.kicker{display:block;color:var(--muted);font-size:.82rem;letter-spacing:.08em}
+.week-head h3{font-size:1.08rem;line-height:1.42}
+.date{color:var(--muted);white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.9rem}
+.chev{color:var(--muted)}
+.week-body{display:none;border-top:1px solid var(--line);padding:18px 20px 20px;background:rgba(255,255,255,.38)}
+.week-card.open .week-body{display:block}
+.week-body p{white-space:pre-line;color:#3f3933;font-size:1rem}
+footer{text-align:center;color:var(--muted);margin-top:26px;font-size:.92rem}
+@media(max-width:1050px){.overview,.blocks{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.overview,.blocks{grid-template-columns:1fr}.week-head{grid-template-columns:1fr}.date{white-space:normal}.hero{padding:24px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero">
+<div class="tag">政治单科-only</div>
+<h1 id="title"></h1>
+<div class="meta">
+<span id="target"></span>
+<span id="exam"></span>
+<span id="period"></span>
+<span id="subject"></span>
+</div>
+</header>
+<section class="panel">
+<h2>这份表怎么用</h2>
+<div class="strategy" id="intro"></div>
+<div class="strategy" id="strategy"></div>
+<div class="overview" id="materials"></div>
+</section>
+<section class="panel">
+<h2>阶段安排</h2>
+<div class="blocks" id="blocks"></div>
+</section>
+<div class="toolbar"><span id="countText"></span><button id="toggleAll" type="button">展开全部</button></div>
+<section class="weeks" id="weeks"></section>
+<footer>本页只写 Maggie 同学的政治单科安排。</footer>
+</main>
+<script>
+const planData = {
+  "student": {
+    "name": "Maggie",
+    "target": "首都师范大学 / 金融学专硕",
+    "subject": "政治单科",
+    "period": "2026.08.10 - 2026.12.20",
+    "weeks": 19,
+    "hours": "工作日每晚抓 2-4 小时，周末补到 4-6 小时；白天有空就顺手背关键词，不另开大块长课。",
+    "status": "在职二战，政治还没正式起步，高中有底子，但看得懂不等于写得出，主要问题是记不住、不会把知识点往答案里放。"
+  },
+  "overview": {
+    "intro": "这份表只写政治。你表里补充了《腿姐冲刺背诵手册》，这次就把它当主线，不再把资料堆得太散。前 8 周先做框架和理解，不急着硬背，10 月初再把背诵真正拉起来。这样排是因为你现在的问题不是“完全不会”，而是“看得明白、记不下来、答题时不知道该拎哪几个点”。所以这份计划不是让你一口气吞完整本书，而是每周把一个小块拆开：先看懂，再合书说出关键词，再刷一套 30 题，再把错题写回手册里。\n\n这本《腿姐冲刺背诵手册》先按上篇来用，上篇抓选择题核心考点；到 10 月以后再把下篇的分析题背诵和选择题技巧用起来。苍盾小程序只负责选择题，工作日每天一套 30 题，不追求多刷，只追求当天错题当天回看。肖八和肖四放在 11 月和 12 月，前者先练选择题和分析题骨架，后者直接转成考前背诵材料。最后 10 天再加一遍政治一页纸，把高频关键词和易混点串起来。",
+    "strategy": "你这次只做政治，节奏就按“理解 → 关键词 → 选择题 → 背诵 → 套卷”走。前两个月别把时间花在长课上，先把马原、毛中特、史纲、思修这四块的骨架搭起来。每周都要留一个很小的输出：要么是一页闭卷复述，要么是 30 题错题回填，要么是把一个模块整理成 5-8 个关键词。你不用每次都写很多字，但每次都要写到点上。\n\n这份表的检查标准也很简单：一，能不能合上书说出这章讲什么；二，看到题干能不能马上知道它在问哪块知识；三，错题能不能回到对应条目；四，到了 11 月和 12 月能不能把分析题先搭骨架再背具体句子。你是二战，问题不在于完全没基础，而在于容易学完就散。所以这次每周都留一个回头动作，不能只往前冲。",
+    "materials": [
+      "《腿姐冲刺背诵手册》：8 月先当目录和关键词表看，10 月开始正式背；上篇看选择题核心考点，下篇看分析题背诵和选择题技巧。",
+      "苍盾考研政治刷题小程序：工作日每天 1 套 30 题，做完只看错题和对应条目，不把时间耗在长视频上。",
+      "肖八、肖四：11 月开始把选择题和分析题骨架练起来，12 月直接转大题背诵和整卷回看。",
+      "政治一页纸：最后阶段用来串时政、高频表述和易混点，不单独展开成大块任务。"
+    ],
+    "blocks": [
+      [
+        "8 月到 9 月底",
+        "先搭框架，不硬背",
+        "先把四门主线的目录和关键词摸顺，马原和毛中特先理解，手册先做标记，不急着一上来全文背。"
+      ],
+      [
+        "10 月初到 10 月底",
+        "正式转背诵",
+        "腿姐手册开始按模块背，思修和时政一起加进来，选择题继续每天 30 题，错题当天回书。"
+      ],
+      [
+        "11 月",
+        "选择题和肖八",
+        "开始把肖八当成选择题和分析题骨架训练，腿姐手册下篇正式上场，重点练答题句子。"
+      ],
+      [
+        "12 月",
+        "肖四和考前回锅",
+        "肖四大题背诵放到最前面，政治一页纸和错题本放到最后，别再开新资料。"
+      ]
+    ]
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "date": "2026.08.10 - 2026.08.16",
+      "phase": "框架起步",
+      "title": "先把手册目录和马原前两章搭起来，别急着背，先弄懂题往哪儿问",
+      "body": "这周先做三件事：一是把《腿姐冲刺背诵手册》的目录翻一遍，给马原、毛中特、史纲、思修四块做电子标签；二是把马原第 1 章“马克思主义是关于无产阶级和人类解放的科学”和第 2 章“世界的物质性及发展规律”看一遍，只抓关键词，不抄长句；三是每天用苍盾小程序刷 30 题，题目只做这两章的基础题，错题当晚回到手册里对应条目。\n\n这周你不用想着把书翻得很厚，目标是先能把“马克思主义是什么、物质和意识是什么、规律和实践怎么放到题里”说清楚。工作日就按“看 40 分钟 + 30 题 + 10 分钟错题”走，周末抽半天把这两章整理成一页电子笔记，写出 6 个关键词：基本立场、基本观点、基本方法、物质第一性、实践、规律。周末结束前，你要能合上书说出这两章各自讲什么，看到题干能把答案往对应条目上放。"
+    },
+    {
+      "week": 2,
+      "date": "2026.08.17 - 2026.08.23",
+      "phase": "框架起步",
+      "title": "继续马原第 3、4 章，把“会背”和“会用”拆开来做",
+      "body": "这周接着学马原第 3 章“认识的本质及发展规律”和第 4 章“人类社会及其发展规律”。第 3 章先抓实践、认识、真理、价值这几个点，第 4 章抓社会存在与社会意识、生产力与生产关系、经济基础与上层建筑。你现在最容易卡的地方，不是概念看不懂，而是看完以后题干一变就不知道往哪块靠，所以这周每看完一小节，都要立刻做 3-5 道对应选择题。\n\n工作日还是保持苍盾 30 题/天，题量不加，但错题回看要更细一点，除了看答案，还要写一句“这题到底在问哪个关键词”。周末把前四章合并成一份小表：左边写章节，右边写题干关键词，比如“实践”“真理”“社会存在”“社会意识”“规律”“矛盾”。这周最后要做到两件事：一是闭卷能说出第 3、4 章的主线，二是看到题能分清它是在问概念、关系还是方法。"
+    },
+    {
+      "week": 3,
+      "date": "2026.08.24 - 2026.08.30",
+      "phase": "框架起步",
+      "title": "把马原后半段收完，第一轮先过一遍完整主线",
+      "body": "这周把马原第 5 章“资本主义的本质及规律”、第 6 章“资本主义的发展及趋势”、第 7 章“社会主义的发展及规律”、第 8 章“共产主义崇高理想及其最终实现”做完。你不用在这里绕太多，只要把四个章节的主旨、常考词和容易混的地方分开记就行。特别是第 5、6 章，题里一旦出现商品、剩余价值、资本、垄断、经济危机，你要知道是在问资本主义本质还是发展趋势。\n\n这周周末别再往前冲新内容了，把马原整本第一轮过完后，回头做一次 30 题混合小测，限定 25 分钟，做完就订正。订正时重点看两类错题：一类是原理不熟，另一类是关键词没抓住。你这周结束时，最好能把马原八章各用一句话讲出来，不要求华丽，只要求清楚。"
+    },
+    {
+      "week": 4,
+      "date": "2026.08.31 - 2026.09.06",
+      "phase": "框架起步",
+      "title": "毛中特前四章先过，先把党史主线和新民主主义革命理顺",
+      "body": "从这周开始进毛中特第 1 章“毛泽东思想及其历史地位”、第 2 章“新民主主义革命理论”、第 3 章“社会主义改造理论”、第 4 章“社会主义建设道路初步探索的理论成果”。这四章先别急着死背，先看它们之间的前后关系：先有历史地位，再有革命路线，再有改造，再到建设探索。你要做的是把时间线先拉直，不让章节之间打结。\n\n工作日每天仍然是 30 题，但这周开始把题目分成“马原复习题”和“毛中特新题”两类，别混着乱做。周末把这四章各压成一页电子笔记，每页只留 5-7 个关键词，比如“新民主主义革命道路”“三大改造”“社会主义建设道路初步探索”“历史地位”。这周结束时，你要能把 1921、1949、1956 这几个时间节点放进一条线里，别把知识点记成散点。"
+    },
+    {
+      "week": 5,
+      "date": "2026.09.07 - 2026.09.13",
+      "phase": "框架起步",
+      "title": "毛中特中段继续走，把新时代前的理论脉络接起来",
+      "body": "这周学毛中特第 5 章“邓小平理论”、第 6 章“‘三个代表’重要思想”、第 7 章“科学发展观”、第 8 章“习近平新时代中国特色社会主义思想及其历史地位”。这四章很多人会觉得像在背名词，其实你只要抓住每章到底解决了什么问题就行：改革开放怎么走、为什么强调先进性、科学发展观想解决什么、新时代为什么是新的历史方位。你每看完一章，都要在手册边上写一句“这一章回答了什么问题”。\n\n这周的苍盾小程序继续每天 30 题，题目类型开始往毛中特倾斜。工作日晚上别把时间泡在长视频里，先把手册里这几章的高频句子标出来，等 10 月正式背诵时直接用。周末做一次“章节对照表”：左边写理论名称，右边写对应问题和关键词。你这周的目标不是背全，而是让这四章的逻辑先排顺，后面看大题的时候能知道该往哪个理论靠。"
+    },
+    {
+      "week": 6,
+      "date": "2026.09.14 - 2026.09.20",
+      "phase": "框架起步",
+      "title": "毛中特后半段收尾，五位一体和四个全面先放进脑子里",
+      "body": "这周把毛中特第 9 章“坚持和发展中国特色社会主义的总任务”、第 10 章“五位一体”总体布局、第 11 章“四个全面”战略布局、第 12 章“全面推进国防和军队现代化”、第 13 章“中国特色大国外交”、第 14 章“坚持和加强党的领导”补完。这里的任务不是死背顺序，而是把每一章的核心词压成短句，比如总任务讲什么、五位一体讲什么、四个全面讲什么。你只要把这些短句挂到章节名上，后面看到题就不容易串。\n\n这周周末顺手把前六周学过的内容做一次回看，别怕慢。你是二战，不是零基础，所以真正要解决的是“学过以后容易散”。本周末给自己定一个小标准：能在 20 分钟内把毛中特 14 章各写出 1 个关键词，写不出来的就放进下周回补。苍盾小程序继续 30 题/天，错题里如果反复出现同一个表述，就直接抄到手册旁边，不要再单独记在别的本子里。"
+    },
+    {
+      "week": 7,
+      "date": "2026.09.21 - 2026.09.27",
+      "phase": "框架起步",
+      "title": "史纲前半先上，先把近代史到新中国成立这条线拉出来",
+      "body": "从这周开始进史纲第 1 章“反对外国侵略的斗争”、第 2 章“对国家出路的早期探索”、第 3 章“辛亥革命与君主专制制度的终结”、第 4 章“开天辟地的大事变”、第 5 章“中国革命的新道路”。这几章最怕的是时间点和事件名乱掉，所以你这一周必须做一条清楚的时间线，不要只看着书页往下划。看到“晚清、辛亥、五四、建党、新道路”这些词，要能立刻知道自己在什么阶段。\n\n这周每天还是苍盾 30 题，但做法要换成“先做再回书”。史纲的题特别容易考事件顺序和表述差别，所以每道错题都要写一句“为什么错在这个节点”。周末把这五章压成一张时间轴，最好能在电子笔记里直接拖成横向表格。你这周结束时，至少要把 1840、1911、1919、1921 这几个节点记顺，不然后面毛中特和史纲一混就容易乱。"
+    },
+    {
+      "week": 8,
+      "date": "2026.09.28 - 2026.10.04",
+      "phase": "框架起步",
+      "title": "史纲后半一次走完，再把 8 月到 9 月这段内容做成第一轮总表",
+      "body": "这周继续史纲第 6 章“中华民族的抗日战争”、第 7 章“为新中国而奋斗”、第 8 章“社会主义基本制度在中国的确立”、第 9 章“社会主义建设在探索中曲折发展”、第 10 章“中国特色社会主义的开创与持续发展”、第 11 章“中国特色社会主义进入新时代”。史纲最适合用时间线学，你别一章一章孤立看，最好是“抗战—建国—确立—探索—改革开放—新时代”这样连着看。\n\n这周末别再加新资料，先把前 8 周的内容做一个总回看：马原、毛中特、史纲各压成一份电子目录，目录里只保留关键词、易混点、题干信号词。手册这时候还不用全文背，但要开始熟悉它的排版和检索方式，因为 10 月一到就要正式切进背诵。你这周结束时，要能把史纲 11 章各用一句白话讲出来，不要求文绉绉，只要不乱。"
+    },
+    {
+      "week": 9,
+      "date": "2026.10.05 - 2026.10.11",
+      "phase": "10月正式背诵",
+      "title": "思修法基开始，腿姐手册正式转成背诵主线",
+      "body": "从这周开始，政治进入正式背诵期。先学思修第 1 章“人生的青春之问”、第 2 章“坚定理想信念”、第 3 章“弘扬中国精神”、第 4 章“践行社会主义核心价值观”。这一块最适合用腿姐冲刺背诵手册来带：先看上篇对应条目，把关键词圈出来，再合上书说出“这一章讲什么、常考什么、怎么出选择题”。你不用一开始就整段背，先把条目变成自己的话。\n\n工作日继续苍盾 30 题/天，但这周要开始限制自己看解析的时间，最多只看错题对应那一小段，不回头去看整页。周末做一次思修四章的小默写，格式很简单：每章写 3 个关键词、1 个容易混的点、1 句能拿来答题的话。你这周的目标是把背诵节奏立住，不再像前面那样只理解不落笔。"
+    },
+    {
+      "week": 10,
+      "date": "2026.10.12 - 2026.10.18",
+      "phase": "10月正式背诵",
+      "title": "思修后半和时政开头一起抓，开始练怎么把知识点塞进答案里",
+      "body": "这周接着学思修第 5 章“明大德守公德严私德”、第 6 章“遵法学法守法用法”，同时把时政的月度热点整理起来。你答题老是担心“记不住”，本周就专门练一个动作：每学完一小节，合上书用 3 句话说出它对应的选择题关键词和分析题切入点。思修和法治部分特别适合这样做，别把它学成一串散句子。\n\n腿姐手册这周开始正式用下篇，尤其是分析题背诵和选择题技巧那部分。你不用每天背很多，但要每天都有一点输入和一点输出。工作日是“30 题 + 20 分钟手册背诵 + 10 分钟合书复述”，周末是“把思修 6 章合成一页答题提纲 + 把时政热点列成一张月表”。本周结束时，至少要能把思修每章最常见的出题角度写出来，比如理想信念、精神、价值观、法治和权利义务分别怎么问。"
+    },
+    {
+      "week": 11,
+      "date": "2026.10.19 - 2026.10.25",
+      "phase": "10月正式背诵",
+      "title": "把时政和毛中特再扫一遍，先把高频表述变熟",
+      "body": "这周重点不是开新章节，而是把前面学过的毛中特和时政连起来看。先把毛中特第 8 章到第 14 章再过一遍，特别是新时代、五位一体、四个全面、党的领导这些高频表述，再把 2025 年下半年到 2026 年 10 月前后的时政热点按月整理成短表。你不用写长文，只写“发生了什么、关键词是什么、和哪章能对上”。\n\n这周的苍盾小程序依旧保持 30 题/天，但错题不要只记“我错了”，要记“这个表述到底跟哪一章挂钩”。周末给自己做一次 40 分钟的闭卷回忆：从马原、毛中特、史纲、思修四块里各挑 3 个高频点，合上书写出来。你会发现，政治真正卡人的不是不会，而是不会把脑子里的碎东西拼回去，所以这周就是专门练拼接。"
+    },
+    {
+      "week": 12,
+      "date": "2026.10.26 - 2026.11.01",
+      "phase": "10月正式背诵",
+      "title": "马原和史纲二轮回头，把容易混的点先拆掉",
+      "body": "这周不再往前跑新内容，先把马原和史纲做二轮回看。马原重点回到实践、认识、真理、社会历史、商品、剩余价值、资本主义发展这些容易混的地方；史纲重点回到每个时间节点和每个阶段的关键词，尤其是抗战、建国、改革开放和新时代的表述差别。你这周只要把“看着像、其实不一样”的点拎出来就够了。\n\n周中继续苍盾 30 题/天，周末做一次混合小测，不追求题量大，只看你能不能把错题回到章节。腿姐手册这周重点看上篇高频考点，不要只看顺眼的部分，专门补你容易忘的那一块。你本周结束前要留下一张“易混点清单”，以后每周都要翻一遍，别让它们拖到 12 月才想起来。"
+    },
+    {
+      "week": 13,
+      "date": "2026.11.02 - 2026.11.08",
+      "phase": "11月选择题",
+      "title": "开始把选择题做成稳定分，先练速度和回到知识点的能力",
+      "body": "11 月开始，政治要从“看懂”转到“能拿分”。这周先做选择题专项，重点还是马原和毛中特，利用苍盾小程序保持每天 30 题，错题必须回到腿姐手册对应条目，不许只看解析就过去。你现在最需要练的不是难题，而是看到题干以后能不能马上知道它在问哪块知识点。\n\n如果这周你已经拿到肖八，就先做选择题，不要一上来就全文背大题。肖八的作用是帮你看出今年选择题会怎么绕、怎么换表述，不是让你先被大题压住。周末把这一周的选择题错题按模块分开，马原一类、毛中特一类、史纲一类、思修一类，每类挑 3 道重做。你这周的目标是把“做题时脑子发空”这件事压下去一点。"
+    },
+    {
+      "week": 14,
+      "date": "2026.11.09 - 2026.11.15",
+      "phase": "11月选择题",
+      "title": "把肖八和腿姐手册接上，开始练分析题骨架",
+      "body": "这周继续选择题，但重点开始往分析题骨架走。腿姐手册下篇要正式用起来，把它当成“关键词+答题句式”的本子，不要照着抄长句。每次看完一个模块，都尝试自己先写出“原理一句、材料一句、总结一句”的三段骨架。你不用写得很漂亮，但要写得完整，至少让自己知道哪句是原理，哪句是材料转述。\n\n肖八如果已经到手，这周至少做一套完整选择题，再从里面挑 2 道分析题只练骨架，不要求全文背。做完以后，把错题和没把握的题回写到手册对应页边。周末再把思修和时政重新刷一遍，因为这两块到后面很容易被人忽略，但其实特别容易出字面题。你本周结束时，要能在 10 分钟内写出一道分析题的基本提纲。"
+    },
+    {
+      "week": 15,
+      "date": "2026.11.16 - 2026.11.22",
+      "phase": "11月选择题",
+      "title": "肖八进正式训练，选择题和大题都不能只看不动笔",
+      "body": "这周开始把肖八当成正式训练来做。先做选择题，再看解析，再把不会的点丢回腿姐手册。分析题先别追求把整段全部背下来，先练“怎么把题目里的材料转成教材语言”。你前面最怕的是答题时不知道用什么知识点，所以这周每做完一道分析题，都要在旁边写一句：这题到底是马原、毛中特、史纲还是思修的哪一块。\n\n苍盾小程序继续 30 题/天，工作日不要因为肖八就停掉它。周末把肖八里重复出现的高频点单独列出来，比如党的领导、五位一体、新时代、法治、价值观、实践和认识这些经常翻来翻去的词。你这周的目标是把肖八从“做过”变成“记住错在哪”。只要这个动作做稳了，后面肖四会轻一点。"
+    },
+    {
+      "week": 16,
+      "date": "2026.11.23 - 2026.11.29",
+      "phase": "11月选择题",
+      "title": "把肖八二刷和时政合在一起，开始往考前状态靠",
+      "body": "这周继续盯肖八和时政。选择题再做一轮，错题不再只看正确答案，而是要能说出题干里的陷阱词是什么。时政部分把 2026 年的国内外大事按“事件—关键词—对应模块”做成表，别写成流水账。你只要知道这个表以后还能不能快速翻，就说明它有没有用。\n\n腿姐手册这周要开始从“看懂”转向“背出关键词”，尤其是分析题能直接拿来用的那几页。你不用背长段，背关键词就够了。周末给自己做一次 60 分钟的混合演练：30 题选择题 + 2 道分析题骨架 + 15 分钟时政复述。这个阶段的目标不是多看新东西，而是让你一看到题就知道该翻哪页、该想哪块。"
+    },
+    {
+      "week": 17,
+      "date": "2026.11.30 - 2026.12.06",
+      "phase": "12月冲刺",
+      "title": "肖四一到手就开始背，分析题先背框架再背句子",
+      "body": "这周进入肖四主线。只要材料到了，就把它作为考前最重要的分析题材料来背，不要再犹豫要不要换别的书。先看肖四每道大题的答题思路，再把腿姐手册里对应模块的关键词补上，最后再把肖四的句子压成自己能顺口说出来的话。你不用一开始就全文背，先把每道题的三层结构记住：原理、材料、结论。\n\n选择题这周继续保持苍盾 30 题/天，但题量不再加，重点是让错题不再重复错。周末把肖四第一轮整理成“题号—对应章节—关键词”的对照表，以后回头只看这个表就够。你这周结束时，至少要把肖四里最常见的几道大题说顺，不然到考前会很慌。"
+    },
+    {
+      "week": 18,
+      "date": "2026.12.07 - 2026.12.13",
+      "phase": "12月冲刺",
+      "title": "肖四第二轮和政治一页纸一起上，把高频词压到嘴边",
+      "body": "这周继续肖四第二轮，重点不是再多看，而是把背过的内容尽量压短。每道大题都要能说出“开头怎么起、正文怎么分点、结尾怎么收”，不要只会看着答案点头。政治一页纸这时候正式上场，用来串时政、高频表述和易混点。你别把一页纸看成补充材料，它本身就是考前最后的压缩包。\n\n苍盾小程序继续每天 30 题，但这周开始要把错题复刷放在当天晚上，第二天再快速过一遍。周末做一次完整模拟：选择题连着做，大题写骨架，最后花 20 分钟只看错题本和一页纸。你这周的目标是把“知道答案”变成“张口能说”，别再让脑子里那堆点散着。"
+    },
+    {
+      "week": 19,
+      "date": "2026.12.14 - 2026.12.20",
+      "phase": "考前回锅",
+      "title": "考前一周只保熟题和关键词，不再开新内容",
+      "body": "最后一周不要再开新资料了，只保三样东西：腿姐手册、肖四、政治一页纸。前半周把易错点和高频表述再过一遍，选择题继续用苍盾小程序做 30 题，但只挑熟悉模块，保持手感就行。后半周别再追新题，重点把肖四大题的关键词和开头结尾再捋一遍，确认自己上考场时知道先写什么、后写什么。\n\n这周每天都留一点时间给闭卷复述，方法很简单：合上书，先说马原，再说毛中特，再说史纲和思修，每块各说 3 个点。说不出来的地方就回手册补一下，不用硬扛。你到这个阶段，追求的不是把所有题都做一遍，而是把已经会的东西稳稳拿住。考前最后一天只看最薄的那几页，晚上早点收，不要再折腾自己。"
+    }
+  ]
+};
+const setText = (id, text) => { document.getElementById(id).textContent = text; };
+setText("title", `${planData.student.name} 政治单科规划`);
+setText("target", `目标：${planData.student.target}`);
+setText("exam", planData.student.period);
+setText("period", `节奏：${planData.student.hours}`);
+setText("subject", `科目：${planData.student.subject}`);
+setText("intro", planData.overview.intro);
+setText("strategy", planData.overview.strategy);
+setText("countText", `共 ${planData.weeks.length} 周，默认展开前两周`);
+
+const materials = document.getElementById("materials");
+planData.overview.materials.forEach((item, index) => {
+    const card = document.createElement("article");
+    card.className = "course";
+    const titles = ["主线材料", "刷题工具", "冲刺卷", "最后整理"];
+    card.innerHTML = `<h3>${titles[index]}</h3><p>${item}</p>`;
+    materials.appendChild(card);
+});
+
+const blocks = document.getElementById("blocks");
+planData.overview.blocks.forEach((item) => {
+    const card = document.createElement("article");
+    card.className = "block";
+    card.innerHTML = `<b>${item[0]}</b><em>${item[1]}</em><span>${item[2]}</span>`;
+    blocks.appendChild(card);
+});
+
+const weeksNode = document.getElementById("weeks");
+planData.weeks.forEach((week, index) => {
+    const card = document.createElement("article");
+    card.className = `week-card${index < 2 ? " open" : ""}`;
+    const head = document.createElement("button");
+    head.className = "week-head";
+    head.type = "button";
+    head.innerHTML = `
+        <div>
+            <span class="kicker">第${week.week}周 · ${week.phase}</span>
+            <h3>${week.title}</h3>
+        </div>
+        <span class="date">${week.date}</span>
+        <span class="chev">${index < 2 ? "收起" : "展开"}</span>
+    `;
+    const body = document.createElement("div");
+    body.className = "week-body";
+    const p = document.createElement("p");
+    p.textContent = week.body;
+    body.appendChild(p);
+    head.addEventListener("click", () => {
+        card.classList.toggle("open");
+        head.querySelector(".chev").textContent = card.classList.contains("open") ? "收起" : "展开";
+    });
+    card.appendChild(head);
+    card.appendChild(body);
+    weeksNode.appendChild(card);
+});
+
+const toggle = document.getElementById("toggleAll");
+toggle.addEventListener("click", () => {
+    const cards = Array.from(document.querySelectorAll(".week-card"));
+    const shouldOpen = cards.some((card) => !card.classList.contains("open"));
+    cards.forEach((card) => {
+        card.classList.toggle("open", shouldOpen);
+        card.querySelector(".chev").textContent = shouldOpen ? "收起" : "展开";
+    });
+    toggle.textContent = shouldOpen ? "收起全部" : "展开全部";
+});
+</script>
+</body>
+</html>

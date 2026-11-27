@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代明红的公共课规划</title>
+  <style>
+    :root {
+      --paper: #fff8ed;
+      --ink: #2b2118;
+      --muted: #75695e;
+      --line: #ead9c3;
+      --accent: #9a5a20;
+      --green: #1d6f5f;
+      --brick: #8c3821;
+      --soft: #f3e5d2;
+      --card: #fffdf8;
+      --shade: rgba(83, 45, 15, .12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Serif SC", "Microsoft YaHei", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(154, 90, 32, .16), transparent 28%),
+        radial-gradient(circle at 90% 18%, rgba(29, 111, 95, .12), transparent 30%),
+        linear-gradient(135deg, #f5e3ca 0%, #fff8ed 48%, #efd9bf 100%);
+      line-height: 1.78;
+      min-height: 100vh;
+    }
+    .container { width: min(1160px, calc(100% - 28px)); margin: 0 auto; padding: 28px 0 44px; }
+    header {
+      border: 1px solid rgba(120, 80, 38, .22);
+      background: rgba(255, 253, 248, .9);
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: 0 24px 80px var(--shade);
+      position: relative;
+      overflow: hidden;
+    }
+    header:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, rgba(154,90,32,.08), transparent 44%, rgba(29,111,95,.08));
+      pointer-events: none;
+    }
+    header h1 {
+      position: relative;
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: -.045em;
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+    .meta { position: relative; display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); }
+    .meta span { border: 1px solid var(--line); background: rgba(255,255,255,.68); border-radius: 999px; padding: 7px 12px; }
+    .panel {
+      margin-top: 20px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 253, 248, .9);
+      padding: 26px;
+      box-shadow: 0 16px 52px rgba(88, 52, 19, .08);
+    }
+    h2 { font-size: 1.4rem; margin-bottom: 12px; }
+    .strategy { color: #4e4337; white-space: pre-line; margin: 10px 0; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 18px; }
+    .course { border: 1px solid var(--line); border-radius: 20px; background: var(--card); padding: 18px; }
+    .course h3 { margin-bottom: 8px; text-align: left; }
+    .course ul { padding-left: 18px; color: #4d4439; }
+    .course li { margin: 7px 0; }
+    .english h3 { color: var(--green); }
+    .politics h3 { color: var(--brick); }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; margin: 22px 2px 14px; gap: 12px; color: var(--muted); }
+    button {
+      font: inherit;
+      border: 1px solid rgba(120, 80, 38, .28);
+      background: #2b2118;
+      color: #fff8ed;
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+    .weeks { display: grid; gap: 14px; }
+    .week-card { border: 1px solid var(--line); border-radius: 24px; background: rgba(255,253,248,.92); overflow: hidden; box-shadow: 0 10px 34px rgba(88,52,19,.08); }
+    .week-head { width: 100%; display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; background: transparent; color: var(--ink); border: 0; border-radius: 0; padding: 18px 20px; text-align: left; }
+    .week-head:hover { background: rgba(243,229,210,.55); }
+    .kicker { display: block; color: var(--muted); font-size: .82rem; letter-spacing: .08em; }
+    .week-head h3 { font-size: 1.1rem; line-height: 1.35; }
+    .date { color: var(--muted); white-space: nowrap; }
+    .chev { color: var(--muted); transition: transform .18s ease; }
+    .week-card.open .chev { transform: rotate(180deg); }
+    .week-body { display: none; border-top: 1px solid var(--line); padding: 18px 20px 20px; }
+    .week-card.open .week-body { display: block; }
+    .message { background: var(--soft); border-left: 4px solid #bf7a36; border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; color: #4b3a28; white-space: pre-line; }
+    .subjects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .subject { border: 1px solid var(--line); border-radius: 18px; background: white; padding: 15px 16px; }
+    .subject h4 { margin-bottom: 8px; font-size: 1rem; }
+    .subject.english h4 { color: var(--green); }
+    .subject.politics h4 { color: var(--brick); }
+    .subject p { color: #464038; margin-top: 10px; }
+    footer { text-align: center; color: var(--muted); margin-top: 26px; font-size: .92rem; }
+    @media (max-width: 980px) {
+      .grid, .subjects { grid-template-columns: 1fr; }
+      .week-head { grid-template-columns: 1fr; }
+      .date { white-space: normal; }
+      header { padding: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>代明红的公共课规划</h1>
+      <div class="meta" id="meta-one"></div>
+      <div class="meta" id="meta-two" style="margin-top: 8px;"></div>
+    </header>
+
+    <section class="panel">
+      <h2>这份表怎么用</h2>
+      <p class="strategy" id="intro"></p>
+      <p class="strategy" id="strategy"></p>
+      <div class="grid">
+        <div class="course english"><h3>英语二主线</h3><ul id="english-list"></ul></div>
+        <div class="course politics"><h3>政治主线</h3><ul id="politics-list"></ul></div>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <span id="range"></span>
+      <button type="button" id="toggle-all">展开全部</button>
+    </div>
+    <section class="weeks" id="weeks"></section>
+    <footer>本页只写代明红同学的公共课安排。专业课和学校课程需要另外留时间，这里不展开。</footer>
+  </main>
+
+  <script>
+    const planData = {
+  "student": {
+    "name": "代明红",
+    "target": "贵州师范大学 · 学科英语",
+    "exam": "2026年12月20日初试",
+    "start_cn": "2026年9月1日",
+    "exam_cn": "2026年12月20日",
+    "period": "2026.09.01 - 2026.12.20",
+    "subjects": "英语二 / 政治 / 不考数学",
+    "hours": "平日6-8h，周末6-8h；上午和下午放英语主任务，晚上做复盘和政治",
+    "status": "大四一战，英语词汇3500-5000，阅读能读懂大意，写作勉强凑字"
+  },
+  "overview": {
+    "intro": "这份表只写代明红同学的公共课。起步时间改成2026年9月1日，从2026年9月1日排到2026年12月20日初试，一共16周。她不考数学，公共课就把英语二和政治写清楚；专业课、课程和12月可能的见习需要另外留时间，这页不展开。英语目前未开始，但词汇不是零基础，主要问题在阅读、完型、翻译和作文都没形成固定做法。政治高中有底子，也想早点开始，所以9月先轻量框架，10月初再正式加选择题和背诵。",
+    "strategy": "公共课时间先按英语70%、政治30%来放。英语主线是《考研闪过词汇》或红宝书背词，田静《句句真研》补句子，英语二真题用《考研真相》订正，唐迟《阅读的逻辑》只针对错题题型补方法，作文用Monkey模板课。政治不把肖1000题作为主线，前期只看框架，10月以后用腿姐冲刺背诵手册、苍盾小程序、澄箫宇政治一页纸，12月拿肖四大题。她容易只看不练、资料太多不精，所以每周都写清楚要做哪一年真题、哪本书哪一块、题量和复盘方式。",
+    "english": [
+      "9月先定资料：词汇主用《考研闪过词汇》高频词和中频词，红宝书只查漏；语法用田静《句句真研》的简单句、并列句、从句、非谓语、特殊结构；阅读从英语二2010年开始按年做。",
+      "9到10月把英语二2010-2019阅读一轮推完，配《考研真相》看定位句和逐句解析；《阅读的逻辑》只补细节题、例证题、推理题、主旨题、态度题这些自己错得多的题型。",
+      "11月到12月做二刷和整卷训练，完型、新题型、翻译逐步接进来；作文听Monkey英语二小作文和图表作文模板课，每周动笔写，不等考前临时背。",
+      "12月只看近年错题、真题词、作文模板和翻译旧错句，不再开新词书和新老师。"
+    ],
+    "politics": [
+      "9月先轻量熟悉马原、毛中特、史纲、思修法基、时政的框架，不刷肖1000题，不整理厚笔记。",
+      "10月正式开始用腿姐冲刺背诵手册，按马原、毛中特、史纲、思修法基、时政推进；苍盾小程序每天30题，错题只记关键词和混淆点。",
+      "11月做模拟卷选择题和错题回看，肖八或同类卷子只做选择题，大题暂时不背。",
+      "12月肖四出来后直接背肖四大题关键词和答题层次，配政治一页纸和B站材料题方法做考前处理。"
+    ]
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "date": "2026.09.01 - 2026.09.07",
+      "title": "先把单词和句子铺开",
+      "message": "这周先别把任务摊太大。英语先把词汇和句法拉起来，政治只看框架就行。上午放单词和句子，下午做两篇阅读，晚上只看错因，别把时间花在来回换资料上。",
+      "english": "单词主线用《考研闪过词汇》的高频词和中频词，每天新词80个左右，早上40个、下午40个，晚上只回看当天错词。红宝书先当查漏书，不要两本书来回切。\n\n田静《句句真研》先做简单句、并列句。每天拆6个句子，先找主干，再看并列连词，不要一上来整句硬翻。\n\n阅读先做英语二2010年Text 1和Text 2，配《考研真相》看解析。先按题干找定位句，再看原文怎么换说法，做完只记错因，不抄长解析。",
+      "politics": "把政治五块内容先翻目录：马原、毛中特、史纲、思修法基、时政。先知道每块大概讲什么，不刷题。\n\n如果每天还有20到30分钟，就看马原里哲学基本问题、物质和意识、实践和认识，先把概念边界认出来。\n\n这周政治只做准备动作：把后面要用的腿姐冲刺背诵手册、苍盾小程序、政治一页纸记下来，10月再正式加量。"
+    },
+    {
+      "week": 2,
+      "date": "2026.09.08 - 2026.09.14",
+      "title": "句法继续练，阅读把流程跑顺",
+      "message": "这周还是打底，别被进度表带着跑。词汇、句法、阅读三块每天都要有，但每块都只做一小段，先把流程弄顺。",
+      "english": "单词继续《考研闪过词汇》高频词和中频词，每天80到100个新词，红宝书只用来查反复记不住的熟词僻义，比如address、issue、subject、charge这种真题里常见但意思容易偏的词。\n\n《句句真研》推进名词性从句、定语从句。每天拆6到8个句子，先找谓语，再判断从句修饰谁，画出从句边界。\n\n阅读做英语二2010年Text 3、Text 4，再加2011年Text 1。配《考研真相》逐句解析看定位句，不需要把全文翻译到纸上。每篇做完后，把错误选项错在哪里写一句，比如偷换对象、范围变大、态度反了。",
+      "politics": "政治继续轻量。马原看唯物论和辩证法的基础概念：物质、意识、联系、发展、矛盾、量变质变、否定之否定。每天最多30分钟，先认概念，不要求背长段。\n\n这周可以把肖秀荣资料里马原对应页码折个角，后面10月正式刷题时方便回看。不要开始整理很厚的政治笔记，后期选择题错了再补关键词就够。\n\n周末只做一次小复盘：能不能说出马原和史纲、毛中特的区别。能说清楚政治不是一整本混在一起，就已经够了。"
+    },
+    {
+      "week": 3,
+      "date": "2026.09.15 - 2026.09.21",
+      "title": "阅读继续做，错因表开始记",
+      "message": "前两周背的词又忘很正常，这很正常。别因为忘词就换书，继续用同一套词书和同一本真题解析。计划执行差的时候，先把当天英语三件事做完，再考虑别的。",
+      "english": "单词继续按每天70到80个推进，重点回看前两周错词。高频词先别追求全记住，先做到在真题句子里认出来。\n\n《句句真研》看状语从句和非谓语。每天拆8个句子，只写三项：句子主干、从句或非谓语修饰对象、这一句在阅读里起什么作用。\n\n阅读把英语二2011年四篇完整做完，再顺手碰一篇2012年的热身题。每篇按15到18分钟先做一遍，再看解析。新建一个错因表，列四栏：年份篇目、题号、错因、下次提醒。",
+      "politics": "政治这周看马原认识论和历史观的基础框架：实践、认识、真理、社会存在、社会意识、人民群众、社会基本矛盾。每天20到30分钟就够，不做大段背诵。\n\n如果手里有肖1000题，这周仍然不作为任务。可以只翻一两道题看看政治选择题怎么问，但不要给自己规定每天做多少题。现在重点还是英语一轮。\n\n周末把马原前面几块用一页纸写成关键词：唯物论、辩证法、认识论、历史观。写不完整没事，能看到关键词知道是哪一块就行。"
+    },
+    {
+      "week": 4,
+      "date": "2026.09.22 - 2026.09.28",
+      "title": "2012年阅读完整做完",
+      "message": "这周开始把英语从单点学习接到真题。不要一边做阅读一边翻很多方法课，先用固定流程：做题、定位、看解析、写错因、回收生词。流程稳定比资料多更有用。",
+      "english": "单词继续《考研闪过词汇》，本周把高频词第一轮收尾，中频词继续往前推。每天新词可以降到70到80个，把复习词清干净。红宝书每两天查一次错词，不要每天抱着两本词书来回切。\n\n《句句真研》看特殊结构和长难句综合练习，把倒装、强调、省略、比较结构过一遍。每天拆6个句子就够，拆完用一句话说这句话的主干意思，训练自己别被修饰成分拖走。\n\n阅读做英语二2012年四篇。做完后配《阅读的逻辑》看细节题和例证题部分，只看和自己错题有关的小节。细节题重点是定位句和选项同义替换，本周每篇至少整理3个同义替换，不写长篇心得。",
+      "politics": "政治轻量看史纲开头：近代中国社会性质、主要矛盾、太平天国、洋务运动、戊戌变法、辛亥革命。史纲不需要现在背年份表，只要知道事件前后顺序。\n\n每天20分钟左右，把事件按时间线写在一页纸上。只写事件名和一句结果，不展开细节。10月以后刷选择题时，再把容易混的人物、会议、政策补进去。\n\n这周政治不要影响英语2012年阅读完整做完。她目标英语80，英语是公共课里更该提前投入的一门。"
+    },
+    {
+      "week": 5,
+      "date": "2026.09.29 - 2026.10.05",
+      "title": "阅读方法分开看，完型和翻译先摸一下",
+      "message": "9月底到10月初，容易觉得前面做了很多但分数没明显变化。这个阶段不要急，阅读本来要靠真题慢慢磨。只要每篇都有错因，进度就是有效的。",
+      "english": "单词进入高频词复习和中频词推进阶段。每天新词70个左右，周末把前四周阅读里不会的真题词重新过一遍，尤其是转折词、态度词、经济类和教育类词。\n\n阅读做英语二2013年四篇。先自己做，再用《考研真相》看定位和句子结构，最后翻《阅读的逻辑》里的例证题、词义句意题部分。例证题不要盯着例子本身，要回到例子前后的观点句。\n\n完型只做英语二2010年一篇，先限时18分钟，做完看空格前后搭配，不需要花太久。翻译先做英语二2010年翻译题一篇，先自己写一遍，再看解析。",
+      "politics": "政治继续史纲时间线：五四运动、中国共产党成立、国共合作、土地革命、抗日战争。每天20到30分钟，把会议、路线、统一战线这几个词先混个脸熟。\n\n如果想做一点题，可以在苍盾小程序里找史纲基础选择题，每周只做两次，每次20题。错题只看解析关键词，不整理长笔记。\n\n本周结束前，能把1919到1949的大概阶段顺下来就行。政治还没到重投入的时候，不要提前背大题。"
+    },
+    {
+      "week": 6,
+      "date": "2026.10.06 - 2026.10.12",
+      "title": "2014年阅读和作文开始加量",
+      "message": "这周开始把英语做题节奏往前推一点。阅读还是主力，但作文要开始动手，不要等到后面才第一次写。政治这周也正式转向手册和选择题。",
+      "english": "单词继续中频词，争取本周把《考研闪过词汇》高频词和中频词都跑到第二轮的前半段。每天留10分钟回看阅读真题词，不要把背词和阅读割开。\n\n阅读做英语二2014年四篇。配《阅读的逻辑》主旨题、态度题部分，做题时先看每段首尾句和转折句，再判断文章主线。主旨题错了，要写清楚自己是被哪个细节带偏了。\n\n翻译做英语二2011年翻译题，顺便把Monkey老师的英语二作文模板课打开。小作文先整理建议信、通知两种常见场景的开头和结尾，先把格式写对。",
+      "politics": "10月正式开始政治。先拿腿姐冲刺背诵手册看马原，顺着哲学基本问题、唯物论、辩证法往下走，每天读一小块，只记关键词。\n\n苍盾小程序每天30题，先做马原专项和基础混合题。错题只记概念和选项差别，不把时间耗在整理大本子上。\n\n这周政治的目标是把手册和刷题的节奏立起来，不追求做很多套卷子。"
+    },
+    {
+      "week": 7,
+      "date": "2026.10.13 - 2026.10.19",
+      "title": "2015年阅读和翻译，作文框架先搭起来",
+      "message": "这周开始，阅读和作文都不能只看不写。她写作现在是勉强凑字，所以先把能写的句子和固定框架搭起来，再慢慢往里填。",
+      "english": "单词继续第二轮，真题词和作文词都要开始抓。每天新词可以降到60到70个，把更多时间留给阅读和订正。\n\n阅读做英语二2015年四篇，还是按限时、定位、解析、错因表走。重点整理同义替换：题干关键词、原文定位词、正确选项替换词三项写在一起。\n\n翻译做英语二2012年翻译题一篇。作文继续整理英语二小作文常见场景：建议信、邀请信、通知。图表作文先把描述数据、解释原因、简单评价这三步写顺。",
+      "politics": "政治用腿姐冲刺背诵手册继续推进马原，重点看认识论和政治经济学。每天读一小节，读完做苍盾30题。\n\n马原错题要开始分类型：概念记错、关系没分清、题干问法没看准、多选漏选。每类只写关键词，后面一页纸复盘时能看懂就行。\n\n这周政治不求快，只求把马原选择题的感觉找回来。"
+    },
+    {
+      "week": 8,
+      "date": "2026.10.20 - 2026.10.26",
+      "title": "2016年阅读、新题型、作文一起接上",
+      "message": "这周要把英语从阅读带到新题型和作文。阅读还是主线，但新题型和作文都要开始碰，不然后面会挤在一起。",
+      "english": "单词继续第二轮，重点是真题词和作文词。每天晚上回看当天阅读里的10到15个词，只背真题里的意思，不扩展太多同义词。\n\n阅读做英语二2016年四篇。配《阅读的逻辑》推理题部分，重点看自己有没有被局部细节带偏。每篇做完后，把正确答案对应的原文句子抄一句，错误选项只写错因。\n\n新题型做英语二2010年和2011年两篇，先看段落首句、指代词、转折词、并列结构。作文开始默写模板，小作文和图表作文各写一套开头和结尾。",
+      "politics": "政治这周看毛中特和新思想目录，不要急着背。先知道总论、中国式现代化、高质量发展、改革开放、民主政治、文化、民生、生态、国家安全、外交这些板块后面会反复考。\n\n每天20分钟读目录和小标题，读完能说出这一章讲什么就行。腿姐冲刺背诵手册可以当查目录用，后面再作为主线熟读。\n\n周末做一次政治资料取舍：肖1000题不列入主线，后期选择题主要用苍盾小程序刷各家模拟选择题，肖四出来后再处理大题。"
+    },
+    {
+      "week": 9,
+      "date": "2026.10.27 - 2026.11.02",
+      "title": "2017到2019错题重做和一轮总结",
+      "message": "这周要把英语一轮收一下。她最容易的问题是做完题就过去了，没有把错因留下来，所以这周专门把错题和真题词拎出来，再做一次。",
+      "english": "单词进入第三轮，重点只抓真题词和作文词。每天新词不再追太大数量，把前面错过的词反复见面。\n\n阅读把2017年四篇完整做一遍，再把2018年和2019年做过的错题重做一遍。重点看自己是不是还在同一个地方错：定位找偏、同义替换没看出、主旨态度判断乱。\n\n一轮收尾时，把阅读错因分成四类：定位错、替换没看出、态度判断错、细节漏看。作文完整写一套，把格式、开头、结尾和两三个常用中间句固定下来。",
+      "politics": "政治从这周开始正式加量。苍盾小程序保持每周三次，每次30题，马原和史纲优先，错题当天看关键词。\n\n腿姐冲刺背诵手册继续看马原和毛中特，把容易混的概念单独记下来，比如发展和改革、主要矛盾和工作重点、普遍联系和重点突破。\n\n周末把政治一页纸翻一遍，能快速认出每块内容的大标题就行，不追求现在就背住。"
+    },
+    {
+      "title": "11月开始整卷训练，作文模板固定",
+      "message": "11月课程每周两节，公共课要更像日常任务。英语每周至少一套拆开做，政治每天选择题。她容易进度焦虑，所以这周只看完成度，不和别人比。",
+      "english": "英语做一套2019年整卷，可以分两天完成：第一天完型、阅读、新题型，第二天翻译和作文。做客观题时按考试顺序练一次，看看阅读四篇总共花多久。\n\n作文模板要固定下来。小作文固定称呼、目的句、两条内容、结尾；图表作文固定第一段描述图表，第二段解释原因，第三段简单评价或建议。本周默写两次小作文模板，两次图表作文模板。\n\n单词继续真题词和作文词，每天不要断。二刷2022年阅读错题，重点看近年定位句和选项替换。",
+      "politics": "政治进入选择题稳定期。腿姐冲刺背诵手册按马原、毛中特、史纲、思修法基、时政轮着回看，苍盾每天30题，周末做一次混合60题。\n\n如果肖八或其他模拟卷出来了，只做选择题，不背大题。选择题做完看错因，多选题重点看为什么多选或少选，不要只记正确答案。\n\n澄箫宇政治一页纸每两天看一块，把马原和史纲易混点放在一起看。",
+      "week": 10,
+      "date": "2026.11.03 - 2026.11.09"
+    },
+    {
+      "title": "整卷第二套，政治选择题补短板",
+      "message": "这周不要被整卷分数吓到。整卷的作用是暴露时间分配和题型短板，不是证明自己行不行。发现问题后，下一周按问题补就可以。",
+      "english": "英语做2020年整卷，尽量安排在下午一次性完成客观题，作文可以当天晚上写。做完统计时间：完型、新题型、阅读四篇、翻译、作文分别用了多久。\n\n阅读错题重点看2016到2020年重复错的题型。如果细节题错得多，就回《阅读的逻辑》细节题；如果主旨态度错得多，就回主旨题和态度题；不要整本重新看。\n\n作文本周写两套完整大小作文，题材尽量选教育、文化、科技、就业这些常见话题。她考学科英语，作文里教育类表达可以多积累，但不要写得像专业课。",
+      "politics": "政治本周先看错题多的板块。如果马原多，就回手册马原；如果史纲多，就回时间线；如果毛中特多，就回新思想关键词。不要平均用力。\n\n苍盾每天30题，周末混合60题。模拟卷选择题可以开始刷，但只刷选择题。每套做完按单选、多选分别统计，看看失分主要在哪。\n\n政治大题仍然不急，等肖四出来后集中背。现在提前背很多段，12月反而容易乱。",
+      "week": 11,
+      "date": "2026.11.10 - 2026.11.16"
+    },
+    {
+      "title": "整卷第三套，翻译和新题型补一次",
+      "message": "11月中旬要开始补小题型。英语二不是只有阅读，完型、新题型、翻译、作文加起来分数不少。每个题型都要有基本手感。",
+      "english": "英语做2021年整卷。客观题限时完成，订正时先处理阅读，再处理新题型和完型。新题型本周额外做2021年和2022年，训练段落逻辑和指代关系。\n\n翻译集中补2017到2021年做过的错句。每句只看三点：主干有没有找对，修饰有没有丢，中文有没有把逻辑写反。翻译不用写得很花，准确清楚就够。\n\n作文继续每周两篇。小作文轮换建议信、通知、询问信，图表作文练动态图和静态图各一篇。模板默写后再写作文，不要边翻模板边写。",
+      "politics": "政治继续手册回看和苍盾选择题。毛中特、新思想、时政这几块开始加量，每天30题里至少有一半做这几块。\n\n肖八选择题或同类模拟选择题可以每周做两套，只做选择题。做完把错题关键词写到一页纸上，别整理成厚本子。\n\n史纲和思修法基每周至少各回看一次，防止前面学过的内容断掉。",
+      "week": 12,
+      "date": "2026.11.17 - 2026.11.23"
+    },
+    {
+      "title": "近年卷和11月底复盘，预留12月见习弹性",
+      "message": "这周要考虑12月可能见习。后面时间不一定每天完整，所以11月底先把英语作文模板和政治选择题短板处理掉，别把大任务都拖到12月。",
+      "english": "英语做2022年和2023年整卷，至少完整模拟一套，另一套可以拆成两天做。做完以后把阅读错题、作文问题、翻译错句放到三个清单里，每个清单只留最需要改的内容。\n\n作文本周至少完整写三套大小作文组合。小作文覆盖建议信、通知、投诉信；图表作文覆盖柱状图、折线图、表格。每篇写完只改最明显的问题，不反复润色到很久。\n\n单词只看真题错词、作文主题词、熟词僻义。完型和新题型各做两篇旧题回看，重点找自己反复错的固定搭配和段落关系。",
+      "politics": "政治做一次选择题大复盘。把最近两周苍盾和模拟卷里错得多的板块排出来，按板块回腿姐冲刺背诵手册，不平均翻书。\n\n如果肖八已经在手，选择题可以每天一套或隔天一套，只看选择题。大题可以看题目熟悉方向，不背。背大题等肖四出来后再集中处理。\n\n12月可能见习，所以这周把政治选择题节奏固定下来：每天30题，错题当天看关键词，周末回看一页纸。",
+      "week": 13,
+      "date": "2026.11.24 - 2026.11.30"
+    },
+    {
+      "title": "12月前半段，英语近年卷和肖四准备",
+      "message": "进入12月，任务要压得更现实。见习如果占时间，英语保作文和阅读错题，政治保选择题和肖四。不要再给自己开新资料。",
+      "english": "英语做2024年整卷或手头最新一套近年卷，按正式时间模拟。做完后只改三件事：阅读定位错、作文模板不熟、翻译主干错。其他小问题别无限扩展。\n\n作文每天默写一小段模板，隔天写一套完整大小作文。写作基础弱的人，考前要靠熟练度拿稳分，句子可以普通，但格式和任务点不能漏。\n\n阅读错题回看2019到2024年，重点看自己曾经选错的题，不再大面积开新题。单词每天只看真题词和作文词。",
+      "politics": "政治如果肖四还没到，继续腿姐冲刺背诵手册、苍盾每天30题、政治一页纸。肖四到手后，第一时间看大题框架，先背关键词和答题层次。\n\n选择题继续做模拟卷，不用追求做很多套。每套做完只处理错题关键词，尤其是时政和毛中特新说法。\n\n如果见习当天很累，政治保底任务就是30题选择题和肖四大题关键词看一遍。不要因为一天少学就把计划推翻。",
+      "week": 14,
+      "date": "2026.12.01 - 2026.12.07"
+    },
+    {
+      "title": "肖四大题开始背，英语作文每天写一点",
+      "message": "这周是考前关键周。英语和政治都不能只看不写。英语作文要动笔，政治大题也要能自己写出关键词。累的时候就做保底任务，别完全断掉。",
+      "english": "英语回看近三年阅读错题，重点看原文依据和选项替换。每天一到两篇旧阅读即可，不再追新题量。完型、新题型、翻译各挑旧错题回看一小组。\n\n作文每天写一段。两天写一套完整大小作文，剩下几天默写模板和主题词。图表作文要熟练写数据描述，小作文要熟练写称呼、目的、两条内容、结尾。\n\n单词继续真题词和作文词。考前别背很偏的词，真题里反复见到但自己老忘的词更重要。",
+      "politics": "政治进入肖四大题第一轮和第二轮。每天背两道左右大题的关键词和答题层次，背完合上资料自己写提纲。写不出完整句没关系，先把关键词写出来。\n\n选择题继续苍盾或模拟卷每天30题，错题只看关键词。腿姐冲刺背诵手册和政治一页纸用来查易混点，不从头重看。\n\n大题背诵不要追逐字一致，先保证每道题知道从哪几个角度答。最后几天再看B站材料题方法，学会把材料里的句子接进答案。",
+      "week": 15,
+      "date": "2026.12.08 - 2026.12.14"
+    },
+    {
+      "title": "考前五天，保熟题、保模板、保睡眠",
+      "message": "最后这几天不要再追完整进度。能稳稳做完熟悉任务，比临时加一堆新内容更可靠。每天把英语和政治各做一点，晚上早点收住。",
+      "english": "英语不再做新卷。每天看一组阅读错题，重点是近三年做错过的题；再看一组真题词和作文词。阅读只看题干、定位句、正确选项替换，不重新精读全文。\n\n作文每天默写一套小作文框架和一套图表作文框架。考前两天只写提纲和关键句，保持手感即可。检查格式、称呼、落款、图表描述句，不让小地方丢分。\n\n翻译只看旧错句，完型和新题型只看旧题方法。考前不要因为完型错几个就影响整体节奏。",
+      "politics": "政治只看肖四大题、选择题错题和政治一页纸。肖四大题第三轮背关键词，背完能说出每题三四个答题角度即可。\n\n选择题每天保持30题或回看一套错题，重点看马原和时政。不要再刷很多新模拟卷，容易把心态刷乱。\n\n最后两三天再看一次B站材料题方法。上考场如果有没背到的大题，就按题干材料、手册关键词、肖四里相近角度去写，别空着。",
+      "week": 16,
+      "date": "2026.12.15 - 2026.12.20"
+    }
+  ]
+};
+    const NL = String.fromCharCode(10);
+
+    function appendText(target, text) {
+      text.split(NL + NL).forEach((part) => {
+        const p = document.createElement("p");
+        p.textContent = part;
+        target.appendChild(p);
+      });
+    }
+
+    function fillList(id, items) {
+      const list = document.getElementById(id);
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+    }
+
+    function render() {
+      const student = planData.student;
+      document.getElementById("meta-one").innerHTML = `
+        <span>${student.target}</span>
+        <span>${student.exam}</span>
+        <span>${student.subjects}</span>
+      `;
+      document.getElementById("meta-two").innerHTML = `
+        <span>${student.hours}</span>
+        <span>${student.status}</span>
+      `;
+      document.getElementById("intro").textContent = planData.overview.intro;
+      document.getElementById("strategy").textContent = planData.overview.strategy;
+      document.getElementById("range").textContent = `共 ${planData.weeks.length} 周，从 ${student.start_cn} 排到 ${student.exam_cn}。`;
+      fillList("english-list", planData.overview.english);
+      fillList("politics-list", planData.overview.politics);
+
+      const weeks = document.getElementById("weeks");
+      planData.weeks.forEach((week, index) => {
+        const card = document.createElement("article");
+        card.className = `week-card${index < 2 ? " open" : ""}`;
+
+        const head = document.createElement("button");
+        head.type = "button";
+        head.className = "week-head";
+        head.innerHTML = `
+          <div>
+            <span class="kicker">第 ${week.week} 周</span>
+            <h3>${week.title}</h3>
+          </div>
+          <span class="date">${week.date}</span>
+          <span class="chev">⌄</span>
+        `;
+
+        const body = document.createElement("div");
+        body.className = "week-body";
+
+        const message = document.createElement("div");
+        message.className = "message";
+        message.textContent = week.message;
+        body.appendChild(message);
+
+        const subjects = document.createElement("div");
+        subjects.className = "subjects";
+
+        const english = document.createElement("section");
+        english.className = "subject english";
+        english.innerHTML = "<h4>英语二</h4>";
+        appendText(english, week.english);
+        subjects.appendChild(english);
+
+        const politics = document.createElement("section");
+        politics.className = "subject politics";
+        politics.innerHTML = "<h4>政治</h4>";
+        appendText(politics, week.politics);
+        subjects.appendChild(politics);
+
+        body.appendChild(subjects);
+        head.addEventListener("click", () => card.classList.toggle("open"));
+        card.appendChild(head);
+        card.appendChild(body);
+        weeks.appendChild(card);
+      });
+
+      document.getElementById("toggle-all").addEventListener("click", (event) => {
+        const cards = [...document.querySelectorAll(".week-card")];
+        const shouldOpen = cards.some((card) => !card.classList.contains("open"));
+        cards.forEach((card) => card.classList.toggle("open", shouldOpen));
+        event.currentTarget.textContent = shouldOpen ? "收起全部" : "展开全部";
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>

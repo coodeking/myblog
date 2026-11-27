@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考研规划信息收集 | WJ的AI技术博客</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        .header h1 {
+            font-size: 28px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .header p { color: #aaa; font-size: 14px; }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            z-index: 0;
+        }
+        .step-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+        .step-dot.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        .step-dot.done { background: #10b981; }
+        .form-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: none;
+        }
+        .form-section.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title span { font-size: 24px; }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        .form-group label .required { color: #f5576c; margin-left: 4px; }
+        input[type="text"], input[type="number"], input[type="date"], textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        textarea { min-height: 80px; resize: vertical; }
+        select option { background: #1a1a2e; color: #fff; }
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .radio-item, .checkbox-item {
+            padding: 10px 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        .radio-item:hover, .checkbox-item:hover { border-color: #667eea; }
+        .radio-item.selected, .checkbox-item.selected {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: transparent;
+        }
+        .radio-item input, .checkbox-item input { display: none; }
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-prev {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        .btn-prev:hover { background: rgba(255,255,255,0.2); }
+        .btn-next, .btn-submit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+        }
+        .btn-next:hover, .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .tip {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 3px solid #f59e0b;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            color: #fbbf24;
+            margin-bottom: 20px;
+        }
+        .success-msg {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .success-msg h2 { font-size: 32px; margin-bottom: 16px; }
+        .success-msg p { color: #aaa; }
+        #loading {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 4px solid rgba(255,255,255,0.2);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        /* Tab切换 */
+        .form-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .form-tab {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            color: #aaa;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .form-tab:hover { border-color: #667eea; color: #fff; }
+        .form-tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: transparent;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 考研规划信息收集</h1>
+            <p>请认真填写以下信息，越详细规划越精准（约10分钟）</p>
+        </div>
+
+        <div class="form-tabs">
+            <button type="button" class="form-tab active" data-tab="kaoyan" onclick="switchTab('kaoyan')">📝 公共课规划</button>
+            <button type="button" class="form-tab" data-tab="major" onclick="switchTab('major')">📚 专业课规划</button>
+        </div>
+
+        <!-- 考研全科规划表单 -->
+        <div id="kaoyanFormWrapper">
+        <div class="progress-bar">
+            <div class="step-dot active" data-step="1">1</div>
+            <div class="step-dot" data-step="2">2</div>
+            <div class="step-dot" data-step="3">3</div>
+            <div class="step-dot" data-step="4">4</div>
+            <div class="step-dot" data-step="5">5</div>
+            <div class="step-dot" data-step="6">6</div>
+        </div>
+
+        <form id="kaoyanForm">
+            <!-- Step 1: 基本信息 -->
+            <div class="form-section active" data-step="1">
+                <h2 class="section-title"><span>👤</span> 基本信息与背景</h2>
+                <div class="form-group">
+                    <label>姓名/昵称<span class="required">*</span></label>
+                    <input type="text" name="name" placeholder="用于规划称呼">
+                </div>
+                <div class="form-group">
+                    <label>联系方式（微信优先）<span class="required">*</span></label>
+                    <input type="text" name="contact" placeholder="微信号或手机号">
+                </div>
+                <div class="form-group">
+                    <label>当前状态<span class="required">*</span></label>
+                    <div class="radio-group" data-name="currentStatus">
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="大一">大一</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="大二">大二</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="大三">大三</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="大四">大四</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="已毕业">已毕业</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="在职">在职</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>本科学校<span class="required">*</span></label>
+                    <input type="text" name="undergraduate" placeholder="学校全称">
+                </div>
+                <div class="form-group">
+                    <label>学校层次<span class="required">*</span></label>
+                    <div class="radio-group" data-name="schoolLevel">
+                        <label class="radio-item"><input type="radio" name="schoolLevel" value="985">985</label>
+                        <label class="radio-item"><input type="radio" name="schoolLevel" value="211">211</label>
+                        <label class="radio-item"><input type="radio" name="schoolLevel" value="一本">一本</label>
+                        <label class="radio-item"><input type="radio" name="schoolLevel" value="二本">二本</label>
+                        <label class="radio-item"><input type="radio" name="schoolLevel" value="三本/专升本">三本/专升本</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>本科专业<span class="required">*</span></label>
+                    <input type="text" name="major" placeholder="专业名称">
+                </div>
+                <div class="form-group">
+                    <label>是否有考研经历<span class="required">*</span></label>
+                    <div class="radio-group" data-name="examExperience">
+                        <label class="radio-item"><input type="radio" name="examExperience" value="一战">一战（首次）</label>
+                        <label class="radio-item"><input type="radio" name="examExperience" value="二战">二战</label>
+                        <label class="radio-item"><input type="radio" name="examExperience" value="三战及以上">三战及以上</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>往年考研经历简述（如有）</label>
+                    <textarea name="prevExperience" placeholder="如目标院校、分数、失利原因分析等"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-next" onclick="kaoyanNextStep()">下一步 →</button>
+                </div>
+            </div>
+
+            <!-- Step 2: 目标院校 -->
+            <div class="form-section" data-step="2">
+                <h2 class="section-title"><span>🎯</span> 目标院校与专业</h2>
+                <div class="form-group">
+                    <label>初试考试时间<span class="required">*</span></label>
+                    <div class="radio-group" data-name="examYear">
+                        <label class="radio-item"><input type="radio" name="examYear" value="2026">2026年12月</label>
+                        <label class="radio-item"><input type="radio" name="examYear" value="2027">2027年12月</label>
+                        <label class="radio-item"><input type="radio" name="examYear" value="2028">2028年12月</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>第一志愿院校<span class="required">*</span></label>
+                    <input type="text" name="targetSchool" placeholder="目标学校全称">
+                </div>
+                <div class="form-group">
+                    <label>第一志愿专业<span class="required">*</span></label>
+                    <input type="text" name="targetMajor" placeholder="专业名称及代码（如有）">
+                </div>
+                <div class="form-group">
+                    <label>学硕/专硕<span class="required">*</span></label>
+                    <div class="radio-group" data-name="degreeType">
+                        <label class="radio-item"><input type="radio" name="degreeType" value="学硕">学术型硕士</label>
+                        <label class="radio-item"><input type="radio" name="degreeType" value="专硕">专业型硕士</label>
+                        <label class="radio-item"><input type="radio" name="degreeType" value="未确定">未确定</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>备选院校（可选）</label>
+                    <input type="text" name="backupSchools" placeholder="如有备选院校可填写">
+                </div>
+                <div class="form-group">
+                    <label>是否跨考<span class="required">*</span></label>
+                    <div class="radio-group" data-name="isCrossExam">
+                        <label class="radio-item"><input type="radio" name="isCrossExam" value="否">否，本专业相关</label>
+                        <label class="radio-item"><input type="radio" name="isCrossExam" value="是">是，跨专业</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>是否已了解目标院校历年分数线、报录比<span class="required">*</span></label>
+                    <div class="radio-group" data-name="knowScoreLine">
+                        <label class="radio-item"><input type="radio" name="knowScoreLine" value="已详细了解">已详细了解</label>
+                        <label class="radio-item"><input type="radio" name="knowScoreLine" value="大概了解">大概了解</label>
+                        <label class="radio-item"><input type="radio" name="knowScoreLine" value="还没了解">还没了解</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>目标总分（可选）</label>
+                    <input type="text" name="targetScore" placeholder="如 380">
+                </div>
+                <div class="form-group">
+                    <label>各科目标分（可选）</label>
+                    <div style="display:flex;gap:10px;">
+                        <input type="text" name="targetMath" placeholder="数学" style="flex:1;">
+                        <input type="text" name="targetEnglish" placeholder="英语" style="flex:1;">
+                        <input type="text" name="targetPolitics" placeholder="政治" style="flex:1;">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-prev" onclick="kaoyanPrevStep()">← 上一步</button>
+                    <button type="button" class="btn btn-next" onclick="kaoyanNextStep()">下一步 →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: 各科基础 -->
+            <div class="form-section" data-step="3">
+                <h2 class="section-title"><span>📚</span> 各科基础情况</h2>
+                
+                <div class="tip">💡 请如实评估，便于制定最适合你的规划</div>
+
+                <h3 style="margin: 20px 0 16px; font-size: 16px; color: #f5576c;">📐 数学（不考数学可跳过）</h3>
+                <div class="form-group">
+                    <label>数学类型</label>
+                    <div class="radio-group" data-name="mathType">
+                        <label class="radio-item"><input type="radio" name="mathType" value="不考数学">不考数学</label>
+                        <label class="radio-item"><input type="radio" name="mathType" value="数学一">数学一</label>
+                        <label class="radio-item"><input type="radio" name="mathType" value="数学二">数学二</label>
+                        <label class="radio-item"><input type="radio" name="mathType" value="数学三">数学三</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>数学整体基础</label>
+                    <div class="radio-group" data-name="mathLevel">
+                        <label class="radio-item"><input type="radio" name="mathLevel" value="零基础">零基础</label>
+                        <label class="radio-item"><input type="radio" name="mathLevel" value="薄弱">薄弱</label>
+                        <label class="radio-item"><input type="radio" name="mathLevel" value="一般">一般</label>
+                        <label class="radio-item"><input type="radio" name="mathLevel" value="较好">较好</label>
+                        <label class="radio-item"><input type="radio" name="mathLevel" value="扎实">扎实</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>高数基础</label>
+                    <div class="radio-group" data-name="calculusLevel">
+                        <label class="radio-item"><input type="radio" name="calculusLevel" value="零基础">零基础</label>
+                        <label class="radio-item"><input type="radio" name="calculusLevel" value="薄弱">薄弱</label>
+                        <label class="radio-item"><input type="radio" name="calculusLevel" value="一般">一般</label>
+                        <label class="radio-item"><input type="radio" name="calculusLevel" value="较好">较好</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>线代基础</label>
+                    <div class="radio-group" data-name="linearLevel">
+                        <label class="radio-item"><input type="radio" name="linearLevel" value="零基础">零基础</label>
+                        <label class="radio-item"><input type="radio" name="linearLevel" value="薄弱">薄弱</label>
+                        <label class="radio-item"><input type="radio" name="linearLevel" value="一般">一般</label>
+                        <label class="radio-item"><input type="radio" name="linearLevel" value="较好">较好</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>概率论基础（数二可跳过）</label>
+                    <div class="radio-group" data-name="probLevel">
+                        <label class="radio-item"><input type="radio" name="probLevel" value="零基础">零基础</label>
+                        <label class="radio-item"><input type="radio" name="probLevel" value="薄弱">薄弱</label>
+                        <label class="radio-item"><input type="radio" name="probLevel" value="一般">一般</label>
+                        <label class="radio-item"><input type="radio" name="probLevel" value="较好">较好</label>
+                        <label class="radio-item"><input type="radio" name="probLevel" value="不考">不考</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>数学最薄弱部分</label>
+                    <div class="checkbox-group" data-name="mathWeakness">
+                        <label class="checkbox-item"><input type="checkbox" name="mathWeakness" value="计算能力">计算能力</label>
+                        <label class="checkbox-item"><input type="checkbox" name="mathWeakness" value="解题思路">解题思路</label>
+                        <label class="checkbox-item"><input type="checkbox" name="mathWeakness" value="公式定理记忆">公式定理记忆</label>
+                        <label class="checkbox-item"><input type="checkbox" name="mathWeakness" value="综合大题">综合大题</label>
+                        <label class="checkbox-item"><input type="checkbox" name="mathWeakness" value="证明题">证明题</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>数学复习进度</label>
+                    <div class="radio-group" data-name="mathProgress">
+                        <label class="radio-item"><input type="radio" name="mathProgress" value="未开始">未开始</label>
+                        <label class="radio-item"><input type="radio" name="mathProgress" value="刚开始">刚开始</label>
+                        <label class="radio-item"><input type="radio" name="mathProgress" value="基础进行中">基础进行中</label>
+                        <label class="radio-item"><input type="radio" name="mathProgress" value="基础完成">基础完成</label>
+                        <label class="radio-item"><input type="radio" name="mathProgress" value="强化中">强化中</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>已用数学教材/网课（可选）</label>
+                    <input type="text" name="mathResources" placeholder="如张宇、汤家凤、李永乐等">
+                </div>
+
+                <h3 style="margin: 30px 0 16px; font-size: 16px; color: #667eea;">📖 英语</h3>
+                <div class="form-group">
+                    <label>英语类型<span class="required">*</span></label>
+                    <div class="radio-group" data-name="englishType">
+                        <label class="radio-item"><input type="radio" name="englishType" value="英语一">英语一</label>
+                        <label class="radio-item"><input type="radio" name="englishType" value="英语二">英语二</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>四六级情况<span class="required">*</span></label>
+                    <div class="radio-group" data-name="cetStatus">
+                        <label class="radio-item"><input type="radio" name="cetStatus" value="四级未过">四级未过</label>
+                        <label class="radio-item"><input type="radio" name="cetStatus" value="四级已过">四级已过</label>
+                        <label class="radio-item"><input type="radio" name="cetStatus" value="六级已过">六级已过</label>
+                        <label class="radio-item"><input type="radio" name="cetStatus" value="六级500+">六级500+</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>词汇量自评<span class="required">*</span></label>
+                    <div class="radio-group" data-name="vocabLevel">
+                        <label class="radio-item"><input type="radio" name="vocabLevel" value="<2000"><2000</label>
+                        <label class="radio-item"><input type="radio" name="vocabLevel" value="2000-3500">2000-3500</label>
+                        <label class="radio-item"><input type="radio" name="vocabLevel" value="3500-5000">3500-5000</label>
+                        <label class="radio-item"><input type="radio" name="vocabLevel" value="5000+">5000+</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>阅读能力自评<span class="required">*</span></label>
+                    <div class="radio-group" data-name="readingLevel">
+                        <label class="radio-item"><input type="radio" name="readingLevel" value="长难句很困难">长难句很困难</label>
+                        <label class="radio-item"><input type="radio" name="readingLevel" value="能读懂大意">能读懂大意</label>
+                        <label class="radio-item"><input type="radio" name="readingLevel" value="基本通畅">基本通畅</label>
+                        <label class="radio-item"><input type="radio" name="readingLevel" value="无障碍">无障碍</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>写作能力自评<span class="required">*</span></label>
+                    <div class="radio-group" data-name="writingLevel">
+                        <label class="radio-item"><input type="radio" name="writingLevel" value="无法成文">无法成文</label>
+                        <label class="radio-item"><input type="radio" name="writingLevel" value="勉强凑字">勉强凑字</label>
+                        <label class="radio-item"><input type="radio" name="writingLevel" value="结构尚可">结构尚可</label>
+                        <label class="radio-item"><input type="radio" name="writingLevel" value="表达流畅">表达流畅</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>英语最担心题型<span class="required">*</span></label>
+                    <div class="checkbox-group" data-name="englishWorry">
+                        <label class="checkbox-item"><input type="checkbox" name="englishWorry" value="单词">单词记不住</label>
+                        <label class="checkbox-item"><input type="checkbox" name="englishWorry" value="阅读">阅读</label>
+                        <label class="checkbox-item"><input type="checkbox" name="englishWorry" value="完型">完型填空</label>
+                        <label class="checkbox-item"><input type="checkbox" name="englishWorry" value="翻译">翻译</label>
+                        <label class="checkbox-item"><input type="checkbox" name="englishWorry" value="作文">作文</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>英语复习进度<span class="required">*</span></label>
+                    <div class="radio-group" data-name="englishProgress">
+                        <label class="radio-item"><input type="radio" name="englishProgress" value="未开始">未开始</label>
+                        <label class="radio-item"><input type="radio" name="englishProgress" value="背单词中">背单词中</label>
+                        <label class="radio-item"><input type="radio" name="englishProgress" value="开始做真题">开始做真题</label>
+                        <label class="radio-item"><input type="radio" name="englishProgress" value="强化中">强化中</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>已用英语教材/网课（可选）</label>
+                    <input type="text" name="englishResources" placeholder="如红宝书、唐迟阅读等">
+                </div>
+
+                <h3 style="margin: 30px 0 16px; font-size: 16px; color: #10b981;">🏛️ 政治</h3>
+                <div class="form-group">
+                    <label>政治基础<span class="required">*</span></label>
+                    <div class="radio-group" data-name="politicsLevel">
+                        <label class="radio-item"><input type="radio" name="politicsLevel" value="零基础">零基础</label>
+                        <label class="radio-item"><input type="radio" name="politicsLevel" value="高中有底子">高中有底子</label>
+                        <label class="radio-item"><input type="radio" name="politicsLevel" value="大学学过相关">大学学过相关</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>政治复习进度<span class="required">*</span></label>
+                    <div class="radio-group" data-name="politicsProgress">
+                        <label class="radio-item"><input type="radio" name="politicsProgress" value="未开始">未开始</label>
+                        <label class="radio-item"><input type="radio" name="politicsProgress" value="看视频中">看视频中</label>
+                        <label class="radio-item"><input type="radio" name="politicsProgress" value="刷题中">刷题中</label>
+                        <label class="radio-item"><input type="radio" name="politicsProgress" value="背诵中">背诵中</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>计划何时开始政治（如未开始）</label>
+                    <div class="radio-group" data-name="politicsStartPlan">
+                        <label class="radio-item"><input type="radio" name="politicsStartPlan" value="现在就开始">现在就开始</label>
+                        <label class="radio-item"><input type="radio" name="politicsStartPlan" value="暑假">暑假</label>
+                        <label class="radio-item"><input type="radio" name="politicsStartPlan" value="9月后">9月后</label>
+                        <label class="radio-item"><input type="radio" name="politicsStartPlan" value="已开始">已开始</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>已用政治教材/网课（可选）</label>
+                    <input type="text" name="politicsResources" placeholder="如徐涛、肖秀荣等">
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-prev" onclick="kaoyanPrevStep()">← 上一步</button>
+                    <button type="button" class="btn btn-next" onclick="kaoyanNextStep()">下一步 →</button>
+                </div>
+            </div>
+
+            <!-- Step 4: 学习条件 -->
+            <div class="form-section" data-step="4">
+                <h2 class="section-title"><span>⏰</span> 学习条件与时间</h2>
+                <div class="form-group">
+                    <label>计划正式开始复习日期<span class="required">*</span></label>
+                    <input type="text" name="startDate" placeholder="如 2026年3月">
+                </div>
+                <div class="form-group">
+                    <label>工作日每天可学习时长<span class="required">*</span></label>
+                    <div class="radio-group" data-name="weekdayHours">
+                        <label class="radio-item"><input type="radio" name="weekdayHours" value="<4h"><4小时</label>
+                        <label class="radio-item"><input type="radio" name="weekdayHours" value="4-6h">4-6小时</label>
+                        <label class="radio-item"><input type="radio" name="weekdayHours" value="6-8h">6-8小时</label>
+                        <label class="radio-item"><input type="radio" name="weekdayHours" value="8-10h">8-10小时</label>
+                        <label class="radio-item"><input type="radio" name="weekdayHours" value="10h+">10小时+</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>周末每天可学习时长<span class="required">*</span></label>
+                    <div class="radio-group" data-name="weekendHours">
+                        <label class="radio-item"><input type="radio" name="weekendHours" value="<4h"><4小时</label>
+                        <label class="radio-item"><input type="radio" name="weekendHours" value="4-6h">4-6小时</label>
+                        <label class="radio-item"><input type="radio" name="weekendHours" value="6-8h">6-8小时</label>
+                        <label class="radio-item"><input type="radio" name="weekendHours" value="8-10h">8-10小时</label>
+                        <label class="radio-item"><input type="radio" name="weekendHours" value="10h+">10小时+</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>学习效率高峰时段<span class="required">*</span></label>
+                    <div class="checkbox-group" data-name="peakHours">
+                        <label class="checkbox-item"><input type="checkbox" name="peakHours" value="早上6-8点">早上6-8点</label>
+                        <label class="checkbox-item"><input type="checkbox" name="peakHours" value="上午8-12点">上午8-12点</label>
+                        <label class="checkbox-item"><input type="checkbox" name="peakHours" value="下午14-18点">下午14-18点</label>
+                        <label class="checkbox-item"><input type="checkbox" name="peakHours" value="晚上19-22点">晚上19-22点</label>
+                        <label class="checkbox-item"><input type="checkbox" name="peakHours" value="深夜22点后">深夜22点后</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>常规作息描述（可选）</label>
+                    <input type="text" name="schedule" placeholder="如 通常7点起床，23点睡觉">
+                </div>
+                <div class="form-group">
+                    <label>主要学习地点</label>
+                    <div class="checkbox-group" data-name="studyPlace">
+                        <label class="checkbox-item"><input type="checkbox" name="studyPlace" value="图书馆">图书馆</label>
+                        <label class="checkbox-item"><input type="checkbox" name="studyPlace" value="自习室">自习室</label>
+                        <label class="checkbox-item"><input type="checkbox" name="studyPlace" value="宿舍">宿舍</label>
+                        <label class="checkbox-item"><input type="checkbox" name="studyPlace" value="家里">家里</label>
+                        <label class="checkbox-item"><input type="checkbox" name="studyPlace" value="咖啡厅">咖啡厅</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>是否有其他重要事务占用时间<span class="required">*</span></label>
+                    <div class="checkbox-group" data-name="otherTasks">
+                        <label class="checkbox-item"><input type="checkbox" name="otherTasks" value="无">无</label>
+                        <label class="checkbox-item"><input type="checkbox" name="otherTasks" value="期末考试">期末考试</label>
+                        <label class="checkbox-item"><input type="checkbox" name="otherTasks" value="毕业设计">毕业设计</label>
+                        <label class="checkbox-item"><input type="checkbox" name="otherTasks" value="实习">实习</label>
+                        <label class="checkbox-item"><input type="checkbox" name="otherTasks" value="工作">工作</label>
+                        <label class="checkbox-item"><input type="checkbox" name="otherTasks" value="课程">日常课程</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>事务占用情况说明（如有）</label>
+                    <textarea name="otherTasksDetail" placeholder="如 6月底前有毕设答辩，预计每天占用2小时"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-prev" onclick="kaoyanPrevStep()">← 上一步</button>
+                    <button type="button" class="btn btn-next" onclick="kaoyanNextStep()">下一步 →</button>
+                </div>
+            </div>
+
+            <!-- Step 5: 学习习惯 -->
+            <div class="form-section" data-step="5">
+                <h2 class="section-title"><span>📝</span> 学习习惯与方法</h2>
+                <div class="form-group">
+                    <label>自律程度<span class="required">*</span></label>
+                    <div class="radio-group" data-name="selfDiscipline">
+                        <label class="radio-item"><input type="radio" name="selfDiscipline" value="容易懈怠">容易懈怠</label>
+                        <label class="radio-item"><input type="radio" name="selfDiscipline" value="一般">一般</label>
+                        <label class="radio-item"><input type="radio" name="selfDiscipline" value="较自律">较自律</label>
+                        <label class="radio-item"><input type="radio" name="selfDiscipline" value="非常自律">非常自律</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>执行力自评<span class="required">*</span></label>
+                    <div class="radio-group" data-name="execution">
+                        <label class="radio-item"><input type="radio" name="execution" value="制定计划难以执行">计划难以执行</label>
+                        <label class="radio-item"><input type="radio" name="execution" value="能完成大部分">能完成大部分</label>
+                        <label class="radio-item"><input type="radio" name="execution" value="执行力较强">执行力较强</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>学习方法偏好<span class="required">*</span></label>
+                    <div class="checkbox-group" data-name="learnStyle">
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="听课">听网课</label>
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="看书">看书自学</label>
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="刷题">刷题为主</label>
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="做笔记">做笔记整理</label>
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="背诵">背诵记忆</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>是否容易拖延<span class="required">*</span></label>
+                    <div class="radio-group" data-name="procrastination">
+                        <label class="radio-item"><input type="radio" name="procrastination" value="经常拖延">经常拖延</label>
+                        <label class="radio-item"><input type="radio" name="procrastination" value="偶尔拖延">偶尔拖延</label>
+                        <label class="radio-item"><input type="radio" name="procrastination" value="很少拖延">很少拖延</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>遇到难题时的处理方式</label>
+                    <div class="radio-group" data-name="problemSolving">
+                        <label class="radio-item"><input type="radio" name="problemSolving" value="死磕">死磕到底</label>
+                        <label class="radio-item"><input type="radio" name="problemSolving" value="跳过">先跳过</label>
+                        <label class="radio-item"><input type="radio" name="problemSolving" value="求助">及时求助</label>
+                        <label class="radio-item"><input type="radio" name="problemSolving" value="标记后再看">标记后再看</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>过往学习中容易犯的问题（可选）</label>
+                    <div class="checkbox-group" data-name="commonMistakes">
+                        <label class="checkbox-item"><input type="checkbox" name="commonMistakes" value="只看不练">只看不练</label>
+                        <label class="checkbox-item"><input type="checkbox" name="commonMistakes" value="刷题不总结">刷题不总结</label>
+                        <label class="checkbox-item"><input type="checkbox" name="commonMistakes" value="进度焦虑">进度焦虑比较</label>
+                        <label class="checkbox-item"><input type="checkbox" name="commonMistakes" value="资料太多不精">资料太多不精</label>
+                        <label class="checkbox-item"><input type="checkbox" name="commonMistakes" value="效率低时间长">效率低时间长</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>是否有研友一起备考</label>
+                    <div class="radio-group" data-name="hasStudyPartner">
+                        <label class="radio-item"><input type="radio" name="hasStudyPartner" value="有">有研友</label>
+                        <label class="radio-item"><input type="radio" name="hasStudyPartner" value="无">独自备考</label>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-prev" onclick="kaoyanPrevStep()">← 上一步</button>
+                    <button type="button" class="btn btn-next" onclick="kaoyanNextStep()">下一步 →</button>
+                </div>
+            </div>
+
+            <!-- Step 6: 心态与期望 -->
+            <div class="form-section" data-step="6">
+                <h2 class="section-title"><span>💪</span> 心态与支持系统</h2>
+                <div class="form-group">
+                    <label>考研动机<span class="required">*</span></label>
+                    <div class="checkbox-group" data-name="motivation">
+                        <label class="checkbox-item"><input type="checkbox" name="motivation" value="提升学历">提升学历</label>
+                        <label class="checkbox-item"><input type="checkbox" name="motivation" value="换专业方向">换专业方向</label>
+                        <label class="checkbox-item"><input type="checkbox" name="motivation" value="就业竞争力">就业竞争力</label>
+                        <label class="checkbox-item"><input type="checkbox" name="motivation" value="学术研究">学术研究兴趣</label>
+                        <label class="checkbox-item"><input type="checkbox" name="motivation" value="家人期望">家人期望</label>
+                        <label class="checkbox-item"><input type="checkbox" name="motivation" value="随大流">随大流</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>考研决心程度<span class="required">*</span></label>
+                    <div class="radio-group" data-name="determination">
+                        <label class="radio-item"><input type="radio" name="determination" value="非常坚定">非常坚定，必须上</label>
+                        <label class="radio-item"><input type="radio" name="determination" value="比较坚定">比较坚定</label>
+                        <label class="radio-item"><input type="radio" name="determination" value="一般">一般，试试看</label>
+                        <label class="radio-item"><input type="radio" name="determination" value="还在犹豫">还在犹豫</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>抗压能力<span class="required">*</span></label>
+                    <div class="radio-group" data-name="stressResistance">
+                        <label class="radio-item"><input type="radio" name="stressResistance" value="容易焦虑">容易焦虑</label>
+                        <label class="radio-item"><input type="radio" name="stressResistance" value="一般">一般</label>
+                        <label class="radio-item"><input type="radio" name="stressResistance" value="较强">较强</label>
+                        <label class="radio-item"><input type="radio" name="stressResistance" value="非常抗压">非常抗压</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>目前焦虑程度</label>
+                    <div class="radio-group" data-name="anxietyLevel">
+                        <label class="radio-item"><input type="radio" name="anxietyLevel" value="非常焦虑">非常焦虑</label>
+                        <label class="radio-item"><input type="radio" name="anxietyLevel" value="有些焦虑">有些焦虑</label>
+                        <label class="radio-item"><input type="radio" name="anxietyLevel" value="还好">还好</label>
+                        <label class="radio-item"><input type="radio" name="anxietyLevel" value="心态平和">心态平和</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>家人支持程度</label>
+                    <div class="radio-group" data-name="familySupport">
+                        <label class="radio-item"><input type="radio" name="familySupport" value="非常支持">非常支持</label>
+                        <label class="radio-item"><input type="radio" name="familySupport" value="支持">支持</label>
+                        <label class="radio-item"><input type="radio" name="familySupport" value="中立">中立</label>
+                        <label class="radio-item"><input type="radio" name="familySupport" value="不太支持">不太支持</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>最担心的科目<span class="required">*</span></label>
+                    <div class="checkbox-group" data-name="worriedSubject">
+                        <label class="checkbox-item"><input type="checkbox" name="worriedSubject" value="数学">数学</label>
+                        <label class="checkbox-item"><input type="checkbox" name="worriedSubject" value="英语">英语</label>
+                        <label class="checkbox-item"><input type="checkbox" name="worriedSubject" value="政治">政治</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>备考中最大的困难/最需要帮助的方面<span class="required">*</span></label>
+                    <textarea name="biggestChallenge" placeholder="请详细描述你目前遇到的困难或最需要帮助的地方"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>对规划的期望（可选）</label>
+                    <textarea name="expectations" placeholder="你希望这份规划能帮你解决什么问题？有什么特别的要求？"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>其他想说的（可选）</label>
+                    <textarea name="otherInfo" placeholder="任何你觉得对制定规划有帮助的信息"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-prev" onclick="kaoyanPrevStep()">← 上一步</button>
+                    <button type="submit" class="btn btn-submit">✨ 提交信息</button>
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="form-section" data-step="success">
+                <div class="success-msg">
+                    <h2>🎉 提交成功！</h2>
+                    <p>我们已收到你的信息，将在 <strong>24小时内</strong> 完成规划</p>
+                    <p style="margin-top: 20px;">规划完成后会通过微信通知你查看</p>
+                    <p style="margin-top: 40px; font-size: 13px;">如有问题请联系微信客服</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 考研全科规划表单结束 -->
+
+    <!-- 专业课规划表单 -->
+    <div id="majorFormWrapper" style="display:none;">
+        <div class="progress-bar">
+            <div class="step-dot active" data-step="1">1</div>
+            <div class="step-dot" data-step="2">2</div>
+            <div class="step-dot" data-step="3">3</div>
+        </div>
+
+        <form id="majorForm">
+            <!-- Step 1: 基本信息 -->
+            <div class="form-section active" data-step="1">
+                <h2 class="section-title"><span>👤</span> 基本信息与目标</h2>
+                <div class="form-group">
+                    <label>姓名/昵称<span class="required">*</span></label>
+                    <input type="text" name="name" placeholder="用于规划称呼">
+                </div>
+                <div class="form-group">
+                    <label>联系方式（微信优先）<span class="required">*</span></label>
+                    <input type="text" name="contact" placeholder="微信号或手机号">
+                </div>
+                <div class="form-group">
+                    <label>初试考试时间<span class="required">*</span></label>
+                    <div class="radio-group" data-name="examYear">
+                        <label class="radio-item"><input type="radio" name="examYear" value="2026">2026年12月</label>
+                        <label class="radio-item"><input type="radio" name="examYear" value="2027">2027年12月</label>
+                        <label class="radio-item"><input type="radio" name="examYear" value="2028">2028年12月</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>当前状态<span class="required">*</span></label>
+                    <div class="radio-group" data-name="currentStatus">
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="大一">大一</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="大二">大二</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="大三">大三</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="大四">大四</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="已毕业">已毕业</label>
+                        <label class="radio-item"><input type="radio" name="currentStatus" value="在职">在职</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>本科学校<span class="required">*</span></label>
+                    <input type="text" name="undergraduate" placeholder="学校全称">
+                </div>
+                <div class="form-group">
+                    <label>本科专业<span class="required">*</span></label>
+                    <input type="text" name="major" placeholder="专业名称">
+                </div>
+                <div class="form-group">
+                    <label>目标院校<span class="required">*</span></label>
+                    <input type="text" name="targetSchool" placeholder="目标学校全称">
+                </div>
+                <div class="form-group">
+                    <label>报考专业方向<span class="required">*</span></label>
+                    <input type="text" name="targetMajor" placeholder="专业名称及代码（如有）">
+                </div>
+                <div class="form-group">
+                    <label>学硕/专硕<span class="required">*</span></label>
+                    <div class="radio-group" data-name="degreeType">
+                        <label class="radio-item"><input type="radio" name="degreeType" value="学硕">学术型硕士</label>
+                        <label class="radio-item"><input type="radio" name="degreeType" value="专硕">专业型硕士</label>
+                        <label class="radio-item"><input type="radio" name="degreeType" value="未确定">未确定</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>是否跨考<span class="required">*</span></label>
+                    <div class="radio-group" data-name="isCrossExam">
+                        <label class="radio-item"><input type="radio" name="isCrossExam" value="否">否，本专业相关</label>
+                        <label class="radio-item"><input type="radio" name="isCrossExam" value="是">是，跨专业</label>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-next" onclick="majorNextStep()">下一步 →</button>
+                </div>
+            </div>
+
+            <!-- Step 2: 专业课详情 -->
+            <div class="form-section" data-step="2">
+                <h2 class="section-title"><span>📚</span> 专业课详情</h2>
+                <div class="form-group">
+                    <label>专业课科目数量<span class="required">*</span></label>
+                    <div class="radio-group" data-name="courseCount">
+                        <label class="radio-item"><input type="radio" name="courseCount" value="1门">1门</label>
+                        <label class="radio-item"><input type="radio" name="courseCount" value="2门">2门</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>专业课一科目名称及代码<span class="required">*</span></label>
+                    <input type="text" name="course1Name" placeholder="如 数据结构 408">
+                </div>
+                <div class="form-group">
+                    <label>专业课一当前基础<span class="required">*</span></label>
+                    <div class="radio-group" data-name="course1Level">
+                        <label class="radio-item"><input type="radio" name="course1Level" value="零基础">零基础</label>
+                        <label class="radio-item"><input type="radio" name="course1Level" value="薄弱">薄弱</label>
+                        <label class="radio-item"><input type="radio" name="course1Level" value="一般">一般</label>
+                        <label class="radio-item"><input type="radio" name="course1Level" value="较好">较好</label>
+                        <label class="radio-item"><input type="radio" name="course1Level" value="扎实">扎实</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>专业课一复习进度</label>
+                    <div class="radio-group" data-name="course1Progress">
+                        <label class="radio-item"><input type="radio" name="course1Progress" value="未开始">未开始</label>
+                        <label class="radio-item"><input type="radio" name="course1Progress" value="刚开始">刚开始</label>
+                        <label class="radio-item"><input type="radio" name="course1Progress" value="基础进行中">基础进行中</label>
+                        <label class="radio-item"><input type="radio" name="course1Progress" value="强化中">强化中</label>
+                        <label class="radio-item"><input type="radio" name="course1Progress" value="冲刺中">冲刺中</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>专业课一已用教材/网课</label>
+                    <input type="text" name="course1Resources" placeholder="如王道考研、学校指定教材等">
+                </div>
+                <div class="form-group">
+                    <label>专业课一最担心方面</label>
+                    <div class="checkbox-group" data-name="course1Weakness">
+                        <label class="checkbox-item"><input type="checkbox" name="course1Weakness" value="概念理解">概念理解</label>
+                        <label class="checkbox-item"><input type="checkbox" name="course1Weakness" value="计算题">计算题</label>
+                        <label class="checkbox-item"><input type="checkbox" name="course1Weakness" value="简答题">简答题</label>
+                        <label class="checkbox-item"><input type="checkbox" name="course1Weakness" value="论述题">论述题</label>
+                        <label class="checkbox-item"><input type="checkbox" name="course1Weakness" value="缺乏资料">缺乏资料</label>
+                    </div>
+                </div>
+
+                <div id="course2Fields" style="display:none;">
+                    <h3 style="margin: 30px 0 16px; font-size: 16px; color: #667eea;">📖 专业课二</h3>
+                    <div class="form-group">
+                        <label>专业课二科目名称及代码<span class="required">*</span></label>
+                        <input type="text" name="course2Name" placeholder="如 操作系统">
+                    </div>
+                    <div class="form-group">
+                        <label>专业课二当前基础<span class="required">*</span></label>
+                        <div class="radio-group" data-name="course2Level">
+                            <label class="radio-item"><input type="radio" name="course2Level" value="零基础">零基础</label>
+                            <label class="radio-item"><input type="radio" name="course2Level" value="薄弱">薄弱</label>
+                            <label class="radio-item"><input type="radio" name="course2Level" value="一般">一般</label>
+                            <label class="radio-item"><input type="radio" name="course2Level" value="较好">较好</label>
+                            <label class="radio-item"><input type="radio" name="course2Level" value="扎实">扎实</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>专业课二复习进度</label>
+                        <div class="radio-group" data-name="course2Progress">
+                            <label class="radio-item"><input type="radio" name="course2Progress" value="未开始">未开始</label>
+                            <label class="radio-item"><input type="radio" name="course2Progress" value="刚开始">刚开始</label>
+                            <label class="radio-item"><input type="radio" name="course2Progress" value="基础进行中">基础进行中</label>
+                            <label class="radio-item"><input type="radio" name="course2Progress" value="强化中">强化中</label>
+                            <label class="radio-item"><input type="radio" name="course2Progress" value="冲刺中">冲刺中</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>专业课二已用教材/网课</label>
+                        <input type="text" name="course2Resources" placeholder="如学校指定教材等">
+                    </div>
+                    <div class="form-group">
+                        <label>专业课二最担心方面</label>
+                        <div class="checkbox-group" data-name="course2Weakness">
+                            <label class="checkbox-item"><input type="checkbox" name="course2Weakness" value="概念理解">概念理解</label>
+                            <label class="checkbox-item"><input type="checkbox" name="course2Weakness" value="计算题">计算题</label>
+                            <label class="checkbox-item"><input type="checkbox" name="course2Weakness" value="简答题">简答题</label>
+                            <label class="checkbox-item"><input type="checkbox" name="course2Weakness" value="论述题">论述题</label>
+                            <label class="checkbox-item"><input type="checkbox" name="course2Weakness" value="缺乏资料">缺乏资料</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-prev" onclick="majorPrevStep()">← 上一步</button>
+                    <button type="button" class="btn btn-next" onclick="majorNextStep()">下一步 →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: 学习条件与期望 -->
+            <div class="form-section" data-step="3">
+                <h2 class="section-title"><span>⏰</span> 学习条件与期望</h2>
+                <div class="form-group">
+                    <label>计划开始复习日期<span class="required">*</span></label>
+                    <input type="text" name="startDate" placeholder="如 2026年3月">
+                </div>
+                <div class="form-group">
+                    <label>每天可分配给专业课的时长<span class="required">*</span></label>
+                    <div class="radio-group" data-name="dailyHours">
+                        <label class="radio-item"><input type="radio" name="dailyHours" value="<2h"><2小时</label>
+                        <label class="radio-item"><input type="radio" name="dailyHours" value="2-4h">2-4小时</label>
+                        <label class="radio-item"><input type="radio" name="dailyHours" value="4-6h">4-6小时</label>
+                        <label class="radio-item"><input type="radio" name="dailyHours" value="6h+">6小时+</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>学习方式偏好</label>
+                    <div class="checkbox-group" data-name="learnStyle">
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="听课">听网课</label>
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="看书">看书自学</label>
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="刷题">刷题为主</label>
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="做笔记">做笔记整理</label>
+                        <label class="checkbox-item"><input type="checkbox" name="learnStyle" value="背诵">背诵记忆</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>是否有专业课真题或资料<span class="required">*</span></label>
+                    <div class="radio-group" data-name="hasPastPapers">
+                        <label class="radio-item"><input type="radio" name="hasPastPapers" value="有完整真题">有完整真题</label>
+                        <label class="radio-item"><input type="radio" name="hasPastPapers" value="有部分真题">有部分真题</label>
+                        <label class="radio-item"><input type="radio" name="hasPastPapers" value="有回忆版">有回忆版</label>
+                        <label class="radio-item"><input type="radio" name="hasPastPapers" value="没有真题">还没有真题</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>是否了解目标院校出题风格</label>
+                    <div class="radio-group" data-name="knowExamStyle">
+                        <label class="radio-item"><input type="radio" name="knowExamStyle" value="已详细了解">已详细了解</label>
+                        <label class="radio-item"><input type="radio" name="knowExamStyle" value="大概了解">大概了解</label>
+                        <label class="radio-item"><input type="radio" name="knowExamStyle" value="还不了解">还不了解</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>自律程度<span class="required">*</span></label>
+                    <div class="radio-group" data-name="selfDiscipline">
+                        <label class="radio-item"><input type="radio" name="selfDiscipline" value="容易懈怠">容易懈怠</label>
+                        <label class="radio-item"><input type="radio" name="selfDiscipline" value="一般">一般</label>
+                        <label class="radio-item"><input type="radio" name="selfDiscipline" value="较自律">较自律</label>
+                        <label class="radio-item"><input type="radio" name="selfDiscipline" value="非常自律">非常自律</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>专业课最担心的困难/最需要帮助<span class="required">*</span></label>
+                    <textarea name="biggestChallenge" placeholder="请详细描述你在专业课备考中遇到的困难或最需要帮助的地方"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>对专业课规划的期望（可选）</label>
+                    <textarea name="expectations" placeholder="你希望这份专业课规划能帮你解决什么问题？"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>其他想说的（可选）</label>
+                    <textarea name="otherInfo" placeholder="任何你觉得对制定专业课规划有帮助的信息"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-prev" onclick="majorPrevStep()">← 上一步</button>
+                    <button type="submit" class="btn btn-submit">✨ 提交信息</button>
+                </div>
+            </div>
+
+            <!-- Success -->
+            <div class="form-section" data-step="success">
+                <div class="success-msg">
+                    <h2>🎉 提交成功！</h2>
+                    <p>我们已收到你的专业课规划信息，将在 <strong>24小时内</strong> 完成规划</p>
+                    <p style="margin-top: 20px;">规划完成后会通过微信通知你查看</p>
+                    <p style="margin-top: 40px; font-size: 13px;">如有问题请联系微信客服</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 专业课规划表单结束 -->
+
+    </div>
+
+    <div id="loading"><div class="spinner"></div></div>
+
+    <script>
+        // ========== 统一提交（同域中转优先，直连兜底，失败会提示） ==========
+        const SUPABASE_URL = 'https://ukquyolgcstifhltvxku.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrcXV5b2xnY3N0aWZobHR2eGt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3MjkxMjQsImV4cCI6MjA4NDMwNTEyNH0.XQj8RupAYwRpxFkkLJUohx_MM3zfC1ZMLnc-vJ4jYFQ';
+
+        async function postWithTimeout(url, options, ms) {
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), ms);
+            try {
+                return await fetch(url, Object.assign({}, options, { signal: ctrl.signal }));
+            } finally {
+                clearTimeout(timer);
+            }
+        }
+
+        async function sendStudent(row) {
+            try {
+                const r = await postWithTimeout('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(row)
+                }, 12000);
+                if (r.ok) return true;
+            } catch (e) {
+                console.log('同域中转未成功，改走直连', e);
+            }
+            for (let i = 0; i < 2; i++) {
+                try {
+                    const r = await postWithTimeout(SUPABASE_URL + '/rest/v1/students', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'apikey': SUPABASE_KEY,
+                            'Authorization': 'Bearer ' + SUPABASE_KEY,
+                            'Prefer': 'return=minimal'
+                        },
+                        body: JSON.stringify(row)
+                    }, 12000);
+                    if (r.ok) return true;
+                } catch (e) {
+                    console.log('直连提交未成功', e);
+                }
+            }
+            return false;
+        }
+
+        function submitFailed() {
+            document.getElementById('loading').style.display = 'none';
+            alert('提交没成功，可能是网络问题。请检查网络后再点一次提交；如果还是不行，把这份表单内容截图发我，我来手动记。');
+        }
+
+        // ========== 考研全科规划 ==========
+        let kaoyanCurrentStep = 1;
+        const kaoyanTotalSteps = 6;
+
+        function kaoyanUpdateProgress() {
+            document.querySelectorAll('#kaoyanFormWrapper .step-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'done');
+                if (index + 1 < kaoyanCurrentStep) dot.classList.add('done');
+                if (index + 1 === kaoyanCurrentStep) dot.classList.add('active');
+            });
+        }
+
+        function kaoyanShowStep(step) {
+            document.querySelectorAll('#kaoyanFormWrapper .form-section').forEach(s => s.classList.remove('active'));
+            document.querySelector(`#kaoyanFormWrapper .form-section[data-step="${step}"]`).classList.add('active');
+            kaoyanUpdateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function kaoyanNextStep() {
+            if (kaoyanCurrentStep < kaoyanTotalSteps) {
+                kaoyanCurrentStep++;
+                kaoyanShowStep(kaoyanCurrentStep);
+            }
+        }
+
+        function kaoyanPrevStep() {
+            if (kaoyanCurrentStep > 1) {
+                kaoyanCurrentStep--;
+                kaoyanShowStep(kaoyanCurrentStep);
+            }
+        }
+
+        // ========== 专业课规划 ==========
+        let majorCurrentStep = 1;
+        const majorTotalSteps = 3;
+
+        function majorUpdateProgress() {
+            document.querySelectorAll('#majorFormWrapper .step-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'done');
+                if (index + 1 < majorCurrentStep) dot.classList.add('done');
+                if (index + 1 === majorCurrentStep) dot.classList.add('active');
+            });
+        }
+
+        function majorShowStep(step) {
+            document.querySelectorAll('#majorFormWrapper .form-section').forEach(s => s.classList.remove('active'));
+            document.querySelector(`#majorFormWrapper .form-section[data-step="${step}"]`).classList.add('active');
+            majorUpdateProgress();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function majorNextStep() {
+            if (majorCurrentStep < majorTotalSteps) {
+                majorCurrentStep++;
+                majorShowStep(majorCurrentStep);
+            }
+        }
+
+        function majorPrevStep() {
+            if (majorCurrentStep > 1) {
+                majorCurrentStep--;
+                majorShowStep(majorCurrentStep);
+            }
+        }
+
+        // ========== Tab切换 ==========
+        function switchTab(tab) {
+            document.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.form-tab[data-tab="${tab}"]`).classList.add('active');
+            document.getElementById('kaoyanFormWrapper').style.display = tab === 'kaoyan' ? 'block' : 'none';
+            document.getElementById('majorFormWrapper').style.display = tab === 'major' ? 'block' : 'none';
+            if (tab === 'kaoyan') {
+                kaoyanCurrentStep = 1;
+                kaoyanShowStep(1);
+            } else {
+                majorCurrentStep = 1;
+                majorShowStep(1);
+            }
+        }
+
+        // ========== 专业课二显示/隐藏 ==========
+        document.querySelectorAll('#majorForm input[name="courseCount"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('course2Fields').style.display = this.value === '2门' ? 'block' : 'none';
+            });
+        });
+
+        // ========== Radio/Checkbox click handler ==========
+        document.querySelectorAll('.radio-item, .checkbox-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                const input = this.querySelector('input');
+                if (input.type === 'radio') {
+                    this.closest('.radio-group, .checkbox-group').querySelectorAll('.radio-item').forEach(i => i.classList.remove('selected'));
+                    this.classList.add('selected');
+                    input.checked = true;
+                    input.dispatchEvent(new Event('change', { bubbles: true }));
+                } else {
+                    input.checked = !input.checked;
+                    this.classList.toggle('selected', input.checked);
+                }
+            });
+        });
+
+        // ========== 考研全科提交 ==========
+        document.getElementById('kaoyanForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            document.getElementById('loading').style.display = 'flex';
+
+            const formData = new FormData(this);
+            const data = {};
+            const checkboxGroups = {};
+            formData.forEach((value, key) => {
+                if (this.querySelector(`input[name="${key}"][type="checkbox"]`)) {
+                    if (!checkboxGroups[key]) checkboxGroups[key] = [];
+                    checkboxGroups[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
+            Object.assign(data, checkboxGroups);
+            data.form_type = 'kaoyan_full';
+
+            const ok = await sendStudent({
+                name: data.name || '未填写',
+                contact: data.contact || '未填写',
+                target_school: data.targetSchool || '未填写',
+                exam_year: parseInt(data.examYear) || 2027,
+                info_json: data,
+                status: '待处理'
+            });
+            if (!ok) { submitFailed(); return; }
+
+            document.getElementById('loading').style.display = 'none';
+            kaoyanShowStep('success');
+        });
+
+        // ========== 专业课提交 ==========
+        document.getElementById('majorForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            document.getElementById('loading').style.display = 'flex';
+
+            const formData = new FormData(this);
+            const data = {};
+            const checkboxGroups = {};
+            formData.forEach((value, key) => {
+                if (this.querySelector(`input[name="${key}"][type="checkbox"]`)) {
+                    if (!checkboxGroups[key]) checkboxGroups[key] = [];
+                    checkboxGroups[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
+            Object.assign(data, checkboxGroups);
+            data.form_type = 'major_course';
+
+            const ok = await sendStudent({
+                name: data.name || '未填写',
+                contact: data.contact || '未填写',
+                target_school: data.targetSchool || '专业课规划',
+                exam_year: parseInt(data.examYear) || 2027,
+                info_json: data,
+                status: '待处理'
+            });
+            if (!ok) { submitFailed(); return; }
+
+            document.getElementById('loading').style.display = 'none';
+            majorShowStep('success');
+        });
+    </script>
+</body>
+</html>
